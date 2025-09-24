@@ -1,0 +1,16 @@
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\bin\Debug\HotelManagement.exe.config
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\bin\Debug\HotelManagement.exe
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\bin\Debug\HotelManagement.pdb
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\bin\Debug\BUS.dll
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\bin\Debug\ET.dll
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\bin\Debug\Guna.UI.dll
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\bin\Debug\BUS.pdb
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\bin\Debug\ET.pdb
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\obj\Debug\GUI.csproj.AssemblyReference.cache
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\obj\Debug\HotelManagement.frmBookingStaffHomeGUI.resources
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\obj\Debug\HotelManagement.Properties.Resources.resources
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\obj\Debug\GUI.csproj.GenerateResource.cache
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\obj\Debug\GUI.csproj.CoreCompileInputs.cache
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\obj\Debug\GUI.csproj.Up2Date
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\obj\Debug\HotelManagement.exe
+C:\ChuyenDe.Net\HotelManagement\HotelManagement\obj\Debug\HotelManagement.pdb
