@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmbookingstaffhomegui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmbookingstaffhomegui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmbookingstaffhomegui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmbookingstaffhomegui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|HotelManagement.csproj|C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|HotelManagement.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{79BFEF0F-CD40-4062-9DC7-2969B4472E5D}|..\\ET\\ET.csproj|c:\\chuyende.net\\hotelmanagement\\et\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -13,10 +33,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4738DAC-C059-4FB8-B100-4998C12D0D70}|..\\BUS\\BUS.csproj|c:\\chuyende.net\\hotelmanagement\\bus\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|HotelManagement.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|HotelManagement.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,49 +42,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "HotelManagement.dbml",
-              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\HotelManagement.dbml",
-              "RelativeDocumentMoniker": "..\\DAL\\HotelManagement.dbml",
-              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\HotelManagement.dbml",
-              "RelativeToolTip": "..\\DAL\\HotelManagement.dbml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
-              "WhenOpened": "2025-09-19T15:57:12.764Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\Class1.cs",
-              "RelativeDocumentMoniker": "..\\BUS\\Class1.cs",
-              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\Class1.cs",
-              "RelativeToolTip": "..\\BUS\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "frmBookingStaffHomeGUI.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmBookingStaffHomeGUI.cs",
+              "RelativeDocumentMoniker": "frmBookingStaffHomeGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmBookingStaffHomeGUI.cs",
+              "RelativeToolTip": "frmBookingStaffHomeGUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T15:55:24.714Z",
+              "WhenOpened": "2025-09-22T00:45:59.507Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Class1.cs",
-              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\Class1.cs",
-              "RelativeDocumentMoniker": "..\\DAL\\Class1.cs",
-              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\Class1.cs",
-              "RelativeToolTip": "..\\DAL\\Class1.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T15:55:14.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-22T00:44:15.149Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "frmBookingStaffHomeGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmBookingStaffHomeGUI.cs",
+              "RelativeDocumentMoniker": "frmBookingStaffHomeGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmBookingStaffHomeGUI.cs [Design]",
+              "RelativeToolTip": "frmBookingStaffHomeGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T08:48:44.429Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-21T09:07:08.827Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "Class1.cs",
               "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\ET\\Class1.cs",
               "RelativeDocumentMoniker": "..\\ET\\Class1.cs",
@@ -76,8 +102,7 @@
               "RelativeToolTip": "..\\ET\\Class1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T15:54:52.693Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-19T15:54:52.693Z"
             },
             {
               "$type": "Document",
@@ -88,8 +113,42 @@
               "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-19T15:52:08.662Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-09-19T15:52:08.662Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Class1.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\Class1.cs",
+              "RelativeToolTip": "..\\DAL\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:55:14.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\Class1.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\Class1.cs",
+              "RelativeToolTip": "..\\BUS\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-19T15:55:24.714Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HotelManagement.dbml",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\HotelManagement.dbml",
+              "RelativeDocumentMoniker": "..\\DAL\\HotelManagement.dbml",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\HotelManagement.dbml",
+              "RelativeToolTip": "..\\DAL\\HotelManagement.dbml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
+              "WhenOpened": "2025-09-19T15:57:12.764Z"
             }
           ]
         }
