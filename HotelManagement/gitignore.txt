@@ -1,0 +1,24 @@
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]ogs/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio
+.vs/
+
+# DLL, EXE
+*.dll
+*.exe
+
+# Temporary files
+*.tmp
+*.log
+*.cache
+*.pdb
