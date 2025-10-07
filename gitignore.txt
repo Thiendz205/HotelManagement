@@ -1,0 +1,26 @@
+# Ignore build outputs
+bin/
+obj/
+
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignore Visual Studio files
+.vs/
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.zip
+*.rar
+
+# Ignore publish folders
+publish/
