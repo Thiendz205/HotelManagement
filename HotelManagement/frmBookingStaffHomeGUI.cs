@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace HotelManagement
 {
-    public partial class frmBookingStaffHomeGUI : Form
+    public partial class frmBookingStaffHomeGUI2 : Form
     {
-        public frmBookingStaffHomeGUI()
+        public frmBookingStaffHomeGUI2()
         {
             InitializeComponent();
         }

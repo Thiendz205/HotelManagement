@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -57,16 +57,113 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAccountAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAccountAdmin.Designer.cs">
+      <DependentUpon>frmAccountAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBillAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBillAdmin.Designer.cs">
+      <DependentUpon>frmBillAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBookingStaffHomeGUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmBookingStaffHomeGUI.Designer.cs">
       <DependentUpon>frmBookingStaffHomeGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmMenuAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMenuAdmin.Designer.cs">
+      <DependentUpon>frmMenuAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiceAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceAdmin.Designer.cs">
+      <DependentUpon>frmServiceAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiceStaffMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceStaffMain.Designer.cs">
+      <DependentUpon>frmServiceStaffMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiceCRUD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceCRUD.Designer.cs">
+      <DependentUpon>frmServiceCRUD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiceProvision.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceProvision.Designer.cs">
+      <DependentUpon>frmServiceProvision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRoomMonitoring.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRoomMonitoring.Designer.cs">
+      <DependentUpon>frmRoomMonitoring.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmServiceManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmServiceManagement.Designer.cs">
+      <DependentUpon>frmServiceManagement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmStaffAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmStaffAdmin.Designer.cs">
+      <DependentUpon>frmStaffAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUseServiceAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUseServiceAdmin.Designer.cs">
+      <DependentUpon>frmUseServiceAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAccountAdmin.resx">
+      <DependentUpon>frmAccountAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBillAdmin.resx">
+      <DependentUpon>frmBillAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBookingStaffHomeGUI.resx">
       <DependentUpon>frmBookingStaffHomeGUI.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMenuAdmin.resx">
+      <DependentUpon>frmMenuAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRoomMonitoring.resx">
+      <DependentUpon>frmRoomMonitoring.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceCRUD.resx">
+      <DependentUpon>frmServiceCRUD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceManagement.resx">
+      <DependentUpon>frmServiceManagement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceProvision.resx">
+      <DependentUpon>frmServiceProvision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceStaffMain.resx">
+      <DependentUpon>frmServiceStaffMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmStaffAdmin.resx">
+      <DependentUpon>frmStaffAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUseServiceAdmin.resx">
+      <DependentUpon>frmUseServiceAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

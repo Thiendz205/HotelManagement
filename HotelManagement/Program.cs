@@ -16,7 +16,7 @@ namespace HotelManagement
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmBookingStaffHomeGUI());
+            Application.Run(new frmMenuAdmin());
         }
     }
 }
