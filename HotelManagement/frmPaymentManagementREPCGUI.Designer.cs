@@ -306,6 +306,7 @@
             this.guna2Button2.Size = new System.Drawing.Size(185, 66);
             this.guna2Button2.TabIndex = 1;
             this.guna2Button2.Text = "Quay lại";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // guna2Button1
             // 

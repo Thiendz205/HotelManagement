@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Guna.UI">
-      <HintPath>..\..\..\..\..\..\NguyenHoaiPhuongNam\ChuyenDe.Net\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
+      <HintPath>..\..\..\Users\THIS PC\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2">
-      <HintPath>..\..\..\..\..\..\NguyenHoaiPhuongNam\ChuyenDe.Net\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+      <HintPath>..\..\..\Users\THIS PC\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -78,6 +78,12 @@
     <Compile Include="frmBillAdmin.Designer.cs">
       <DependentUpon>frmBillAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBookingAdminGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBookingAdminGUI.Designer.cs">
+      <DependentUpon>frmBookingAdminGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBookingGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +114,12 @@
     <Compile Include="frmChinhSuaPhong.Designer.cs">
       <DependentUpon>frmChinhSuaPhong.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmCustomerManagementAdminGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCustomerManagementAdminGUI.Designer.cs">
+      <DependentUpon>frmCustomerManagementAdminGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCustomerRECPGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -131,6 +143,18 @@
     </Compile>
     <Compile Include="frmEmployeeInforHRGUI.Designer.cs">
       <DependentUpon>frmEmployeeInforHRGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExtraChargeAdminGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExtraChargeAdminGUI.Designer.cs">
+      <DependentUpon>frmExtraChargeAdminGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmExtraChargeTypeAdminGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExtraChargeTypeAdminGUI.Designer.cs">
+      <DependentUpon>frmExtraChargeTypeAdminGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGiaPhongDongTheoThoiGIan.cs">
       <SubType>Form</SubType>
@@ -281,6 +305,9 @@
     <EmbeddedResource Include="frmBillAdmin.resx">
       <DependentUpon>frmBillAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBookingAdminGUI.resx">
+      <DependentUpon>frmBookingAdminGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBookingGUI.resx">
       <DependentUpon>frmBookingGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -296,6 +323,9 @@
     <EmbeddedResource Include="frmChinhSuaPhong.resx">
       <DependentUpon>frmChinhSuaPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCustomerManagementAdminGUI.resx">
+      <DependentUpon>frmCustomerManagementAdminGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCustomerRECPGUI.resx">
       <DependentUpon>frmCustomerRECPGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -307,6 +337,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEmployeeInforHRGUI.resx">
       <DependentUpon>frmEmployeeInforHRGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExtraChargeAdminGUI.resx">
+      <DependentUpon>frmExtraChargeAdminGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExtraChargeTypeAdminGUI.resx">
+      <DependentUpon>frmExtraChargeTypeAdminGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGiaPhongDongTheoThoiGIan.resx">
       <DependentUpon>frmGiaPhongDongTheoThoiGIan.cs</DependentUpon>

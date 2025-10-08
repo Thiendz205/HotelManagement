@@ -105,7 +105,22 @@ namespace HotelManagement
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
+            var parent = Application.OpenForms["frmBookingStaffHomeGUI"] as frmBookingStaffHomeGUI;
+            if (parent != null)
+            {
+                var bookingDetailForm = new frmListRoomPaymentManagementREPCGUI();
+                parent.OpenChildForm(bookingDetailForm);
+            }
+        }
 
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            var parent = Application.OpenForms["frmBookingStaffHomeGUI"] as frmBookingStaffHomeGUI;
+            if (parent != null)
+            {
+                var bookingDetailForm = new frmListRoomPaymentManagementREPCGUI();
+                parent.OpenChildForm(bookingDetailForm);
+            }
         }
     }
 }
