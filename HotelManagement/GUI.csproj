@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Guna.UI">
-      <HintPath>..\..\..\Users\THIS PC\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\NguyenHoaiPhuongNam\ChuyenDe.Net\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2">
-      <HintPath>..\..\..\gunaa\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\NguyenHoaiPhuongNam\ChuyenDe.Net\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -102,17 +102,41 @@
     <Compile Include="frmCheckInFromReservationRECPGUI.Designer.cs">
       <DependentUpon>frmCheckInFromReservationRECPGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmChinhSuaPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChinhSuaPhong.Designer.cs">
+      <DependentUpon>frmChinhSuaPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmCustomerRECPGUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmCustomerRECPGUI.Designer.cs">
       <DependentUpon>frmCustomerRECPGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDanhGiaPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDanhGiaPhong.Designer.cs">
+      <DependentUpon>frmDanhGiaPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmEditThietBi_NVkyThuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditThietBi_NVkyThuat.Designer.cs">
+      <DependentUpon>frmEditThietBi_NVkyThuat.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEmployeeInforHRGUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmEmployeeInforHRGUI.Designer.cs">
       <DependentUpon>frmEmployeeInforHRGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGiaPhongDongTheoThoiGIan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiaPhongDongTheoThoiGIan.Designer.cs">
+      <DependentUpon>frmGiaPhongDongTheoThoiGIan.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGuestCheckInRECPGUI.cs">
       <SubType>Form</SubType>
@@ -126,17 +150,35 @@
     <Compile Include="frmHRManagerMainGUI.Designer.cs">
       <DependentUpon>frmHRManagerMainGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKhoThietBi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKhoThietBi.Designer.cs">
+      <DependentUpon>frmKhoThietBi.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmListRoomPaymentManagementREPCGUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmListRoomPaymentManagementREPCGUI.Designer.cs">
       <DependentUpon>frmListRoomPaymentManagementREPCGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLoaiPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLoaiPhong.Designer.cs">
+      <DependentUpon>frmLoaiPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMenuAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMenuAdmin.Designer.cs">
       <DependentUpon>frmMenuAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNhanVienKyThuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhanVienKyThuat.Designer.cs">
+      <DependentUpon>frmNhanVienKyThuat.cs</DependentUpon>
     </Compile>
     <Compile Include="frmPaymentManagementREPCGUI.cs">
       <SubType>Form</SubType>
@@ -204,11 +246,29 @@
     <Compile Include="frmStaffAdmin.Designer.cs">
       <DependentUpon>frmStaffAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTrangThaiPhong_NVkyThuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTrangThaiPhong_NVkyThuat.Designer.cs">
+      <DependentUpon>frmTrangThaiPhong_NVkyThuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTrangThietBiPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTrangThietBiPhong.Designer.cs">
+      <DependentUpon>frmTrangThietBiPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmUseServiceAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmUseServiceAdmin.Designer.cs">
       <DependentUpon>frmUseServiceAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_login.Designer.cs">
+      <DependentUpon>frm_login.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -233,11 +293,23 @@
     <EmbeddedResource Include="frmCheckInFromReservationRECPGUI.resx">
       <DependentUpon>frmCheckInFromReservationRECPGUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmChinhSuaPhong.resx">
+      <DependentUpon>frmChinhSuaPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCustomerRECPGUI.resx">
       <DependentUpon>frmCustomerRECPGUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDanhGiaPhong.resx">
+      <DependentUpon>frmDanhGiaPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditThietBi_NVkyThuat.resx">
+      <DependentUpon>frmEditThietBi_NVkyThuat.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEmployeeInforHRGUI.resx">
       <DependentUpon>frmEmployeeInforHRGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGiaPhongDongTheoThoiGIan.resx">
+      <DependentUpon>frmGiaPhongDongTheoThoiGIan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGuestCheckInRECPGUI.resx">
       <DependentUpon>frmGuestCheckInRECPGUI.cs</DependentUpon>
@@ -245,11 +317,20 @@
     <EmbeddedResource Include="frmHRManagerMainGUI.resx">
       <DependentUpon>frmHRManagerMainGUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmKhoThietBi.resx">
+      <DependentUpon>frmKhoThietBi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmListRoomPaymentManagementREPCGUI.resx">
       <DependentUpon>frmListRoomPaymentManagementREPCGUI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLoaiPhong.resx">
+      <DependentUpon>frmLoaiPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMenuAdmin.resx">
       <DependentUpon>frmMenuAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNhanVienKyThuat.resx">
+      <DependentUpon>frmNhanVienKyThuat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaymentManagementREPCGUI.resx">
       <DependentUpon>frmPaymentManagementREPCGUI.cs</DependentUpon>
@@ -281,8 +362,17 @@
     <EmbeddedResource Include="frmStaffAdmin.resx">
       <DependentUpon>frmStaffAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTrangThaiPhong_NVkyThuat.resx">
+      <DependentUpon>frmTrangThaiPhong_NVkyThuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTrangThietBiPhong.resx">
+      <DependentUpon>frmTrangThietBiPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmUseServiceAdmin.resx">
       <DependentUpon>frmUseServiceAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_login.resx">
+      <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -329,18 +419,32 @@
     <Content Include="Resources\ChangeRommRECP.png" />
     <Content Include="Resources\check-inRECP.png" />
     <Content Include="Resources\confirmRECP.png" />
+    <Content Include="Resources\down.png" />
     <Content Include="Resources\editRECP.png" />
     <Content Include="Resources\employeeprofileHR.png" />
+    <Content Include="Resources\home_icon.png" />
     <Content Include="Resources\hotel.png" />
+    <Content Include="Resources\hotel_logo_icon.ico" />
+    <Content Include="Resources\icon_setting.png" />
+    <Content Include="Resources\img_backr_login.jpg" />
+    <Content Include="Resources\living-room.png" />
+    <None Include="Resources\lock_icon.png" />
     <Content Include="Resources\logoutHR.png" />
     <Content Include="Resources\magnifier.png" />
     <Content Include="Resources\payment-method.png" />
     <Content Include="Resources\QRpayReCP.jpg" />
     <Content Include="Resources\refreshRECP.png" />
+    <Content Include="Resources\responsive.png" />
     <Content Include="Resources\service.png" />
     <Content Include="Resources\signs-close-icon-png.png" />
+    <Content Include="Resources\Technology.jpg" />
+    <Content Include="Resources\Technology1.jpg" />
     <Content Include="Resources\updateHR.png" />
     <Content Include="Resources\userHR.png" />
+    <Content Include="Resources\user_icon.png" />
+    <None Include="Resources\user_icon1.png" />
+    <Content Include="Resources\view_hotel.jpg" />
+    <Content Include="Resources\welcome_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

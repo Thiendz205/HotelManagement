@@ -34,6 +34,8 @@
             this.dgvPaymentDetail = new System.Windows.Forms.DataGridView();
             this.lblTongTien = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.cboPaymentMethod = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -47,11 +49,9 @@
             this.label17 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cboPaymentMethod = new System.Windows.Forms.ComboBox();
-            this.picQRCode = new System.Windows.Forms.PictureBox();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.picQRCode = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPaymentDetail)).BeginInit();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
@@ -127,6 +127,25 @@
             this.guna2GroupBox2.Size = new System.Drawing.Size(1074, 345);
             this.guna2GroupBox2.TabIndex = 16;
             this.guna2GroupBox2.Text = "Thông tin thanh toán";
+            // 
+            // cboPaymentMethod
+            // 
+            this.cboPaymentMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboPaymentMethod.FormattingEnabled = true;
+            this.cboPaymentMethod.Location = new System.Drawing.Point(487, 64);
+            this.cboPaymentMethod.Name = "cboPaymentMethod";
+            this.cboPaymentMethod.Size = new System.Drawing.Size(144, 30);
+            this.cboPaymentMethod.TabIndex = 48;
+            this.cboPaymentMethod.SelectedIndexChanged += new System.EventHandler(this.cboPaymentMethod_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(367, 70);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 22);
+            this.label5.TabIndex = 47;
+            this.label5.Text = "Hình thức:";
             // 
             // label14
             // 
@@ -270,35 +289,6 @@
             this.guna2GroupBox3.TabIndex = 17;
             this.guna2GroupBox3.Text = "Chức Năng";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(367, 70);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 22);
-            this.label5.TabIndex = 47;
-            this.label5.Text = "Hình thức:";
-            // 
-            // cboPaymentMethod
-            // 
-            this.cboPaymentMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboPaymentMethod.FormattingEnabled = true;
-            this.cboPaymentMethod.Location = new System.Drawing.Point(487, 64);
-            this.cboPaymentMethod.Name = "cboPaymentMethod";
-            this.cboPaymentMethod.Size = new System.Drawing.Size(144, 30);
-            this.cboPaymentMethod.TabIndex = 48;
-            this.cboPaymentMethod.SelectedIndexChanged += new System.EventHandler(this.cboPaymentMethod_SelectedIndexChanged);
-            // 
-            // picQRCode
-            // 
-            this.picQRCode.Image = ((System.Drawing.Image)(resources.GetObject("picQRCode.Image")));
-            this.picQRCode.Location = new System.Drawing.Point(1222, 200);
-            this.picQRCode.Name = "picQRCode";
-            this.picQRCode.Size = new System.Drawing.Size(288, 280);
-            this.picQRCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picQRCode.TabIndex = 18;
-            this.picQRCode.TabStop = false;
-            // 
             // guna2Button2
             // 
             this.guna2Button2.BorderRadius = 20;
@@ -335,6 +325,16 @@
             this.guna2Button1.TabIndex = 0;
             this.guna2Button1.Text = "Thanh Toán";
             this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            // 
+            // picQRCode
+            // 
+            this.picQRCode.Image = ((System.Drawing.Image)(resources.GetObject("picQRCode.Image")));
+            this.picQRCode.Location = new System.Drawing.Point(1222, 200);
+            this.picQRCode.Name = "picQRCode";
+            this.picQRCode.Size = new System.Drawing.Size(288, 280);
+            this.picQRCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picQRCode.TabIndex = 18;
+            this.picQRCode.TabStop = false;
             // 
             // frmPaymentManagementREPCGUI
             // 
