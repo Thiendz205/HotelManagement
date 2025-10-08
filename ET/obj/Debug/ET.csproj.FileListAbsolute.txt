@@ -1,0 +1,6 @@
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\ET\bin\Debug\ET.dll
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\ET\bin\Debug\ET.pdb
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\ET\obj\Debug\ET.csproj.AssemblyReference.cache
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\ET\obj\Debug\ET.csproj.CoreCompileInputs.cache
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\ET\obj\Debug\ET.dll
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\ET\obj\Debug\ET.pdb

@@ -1,0 +1,9 @@
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\DAL\bin\Debug\DAL.dll
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\DAL\bin\Debug\DAL.pdb
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\DAL\bin\Debug\ET.dll
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\DAL\bin\Debug\ET.pdb
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\DAL\obj\Debug\DAL.csproj.Up2Date
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\DAL\obj\Debug\DAL.dll
+C:\NguyenHoaiPhuongNam\ChuyenDe.Net\HotelManagement\DAL\obj\Debug\DAL.pdb
