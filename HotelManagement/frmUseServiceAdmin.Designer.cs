@@ -58,7 +58,7 @@
             // 
             // headerPanel
             // 
-            this.headerPanel.BackColor = System.Drawing.Color.White;
+            this.headerPanel.BackColor = System.Drawing.Color.PaleTurquoise;
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.txtSearch);
             this.headerPanel.Controls.Add(this.btnAdd);
@@ -252,7 +252,7 @@
             // 
             // editorPanel
             // 
-            this.editorPanel.BackColor = System.Drawing.Color.White;
+            this.editorPanel.BackColor = System.Drawing.Color.PaleTurquoise;
             this.editorPanel.Controls.Add(this.lblBookingID);
             this.editorPanel.Controls.Add(this.txtBookingID);
             this.editorPanel.Controls.Add(this.lblServiceID);
@@ -385,6 +385,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(950, 800);
             this.Controls.Add(this.dgvMain);
             this.Controls.Add(this.editorPanel);

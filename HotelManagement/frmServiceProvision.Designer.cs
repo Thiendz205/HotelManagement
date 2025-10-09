@@ -32,30 +32,20 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnRemoveService = new Guna.UI.WinForms.GunaButton();
             this.btnAddService = new Guna.UI.WinForms.GunaButton();
-            this.txtUnitPrice = new Guna.UI.WinForms.GunaTextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.txtCategory = new Guna.UI.WinForms.GunaTextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtServiceName = new Guna.UI.WinForms.GunaTextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtServiceID = new Guna.UI.WinForms.GunaTextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.dgvServices = new System.Windows.Forms.DataGridView();
-            this.gunaGroupBox1 = new Guna.UI.WinForms.GunaGroupBox();
-            this.txtStatus = new Guna.UI.WinForms.GunaTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtCheckInDate = new Guna.UI.WinForms.GunaTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtRoomNumber = new Guna.UI.WinForms.GunaTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtCustomerName = new Guna.UI.WinForms.GunaTextBox();
+            this.btnSuaDV = new Guna.UI.WinForms.GunaButton();
+            this.gunaComboBox1 = new Guna.UI.WinForms.GunaComboBox();
+            this.txtServiceID = new Guna.UI.WinForms.GunaTextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtServiceName = new Guna.UI.WinForms.GunaTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtBookingID = new Guna.UI.WinForms.GunaTextBox();
-            this.lblBookingID = new System.Windows.Forms.Label();
-            this.dgvBookings = new System.Windows.Forms.DataGridView();
-            this.btnSearchBooking = new Guna.UI.WinForms.GunaButton();
-            this.txtSearchBooking = new Guna.UI.WinForms.GunaTextBox();
-            this.lblSearch = new System.Windows.Forms.Label();
+            this.gunaTextBox1 = new Guna.UI.WinForms.GunaTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.gunaTextBox2 = new Guna.UI.WinForms.GunaTextBox();
             this.pnlHeader.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.gunaGroupBox3.SuspendLayout();
@@ -63,8 +53,6 @@
             this.gunaGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).BeginInit();
-            this.gunaGroupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBookings)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlHeader
@@ -120,7 +108,6 @@
             this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.pnlMain.Controls.Add(this.gunaGroupBox3);
             this.pnlMain.Controls.Add(this.gunaGroupBox2);
-            this.pnlMain.Controls.Add(this.gunaGroupBox1);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 60);
             this.pnlMain.Name = "pnlMain";
@@ -142,7 +129,7 @@
             this.gunaGroupBox3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.gunaGroupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.gunaGroupBox3.LineColor = System.Drawing.Color.Gainsboro;
-            this.gunaGroupBox3.Location = new System.Drawing.Point(620, 240);
+            this.gunaGroupBox3.Location = new System.Drawing.Point(620, 36);
             this.gunaGroupBox3.Name = "gunaGroupBox3";
             this.gunaGroupBox3.Size = new System.Drawing.Size(560, 480);
             this.gunaGroupBox3.TabIndex = 2;
@@ -156,6 +143,7 @@
             this.dgvServiceList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvServiceList.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvServiceList.BackgroundColor = System.Drawing.Color.White;
             this.dgvServiceList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvServiceList.Location = new System.Drawing.Point(20, 40);
@@ -252,13 +240,18 @@
             this.gunaGroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.gunaGroupBox2.BaseColor = System.Drawing.Color.White;
             this.gunaGroupBox2.BorderColor = System.Drawing.Color.Gainsboro;
+            this.gunaGroupBox2.Controls.Add(this.label2);
+            this.gunaGroupBox2.Controls.Add(this.gunaTextBox2);
+            this.gunaGroupBox2.Controls.Add(this.label1);
+            this.gunaGroupBox2.Controls.Add(this.gunaTextBox1);
+            this.gunaGroupBox2.Controls.Add(this.gunaComboBox1);
+            this.gunaGroupBox2.Controls.Add(this.btnSuaDV);
             this.gunaGroupBox2.Controls.Add(this.txtServiceTotal);
             this.gunaGroupBox2.Controls.Add(this.label10);
             this.gunaGroupBox2.Controls.Add(this.numQuantity);
             this.gunaGroupBox2.Controls.Add(this.label9);
             this.gunaGroupBox2.Controls.Add(this.btnRemoveService);
             this.gunaGroupBox2.Controls.Add(this.btnAddService);
-            this.gunaGroupBox2.Controls.Add(this.txtUnitPrice);
             this.gunaGroupBox2.Controls.Add(this.label8);
             this.gunaGroupBox2.Controls.Add(this.txtCategory);
             this.gunaGroupBox2.Controls.Add(this.label7);
@@ -270,9 +263,9 @@
             this.gunaGroupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.gunaGroupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.gunaGroupBox2.LineColor = System.Drawing.Color.Gainsboro;
-            this.gunaGroupBox2.Location = new System.Drawing.Point(20, 240);
+            this.gunaGroupBox2.Location = new System.Drawing.Point(20, 35);
             this.gunaGroupBox2.Name = "gunaGroupBox2";
-            this.gunaGroupBox2.Size = new System.Drawing.Size(580, 480);
+            this.gunaGroupBox2.Size = new System.Drawing.Size(594, 481);
             this.gunaGroupBox2.TabIndex = 1;
             this.gunaGroupBox2.Text = "Chọn Dịch vụ";
             this.gunaGroupBox2.TextLocation = new System.Drawing.Point(10, 8);
@@ -287,7 +280,7 @@
             this.txtServiceTotal.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtServiceTotal.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtServiceTotal.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtServiceTotal.Location = new System.Drawing.Point(400, 400);
+            this.txtServiceTotal.Location = new System.Drawing.Point(410, 365);
             this.txtServiceTotal.Name = "txtServiceTotal";
             this.txtServiceTotal.PasswordChar = '\0';
             this.txtServiceTotal.ReadOnly = true;
@@ -300,7 +293,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label10.Location = new System.Drawing.Point(300, 405);
+            this.label10.Location = new System.Drawing.Point(300, 370);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(77, 19);
             this.label10.TabIndex = 13;
@@ -309,14 +302,14 @@
             // numQuantity
             // 
             this.numQuantity.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.numQuantity.Location = new System.Drawing.Point(400, 360);
+            this.numQuantity.Location = new System.Drawing.Point(410, 328);
             this.numQuantity.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numQuantity.Name = "numQuantity";
-            this.numQuantity.Size = new System.Drawing.Size(80, 23);
+            this.numQuantity.Size = new System.Drawing.Size(160, 23);
             this.numQuantity.TabIndex = 12;
             this.numQuantity.Value = new decimal(new int[] {
             1,
@@ -330,7 +323,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label9.Location = new System.Drawing.Point(300, 365);
+            this.label9.Location = new System.Drawing.Point(300, 330);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(66, 19);
             this.label9.TabIndex = 11;
@@ -348,7 +341,7 @@
             this.btnRemoveService.ForeColor = System.Drawing.Color.White;
             this.btnRemoveService.Image = null;
             this.btnRemoveService.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnRemoveService.Location = new System.Drawing.Point(200, 440);
+            this.btnRemoveService.Location = new System.Drawing.Point(255, 441);
             this.btnRemoveService.Name = "btnRemoveService";
             this.btnRemoveService.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnRemoveService.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -373,7 +366,7 @@
             this.btnAddService.ForeColor = System.Drawing.Color.White;
             this.btnAddService.Image = null;
             this.btnAddService.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnAddService.Location = new System.Drawing.Point(80, 440);
+            this.btnAddService.Location = new System.Drawing.Point(121, 441);
             this.btnAddService.Name = "btnAddService";
             this.btnAddService.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnAddService.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -386,30 +379,12 @@
             this.btnAddService.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnAddService.Click += new System.EventHandler(this.btnAddService_Click);
             // 
-            // txtUnitPrice
-            // 
-            this.txtUnitPrice.BackColor = System.Drawing.Color.Transparent;
-            this.txtUnitPrice.BaseColor = System.Drawing.Color.White;
-            this.txtUnitPrice.BorderColor = System.Drawing.Color.Silver;
-            this.txtUnitPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtUnitPrice.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtUnitPrice.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtUnitPrice.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtUnitPrice.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtUnitPrice.Location = new System.Drawing.Point(400, 320);
-            this.txtUnitPrice.Name = "txtUnitPrice";
-            this.txtUnitPrice.PasswordChar = '\0';
-            this.txtUnitPrice.ReadOnly = true;
-            this.txtUnitPrice.SelectedText = "";
-            this.txtUnitPrice.Size = new System.Drawing.Size(160, 30);
-            this.txtUnitPrice.TabIndex = 8;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label8.Location = new System.Drawing.Point(300, 325);
+            this.label8.Location = new System.Drawing.Point(27, 365);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 19);
             this.label8.TabIndex = 7;
@@ -425,7 +400,7 @@
             this.txtCategory.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtCategory.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtCategory.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtCategory.Location = new System.Drawing.Point(400, 280);
+            this.txtCategory.Location = new System.Drawing.Point(127, 365);
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.PasswordChar = '\0';
             this.txtCategory.ReadOnly = true;
@@ -438,65 +413,18 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label7.Location = new System.Drawing.Point(300, 285);
+            this.label7.Location = new System.Drawing.Point(27, 328);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 19);
             this.label7.TabIndex = 5;
             this.label7.Text = "Danh mục:";
-            // 
-            // txtServiceName
-            // 
-            this.txtServiceName.BackColor = System.Drawing.Color.Transparent;
-            this.txtServiceName.BaseColor = System.Drawing.Color.White;
-            this.txtServiceName.BorderColor = System.Drawing.Color.Silver;
-            this.txtServiceName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtServiceName.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtServiceName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtServiceName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtServiceName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtServiceName.Location = new System.Drawing.Point(400, 240);
-            this.txtServiceName.Name = "txtServiceName";
-            this.txtServiceName.PasswordChar = '\0';
-            this.txtServiceName.ReadOnly = true;
-            this.txtServiceName.SelectedText = "";
-            this.txtServiceName.Size = new System.Drawing.Size(160, 30);
-            this.txtServiceName.TabIndex = 4;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label6.Location = new System.Drawing.Point(300, 245);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(81, 19);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Tên dịch vụ:";
-            // 
-            // txtServiceID
-            // 
-            this.txtServiceID.BackColor = System.Drawing.Color.Transparent;
-            this.txtServiceID.BaseColor = System.Drawing.Color.White;
-            this.txtServiceID.BorderColor = System.Drawing.Color.Silver;
-            this.txtServiceID.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtServiceID.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtServiceID.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtServiceID.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtServiceID.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtServiceID.Location = new System.Drawing.Point(400, 200);
-            this.txtServiceID.Name = "txtServiceID";
-            this.txtServiceID.PasswordChar = '\0';
-            this.txtServiceID.ReadOnly = true;
-            this.txtServiceID.SelectedText = "";
-            this.txtServiceID.Size = new System.Drawing.Size(160, 30);
-            this.txtServiceID.TabIndex = 2;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label5.Location = new System.Drawing.Point(300, 205);
+            this.label5.Location = new System.Drawing.Point(27, 244);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 19);
             this.label5.TabIndex = 1;
@@ -508,263 +436,163 @@
             this.dgvServices.AllowUserToDeleteRows = false;
             this.dgvServices.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.dgvServices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvServices.BackgroundColor = System.Drawing.Color.White;
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvServices.Location = new System.Drawing.Point(20, 40);
             this.dgvServices.Name = "dgvServices";
             this.dgvServices.ReadOnly = true;
             this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvServices.Size = new System.Drawing.Size(260, 150);
+            this.dgvServices.Size = new System.Drawing.Size(561, 173);
             this.dgvServices.TabIndex = 0;
             this.dgvServices.SelectionChanged += new System.EventHandler(this.dgvServices_SelectionChanged);
             // 
-            // gunaGroupBox1
+            // btnSuaDV
             // 
-            this.gunaGroupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gunaGroupBox1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGroupBox1.BaseColor = System.Drawing.Color.White;
-            this.gunaGroupBox1.BorderColor = System.Drawing.Color.Gainsboro;
-            this.gunaGroupBox1.Controls.Add(this.txtStatus);
-            this.gunaGroupBox1.Controls.Add(this.label4);
-            this.gunaGroupBox1.Controls.Add(this.txtCheckInDate);
-            this.gunaGroupBox1.Controls.Add(this.label3);
-            this.gunaGroupBox1.Controls.Add(this.txtRoomNumber);
-            this.gunaGroupBox1.Controls.Add(this.label2);
-            this.gunaGroupBox1.Controls.Add(this.txtCustomerName);
-            this.gunaGroupBox1.Controls.Add(this.label1);
-            this.gunaGroupBox1.Controls.Add(this.txtBookingID);
-            this.gunaGroupBox1.Controls.Add(this.lblBookingID);
-            this.gunaGroupBox1.Controls.Add(this.dgvBookings);
-            this.gunaGroupBox1.Controls.Add(this.btnSearchBooking);
-            this.gunaGroupBox1.Controls.Add(this.txtSearchBooking);
-            this.gunaGroupBox1.Controls.Add(this.lblSearch);
-            this.gunaGroupBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.gunaGroupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.gunaGroupBox1.LineColor = System.Drawing.Color.Gainsboro;
-            this.gunaGroupBox1.Location = new System.Drawing.Point(25, 21);
-            this.gunaGroupBox1.Name = "gunaGroupBox1";
-            this.gunaGroupBox1.Size = new System.Drawing.Size(1160, 200);
-            this.gunaGroupBox1.TabIndex = 0;
-            this.gunaGroupBox1.Text = "Tìm kiếm Đặt phòng";
-            this.gunaGroupBox1.TextLocation = new System.Drawing.Point(10, 8);
-            this.gunaGroupBox1.Click += new System.EventHandler(this.gunaGroupBox1_Click);
+            this.btnSuaDV.AnimationHoverSpeed = 0.07F;
+            this.btnSuaDV.AnimationSpeed = 0.03F;
+            this.btnSuaDV.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.btnSuaDV.BorderColor = System.Drawing.Color.Black;
+            this.btnSuaDV.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnSuaDV.FocusedColor = System.Drawing.Color.Empty;
+            this.btnSuaDV.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSuaDV.ForeColor = System.Drawing.Color.White;
+            this.btnSuaDV.Image = null;
+            this.btnSuaDV.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnSuaDV.Location = new System.Drawing.Point(390, 441);
+            this.btnSuaDV.Name = "btnSuaDV";
+            this.btnSuaDV.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btnSuaDV.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnSuaDV.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnSuaDV.OnHoverImage = null;
+            this.btnSuaDV.OnPressedColor = System.Drawing.Color.Black;
+            this.btnSuaDV.Size = new System.Drawing.Size(100, 30);
+            this.btnSuaDV.TabIndex = 15;
+            this.btnSuaDV.Text = "Sửa dịch vụ";
+            this.btnSuaDV.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtStatus
+            // gunaComboBox1
             // 
-            this.txtStatus.BackColor = System.Drawing.Color.Transparent;
-            this.txtStatus.BaseColor = System.Drawing.Color.White;
-            this.txtStatus.BorderColor = System.Drawing.Color.Silver;
-            this.txtStatus.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtStatus.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtStatus.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtStatus.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtStatus.Location = new System.Drawing.Point(1000, 69);
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.PasswordChar = '\0';
-            this.txtStatus.ReadOnly = true;
-            this.txtStatus.SelectedText = "";
-            this.txtStatus.Size = new System.Drawing.Size(140, 30);
-            this.txtStatus.TabIndex = 13;
+            this.gunaComboBox1.BackColor = System.Drawing.Color.Transparent;
+            this.gunaComboBox1.BaseColor = System.Drawing.Color.White;
+            this.gunaComboBox1.BorderColor = System.Drawing.Color.Silver;
+            this.gunaComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.gunaComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gunaComboBox1.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaComboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.gunaComboBox1.ForeColor = System.Drawing.Color.Black;
+            this.gunaComboBox1.FormattingEnabled = true;
+            this.gunaComboBox1.Location = new System.Drawing.Point(127, 328);
+            this.gunaComboBox1.Name = "gunaComboBox1";
+            this.gunaComboBox1.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaComboBox1.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.gunaComboBox1.Size = new System.Drawing.Size(160, 26);
+            this.gunaComboBox1.TabIndex = 16;
             // 
-            // label4
+            // txtServiceID
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label4.Location = new System.Drawing.Point(905, 73);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 19);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Trạng thái:";
+            this.txtServiceID.BackColor = System.Drawing.Color.Transparent;
+            this.txtServiceID.BaseColor = System.Drawing.Color.White;
+            this.txtServiceID.BorderColor = System.Drawing.Color.Silver;
+            this.txtServiceID.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtServiceID.FocusedBaseColor = System.Drawing.Color.White;
+            this.txtServiceID.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txtServiceID.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtServiceID.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtServiceID.Location = new System.Drawing.Point(127, 242);
+            this.txtServiceID.Name = "txtServiceID";
+            this.txtServiceID.PasswordChar = '\0';
+            this.txtServiceID.ReadOnly = true;
+            this.txtServiceID.SelectedText = "";
+            this.txtServiceID.Size = new System.Drawing.Size(160, 30);
+            this.txtServiceID.TabIndex = 2;
             // 
-            // txtCheckInDate
+            // label6
             // 
-            this.txtCheckInDate.BackColor = System.Drawing.Color.Transparent;
-            this.txtCheckInDate.BaseColor = System.Drawing.Color.White;
-            this.txtCheckInDate.BorderColor = System.Drawing.Color.Silver;
-            this.txtCheckInDate.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCheckInDate.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtCheckInDate.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtCheckInDate.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtCheckInDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtCheckInDate.Location = new System.Drawing.Point(719, 69);
-            this.txtCheckInDate.Name = "txtCheckInDate";
-            this.txtCheckInDate.PasswordChar = '\0';
-            this.txtCheckInDate.ReadOnly = true;
-            this.txtCheckInDate.SelectedText = "";
-            this.txtCheckInDate.Size = new System.Drawing.Size(180, 30);
-            this.txtCheckInDate.TabIndex = 11;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.label6.Location = new System.Drawing.Point(27, 288);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 19);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Tên dịch vụ:";
             // 
-            // label3
+            // txtServiceName
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label3.Location = new System.Drawing.Point(611, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 19);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Ngày Check-in:";
-            // 
-            // txtRoomNumber
-            // 
-            this.txtRoomNumber.BackColor = System.Drawing.Color.Transparent;
-            this.txtRoomNumber.BaseColor = System.Drawing.Color.White;
-            this.txtRoomNumber.BorderColor = System.Drawing.Color.Silver;
-            this.txtRoomNumber.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRoomNumber.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtRoomNumber.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtRoomNumber.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtRoomNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtRoomNumber.Location = new System.Drawing.Point(520, 69);
-            this.txtRoomNumber.Name = "txtRoomNumber";
-            this.txtRoomNumber.PasswordChar = '\0';
-            this.txtRoomNumber.ReadOnly = true;
-            this.txtRoomNumber.SelectedText = "";
-            this.txtRoomNumber.Size = new System.Drawing.Size(80, 30);
-            this.txtRoomNumber.TabIndex = 9;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label2.Location = new System.Drawing.Point(443, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 19);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Số phòng:";
-            // 
-            // txtCustomerName
-            // 
-            this.txtCustomerName.BackColor = System.Drawing.Color.Transparent;
-            this.txtCustomerName.BaseColor = System.Drawing.Color.White;
-            this.txtCustomerName.BorderColor = System.Drawing.Color.Silver;
-            this.txtCustomerName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtCustomerName.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtCustomerName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtCustomerName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtCustomerName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtCustomerName.Location = new System.Drawing.Point(130, 73);
-            this.txtCustomerName.Name = "txtCustomerName";
-            this.txtCustomerName.PasswordChar = '\0';
-            this.txtCustomerName.ReadOnly = true;
-            this.txtCustomerName.SelectedText = "";
-            this.txtCustomerName.Size = new System.Drawing.Size(200, 26);
-            this.txtCustomerName.TabIndex = 7;
+            this.txtServiceName.BackColor = System.Drawing.Color.Transparent;
+            this.txtServiceName.BaseColor = System.Drawing.Color.White;
+            this.txtServiceName.BorderColor = System.Drawing.Color.Silver;
+            this.txtServiceName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtServiceName.FocusedBaseColor = System.Drawing.Color.White;
+            this.txtServiceName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.txtServiceName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtServiceName.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtServiceName.Location = new System.Drawing.Point(127, 288);
+            this.txtServiceName.Name = "txtServiceName";
+            this.txtServiceName.PasswordChar = '\0';
+            this.txtServiceName.ReadOnly = true;
+            this.txtServiceName.SelectedText = "";
+            this.txtServiceName.Size = new System.Drawing.Size(160, 30);
+            this.txtServiceName.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label1.Location = new System.Drawing.Point(11, 73);
+            this.label1.Location = new System.Drawing.Point(301, 244);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(108, 19);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Tên khách hàng:";
+            this.label1.Size = new System.Drawing.Size(76, 19);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Mã phòng:";
             // 
-            // txtBookingID
+            // gunaTextBox1
             // 
-            this.txtBookingID.BackColor = System.Drawing.Color.Transparent;
-            this.txtBookingID.BaseColor = System.Drawing.Color.White;
-            this.txtBookingID.BorderColor = System.Drawing.Color.Silver;
-            this.txtBookingID.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtBookingID.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtBookingID.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtBookingID.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtBookingID.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtBookingID.Location = new System.Drawing.Point(130, 34);
-            this.txtBookingID.Name = "txtBookingID";
-            this.txtBookingID.PasswordChar = '\0';
-            this.txtBookingID.ReadOnly = true;
-            this.txtBookingID.SelectedText = "";
-            this.txtBookingID.Size = new System.Drawing.Size(100, 26);
-            this.txtBookingID.TabIndex = 5;
+            this.gunaTextBox1.BackColor = System.Drawing.Color.Transparent;
+            this.gunaTextBox1.BaseColor = System.Drawing.Color.White;
+            this.gunaTextBox1.BorderColor = System.Drawing.Color.Silver;
+            this.gunaTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gunaTextBox1.FocusedBaseColor = System.Drawing.Color.White;
+            this.gunaTextBox1.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaTextBox1.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.gunaTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaTextBox1.Location = new System.Drawing.Point(410, 239);
+            this.gunaTextBox1.Name = "gunaTextBox1";
+            this.gunaTextBox1.PasswordChar = '\0';
+            this.gunaTextBox1.ReadOnly = true;
+            this.gunaTextBox1.SelectedText = "";
+            this.gunaTextBox1.Size = new System.Drawing.Size(160, 30);
+            this.gunaTextBox1.TabIndex = 17;
             // 
-            // lblBookingID
+            // label2
             // 
-            this.lblBookingID.AutoSize = true;
-            this.lblBookingID.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblBookingID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblBookingID.Location = new System.Drawing.Point(16, 34);
-            this.lblBookingID.Name = "lblBookingID";
-            this.lblBookingID.Size = new System.Drawing.Size(100, 19);
-            this.lblBookingID.TabIndex = 4;
-            this.lblBookingID.Text = "Mã đặt phòng:";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.label2.Location = new System.Drawing.Point(295, 288);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 19);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Tên khách hàng:";
             // 
-            // dgvBookings
+            // gunaTextBox2
             // 
-            this.dgvBookings.AllowUserToAddRows = false;
-            this.dgvBookings.AllowUserToDeleteRows = false;
-            this.dgvBookings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvBookings.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBookings.BackgroundColor = System.Drawing.Color.White;
-            this.dgvBookings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBookings.Location = new System.Drawing.Point(15, 111);
-            this.dgvBookings.Name = "dgvBookings";
-            this.dgvBookings.ReadOnly = true;
-            this.dgvBookings.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvBookings.Size = new System.Drawing.Size(1125, 69);
-            this.dgvBookings.TabIndex = 3;
-            this.dgvBookings.SelectionChanged += new System.EventHandler(this.dgvBookings_SelectionChanged);
-            // 
-            // btnSearchBooking
-            // 
-            this.btnSearchBooking.AnimationHoverSpeed = 0.07F;
-            this.btnSearchBooking.AnimationSpeed = 0.03F;
-            this.btnSearchBooking.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btnSearchBooking.BorderColor = System.Drawing.Color.Black;
-            this.btnSearchBooking.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnSearchBooking.FocusedColor = System.Drawing.Color.Empty;
-            this.btnSearchBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnSearchBooking.ForeColor = System.Drawing.Color.White;
-            this.btnSearchBooking.Image = null;
-            this.btnSearchBooking.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnSearchBooking.Location = new System.Drawing.Point(475, 30);
-            this.btnSearchBooking.Name = "btnSearchBooking";
-            this.btnSearchBooking.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnSearchBooking.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnSearchBooking.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnSearchBooking.OnHoverImage = null;
-            this.btnSearchBooking.OnPressedColor = System.Drawing.Color.Black;
-            this.btnSearchBooking.Size = new System.Drawing.Size(80, 30);
-            this.btnSearchBooking.TabIndex = 2;
-            this.btnSearchBooking.Text = "Tìm kiếm";
-            this.btnSearchBooking.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnSearchBooking.Click += new System.EventHandler(this.btnSearchBooking_Click);
-            // 
-            // txtSearchBooking
-            // 
-            this.txtSearchBooking.BackColor = System.Drawing.Color.Transparent;
-            this.txtSearchBooking.BaseColor = System.Drawing.Color.White;
-            this.txtSearchBooking.BorderColor = System.Drawing.Color.Silver;
-            this.txtSearchBooking.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearchBooking.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtSearchBooking.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.txtSearchBooking.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtSearchBooking.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtSearchBooking.Location = new System.Drawing.Point(369, 30);
-            this.txtSearchBooking.Name = "txtSearchBooking";
-            this.txtSearchBooking.PasswordChar = '\0';
-            this.txtSearchBooking.SelectedText = "";
-            this.txtSearchBooking.Size = new System.Drawing.Size(90, 30);
-            this.txtSearchBooking.TabIndex = 1;
-            this.txtSearchBooking.TextChanged += new System.EventHandler(this.txtSearchBooking_TextChanged);
-            // 
-            // lblSearch
-            // 
-            this.lblSearch.AutoSize = true;
-            this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblSearch.Location = new System.Drawing.Point(288, 34);
-            this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(67, 19);
-            this.lblSearch.TabIndex = 0;
-            this.lblSearch.Text = "Tìm kiếm:";
+            this.gunaTextBox2.BackColor = System.Drawing.Color.Transparent;
+            this.gunaTextBox2.BaseColor = System.Drawing.Color.White;
+            this.gunaTextBox2.BorderColor = System.Drawing.Color.Silver;
+            this.gunaTextBox2.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gunaTextBox2.FocusedBaseColor = System.Drawing.Color.White;
+            this.gunaTextBox2.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaTextBox2.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.gunaTextBox2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaTextBox2.Location = new System.Drawing.Point(410, 283);
+            this.gunaTextBox2.Name = "gunaTextBox2";
+            this.gunaTextBox2.PasswordChar = '\0';
+            this.gunaTextBox2.ReadOnly = true;
+            this.gunaTextBox2.SelectedText = "";
+            this.gunaTextBox2.Size = new System.Drawing.Size(160, 30);
+            this.gunaTextBox2.TabIndex = 19;
             // 
             // frmServiceProvision
             // 
@@ -787,9 +615,6 @@
             this.gunaGroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).EndInit();
-            this.gunaGroupBox1.ResumeLayout(false);
-            this.gunaGroupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBookings)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -799,23 +624,11 @@
         private System.Windows.Forms.Label lblTitle;
         private Guna.UI.WinForms.GunaButton btnClose;
         private Guna.UI.WinForms.GunaPanel pnlMain;
-        private Guna.UI.WinForms.GunaGroupBox gunaGroupBox1;
         private Guna.UI.WinForms.GunaGroupBox gunaGroupBox2;
         private Guna.UI.WinForms.GunaGroupBox gunaGroupBox3;
-        private System.Windows.Forms.DataGridView dgvBookings;
         private System.Windows.Forms.DataGridView dgvServices;
         private System.Windows.Forms.DataGridView dgvServiceList;
-        private Guna.UI.WinForms.GunaTextBox txtSearchBooking;
-        private Guna.UI.WinForms.GunaButton btnSearchBooking;
-        private Guna.UI.WinForms.GunaTextBox txtBookingID;
-        private Guna.UI.WinForms.GunaTextBox txtCustomerName;
-        private Guna.UI.WinForms.GunaTextBox txtRoomNumber;
-        private Guna.UI.WinForms.GunaTextBox txtCheckInDate;
-        private Guna.UI.WinForms.GunaTextBox txtStatus;
-        private Guna.UI.WinForms.GunaTextBox txtServiceID;
-        private Guna.UI.WinForms.GunaTextBox txtServiceName;
         private Guna.UI.WinForms.GunaTextBox txtCategory;
-        private Guna.UI.WinForms.GunaTextBox txtUnitPrice;
         private System.Windows.Forms.NumericUpDown numQuantity;
         private Guna.UI.WinForms.GunaTextBox txtServiceTotal;
         private Guna.UI.WinForms.GunaTextBox txtTotalAmount;
@@ -823,18 +636,20 @@
         private Guna.UI.WinForms.GunaButton btnRemoveService;
         private Guna.UI.WinForms.GunaButton btnConfirmService;
         private Guna.UI.WinForms.GunaButton btnClearAll;
-        private System.Windows.Forms.Label lblSearch;
-        private System.Windows.Forms.Label lblBookingID;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private Guna.UI.WinForms.GunaButton btnSuaDV;
+        private Guna.UI.WinForms.GunaComboBox gunaComboBox1;
+        private System.Windows.Forms.Label label2;
+        private Guna.UI.WinForms.GunaTextBox gunaTextBox2;
+        private System.Windows.Forms.Label label1;
+        private Guna.UI.WinForms.GunaTextBox gunaTextBox1;
+        private Guna.UI.WinForms.GunaTextBox txtServiceName;
+        private System.Windows.Forms.Label label6;
+        private Guna.UI.WinForms.GunaTextBox txtServiceID;
     }
 }

@@ -59,7 +59,7 @@
             // 
             // headerPanel
             // 
-            this.headerPanel.BackColor = System.Drawing.Color.White;
+            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.txtSearch);
             this.headerPanel.Controls.Add(this.btnAdd);
@@ -198,7 +198,7 @@
             // 
             // editorPanel
             // 
-            this.editorPanel.BackColor = System.Drawing.Color.White;
+            this.editorPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.editorPanel.Controls.Add(this.lblUsername);
             this.editorPanel.Controls.Add(this.txtUsername);
             this.editorPanel.Controls.Add(this.lblPassword);
@@ -345,7 +345,7 @@
             this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.dtpStartDate.Location = new System.Drawing.Point(812, 38);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(120, 25);
+            this.dtpStartDate.Size = new System.Drawing.Size(126, 25);
             this.dtpStartDate.TabIndex = 9;
             // 
             // dgvMain

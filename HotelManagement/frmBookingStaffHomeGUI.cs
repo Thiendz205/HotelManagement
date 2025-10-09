@@ -96,5 +96,11 @@ namespace HotelManagement
             var transferForm = new frmChangeRoomStatusRECPGUI();
             OpenChildForm(transferForm);
         }
+
+        private void guna2Button6_Click(object sender, EventArgs e)
+        {
+            var transferForm = new frmServiceAdmin();
+            OpenChildForm(transferForm);
+        }
     }
 }

@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Guna.UI">
-      <HintPath>..\..\..\Users\THIS PC\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
+      <HintPath>..\..\..\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2">
-      <HintPath>..\..\..\Users\THIS PC\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+      <HintPath>..\..\..\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -71,6 +71,12 @@
     </Compile>
     <Compile Include="frmAccountAdmin.Designer.cs">
       <DependentUpon>frmAccountAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAdminMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAdminMain.Designer.cs">
+      <DependentUpon>frmAdminMain.cs</DependentUpon>
     </Compile>
     <Compile Include="frmBillAdmin.cs">
       <SubType>Form</SubType>
@@ -302,6 +308,9 @@
     <EmbeddedResource Include="frmAccountAdmin.resx">
       <DependentUpon>frmAccountAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAdminMain.resx">
+      <DependentUpon>frmAdminMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBillAdmin.resx">
       <DependentUpon>frmBillAdmin.cs</DependentUpon>
     </EmbeddedResource>
@@ -382,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRoomTransferRECPGUI.resx">
       <DependentUpon>frmRoomTransferRECPGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmServiceAdmin.resx">
+      <DependentUpon>frmServiceAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmServiceCRUD.resx">
       <DependentUpon>frmServiceCRUD.cs</DependentUpon>

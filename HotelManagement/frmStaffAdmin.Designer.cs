@@ -71,7 +71,7 @@
             // 
             // headerPanel
             // 
-            this.headerPanel.BackColor = System.Drawing.Color.White;
+            this.headerPanel.BackColor = System.Drawing.Color.PaleTurquoise;
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.txtSearch);
             this.headerPanel.Controls.Add(this.btnAdd);
@@ -211,7 +211,7 @@
             // editorPanel
             // 
             this.editorPanel.AutoSize = true;
-            this.editorPanel.BackColor = System.Drawing.Color.White;
+            this.editorPanel.BackColor = System.Drawing.Color.PaleTurquoise;
             this.editorPanel.Controls.Add(this.lblStaffID);
             this.editorPanel.Controls.Add(this.txtStaffID);
             this.editorPanel.Controls.Add(this.lblFullName);
