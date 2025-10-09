@@ -13,7 +13,7 @@ CREATE TABLE Account (
     StaffID Char(10),                                                 -- Liên kết nhân viên
     Status NVARCHAR(20) NOT NULL 
         DEFAULT N'Active' CHECK (Status IN (N'Active', N'Inactive')), -- Trạng thái
-    CONSTRAINT UQ_Account_Username UNIQUE (Username),                 -- Không trùng username
+    CONSTRAINT UQ_Account_Username UNIQUE (Username)                  -- Không trùng username
 );
 GO
 

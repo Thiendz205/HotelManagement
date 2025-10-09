@@ -52,7 +52,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(960, 472);
+            this.label3.Location = new System.Drawing.Point(1143, 454);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(259, 37);
             this.label3.TabIndex = 19;
@@ -235,17 +235,18 @@
             this.dgvRankCustomer.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvRankCustomer.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvRankCustomer.GridColor = System.Drawing.Color.White;
-            this.dgvRankCustomer.Location = new System.Drawing.Point(0, 620);
+            this.dgvRankCustomer.Location = new System.Drawing.Point(0, 617);
             this.dgvRankCustomer.Name = "dgvRankCustomer";
             this.dgvRankCustomer.RowHeadersWidth = 51;
             this.dgvRankCustomer.RowTemplate.Height = 24;
-            this.dgvRankCustomer.Size = new System.Drawing.Size(1924, 435);
+            this.dgvRankCustomer.Size = new System.Drawing.Size(1924, 438);
             this.dgvRankCustomer.TabIndex = 16;
             // 
             // frmRankCustomerAdminGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.guna2GroupBox2);

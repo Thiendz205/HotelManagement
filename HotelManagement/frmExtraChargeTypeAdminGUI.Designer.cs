@@ -38,13 +38,13 @@
             this.label9 = new System.Windows.Forms.Label();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvExtraCharge = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvExtraCharge)).BeginInit();
@@ -54,7 +54,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(962, 458);
+            this.label3.Location = new System.Drawing.Point(980, 431);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(259, 37);
             this.label3.TabIndex = 23;
@@ -182,6 +182,30 @@
             this.guna2GroupBox2.TabIndex = 22;
             this.guna2GroupBox2.Text = "Thông tin xếp bậc khách hàng";
             // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(670, 131);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(231, 30);
+            this.textBox2.TabIndex = 10;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(477, 139);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 22);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Ghi chú:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(205, 131);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(231, 30);
+            this.comboBox1.TabIndex = 8;
+            // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(670, 59);
@@ -230,41 +254,18 @@
             this.dgvExtraCharge.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvExtraCharge.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvExtraCharge.GridColor = System.Drawing.Color.White;
-            this.dgvExtraCharge.Location = new System.Drawing.Point(0, 620);
+            this.dgvExtraCharge.Location = new System.Drawing.Point(0, 587);
             this.dgvExtraCharge.Name = "dgvExtraCharge";
             this.dgvExtraCharge.RowHeadersWidth = 51;
             this.dgvExtraCharge.RowTemplate.Height = 24;
-            this.dgvExtraCharge.Size = new System.Drawing.Size(1924, 435);
+            this.dgvExtraCharge.Size = new System.Drawing.Size(1924, 468);
             this.dgvExtraCharge.TabIndex = 20;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(205, 131);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(231, 30);
-            this.comboBox1.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(477, 139);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 22);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Ghi chú:";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(670, 131);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(231, 30);
-            this.textBox2.TabIndex = 10;
             // 
             // frmExtraChargeTypeAdminGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.guna2GroupBox2);
