@@ -57,7 +57,7 @@
             // 
             // headerPanel
             // 
-            this.headerPanel.BackColor = System.Drawing.Color.White;
+            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.txtSearch);
             this.headerPanel.Controls.Add(this.btnExport);
@@ -66,9 +66,8 @@
             this.headerPanel.Controls.Add(this.btnRefresh);
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
-            this.headerPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1267, 98);
+            this.headerPanel.Size = new System.Drawing.Size(950, 80);
             this.headerPanel.TabIndex = 0;
             // 
             // lblTitle
@@ -76,10 +75,9 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            this.lblTitle.Location = new System.Drawing.Point(27, 30);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Location = new System.Drawing.Point(20, 24);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(127, 37);
+            this.lblTitle.Size = new System.Drawing.Size(102, 30);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Hóa đơn";
             // 
@@ -92,12 +90,11 @@
             this.txtSearch.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.txtSearch.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtSearch.Location = new System.Drawing.Point(187, 30);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Location = new System.Drawing.Point(140, 24);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(347, 41);
+            this.txtSearch.Size = new System.Drawing.Size(260, 33);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.Text = "Tìm theo Booking/Ngày...";
             // 
@@ -113,15 +110,14 @@
             this.btnExport.ForeColor = System.Drawing.Color.White;
             this.btnExport.Image = null;
             this.btnExport.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnExport.Location = new System.Drawing.Point(547, 27);
-            this.btnExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExport.Location = new System.Drawing.Point(410, 22);
             this.btnExport.Name = "btnExport";
             this.btnExport.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(60)))), ((int)(((byte)(152)))));
             this.btnExport.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnExport.OnHoverForeColor = System.Drawing.Color.White;
             this.btnExport.OnHoverImage = null;
             this.btnExport.OnPressedColor = System.Drawing.Color.Black;
-            this.btnExport.Size = new System.Drawing.Size(160, 42);
+            this.btnExport.Size = new System.Drawing.Size(120, 34);
             this.btnExport.TabIndex = 2;
             this.btnExport.Text = "Xuất hóa đơn";
             this.btnExport.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -138,15 +134,14 @@
             this.btnView.ForeColor = System.Drawing.Color.White;
             this.btnView.Image = null;
             this.btnView.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnView.Location = new System.Drawing.Point(720, 27);
-            this.btnView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnView.Location = new System.Drawing.Point(540, 22);
             this.btnView.Name = "btnView";
             this.btnView.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnView.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnView.OnHoverForeColor = System.Drawing.Color.White;
             this.btnView.OnHoverImage = null;
             this.btnView.OnPressedColor = System.Drawing.Color.Black;
-            this.btnView.Size = new System.Drawing.Size(133, 42);
+            this.btnView.Size = new System.Drawing.Size(100, 34);
             this.btnView.TabIndex = 3;
             this.btnView.Text = "Xem";
             this.btnView.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -163,15 +158,14 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = null;
             this.btnDelete.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDelete.Location = new System.Drawing.Point(867, 27);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Location = new System.Drawing.Point(650, 22);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnDelete.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnDelete.OnHoverForeColor = System.Drawing.Color.White;
             this.btnDelete.OnHoverImage = null;
             this.btnDelete.OnPressedColor = System.Drawing.Color.Black;
-            this.btnDelete.Size = new System.Drawing.Size(133, 42);
+            this.btnDelete.Size = new System.Drawing.Size(100, 34);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -188,15 +182,14 @@
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
             this.btnRefresh.Image = null;
             this.btnRefresh.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnRefresh.Location = new System.Drawing.Point(1013, 27);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefresh.Location = new System.Drawing.Point(760, 22);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
             this.btnRefresh.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnRefresh.OnHoverForeColor = System.Drawing.Color.White;
             this.btnRefresh.OnHoverImage = null;
             this.btnRefresh.OnPressedColor = System.Drawing.Color.Black;
-            this.btnRefresh.Size = new System.Drawing.Size(160, 42);
+            this.btnRefresh.Size = new System.Drawing.Size(120, 34);
             this.btnRefresh.TabIndex = 5;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -219,15 +212,14 @@
             this.colPaidStatus,
             this.colStaffID});
             this.dgvMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMain.Location = new System.Drawing.Point(0, 209);
-            this.dgvMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvMain.Location = new System.Drawing.Point(0, 170);
             this.dgvMain.MultiSelect = false;
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.ReadOnly = true;
             this.dgvMain.RowHeadersVisible = false;
             this.dgvMain.RowHeadersWidth = 51;
             this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMain.Size = new System.Drawing.Size(1267, 776);
+            this.dgvMain.Size = new System.Drawing.Size(950, 630);
             this.dgvMain.TabIndex = 1;
             // 
             // colInvoiceID
@@ -281,7 +273,7 @@
             // 
             // editorPanel
             // 
-            this.editorPanel.BackColor = System.Drawing.Color.White;
+            this.editorPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.editorPanel.Controls.Add(this.lblBooking);
             this.editorPanel.Controls.Add(this.txtBooking);
             this.editorPanel.Controls.Add(this.lblPayment);
@@ -289,10 +281,9 @@
             this.editorPanel.Controls.Add(this.lblPaidStatus);
             this.editorPanel.Controls.Add(this.cboPaidStatus);
             this.editorPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.editorPanel.Location = new System.Drawing.Point(0, 98);
-            this.editorPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editorPanel.Location = new System.Drawing.Point(0, 80);
             this.editorPanel.Name = "editorPanel";
-            this.editorPanel.Size = new System.Drawing.Size(1267, 111);
+            this.editorPanel.Size = new System.Drawing.Size(950, 90);
             this.editorPanel.TabIndex = 6;
             // 
             // lblBooking
@@ -300,10 +291,9 @@
             this.lblBooking.AutoSize = true;
             this.lblBooking.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblBooking.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblBooking.Location = new System.Drawing.Point(263, 16);
-            this.lblBooking.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBooking.Location = new System.Drawing.Point(197, 13);
             this.lblBooking.Name = "lblBooking";
-            this.lblBooking.Size = new System.Drawing.Size(89, 23);
+            this.lblBooking.Size = new System.Drawing.Size(73, 19);
             this.lblBooking.TabIndex = 0;
             this.lblBooking.Text = "BookingID";
             // 
@@ -316,12 +306,11 @@
             this.txtBooking.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.txtBooking.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtBooking.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtBooking.Location = new System.Drawing.Point(268, 43);
-            this.txtBooking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBooking.Location = new System.Drawing.Point(201, 35);
             this.txtBooking.Name = "txtBooking";
             this.txtBooking.PasswordChar = '\0';
             this.txtBooking.SelectedText = "";
-            this.txtBooking.Size = new System.Drawing.Size(213, 41);
+            this.txtBooking.Size = new System.Drawing.Size(160, 33);
             this.txtBooking.TabIndex = 1;
             // 
             // lblPayment
@@ -329,10 +318,9 @@
             this.lblPayment.AutoSize = true;
             this.lblPayment.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblPayment.Location = new System.Drawing.Point(503, 16);
-            this.lblPayment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPayment.Location = new System.Drawing.Point(377, 13);
             this.lblPayment.Name = "lblPayment";
-            this.lblPayment.Size = new System.Drawing.Size(85, 23);
+            this.lblPayment.Size = new System.Drawing.Size(69, 19);
             this.lblPayment.TabIndex = 2;
             this.lblPayment.Text = "Hình thức";
             // 
@@ -351,12 +339,11 @@
             "Cash",
             "Card",
             "Transfer"});
-            this.cboPayment.Location = new System.Drawing.Point(508, 46);
-            this.cboPayment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPayment.Location = new System.Drawing.Point(381, 37);
             this.cboPayment.Name = "cboPayment";
             this.cboPayment.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.cboPayment.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cboPayment.Size = new System.Drawing.Size(212, 31);
+            this.cboPayment.Size = new System.Drawing.Size(160, 26);
             this.cboPayment.TabIndex = 3;
             // 
             // lblPaidStatus
@@ -364,10 +351,9 @@
             this.lblPaidStatus.AutoSize = true;
             this.lblPaidStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblPaidStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblPaidStatus.Location = new System.Drawing.Point(737, 16);
-            this.lblPaidStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPaidStatus.Location = new System.Drawing.Point(553, 13);
             this.lblPaidStatus.Name = "lblPaidStatus";
-            this.lblPaidStatus.Size = new System.Drawing.Size(87, 23);
+            this.lblPaidStatus.Size = new System.Drawing.Size(70, 19);
             this.lblPaidStatus.TabIndex = 4;
             this.lblPaidStatus.Text = "Trạng thái";
             // 
@@ -385,24 +371,22 @@
             this.cboPaidStatus.Items.AddRange(new object[] {
             "Unpaid",
             "Paid"});
-            this.cboPaidStatus.Location = new System.Drawing.Point(743, 46);
-            this.cboPaidStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPaidStatus.Location = new System.Drawing.Point(557, 37);
             this.cboPaidStatus.Name = "cboPaidStatus";
             this.cboPaidStatus.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.cboPaidStatus.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cboPaidStatus.Size = new System.Drawing.Size(185, 31);
+            this.cboPaidStatus.Size = new System.Drawing.Size(140, 26);
             this.cboPaidStatus.TabIndex = 5;
             // 
             // frmBillAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1267, 985);
+            this.ClientSize = new System.Drawing.Size(950, 800);
             this.Controls.Add(this.dgvMain);
             this.Controls.Add(this.editorPanel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmBillAdmin";
             this.Text = "frmBillAdmin";
             this.headerPanel.ResumeLayout(false);

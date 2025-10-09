@@ -28,9 +28,9 @@ namespace HotelManagement
             if(txtUsername.Text == usernameAd && txtPassword.Text == passwordAd)
             {
                 //this.Hide();
-                //frmAdmin adminForm = new frmAdmin();
-                //adminForm.ShowDialog();
-                //this.Close();
+                frmAdminMain adminForm = new frmAdminMain();
+                adminForm.ShowDialog();
+                this.Close();
             }
             else if (txtUsername.Text == usernameNV && txtPassword.Text == passwordNV)
             {

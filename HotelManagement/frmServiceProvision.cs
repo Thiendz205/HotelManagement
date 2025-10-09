@@ -20,13 +20,6 @@ namespace HotelManagement
 
         private void SetupDataGridViews()
         {
-            // Setup dgvBookings columns
-            dgvBookings.Columns.Clear();
-            dgvBookings.Columns.Add("BookingID", "Mã đặt phòng");
-            dgvBookings.Columns.Add("CustomerName", "Tên khách hàng");
-            dgvBookings.Columns.Add("RoomNumber", "Số phòng");
-            dgvBookings.Columns.Add("CheckInDate", "Ngày Check-in");
-            dgvBookings.Columns.Add("Status", "Trạng thái");
 
             // Setup dgvServices columns
             dgvServices.Columns.Clear();

@@ -48,6 +48,7 @@
             this.lblRoomTypeFilter = new System.Windows.Forms.Label();
             this.cmbStatusFilter = new Guna.UI.WinForms.GunaComboBox();
             this.lblStatusFilter = new System.Windows.Forms.Label();
+            this.gunaButton1 = new Guna.UI.WinForms.GunaButton();
             this.pnlHeader.SuspendLayout();
             this.pnlMain.SuspendLayout();
             this.gunaGroupBox3.SuspendLayout();
@@ -146,6 +147,7 @@
             this.dgvRoomEquipment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvRoomEquipment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRoomEquipment.BackgroundColor = System.Drawing.Color.White;
             this.dgvRoomEquipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoomEquipment.Location = new System.Drawing.Point(20, 50);
@@ -192,6 +194,7 @@
             this.dgvRoomServices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvRoomServices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRoomServices.BackgroundColor = System.Drawing.Color.White;
             this.dgvRoomServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRoomServices.Location = new System.Drawing.Point(20, 50);
@@ -420,6 +423,7 @@
             this.gunaPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gunaPanel1.BackColor = System.Drawing.Color.White;
+            this.gunaPanel1.Controls.Add(this.gunaButton1);
             this.gunaPanel1.Controls.Add(this.dgvRooms);
             this.gunaPanel1.Controls.Add(this.btnRefresh);
             this.gunaPanel1.Controls.Add(this.btnSearch);
@@ -441,6 +445,7 @@
             this.dgvRooms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvRooms.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvRooms.BackgroundColor = System.Drawing.Color.White;
             this.dgvRooms.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRooms.Location = new System.Drawing.Point(20, 60);
@@ -488,7 +493,7 @@
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Image = null;
             this.btnSearch.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnSearch.Location = new System.Drawing.Point(900, 20);
+            this.btnSearch.Location = new System.Drawing.Point(895, 20);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnSearch.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -587,6 +592,30 @@
             this.lblStatusFilter.TabIndex = 0;
             this.lblStatusFilter.Text = "Trạng thái:";
             // 
+            // gunaButton1
+            // 
+            this.gunaButton1.AnimationHoverSpeed = 0.07F;
+            this.gunaButton1.AnimationSpeed = 0.03F;
+            this.gunaButton1.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.gunaButton1.BorderColor = System.Drawing.Color.Black;
+            this.gunaButton1.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.gunaButton1.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.gunaButton1.ForeColor = System.Drawing.Color.White;
+            this.gunaButton1.Image = null;
+            this.gunaButton1.ImageSize = new System.Drawing.Size(20, 20);
+            this.gunaButton1.Location = new System.Drawing.Point(768, 20);
+            this.gunaButton1.Name = "gunaButton1";
+            this.gunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.gunaButton1.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.gunaButton1.OnHoverForeColor = System.Drawing.Color.White;
+            this.gunaButton1.OnHoverImage = null;
+            this.gunaButton1.OnPressedColor = System.Drawing.Color.Black;
+            this.gunaButton1.Size = new System.Drawing.Size(99, 30);
+            this.gunaButton1.TabIndex = 9;
+            this.gunaButton1.Text = "Thêm dịch vụ";
+            this.gunaButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmRoomMonitoring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -650,5 +679,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private Guna.UI.WinForms.GunaButton gunaButton1;
     }
 }

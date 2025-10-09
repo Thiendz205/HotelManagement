@@ -30,16 +30,16 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel_Body = new System.Windows.Forms.Panel();
             this.btnBooking = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel_Body = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -72,25 +72,6 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1023, 144);
             this.flowLayoutPanel1.TabIndex = 2;
             this.flowLayoutPanel1.WrapContents = false;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.Controls.Add(this.btnClose);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(1223, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(25, 144);
-            this.panel3.TabIndex = 1;
-            // 
-            // panel_Body
-            // 
-            this.panel_Body.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel_Body.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Body.Location = new System.Drawing.Point(0, 144);
-            this.panel_Body.Name = "panel_Body";
-            this.panel_Body.Size = new System.Drawing.Size(1248, 610);
-            this.panel_Body.TabIndex = 6;
             // 
             // btnBooking
             // 
@@ -212,6 +193,16 @@
             this.guna2Button4.Text = "Đăng xuất ";
             this.guna2Button4.Click += new System.EventHandler(this.guna2Button4_Click);
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.btnClose);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(1223, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(25, 144);
+            this.panel3.TabIndex = 1;
+            // 
             // btnClose
             // 
             this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -240,6 +231,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 144);
             this.panel2.TabIndex = 0;
+            // 
+            // panel_Body
+            // 
+            this.panel_Body.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel_Body.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_Body.Location = new System.Drawing.Point(0, 144);
+            this.panel_Body.Name = "panel_Body";
+            this.panel_Body.Size = new System.Drawing.Size(1248, 610);
+            this.panel_Body.TabIndex = 6;
             // 
             // frmBookingStaffHomeGUI
             // 

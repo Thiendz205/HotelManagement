@@ -57,7 +57,7 @@
             // 
             // headerPanel
             // 
-            this.headerPanel.BackColor = System.Drawing.Color.White;
+            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.txtSearch);
             this.headerPanel.Controls.Add(this.btnAdd);
@@ -77,7 +77,7 @@
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.lblTitle.Location = new System.Drawing.Point(20, 24);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(92, 30);
+            this.lblTitle.Size = new System.Drawing.Size(90, 30);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Dịch vụ";
             // 
@@ -93,6 +93,7 @@
             this.txtSearch.Location = new System.Drawing.Point(180, 24);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
+            this.txtSearch.SelectedText = "";
             this.txtSearch.Size = new System.Drawing.Size(260, 30);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.Text = "Tìm theo tên/nhóm dịch vụ...";
@@ -202,17 +203,6 @@
             this.dgvMain.BackgroundColor = System.Drawing.Color.White;
             this.dgvMain.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            // Khởi tạo cột trước
-            //this.colServiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            //this.colServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            //this.colCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            //this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            //this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colServiceID.HeaderText = "ServiceID";
-            this.colServiceName.HeaderText = "ServiceName";
-            this.colCategory.HeaderText = "Category";
-            this.colPrice.HeaderText = "Price";
-            this.colDescription.HeaderText = "Description";
             this.dgvMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colServiceID,
             this.colServiceName,
@@ -226,12 +216,42 @@
             this.dgvMain.ReadOnly = true;
             this.dgvMain.RowHeadersVisible = false;
             this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMain.Size = new System.Drawing.Size(950, 720);
+            this.dgvMain.Size = new System.Drawing.Size(950, 600);
             this.dgvMain.TabIndex = 1;
+            // 
+            // colServiceID
+            // 
+            this.colServiceID.HeaderText = "ServiceID";
+            this.colServiceID.Name = "colServiceID";
+            this.colServiceID.ReadOnly = true;
+            // 
+            // colServiceName
+            // 
+            this.colServiceName.HeaderText = "ServiceName";
+            this.colServiceName.Name = "colServiceName";
+            this.colServiceName.ReadOnly = true;
+            // 
+            // colCategory
+            // 
+            this.colCategory.HeaderText = "Category";
+            this.colCategory.Name = "colCategory";
+            this.colCategory.ReadOnly = true;
+            // 
+            // colPrice
+            // 
+            this.colPrice.HeaderText = "Price";
+            this.colPrice.Name = "colPrice";
+            this.colPrice.ReadOnly = true;
+            // 
+            // colDescription
+            // 
+            this.colDescription.HeaderText = "Description";
+            this.colDescription.Name = "colDescription";
+            this.colDescription.ReadOnly = true;
             // 
             // editorPanel
             // 
-            this.editorPanel.BackColor = System.Drawing.Color.White;
+            this.editorPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.editorPanel.Controls.Add(this.lblServiceName);
             this.editorPanel.Controls.Add(this.txtServiceName);
             this.editorPanel.Controls.Add(this.lblCategory);
@@ -253,7 +273,7 @@
             this.lblServiceName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.lblServiceName.Location = new System.Drawing.Point(24, 16);
             this.lblServiceName.Name = "lblServiceName";
-            this.lblServiceName.Size = new System.Drawing.Size(79, 19);
+            this.lblServiceName.Size = new System.Drawing.Size(78, 19);
             this.lblServiceName.TabIndex = 0;
             this.lblServiceName.Text = "Tên dịch vụ";
             // 
@@ -269,6 +289,7 @@
             this.txtServiceName.Location = new System.Drawing.Point(28, 38);
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.PasswordChar = '\0';
+            this.txtServiceName.SelectedText = "";
             this.txtServiceName.Size = new System.Drawing.Size(220, 30);
             this.txtServiceName.TabIndex = 1;
             // 
@@ -279,7 +300,7 @@
             this.lblCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.lblCategory.Location = new System.Drawing.Point(260, 16);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(48, 19);
+            this.lblCategory.Size = new System.Drawing.Size(47, 19);
             this.lblCategory.TabIndex = 2;
             this.lblCategory.Text = "Nhóm";
             // 
@@ -295,6 +316,7 @@
             this.txtCategory.Location = new System.Drawing.Point(264, 38);
             this.txtCategory.Name = "txtCategory";
             this.txtCategory.PasswordChar = '\0';
+            this.txtCategory.SelectedText = "";
             this.txtCategory.Size = new System.Drawing.Size(160, 30);
             this.txtCategory.TabIndex = 3;
             // 
@@ -305,7 +327,7 @@
             this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.lblPrice.Location = new System.Drawing.Point(436, 16);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(32, 19);
+            this.lblPrice.Size = new System.Drawing.Size(29, 19);
             this.lblPrice.TabIndex = 4;
             this.lblPrice.Text = "Giá";
             // 
@@ -321,6 +343,7 @@
             this.txtPrice.Location = new System.Drawing.Point(440, 38);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.PasswordChar = '\0';
+            this.txtPrice.SelectedText = "";
             this.txtPrice.Size = new System.Drawing.Size(140, 30);
             this.txtPrice.TabIndex = 5;
             // 
@@ -331,7 +354,7 @@
             this.lblDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
             this.lblDescription.Location = new System.Drawing.Point(596, 16);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(39, 19);
+            this.lblDescription.Size = new System.Drawing.Size(46, 19);
             this.lblDescription.TabIndex = 6;
             this.lblDescription.Text = "Mô tả";
             // 
@@ -347,6 +370,7 @@
             this.txtDescription.Location = new System.Drawing.Point(600, 38);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.PasswordChar = '\0';
+            this.txtDescription.SelectedText = "";
             this.txtDescription.Size = new System.Drawing.Size(332, 30);
             this.txtDescription.TabIndex = 7;
             // 
@@ -367,6 +391,7 @@
             this.editorPanel.ResumeLayout(false);
             this.editorPanel.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion
