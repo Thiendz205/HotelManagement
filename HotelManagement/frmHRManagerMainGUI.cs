@@ -53,19 +53,14 @@ namespace HotelManagement
         {
 
             DialogResult result = MessageBox.Show(
-                "Bạn có chắc chắn muốn đăng xuất không?",
-                "Đăng xuất",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+             "Bạn có chắc muốn đăng xuất không?",
+             "Đăng xuất",
+            MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                this.Hide();
-
-                //frmLogin loginForm = new frmLogin();
-                //loginForm.Show();
-
-                this.Close();
+                this.Close(); 
             }
         }
 

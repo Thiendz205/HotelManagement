@@ -129,24 +129,19 @@ namespace HotelManagement
             this.Close();
         }
 
-        private void gunaButton17_Click(object sender, EventArgs e)
+      
+        private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất không?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(
+                 "Bạn có chắc muốn đăng xuất không?",
+                    "Đăng xuất",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                // Tạo một luồng (thread) mới để mở form đăng nhập
-                System.Threading.Thread t = new System.Threading.Thread(() =>
-                {
-                    Application.Run(new frm_login());
-                });
-                t.SetApartmentState(System.Threading.ApartmentState.STA);
-                t.Start();
-
-                // Đóng form hiện tại
-                this.Close();
+                this.Close(); 
             }
         }
-
     }
 }

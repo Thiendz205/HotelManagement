@@ -38,34 +38,41 @@ namespace HotelManagement
 
         }
 
-        private void btnThemThietBi_Click(object sender, EventArgs e)
+        private void btnThietBi_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmEditThietBi_NVkyThuat());
-          
         }
 
-
-        private void btnThietBiPhong_Click(object sender, EventArgs e)
+        private void btnThietBiTrongPhong_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmTrangThietBiPhong());
         }
 
-        private void btnTrangThaiPhong_Click(object sender, EventArgs e)
+        private void btnKhoThietBi_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmKhoThietBi());
+        }
+
+        private void btnThayDoiTrangThai_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmTrangThaiPhong_NVkyThuat());
         }
 
-        private void btnLogOut_Click(object sender, EventArgs e)
+        private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            DialogResult dx =  MessageBox.Show("Bạn có chắc muốn đăng xuất không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if(dx == DialogResult.Yes)
+            DialogResult result = MessageBox.Show(
+                  "Bạn có chắc muốn đăng xuất không?",
+                     "Đăng xuất",
+              MessageBoxButtons.YesNo,
+              MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
-                frm_login loginForm = new frm_login();
-                this.Hide();
-                loginForm.ShowDialog();
                 this.Close();
             }
-           
+
+
+
         }
     }
 }

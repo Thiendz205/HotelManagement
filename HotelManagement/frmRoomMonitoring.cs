@@ -60,5 +60,15 @@ namespace HotelManagement
         {
             // TODO: Implement room selection functionality
         }
+
+        private void gunaButton1_Click(object sender, EventArgs e)
+        {
+            var parent = Application.OpenForms["frmServiceStaffMain"] as frmServiceStaffMain;
+            if (parent != null)
+            {
+                var bookingDetailForm = new frmServiceProvision();
+                parent.OpenChildForm(bookingDetailForm);
+            }
+        }
     }
 }

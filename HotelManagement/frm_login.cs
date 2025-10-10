@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HotelManagement
@@ -17,37 +10,79 @@ namespace HotelManagement
             InitializeComponent();
         }
 
-        string usernameAd = "admin";
-        string passwordAd = "admin123";
+        // 🔹 Thuộc tính giúp truyền thông tin đăng nhập sang Program.cs
+        public string UserRole { get; private set; }
 
-        string usernameNV = "nvkt";
-        string passwordNV = "nvkt123";
+        // 🔹 Tài khoản mẫu
+        private readonly string usernameAd = "admin";
+        private readonly string passwordAd = "admin123";
 
+        private readonly string usernameNV_KT = "nvkt";
+        private readonly string passwordNV_KT = "nvkt123";
+
+        private readonly string usernameNV_HR = "hr";
+        private readonly string passwordNV_HR = "hr123";
+
+        private readonly string usernameNV_DV = "nvdv";
+        private readonly string passwordNV_DV = "nvdv123";
+
+        private readonly string usernameNV_LT = "nvlt";
+        private readonly string passwordNV_LT = "nvlt123";
+
+
+        // 🔹 Xử lý nút đăng nhập
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            if(txtUsername.Text == usernameAd && txtPassword.Text == passwordAd)
+            string username = txtUsername.Text.Trim();
+            string password = txtPassword.Text.Trim();
+
+            if (username == usernameAd && password == passwordAd)
             {
-                //this.Hide();
-                frmAdminMain adminForm = new frmAdminMain();
-                adminForm.ShowDialog();
+                UserRole = "Admin";
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
-            else if (txtUsername.Text == usernameNV && txtPassword.Text == passwordNV)
+            else if (username == usernameNV_KT && password == passwordNV_KT)
             {
-                this.Hide();
-                frmNhanVienKyThuat nvktForm = new frmNhanVienKyThuat();
-                nvktForm.ShowDialog();
+                UserRole = "NVKT";
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else if (username == usernameNV_HR && password == passwordNV_HR)
+            {
+                UserRole = "HR";
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else if (username == usernameNV_DV && password == passwordNV_DV)
+            {
+                UserRole = "NVDV";
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else if (username == usernameNV_LT && password == passwordNV_LT)
+            {
+                UserRole = "NVLT";
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Tên đăng nhập hoặc mật khẩu không đúng.", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        // 🔹 Ẩn/hiện mật khẩu
         private void cB_ShowPass_CheckedChanged(object sender, EventArgs e)
         {
             txtPassword.UseSystemPasswordChar = !cB_ShowPass.Checked;
+        }
+
+        // 🔹 Nếu bấm nút Thoát thì đóng login (thoát chương trình)
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

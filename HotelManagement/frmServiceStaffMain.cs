@@ -18,7 +18,7 @@ namespace HotelManagement
             InitializeComponent();
         }
 
-        private void OpenChildForm(Form childForm)
+        public void OpenChildForm(Form childForm)
         {
             if (activeChildForm != null)
             {
@@ -61,11 +61,21 @@ namespace HotelManagement
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", 
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            DialogResult result = MessageBox.Show(
+            "Bạn có chắc muốn đăng xuất không?",
+            "Đăng xuất",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
             {
                 this.Close();
             }
+        }
+
+        private void frmServiceStaffMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

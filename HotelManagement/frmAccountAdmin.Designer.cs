@@ -41,7 +41,6 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtPassword = new Guna.UI.WinForms.GunaTextBox();
             this.lblStaffId = new System.Windows.Forms.Label();
-            this.txtStaffId = new Guna.UI.WinForms.GunaTextBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cboStatus = new Guna.UI.WinForms.GunaComboBox();
             this.lblStartDate = new System.Windows.Forms.Label();
@@ -52,6 +51,7 @@
             this.colStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gunaTextBox1 = new Guna.UI.WinForms.GunaTextBox();
             this.headerPanel.SuspendLayout();
             this.editorPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
@@ -59,7 +59,7 @@
             // 
             // headerPanel
             // 
-            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.headerPanel.BackColor = System.Drawing.Color.PaleTurquoise;
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.txtSearch);
             this.headerPanel.Controls.Add(this.btnAdd);
@@ -68,8 +68,9 @@
             this.headerPanel.Controls.Add(this.btnRefresh);
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
+            this.headerPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(950, 80);
+            this.headerPanel.Size = new System.Drawing.Size(1267, 98);
             this.headerPanel.TabIndex = 0;
             // 
             // lblTitle
@@ -77,9 +78,10 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            this.lblTitle.Location = new System.Drawing.Point(20, 31);
+            this.lblTitle.Location = new System.Drawing.Point(27, 38);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(111, 30);
+            this.lblTitle.Size = new System.Drawing.Size(140, 37);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Tài khoản";
             // 
@@ -92,11 +94,12 @@
             this.txtSearch.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.txtSearch.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtSearch.Location = new System.Drawing.Point(175, 34);
+            this.txtSearch.Location = new System.Drawing.Point(233, 42);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(260, 30);
+            this.txtSearch.Size = new System.Drawing.Size(347, 41);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.Text = "Tìm kiếm theo username...";
             // 
@@ -112,14 +115,15 @@
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = null;
             this.btnAdd.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnAdd.Location = new System.Drawing.Point(465, 32);
+            this.btnAdd.Location = new System.Drawing.Point(620, 39);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnAdd.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnAdd.OnHoverForeColor = System.Drawing.Color.White;
             this.btnAdd.OnHoverImage = null;
             this.btnAdd.OnPressedColor = System.Drawing.Color.Black;
-            this.btnAdd.Size = new System.Drawing.Size(100, 34);
+            this.btnAdd.Size = new System.Drawing.Size(133, 42);
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -136,14 +140,15 @@
             this.btnEdit.ForeColor = System.Drawing.Color.White;
             this.btnEdit.Image = null;
             this.btnEdit.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnEdit.Location = new System.Drawing.Point(575, 32);
+            this.btnEdit.Location = new System.Drawing.Point(767, 39);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnEdit.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnEdit.OnHoverForeColor = System.Drawing.Color.White;
             this.btnEdit.OnHoverImage = null;
             this.btnEdit.OnPressedColor = System.Drawing.Color.Black;
-            this.btnEdit.Size = new System.Drawing.Size(100, 34);
+            this.btnEdit.Size = new System.Drawing.Size(133, 42);
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -160,14 +165,15 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = null;
             this.btnDelete.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDelete.Location = new System.Drawing.Point(685, 32);
+            this.btnDelete.Location = new System.Drawing.Point(913, 39);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnDelete.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnDelete.OnHoverForeColor = System.Drawing.Color.White;
             this.btnDelete.OnHoverImage = null;
             this.btnDelete.OnPressedColor = System.Drawing.Color.Black;
-            this.btnDelete.Size = new System.Drawing.Size(100, 34);
+            this.btnDelete.Size = new System.Drawing.Size(133, 42);
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -184,35 +190,37 @@
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
             this.btnRefresh.Image = null;
             this.btnRefresh.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnRefresh.Location = new System.Drawing.Point(795, 32);
+            this.btnRefresh.Location = new System.Drawing.Point(1060, 39);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
             this.btnRefresh.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnRefresh.OnHoverForeColor = System.Drawing.Color.White;
             this.btnRefresh.OnHoverImage = null;
             this.btnRefresh.OnPressedColor = System.Drawing.Color.Black;
-            this.btnRefresh.Size = new System.Drawing.Size(120, 34);
+            this.btnRefresh.Size = new System.Drawing.Size(160, 42);
             this.btnRefresh.TabIndex = 5;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // editorPanel
             // 
-            this.editorPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.editorPanel.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.editorPanel.Controls.Add(this.gunaTextBox1);
             this.editorPanel.Controls.Add(this.lblUsername);
             this.editorPanel.Controls.Add(this.txtUsername);
             this.editorPanel.Controls.Add(this.lblPassword);
             this.editorPanel.Controls.Add(this.txtPassword);
             this.editorPanel.Controls.Add(this.lblStaffId);
-            this.editorPanel.Controls.Add(this.txtStaffId);
             this.editorPanel.Controls.Add(this.lblStatus);
             this.editorPanel.Controls.Add(this.cboStatus);
             this.editorPanel.Controls.Add(this.lblStartDate);
             this.editorPanel.Controls.Add(this.dtpStartDate);
             this.editorPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.editorPanel.Location = new System.Drawing.Point(0, 80);
+            this.editorPanel.Location = new System.Drawing.Point(0, 98);
+            this.editorPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.editorPanel.Name = "editorPanel";
-            this.editorPanel.Size = new System.Drawing.Size(950, 120);
+            this.editorPanel.Size = new System.Drawing.Size(1267, 148);
             this.editorPanel.TabIndex = 6;
             // 
             // lblUsername
@@ -220,9 +228,10 @@
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblUsername.Location = new System.Drawing.Point(24, 16);
+            this.lblUsername.Location = new System.Drawing.Point(87, 20);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(71, 19);
+            this.lblUsername.Size = new System.Drawing.Size(87, 23);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "Username";
             // 
@@ -235,11 +244,12 @@
             this.txtUsername.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.txtUsername.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtUsername.Location = new System.Drawing.Point(28, 38);
+            this.txtUsername.Location = new System.Drawing.Point(37, 47);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PasswordChar = '\0';
             this.txtUsername.SelectedText = "";
-            this.txtUsername.Size = new System.Drawing.Size(200, 30);
+            this.txtUsername.Size = new System.Drawing.Size(199, 41);
             this.txtUsername.TabIndex = 1;
             // 
             // lblPassword
@@ -247,9 +257,10 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblPassword.Location = new System.Drawing.Point(244, 16);
+            this.lblPassword.Location = new System.Drawing.Point(346, 20);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(68, 19);
+            this.lblPassword.Size = new System.Drawing.Size(82, 23);
             this.lblPassword.TabIndex = 2;
             this.lblPassword.Text = "Mật khẩu";
             // 
@@ -262,11 +273,12 @@
             this.txtPassword.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.txtPassword.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPassword.Location = new System.Drawing.Point(248, 38);
+            this.txtPassword.Location = new System.Drawing.Point(267, 47);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.SelectedText = "";
-            this.txtPassword.Size = new System.Drawing.Size(200, 30);
+            this.txtPassword.Size = new System.Drawing.Size(267, 41);
             this.txtPassword.TabIndex = 3;
             // 
             // lblStaffId
@@ -274,36 +286,22 @@
             this.lblStaffId.AutoSize = true;
             this.lblStaffId.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblStaffId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblStaffId.Location = new System.Drawing.Point(464, 16);
+            this.lblStaffId.Location = new System.Drawing.Point(587, 20);
+            this.lblStaffId.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStaffId.Name = "lblStaffId";
-            this.lblStaffId.Size = new System.Drawing.Size(93, 19);
+            this.lblStaffId.Size = new System.Drawing.Size(114, 23);
             this.lblStaffId.TabIndex = 4;
             this.lblStaffId.Text = "Mã nhân viên";
-            // 
-            // txtStaffId
-            // 
-            this.txtStaffId.BaseColor = System.Drawing.Color.White;
-            this.txtStaffId.BorderColor = System.Drawing.Color.Silver;
-            this.txtStaffId.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtStaffId.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtStaffId.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.txtStaffId.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtStaffId.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtStaffId.Location = new System.Drawing.Point(468, 38);
-            this.txtStaffId.Name = "txtStaffId";
-            this.txtStaffId.PasswordChar = '\0';
-            this.txtStaffId.SelectedText = "";
-            this.txtStaffId.Size = new System.Drawing.Size(160, 30);
-            this.txtStaffId.TabIndex = 5;
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblStatus.Location = new System.Drawing.Point(644, 16);
+            this.lblStatus.Location = new System.Drawing.Point(837, 20);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(70, 19);
+            this.lblStatus.Size = new System.Drawing.Size(87, 23);
             this.lblStatus.TabIndex = 6;
             this.lblStatus.Text = "Trạng thái";
             // 
@@ -321,11 +319,12 @@
             this.cboStatus.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.cboStatus.Location = new System.Drawing.Point(648, 38);
+            this.cboStatus.Location = new System.Drawing.Point(797, 52);
+            this.cboStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.cboStatus.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cboStatus.Size = new System.Drawing.Size(140, 26);
+            this.cboStatus.Size = new System.Drawing.Size(185, 31);
             this.cboStatus.TabIndex = 7;
             // 
             // lblStartDate
@@ -333,9 +332,10 @@
             this.lblStartDate.AutoSize = true;
             this.lblStartDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblStartDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblStartDate.Location = new System.Drawing.Point(808, 16);
+            this.lblStartDate.Location = new System.Drawing.Point(1040, 20);
+            this.lblStartDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStartDate.Name = "lblStartDate";
-            this.lblStartDate.Size = new System.Drawing.Size(107, 19);
+            this.lblStartDate.Size = new System.Drawing.Size(132, 23);
             this.lblStartDate.TabIndex = 8;
             this.lblStartDate.Text = "Ngày tạo (Auto)";
             // 
@@ -343,9 +343,10 @@
             // 
             this.dtpStartDate.Enabled = false;
             this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.dtpStartDate.Location = new System.Drawing.Point(812, 38);
+            this.dtpStartDate.Location = new System.Drawing.Point(1004, 51);
+            this.dtpStartDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpStartDate.Name = "dtpStartDate";
-            this.dtpStartDate.Size = new System.Drawing.Size(126, 25);
+            this.dtpStartDate.Size = new System.Drawing.Size(250, 30);
             this.dtpStartDate.TabIndex = 9;
             // 
             // dgvMain
@@ -364,55 +365,80 @@
             this.colStaffID,
             this.colStatus});
             this.dgvMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMain.Location = new System.Drawing.Point(0, 200);
+            this.dgvMain.Location = new System.Drawing.Point(0, 246);
+            this.dgvMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvMain.MultiSelect = false;
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.ReadOnly = true;
             this.dgvMain.RowHeadersVisible = false;
+            this.dgvMain.RowHeadersWidth = 51;
             this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMain.Size = new System.Drawing.Size(950, 600);
+            this.dgvMain.Size = new System.Drawing.Size(1267, 739);
             this.dgvMain.TabIndex = 1;
             // 
             // colAccountID
             // 
             this.colAccountID.HeaderText = "AccountID";
+            this.colAccountID.MinimumWidth = 6;
             this.colAccountID.Name = "colAccountID";
             this.colAccountID.ReadOnly = true;
             // 
             // colUsername
             // 
             this.colUsername.HeaderText = "Username";
+            this.colUsername.MinimumWidth = 6;
             this.colUsername.Name = "colUsername";
             this.colUsername.ReadOnly = true;
             // 
             // colStartDate
             // 
             this.colStartDate.HeaderText = "StartDate";
+            this.colStartDate.MinimumWidth = 6;
             this.colStartDate.Name = "colStartDate";
             this.colStartDate.ReadOnly = true;
             // 
             // colStaffID
             // 
             this.colStaffID.HeaderText = "StaffID";
+            this.colStaffID.MinimumWidth = 6;
             this.colStaffID.Name = "colStaffID";
             this.colStaffID.ReadOnly = true;
             // 
             // colStatus
             // 
             this.colStatus.HeaderText = "Status";
+            this.colStatus.MinimumWidth = 6;
             this.colStatus.Name = "colStatus";
             this.colStatus.ReadOnly = true;
             // 
+            // gunaTextBox1
+            // 
+            this.gunaTextBox1.BaseColor = System.Drawing.Color.White;
+            this.gunaTextBox1.BorderColor = System.Drawing.Color.Silver;
+            this.gunaTextBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.gunaTextBox1.FocusedBaseColor = System.Drawing.Color.White;
+            this.gunaTextBox1.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.gunaTextBox1.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.gunaTextBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.gunaTextBox1.Location = new System.Drawing.Point(563, 48);
+            this.gunaTextBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.gunaTextBox1.Name = "gunaTextBox1";
+            this.gunaTextBox1.PasswordChar = '*';
+            this.gunaTextBox1.SelectedText = "";
+            this.gunaTextBox1.Size = new System.Drawing.Size(204, 41);
+            this.gunaTextBox1.TabIndex = 10;
+            // 
             // frmAccountAdmin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(950, 800);
+            this.ClientSize = new System.Drawing.Size(1267, 985);
             this.Controls.Add(this.dgvMain);
             this.Controls.Add(this.editorPanel);
             this.Controls.Add(this.headerPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAccountAdmin";
             this.Text = "frmAccountAdmin";
             this.headerPanel.ResumeLayout(false);
@@ -440,7 +466,6 @@
         private System.Windows.Forms.Label lblPassword;
         private Guna.UI.WinForms.GunaTextBox txtPassword;
         private System.Windows.Forms.Label lblStaffId;
-        private Guna.UI.WinForms.GunaTextBox txtStaffId;
         private System.Windows.Forms.Label lblStatus;
         private Guna.UI.WinForms.GunaComboBox cboStatus;
         private System.Windows.Forms.Label lblStartDate;
@@ -450,5 +475,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colStartDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStaffID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStatus;
+        private Guna.UI.WinForms.GunaTextBox gunaTextBox1;
     }
 }

@@ -96,5 +96,10 @@ namespace HotelManagement
         {
 
         }
+
+        private void txtServiceName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

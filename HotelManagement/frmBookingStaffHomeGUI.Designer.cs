@@ -35,7 +35,7 @@
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnLogOut = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -64,7 +64,7 @@
             this.flowLayoutPanel1.Controls.Add(this.guna2Button1);
             this.flowLayoutPanel1.Controls.Add(this.guna2Button2);
             this.flowLayoutPanel1.Controls.Add(this.guna2Button5);
-            this.flowLayoutPanel1.Controls.Add(this.guna2Button4);
+            this.flowLayoutPanel1.Controls.Add(this.btnLogOut);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(200, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -173,25 +173,25 @@
             this.guna2Button5.Text = "Chuyển trạng thái phòng";
             this.guna2Button5.Click += new System.EventHandler(this.guna2Button5_Click);
             // 
-            // guna2Button4
+            // btnLogOut
             // 
-            this.guna2Button4.BorderRadius = 20;
-            this.guna2Button4.CheckedState.Parent = this.guna2Button4;
-            this.guna2Button4.CustomImages.Parent = this.guna2Button4;
-            this.guna2Button4.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.guna2Button4.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button4.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button4.HoverState.Parent = this.guna2Button4;
-            this.guna2Button4.Image = global::HotelManagement.Properties.Resources.logoutHR;
-            this.guna2Button4.ImageSize = new System.Drawing.Size(40, 40);
-            this.guna2Button4.Location = new System.Drawing.Point(1471, 43);
-            this.guna2Button4.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
-            this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.ShadowDecoration.Parent = this.guna2Button4;
-            this.guna2Button4.Size = new System.Drawing.Size(229, 72);
-            this.guna2Button4.TabIndex = 4;
-            this.guna2Button4.Text = "Đăng xuất ";
-            this.guna2Button4.Click += new System.EventHandler(this.guna2Button4_Click);
+            this.btnLogOut.BorderRadius = 20;
+            this.btnLogOut.CheckedState.Parent = this.btnLogOut;
+            this.btnLogOut.CustomImages.Parent = this.btnLogOut;
+            this.btnLogOut.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnLogOut.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.ForeColor = System.Drawing.Color.Black;
+            this.btnLogOut.HoverState.Parent = this.btnLogOut;
+            this.btnLogOut.Image = global::HotelManagement.Properties.Resources.logoutHR;
+            this.btnLogOut.ImageSize = new System.Drawing.Size(40, 40);
+            this.btnLogOut.Location = new System.Drawing.Point(1471, 43);
+            this.btnLogOut.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.ShadowDecoration.Parent = this.btnLogOut;
+            this.btnLogOut.Size = new System.Drawing.Size(229, 72);
+            this.btnLogOut.TabIndex = 4;
+            this.btnLogOut.Text = "Đăng xuất ";
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // panel3
             // 
@@ -276,7 +276,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel_Body;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
+        private Guna.UI2.WinForms.Guna2Button btnLogOut;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
     }
 }

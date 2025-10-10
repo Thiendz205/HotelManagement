@@ -52,8 +52,9 @@
             this.pnlSidebar.Controls.Add(this.lblWelcome);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlSidebar.Name = "pnlSidebar";
-            this.pnlSidebar.Size = new System.Drawing.Size(250, 800);
+            this.pnlSidebar.Size = new System.Drawing.Size(333, 985);
             this.pnlSidebar.TabIndex = 0;
             // 
             // btnLogout
@@ -69,14 +70,15 @@
             this.btnLogout.ForeColor = System.Drawing.Color.White;
             this.btnLogout.Image = null;
             this.btnLogout.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnLogout.Location = new System.Drawing.Point(20, 720);
+            this.btnLogout.Location = new System.Drawing.Point(27, 886);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnLogout.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnLogout.OnHoverForeColor = System.Drawing.Color.White;
             this.btnLogout.OnHoverImage = null;
             this.btnLogout.OnPressedColor = System.Drawing.Color.Black;
-            this.btnLogout.Size = new System.Drawing.Size(210, 50);
+            this.btnLogout.Size = new System.Drawing.Size(280, 62);
             this.btnLogout.TabIndex = 4;
             this.btnLogout.Text = "Đăng xuất";
             this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -94,14 +96,15 @@
             this.btnRoomMonitoring.ForeColor = System.Drawing.Color.White;
             this.btnRoomMonitoring.Image = null;
             this.btnRoomMonitoring.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnRoomMonitoring.Location = new System.Drawing.Point(20, 360);
+            this.btnRoomMonitoring.Location = new System.Drawing.Point(27, 443);
+            this.btnRoomMonitoring.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRoomMonitoring.Name = "btnRoomMonitoring";
             this.btnRoomMonitoring.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
             this.btnRoomMonitoring.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnRoomMonitoring.OnHoverForeColor = System.Drawing.Color.White;
             this.btnRoomMonitoring.OnHoverImage = null;
             this.btnRoomMonitoring.OnPressedColor = System.Drawing.Color.Black;
-            this.btnRoomMonitoring.Size = new System.Drawing.Size(210, 50);
+            this.btnRoomMonitoring.Size = new System.Drawing.Size(280, 62);
             this.btnRoomMonitoring.TabIndex = 3;
             this.btnRoomMonitoring.Text = "Theo dõi Phòng";
             this.btnRoomMonitoring.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -119,14 +122,15 @@
             this.btnServiceProvision.ForeColor = System.Drawing.Color.White;
             this.btnServiceProvision.Image = null;
             this.btnServiceProvision.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnServiceProvision.Location = new System.Drawing.Point(20, 290);
+            this.btnServiceProvision.Location = new System.Drawing.Point(27, 357);
+            this.btnServiceProvision.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnServiceProvision.Name = "btnServiceProvision";
             this.btnServiceProvision.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
             this.btnServiceProvision.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnServiceProvision.OnHoverForeColor = System.Drawing.Color.White;
             this.btnServiceProvision.OnHoverImage = null;
             this.btnServiceProvision.OnPressedColor = System.Drawing.Color.Black;
-            this.btnServiceProvision.Size = new System.Drawing.Size(210, 50);
+            this.btnServiceProvision.Size = new System.Drawing.Size(280, 62);
             this.btnServiceProvision.TabIndex = 2;
             this.btnServiceProvision.Text = "Cung cấp Dịch vụ";
             this.btnServiceProvision.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -144,14 +148,15 @@
             this.btnServiceCRUD.ForeColor = System.Drawing.Color.White;
             this.btnServiceCRUD.Image = null;
             this.btnServiceCRUD.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnServiceCRUD.Location = new System.Drawing.Point(20, 220);
+            this.btnServiceCRUD.Location = new System.Drawing.Point(27, 271);
+            this.btnServiceCRUD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnServiceCRUD.Name = "btnServiceCRUD";
             this.btnServiceCRUD.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnServiceCRUD.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnServiceCRUD.OnHoverForeColor = System.Drawing.Color.White;
             this.btnServiceCRUD.OnHoverImage = null;
             this.btnServiceCRUD.OnPressedColor = System.Drawing.Color.Black;
-            this.btnServiceCRUD.Size = new System.Drawing.Size(210, 50);
+            this.btnServiceCRUD.Size = new System.Drawing.Size(280, 62);
             this.btnServiceCRUD.TabIndex = 1;
             this.btnServiceCRUD.Text = "Thêm/Sửa Dịch vụ";
             this.btnServiceCRUD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -169,14 +174,15 @@
             this.btnServiceManagement.ForeColor = System.Drawing.Color.White;
             this.btnServiceManagement.Image = null;
             this.btnServiceManagement.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnServiceManagement.Location = new System.Drawing.Point(20, 150);
+            this.btnServiceManagement.Location = new System.Drawing.Point(27, 185);
+            this.btnServiceManagement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnServiceManagement.Name = "btnServiceManagement";
             this.btnServiceManagement.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnServiceManagement.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnServiceManagement.OnHoverForeColor = System.Drawing.Color.White;
             this.btnServiceManagement.OnHoverImage = null;
             this.btnServiceManagement.OnPressedColor = System.Drawing.Color.Black;
-            this.btnServiceManagement.Size = new System.Drawing.Size(210, 50);
+            this.btnServiceManagement.Size = new System.Drawing.Size(280, 62);
             this.btnServiceManagement.TabIndex = 0;
             this.btnServiceManagement.Text = "Quản lý Dịch vụ";
             this.btnServiceManagement.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -187,9 +193,10 @@
             this.lblStaffInfo.AutoSize = true;
             this.lblStaffInfo.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.lblStaffInfo.ForeColor = System.Drawing.Color.White;
-            this.lblStaffInfo.Location = new System.Drawing.Point(20, 60);
+            this.lblStaffInfo.Location = new System.Drawing.Point(27, 74);
+            this.lblStaffInfo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStaffInfo.Name = "lblStaffInfo";
-            this.lblStaffInfo.Size = new System.Drawing.Size(137, 21);
+            this.lblStaffInfo.Size = new System.Drawing.Size(170, 28);
             this.lblStaffInfo.TabIndex = 1;
             this.lblStaffInfo.Text = "Nhân viên Dịch vụ";
             // 
@@ -198,9 +205,10 @@
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.lblWelcome.ForeColor = System.Drawing.Color.White;
-            this.lblWelcome.Location = new System.Drawing.Point(20, 20);
+            this.lblWelcome.Location = new System.Drawing.Point(27, 25);
+            this.lblWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(140, 30);
+            this.lblWelcome.Size = new System.Drawing.Size(174, 37);
             this.lblWelcome.TabIndex = 0;
             this.lblWelcome.Text = "Chào mừng!";
             // 
@@ -208,23 +216,27 @@
             // 
             this.pnlMainContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.pnlMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMainContent.Location = new System.Drawing.Point(250, 0);
+            this.pnlMainContent.Location = new System.Drawing.Point(333, 0);
+            this.pnlMainContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlMainContent.Name = "pnlMainContent";
-            this.pnlMainContent.Size = new System.Drawing.Size(950, 800);
+            this.pnlMainContent.Size = new System.Drawing.Size(1267, 985);
             this.pnlMainContent.TabIndex = 1;
             // 
             // frmServiceStaffMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(1200, 800);
+            this.ClientSize = new System.Drawing.Size(1600, 985);
             this.Controls.Add(this.pnlMainContent);
             this.Controls.Add(this.pnlSidebar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmServiceStaffMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hệ thống Quản lý Khách sạn - Nhân viên Dịch vụ";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmServiceStaffMain_Load);
             this.pnlSidebar.ResumeLayout(false);
             this.pnlSidebar.PerformLayout();
             this.ResumeLayout(false);
