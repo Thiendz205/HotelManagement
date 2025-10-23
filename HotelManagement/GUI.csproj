@@ -216,6 +216,12 @@
     <Compile Include="frmPaymentManagementREPCGUI.Designer.cs">
       <DependentUpon>frmPaymentManagementREPCGUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPersonal_Information.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPersonal_Information.Designer.cs">
+      <DependentUpon>frmPersonal_Information.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRankCustomerAdminGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -379,6 +385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaymentManagementREPCGUI.resx">
       <DependentUpon>frmPaymentManagementREPCGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPersonal_Information.resx">
+      <DependentUpon>frmPersonal_Information.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRankCustomerAdminGUI.resx">
       <DependentUpon>frmRankCustomerAdminGUI.cs</DependentUpon>

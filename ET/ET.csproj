@@ -49,6 +49,9 @@
     <Compile Include="ServiceET.cs" />
     <Compile Include="StaffET.cs" />
     <Compile Include="UseServiceET.cs" />
+    <Compile Include="Room_ET.cs" />
+    <Compile Include="Room_Type_ET.cs" />
+    <Compile Include="Infor_Staff_ET.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

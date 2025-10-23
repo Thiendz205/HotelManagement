@@ -100,7 +100,7 @@ namespace HotelManagement
 
         private void gunaButton7_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmEditThietBi_NVkyThuat());
+            OpenChildForm(new frmKhoThietBi());
         }
 
         private void gunaButton8_Click(object sender, EventArgs e)
