@@ -42,7 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="EquipmentStorage_BUS.cs" />
+    <Compile Include="Login_Logout_BUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoomStatus_StaffTech_BUS.cs" />
+    <Compile Include="Room_BUS.cs" />
+    <Compile Include="Room_Type_BUS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">

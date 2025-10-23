@@ -16,5 +16,10 @@ namespace HotelManagement
         {
             InitializeComponent();
         }
+
+        private void dtGV_ThietBi_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

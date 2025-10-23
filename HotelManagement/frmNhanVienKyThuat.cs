@@ -13,10 +13,11 @@ namespace HotelManagement
 {
     public partial class frmNhanVienKyThuat : Form
     {
-        public frmNhanVienKyThuat()
+        private string staffID;
+        public frmNhanVienKyThuat(string staffID)
         {
             InitializeComponent();
-
+            this.staffID = staffID;
         }
 
         private Form currentFormChild;
@@ -73,6 +74,11 @@ namespace HotelManagement
 
 
 
+        }
+
+        private void btnThongTin_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmPersonal_Information(staffID));
         }
     }
 }
