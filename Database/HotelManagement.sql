@@ -193,7 +193,8 @@ CREATE TABLE ServiceUsage (
     BookingID INT NOT NULL,                    -- Mã đặt phòng (liên kết Booking)
     ServiceID INT NOT NULL,                    -- Mã dịch vụ (liên kết Service)
     Quantity INT NOT NULL DEFAULT 1,           -- Số lượng
-    StaffID Char(10) NOT NULL                  -- Nhân viên phụ trách dịch vụ
+    StaffID Char(10) NOT NULL,                  -- Nhân viên phụ trách dịch vụ
+    UsageDate DATETIME NOT NULL DEFAULT GETDATE() -- Ngày sử dụng dịch vụ
 );
 GO
 
@@ -219,7 +220,7 @@ ADD
     CONSTRAINT FK_Booking_Room FOREIGN KEY (RoomID) REFERENCES Room(RoomID),
 
      -- Khóa ngoại liên kết đến bảng Nhân viên (mỗi Booking phải thuộc 1 nhân viên)
-    CONSTRAINT FK_Booking_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID);
+    CONSTRAINT FK_Booking_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 -- Thêm khóa ngoại cho bảng ServiceUsage
 ALTER TABLE ServiceUsage 
@@ -231,51 +232,50 @@ ADD
     CONSTRAINT FK_ServiceUsage_Service FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID),
     
       -- Khóa ngoại liên kết đến bảng Nhân viên (mỗi ServiceUsage phải thuộc 1 nhân viên)
-    CONSTRAINT FK_ServiceUsage_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID);
+    CONSTRAINT FK_ServiceUsage_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 
 -- Thêm khóa ngoại liên kết đến bảng Staff
 ALTER TABLE Account
-ADD CONSTRAINT FK_Account_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID);
+ADD CONSTRAINT FK_Account_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 -- Bảng BookingFee tham chiếu đến Booking và FeeType
 ALTER TABLE BookingFee
 ADD
     CONSTRAINT FK_BookingFee_Booking FOREIGN KEY (BookingID) REFERENCES Booking(BookingID),  -- Liên kết phí phát sinh với một Booking cụ thể
-    CONSTRAINT FK_BookingFee_FeeType FOREIGN KEY (FeeTypeID) REFERENCES FeeType(FeeTypeID);  -- Loại phí (dịch vụ, phụ thu...)
+    CONSTRAINT FK_BookingFee_FeeType FOREIGN KEY (FeeTypeID) REFERENCES FeeType(FeeTypeID)  ON DELETE CASCADE ON UPDATE CASCADE;  -- Loại phí (dịch vụ, phụ thu...)
 GO
 
 --Bảng khóa ngoại khách sạn
 ALTER TABLE Customer
-ADD CONSTRAINT FK_Customer_Rank FOREIGN KEY (RankID) REFERENCES CustomerRank(RankID);
+ADD CONSTRAINT FK_Customer_Rank FOREIGN KEY (RankID) REFERENCES CustomerRank(RankID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 -- Bảng Invoice tham chiếu đến Booking và Staff
 ALTER TABLE Invoice
 ADD
     CONSTRAINT FK_Invoice_Booking FOREIGN KEY (BookingID)  
-        REFERENCES Booking(BookingID) 
-        ON DELETE CASCADE ON UPDATE CASCADE,   -- Nếu xóa hoặc cập nhật Booking thì hóa đơn cũng thay đổi tương ứng
+        REFERENCES Booking(BookingID) ,   -- Nếu xóa hoặc cập nhật Booking thì hóa đơn cũng thay đổi tương ứng
     CONSTRAINT FK_Invoice_Staff FOREIGN KEY (StaffID)  
-        REFERENCES Staff(StaffID);             -- Nhân viên lập hóa đơn
+        REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;             -- Nhân viên lập hóa đơn
 GO
 -- Bảng Room tham chiếu đến RoomType
 ALTER TABLE Room
 ADD
-    CONSTRAINT FK_Room_RoomType FOREIGN KEY(RoomTypeID) REFERENCES RoomType(RoomTypeID); -- Mỗi phòng thuộc một loại phòng
+    CONSTRAINT FK_Room_RoomType FOREIGN KEY(RoomTypeID) REFERENCES RoomType(RoomTypeID)  ON DELETE CASCADE ON UPDATE CASCADE; -- Mỗi phòng thuộc một loại phòng
 GO
 ALTER TABLE RoomEquipment
 ADD CONSTRAINT FK_RoomEquipment_EquipmentStorage
-    FOREIGN KEY (EquipmentStorage) REFERENCES EquipmentStorage(EquipmentID);
+    FOREIGN KEY (EquipmentStorage) REFERENCES EquipmentStorage(EquipmentID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 
 ALTER TABLE RoomEquipment
 ADD CONSTRAINT FK_RoomEquipment_Staff
-    FOREIGN KEY (StaffID) REFERENCES Staff(StaffID);
-GO
+    FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;
+GO 
 
 ALTER TABLE RoomEquipment
 ADD CONSTRAINT FK_RoomEquipment_Room
-    FOREIGN KEY (RoomID) REFERENCES Room(RoomID);
+    FOREIGN KEY (RoomID) REFERENCES Room(RoomID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 
 ALTER TABLE EquipmentStorage
@@ -284,7 +284,7 @@ ADD CONSTRAINT FK_EquipmentStorage_Staff
 GO
 ALter table RoomTypePrice
 ADD CONSTRAINT FK_RoomTypePrice_RoomType
-FOREIGN KEY (RoomTypeID) REFERENCES RoomType(RoomTypeID)
+FOREIGN KEY (RoomTypeID) REFERENCES RoomType(RoomTypeID)  ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE RoomEvaluation
 ADD CONSTRAINT FK_RoomEvaluation_Room

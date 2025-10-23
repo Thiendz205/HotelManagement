@@ -24,47 +24,47 @@ namespace HotelManagement
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //Application.Run(new frmNhanVienKyThuat()); chạy thẳng form riêng
+            Application.Run(new frmServiceAdmin()); /*chạy thẳng form riêng
+*/
 
 
+        //    bool exitApp = false;
 
-            bool exitApp = false;
+            //    while (!exitApp)
+            //    {
+            //        frm_login loginForm = new frm_login();
+            //        DialogResult result = loginForm.ShowDialog();
 
-            while (!exitApp)
-            {
-                frm_login loginForm = new frm_login();
-                DialogResult result = loginForm.ShowDialog();
-
-                if (result == DialogResult.OK)
-                {
-                    // Mở form theo quyền đăng nhập
-                    if (loginForm.UserRole == "Admin")
-                    {
-                        Application.Run(new frmAdminMain());
-                    }
-                    else if (loginForm.UserRole == "NVKT")
-                    {
-                        Application.Run(new frmNhanVienKyThuat());
-                    }
-                    else if (loginForm.UserRole == "HR")
-                    {
-                        Application.Run(new frmHRManagerMainGUI());
-                    }
-                    else if (loginForm.UserRole == "NVDV")
-                    {
-                        Application.Run(new frmServiceStaffMain());
-                    }
-                    else if (loginForm.UserRole == "NVLT")
-                    {
-                        Application.Run(new frmBookingStaffHomeGUI());
-                    }
-                }
-                else
-                {
-                    // Bấm X hoặc Cancel → thoát ứng dụng
-                    exitApp = true;
-                }
+            //        if (result == DialogResult.OK)
+            //        {
+            //            // Mở form theo quyền đăng nhập
+            //            if (loginForm.UserRole == "Admin")
+            //            {
+            //                Application.Run(new frmAdminMain());
+            //            }
+            //            else if (loginForm.UserRole == "NVKT")
+            //            {
+            //                Application.Run(new frmNhanVienKyThuat());
+            //            }
+            //            else if (loginForm.UserRole == "HR")
+            //            {
+            //                Application.Run(new frmHRManagerMainGUI());
+            //            }
+            //            else if (loginForm.UserRole == "NVDV")
+            //            {
+            //                Application.Run(new frmServiceStaffMain());
+            //            }
+            //            else if (loginForm.UserRole == "NVLT")
+            //            {
+            //                Application.Run(new frmBookingStaffHomeGUI());
+            //            }
+            //        }
+            //        else
+            //        {
+            //            // Bấm X hoặc Cancel → thoát ứng dụng
+            //            exitApp = true;
+            //        }
+            //    }
             }
-        }
     }
 }
