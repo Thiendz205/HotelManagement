@@ -42,8 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountDAL.cs" />
+    <Compile Include="BillDAL.cs" />
+    <Compile Include="BookingDAL.cs" />
+    <Compile Include="BookingFeeDAL.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CustomerDAL.cs" />
     <Compile Include="EquipmentStorage_DAL.cs" />
+    <Compile Include="FeeTypeDAL.cs" />
     <Compile Include="HotelManagement.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -56,9 +62,13 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RankCusstomerDAL.cs" />
     <Compile Include="RoomStatus_StaffTech_DAL.cs" />
     <Compile Include="Room_DAL.cs" />
     <Compile Include="Room_Type_DAL.cs" />
+    <Compile Include="ServiceDAL.cs" />
+    <Compile Include="StaffDAL.cs" />
+    <Compile Include="UseServiceDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ET\ET.csproj">

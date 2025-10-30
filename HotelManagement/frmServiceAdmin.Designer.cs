@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.headerPanel = new Guna.UI.WinForms.GunaPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.gunaComboBox2 = new Guna.UI.WinForms.GunaComboBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.txtSearch = new Guna.UI.WinForms.GunaTextBox();
             this.btnAdd = new Guna.UI.WinForms.GunaButton();
@@ -42,8 +44,10 @@
             this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editorPanel = new Guna.UI.WinForms.GunaPanel();
-            this.gunaComboBox2 = new Guna.UI.WinForms.GunaComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.gunaComboBox1 = new Guna.UI.WinForms.GunaComboBox();
+            this.txtServiceID = new Guna.UI.WinForms.GunaTextBox();
+            this.txtServiceName = new Guna.UI.WinForms.GunaTextBox();
             this.lblServiceName = new System.Windows.Forms.Label();
             this.lblCategory = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
@@ -58,6 +62,8 @@
             // headerPanel
             // 
             this.headerPanel.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.headerPanel.Controls.Add(this.label2);
+            this.headerPanel.Controls.Add(this.gunaComboBox2);
             this.headerPanel.Controls.Add(this.lblTitle);
             this.headerPanel.Controls.Add(this.txtSearch);
             this.headerPanel.Controls.Add(this.btnAdd);
@@ -66,10 +72,42 @@
             this.headerPanel.Controls.Add(this.btnRefresh);
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
-            this.headerPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.headerPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1267, 98);
+            this.headerPanel.Size = new System.Drawing.Size(1855, 98);
             this.headerPanel.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.label2.Location = new System.Drawing.Point(817, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(163, 23);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Lọc Theo Danh Mục";
+            // 
+            // gunaComboBox2
+            // 
+            this.gunaComboBox2.BackColor = System.Drawing.Color.Transparent;
+            this.gunaComboBox2.BaseColor = System.Drawing.Color.White;
+            this.gunaComboBox2.BorderColor = System.Drawing.Color.Silver;
+            this.gunaComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.gunaComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gunaComboBox2.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaComboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.gunaComboBox2.ForeColor = System.Drawing.Color.Black;
+            this.gunaComboBox2.FormattingEnabled = true;
+            this.gunaComboBox2.Location = new System.Drawing.Point(796, 38);
+            this.gunaComboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.gunaComboBox2.Name = "gunaComboBox2";
+            this.gunaComboBox2.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaComboBox2.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.gunaComboBox2.Size = new System.Drawing.Size(213, 31);
+            this.gunaComboBox2.TabIndex = 18;
+            this.gunaComboBox2.SelectedIndexChanged += new System.EventHandler(this.gunaComboBox2_SelectedIndexChanged);
             // 
             // lblTitle
             // 
@@ -93,13 +131,15 @@
             this.txtSearch.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.txtSearch.Location = new System.Drawing.Point(240, 30);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.SelectedText = "";
             this.txtSearch.Size = new System.Drawing.Size(347, 41);
             this.txtSearch.TabIndex = 1;
-            this.txtSearch.Text = "Tìm theo tên/nhóm dịch vụ...";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
+            this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
             // btnAdd
             // 
@@ -113,8 +153,8 @@
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = null;
             this.btnAdd.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnAdd.Location = new System.Drawing.Point(627, 27);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Location = new System.Drawing.Point(1191, 28);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnAdd.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -125,6 +165,7 @@
             this.btnAdd.TabIndex = 2;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
@@ -138,8 +179,8 @@
             this.btnEdit.ForeColor = System.Drawing.Color.White;
             this.btnEdit.Image = null;
             this.btnEdit.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnEdit.Location = new System.Drawing.Point(773, 27);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEdit.Location = new System.Drawing.Point(1337, 28);
+            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnEdit.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -150,6 +191,7 @@
             this.btnEdit.TabIndex = 3;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -163,8 +205,8 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = null;
             this.btnDelete.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDelete.Location = new System.Drawing.Point(920, 27);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelete.Location = new System.Drawing.Point(1484, 28);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnDelete.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -175,6 +217,7 @@
             this.btnDelete.TabIndex = 4;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnRefresh
             // 
@@ -188,8 +231,8 @@
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
             this.btnRefresh.Image = null;
             this.btnRefresh.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnRefresh.Location = new System.Drawing.Point(1067, 27);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRefresh.Location = new System.Drawing.Point(1631, 28);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
             this.btnRefresh.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -200,6 +243,7 @@
             this.btnRefresh.TabIndex = 5;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // dgvMain
             // 
@@ -218,15 +262,16 @@
             this.colDescription});
             this.dgvMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMain.Location = new System.Drawing.Point(0, 246);
-            this.dgvMain.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvMain.MultiSelect = false;
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.ReadOnly = true;
             this.dgvMain.RowHeadersVisible = false;
             this.dgvMain.RowHeadersWidth = 51;
-            this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMain.Size = new System.Drawing.Size(1267, 739);
+            this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvMain.Size = new System.Drawing.Size(1855, 739);
             this.dgvMain.TabIndex = 1;
+            this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellClick);
             // 
             // colServiceID
             // 
@@ -266,8 +311,11 @@
             // editorPanel
             // 
             this.editorPanel.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.editorPanel.Controls.Add(this.gunaComboBox2);
+            this.editorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.editorPanel.Controls.Add(this.label1);
             this.editorPanel.Controls.Add(this.gunaComboBox1);
+            this.editorPanel.Controls.Add(this.txtServiceID);
+            this.editorPanel.Controls.Add(this.txtServiceName);
             this.editorPanel.Controls.Add(this.lblServiceName);
             this.editorPanel.Controls.Add(this.lblCategory);
             this.editorPanel.Controls.Add(this.lblPrice);
@@ -276,28 +324,22 @@
             this.editorPanel.Controls.Add(this.txtDescription);
             this.editorPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.editorPanel.Location = new System.Drawing.Point(0, 98);
-            this.editorPanel.Margin = new System.Windows.Forms.Padding(4);
+            this.editorPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.editorPanel.Name = "editorPanel";
-            this.editorPanel.Size = new System.Drawing.Size(1267, 148);
+            this.editorPanel.Size = new System.Drawing.Size(1855, 148);
             this.editorPanel.TabIndex = 6;
             // 
-            // gunaComboBox2
+            // label1
             // 
-            this.gunaComboBox2.BackColor = System.Drawing.Color.Transparent;
-            this.gunaComboBox2.BaseColor = System.Drawing.Color.White;
-            this.gunaComboBox2.BorderColor = System.Drawing.Color.Silver;
-            this.gunaComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.gunaComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gunaComboBox2.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaComboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gunaComboBox2.ForeColor = System.Drawing.Color.Black;
-            this.gunaComboBox2.FormattingEnabled = true;
-            this.gunaComboBox2.Location = new System.Drawing.Point(310, 53);
-            this.gunaComboBox2.Name = "gunaComboBox2";
-            this.gunaComboBox2.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaComboBox2.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.gunaComboBox2.Size = new System.Drawing.Size(213, 31);
-            this.gunaComboBox2.TabIndex = 18;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.label1.Location = new System.Drawing.Point(445, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(96, 23);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Tên dịch vụ";
             // 
             // gunaComboBox1
             // 
@@ -310,31 +352,67 @@
             this.gunaComboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.gunaComboBox1.ForeColor = System.Drawing.Color.Black;
             this.gunaComboBox1.FormattingEnabled = true;
-            this.gunaComboBox1.Location = new System.Drawing.Point(12, 53);
+            this.gunaComboBox1.Location = new System.Drawing.Point(688, 53);
+            this.gunaComboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gunaComboBox1.Name = "gunaComboBox1";
             this.gunaComboBox1.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.gunaComboBox1.OnHoverItemForeColor = System.Drawing.Color.White;
             this.gunaComboBox1.Size = new System.Drawing.Size(260, 31);
             this.gunaComboBox1.TabIndex = 17;
             // 
+            // txtServiceID
+            // 
+            this.txtServiceID.BaseColor = System.Drawing.Color.White;
+            this.txtServiceID.BorderColor = System.Drawing.Color.Silver;
+            this.txtServiceID.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtServiceID.FocusedBaseColor = System.Drawing.Color.White;
+            this.txtServiceID.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.txtServiceID.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtServiceID.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtServiceID.Location = new System.Drawing.Point(88, 53);
+            this.txtServiceID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtServiceID.Name = "txtServiceID";
+            this.txtServiceID.PasswordChar = '\0';
+            this.txtServiceID.ReadOnly = true;
+            this.txtServiceID.SelectedText = "";
+            this.txtServiceID.Size = new System.Drawing.Size(201, 41);
+            this.txtServiceID.TabIndex = 8;
+            // 
+            // txtServiceName
+            // 
+            this.txtServiceName.BaseColor = System.Drawing.Color.White;
+            this.txtServiceName.BorderColor = System.Drawing.Color.Silver;
+            this.txtServiceName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtServiceName.FocusedBaseColor = System.Drawing.Color.White;
+            this.txtServiceName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.txtServiceName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtServiceName.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtServiceName.Location = new System.Drawing.Point(369, 53);
+            this.txtServiceName.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtServiceName.Name = "txtServiceName";
+            this.txtServiceName.PasswordChar = '\0';
+            this.txtServiceName.SelectedText = "";
+            this.txtServiceName.Size = new System.Drawing.Size(260, 41);
+            this.txtServiceName.TabIndex = 9;
+            // 
             // lblServiceName
             // 
             this.lblServiceName.AutoSize = true;
             this.lblServiceName.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblServiceName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblServiceName.Location = new System.Drawing.Point(32, 20);
+            this.lblServiceName.Location = new System.Drawing.Point(131, 20);
             this.lblServiceName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblServiceName.Name = "lblServiceName";
-            this.lblServiceName.Size = new System.Drawing.Size(96, 23);
+            this.lblServiceName.Size = new System.Drawing.Size(94, 23);
             this.lblServiceName.TabIndex = 0;
-            this.lblServiceName.Text = "Tên dịch vụ";
+            this.lblServiceName.Text = "Mã dịch vụ";
             // 
             // lblCategory
             // 
             this.lblCategory.AutoSize = true;
             this.lblCategory.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblCategory.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblCategory.Location = new System.Drawing.Point(381, 20);
+            this.lblCategory.Location = new System.Drawing.Point(779, 14);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategory.Name = "lblCategory";
             this.lblCategory.Size = new System.Drawing.Size(58, 23);
@@ -346,7 +424,7 @@
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblPrice.Location = new System.Drawing.Point(646, 20);
+            this.lblPrice.Location = new System.Drawing.Point(1104, 11);
             this.lblPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(35, 23);
@@ -362,20 +440,21 @@
             this.txtPrice.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.txtPrice.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtPrice.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPrice.Location = new System.Drawing.Point(587, 47);
-            this.txtPrice.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPrice.Location = new System.Drawing.Point(1039, 44);
+            this.txtPrice.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.PasswordChar = '\0';
             this.txtPrice.SelectedText = "";
             this.txtPrice.Size = new System.Drawing.Size(187, 41);
             this.txtPrice.TabIndex = 5;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // lblDescription
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblDescription.Location = new System.Drawing.Point(986, 20);
+            this.lblDescription.Location = new System.Drawing.Point(1532, 11);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(55, 23);
@@ -391,8 +470,8 @@
             this.txtDescription.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.txtDescription.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtDescription.Location = new System.Drawing.Point(800, 47);
-            this.txtDescription.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDescription.Location = new System.Drawing.Point(1348, 44);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.PasswordChar = '\0';
             this.txtDescription.SelectedText = "";
@@ -403,14 +482,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1267, 985);
+            this.ClientSize = new System.Drawing.Size(1855, 985);
             this.Controls.Add(this.dgvMain);
             this.Controls.Add(this.editorPanel);
             this.Controls.Add(this.headerPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmServiceAdmin";
             this.Text = "frmServiceAdmin";
+            this.Load += new System.EventHandler(this.frmServiceAdmin_Load);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
@@ -444,5 +523,9 @@
         private Guna.UI.WinForms.GunaTextBox txtDescription;
         private Guna.UI.WinForms.GunaComboBox gunaComboBox2;
         private Guna.UI.WinForms.GunaComboBox gunaComboBox1;
+        private Guna.UI.WinForms.GunaTextBox txtServiceID;
+        private Guna.UI.WinForms.GunaTextBox txtServiceName;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

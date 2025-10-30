@@ -81,7 +81,7 @@ namespace DAL
     #endregion
 		
 		public HotelManagementDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -323,7 +323,7 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
 		public string Password
 		{
 			get
@@ -2601,6 +2601,16 @@ namespace DAL
 		
 		private string _Note;
 		
+		private string _CreatedBy;
+		
+		private string _AuditStatus;
+		
+		private string _AuditNote;
+		
+		private string _AuditedBy;
+		
+		private System.Nullable<System.DateTime> _AuditedAt;
+		
 		private EntityRef<Booking> _Booking;
 		
 		private EntityRef<Staff> _Staff;
@@ -2625,6 +2635,16 @@ namespace DAL
     partial void OnStaffIDChanged();
     partial void OnNoteChanging(string value);
     partial void OnNoteChanged();
+    partial void OnCreatedByChanging(string value);
+    partial void OnCreatedByChanged();
+    partial void OnAuditStatusChanging(string value);
+    partial void OnAuditStatusChanged();
+    partial void OnAuditNoteChanging(string value);
+    partial void OnAuditNoteChanged();
+    partial void OnAuditedByChanging(string value);
+    partial void OnAuditedByChanged();
+    partial void OnAuditedAtChanging(System.Nullable<System.DateTime> value);
+    partial void OnAuditedAtChanged();
     #endregion
 		
 		public Invoice()
@@ -2798,6 +2818,106 @@ namespace DAL
 					this._Note = value;
 					this.SendPropertyChanged("Note");
 					this.OnNoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditStatus", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string AuditStatus
+		{
+			get
+			{
+				return this._AuditStatus;
+			}
+			set
+			{
+				if ((this._AuditStatus != value))
+				{
+					this.OnAuditStatusChanging(value);
+					this.SendPropertyChanging();
+					this._AuditStatus = value;
+					this.SendPropertyChanged("AuditStatus");
+					this.OnAuditStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditNote", DbType="NVarChar(255)")]
+		public string AuditNote
+		{
+			get
+			{
+				return this._AuditNote;
+			}
+			set
+			{
+				if ((this._AuditNote != value))
+				{
+					this.OnAuditNoteChanging(value);
+					this.SendPropertyChanging();
+					this._AuditNote = value;
+					this.SendPropertyChanged("AuditNote");
+					this.OnAuditNoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditedBy", DbType="NVarChar(20)")]
+		public string AuditedBy
+		{
+			get
+			{
+				return this._AuditedBy;
+			}
+			set
+			{
+				if ((this._AuditedBy != value))
+				{
+					this.OnAuditedByChanging(value);
+					this.SendPropertyChanging();
+					this._AuditedBy = value;
+					this.SendPropertyChanged("AuditedBy");
+					this.OnAuditedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditedAt", DbType="DateTime")]
+		public System.Nullable<System.DateTime> AuditedAt
+		{
+			get
+			{
+				return this._AuditedAt;
+			}
+			set
+			{
+				if ((this._AuditedAt != value))
+				{
+					this.OnAuditedAtChanging(value);
+					this.SendPropertyChanging();
+					this._AuditedAt = value;
+					this.SendPropertyChanged("AuditedAt");
+					this.OnAuditedAtChanged();
 				}
 			}
 		}
@@ -4629,6 +4749,8 @@ namespace DAL
 		
 		private string _StaffID;
 		
+		private System.DateTime _UsageDate;
+		
 		private EntityRef<Booking> _Booking;
 		
 		private EntityRef<Service> _Service;
@@ -4649,6 +4771,8 @@ namespace DAL
     partial void OnQuantityChanged();
     partial void OnStaffIDChanging(string value);
     partial void OnStaffIDChanged();
+    partial void OnUsageDateChanging(System.DateTime value);
+    partial void OnUsageDateChanged();
     #endregion
 		
 		public ServiceUsage()
@@ -4767,6 +4891,26 @@ namespace DAL
 					this._StaffID = value;
 					this.SendPropertyChanged("StaffID");
 					this.OnStaffIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsageDate", DbType="DateTime NOT NULL")]
+		public System.DateTime UsageDate
+		{
+			get
+			{
+				return this._UsageDate;
+			}
+			set
+			{
+				if ((this._UsageDate != value))
+				{
+					this.OnUsageDateChanging(value);
+					this.SendPropertyChanging();
+					this._UsageDate = value;
+					this.SendPropertyChanged("UsageDate");
+					this.OnUsageDateChanged();
 				}
 			}
 		}

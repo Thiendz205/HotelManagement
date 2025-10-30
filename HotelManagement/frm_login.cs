@@ -153,11 +153,11 @@ namespace HotelManagement
 
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
-            if (txtPassword.Text.Length > 50)
+            if (txtPassword.Text.Length > 64)
             {
-                MessageBox.Show("Password không được vượt quá 50 ký tự!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Password không được vượt quá 64 ký tự!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
-                txtPassword.Text = txtPassword.Text.Substring(0, 50);
+                txtPassword.Text = txtPassword.Text.Substring(0, 64);
                 txtPassword.SelectionStart = txtPassword.Text.Length;
                 txtPassword.SelectionLength = 0;
                 txtPassword.Focus();

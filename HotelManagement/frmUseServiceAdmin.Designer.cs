@@ -30,37 +30,41 @@
         {
             this.headerPanel = new Guna.UI.WinForms.GunaPanel();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.txtSearch = new Guna.UI.WinForms.GunaTextBox();
             this.btnAdd = new Guna.UI.WinForms.GunaButton();
             this.btnEdit = new Guna.UI.WinForms.GunaButton();
             this.btnDelete = new Guna.UI.WinForms.GunaButton();
             this.btnRefresh = new Guna.UI.WinForms.GunaButton();
+            this.editorPanel = new Guna.UI.WinForms.GunaPanel();
+            this.lblService = new System.Windows.Forms.Label();
+            this.cboService = new Guna.UI.WinForms.GunaComboBox();
+            this.lblBooking = new System.Windows.Forms.Label();
+            this.cboBooking = new Guna.UI.WinForms.GunaComboBox();
+            this.lblStaff = new System.Windows.Forms.Label();
+            this.cboStaff = new Guna.UI.WinForms.GunaComboBox();
+            this.lblQuantity = new System.Windows.Forms.Label();
+            this.nudQuantity = new System.Windows.Forms.NumericUpDown();
+            this.lblUsageDate = new System.Windows.Forms.Label();
+            this.dtpUsageDate = new System.Windows.Forms.DateTimePicker();
             this.dgvMain = new System.Windows.Forms.DataGridView();
             this.colUsageID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBookingID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colServiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRoomName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.editorPanel = new Guna.UI.WinForms.GunaPanel();
-            this.lblBookingID = new System.Windows.Forms.Label();
-            this.lblServiceID = new System.Windows.Forms.Label();
-            this.lblQuantity = new System.Windows.Forms.Label();
-            this.numQuantity = new System.Windows.Forms.NumericUpDown();
-            this.lblStaffID = new System.Windows.Forms.Label();
-            this.gunaComboBox1 = new Guna.UI.WinForms.GunaComboBox();
-            this.gunaComboBox2 = new Guna.UI.WinForms.GunaComboBox();
-            this.gunaComboBox3 = new Guna.UI.WinForms.GunaComboBox();
+            this.colTotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUsageDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.headerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.editorPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
             this.SuspendLayout();
             // 
             // headerPanel
             // 
             this.headerPanel.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.headerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.headerPanel.Controls.Add(this.lblTitle);
-            this.headerPanel.Controls.Add(this.txtSearch);
             this.headerPanel.Controls.Add(this.btnAdd);
             this.headerPanel.Controls.Add(this.btnEdit);
             this.headerPanel.Controls.Add(this.btnDelete);
@@ -69,7 +73,7 @@
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1267, 98);
+            this.headerPanel.Size = new System.Drawing.Size(1744, 98);
             this.headerPanel.TabIndex = 0;
             // 
             // lblTitle
@@ -77,30 +81,12 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            this.lblTitle.Location = new System.Drawing.Point(27, 30);
+            this.lblTitle.Location = new System.Drawing.Point(27, 38);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(222, 37);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Sử dụng dịch vụ";
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.BaseColor = System.Drawing.Color.White;
-            this.txtSearch.BorderColor = System.Drawing.Color.Silver;
-            this.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtSearch.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtSearch.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.txtSearch.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtSearch.Location = new System.Drawing.Point(307, 30);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PasswordChar = '\0';
-            this.txtSearch.SelectedText = "";
-            this.txtSearch.Size = new System.Drawing.Size(347, 41);
-            this.txtSearch.TabIndex = 1;
-            this.txtSearch.Text = "Tìm theo Booking/Service...";
             // 
             // btnAdd
             // 
@@ -114,7 +100,7 @@
             this.btnAdd.ForeColor = System.Drawing.Color.White;
             this.btnAdd.Image = null;
             this.btnAdd.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnAdd.Location = new System.Drawing.Point(680, 27);
+            this.btnAdd.Location = new System.Drawing.Point(800, 39);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
@@ -123,9 +109,10 @@
             this.btnAdd.OnHoverImage = null;
             this.btnAdd.OnPressedColor = System.Drawing.Color.Black;
             this.btnAdd.Size = new System.Drawing.Size(133, 42);
-            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "Thêm";
             this.btnAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnEdit
             // 
@@ -139,7 +126,7 @@
             this.btnEdit.ForeColor = System.Drawing.Color.White;
             this.btnEdit.Image = null;
             this.btnEdit.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnEdit.Location = new System.Drawing.Point(827, 27);
+            this.btnEdit.Location = new System.Drawing.Point(947, 39);
             this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
@@ -148,9 +135,10 @@
             this.btnEdit.OnHoverImage = null;
             this.btnEdit.OnPressedColor = System.Drawing.Color.Black;
             this.btnEdit.Size = new System.Drawing.Size(133, 42);
-            this.btnEdit.TabIndex = 3;
+            this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
@@ -164,7 +152,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = null;
             this.btnDelete.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDelete.Location = new System.Drawing.Point(973, 27);
+            this.btnDelete.Location = new System.Drawing.Point(1093, 39);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
@@ -173,9 +161,10 @@
             this.btnDelete.OnHoverImage = null;
             this.btnDelete.OnPressedColor = System.Drawing.Color.Black;
             this.btnDelete.Size = new System.Drawing.Size(133, 42);
-            this.btnDelete.TabIndex = 4;
+            this.btnDelete.TabIndex = 3;
             this.btnDelete.Text = "Xóa";
             this.btnDelete.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnRefresh
             // 
@@ -189,7 +178,7 @@
             this.btnRefresh.ForeColor = System.Drawing.Color.White;
             this.btnRefresh.Image = null;
             this.btnRefresh.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnRefresh.Location = new System.Drawing.Point(1120, 27);
+            this.btnRefresh.Location = new System.Drawing.Point(1240, 39);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
@@ -197,10 +186,177 @@
             this.btnRefresh.OnHoverForeColor = System.Drawing.Color.White;
             this.btnRefresh.OnHoverImage = null;
             this.btnRefresh.OnPressedColor = System.Drawing.Color.Black;
-            this.btnRefresh.Size = new System.Drawing.Size(133, 42);
-            this.btnRefresh.TabIndex = 5;
+            this.btnRefresh.Size = new System.Drawing.Size(160, 42);
+            this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "Làm mới";
             this.btnRefresh.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // editorPanel
+            // 
+            this.editorPanel.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.editorPanel.Controls.Add(this.lblService);
+            this.editorPanel.Controls.Add(this.cboService);
+            this.editorPanel.Controls.Add(this.lblBooking);
+            this.editorPanel.Controls.Add(this.cboBooking);
+            this.editorPanel.Controls.Add(this.lblStaff);
+            this.editorPanel.Controls.Add(this.cboStaff);
+            this.editorPanel.Controls.Add(this.lblQuantity);
+            this.editorPanel.Controls.Add(this.nudQuantity);
+            this.editorPanel.Controls.Add(this.lblUsageDate);
+            this.editorPanel.Controls.Add(this.dtpUsageDate);
+            this.editorPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.editorPanel.Location = new System.Drawing.Point(0, 98);
+            this.editorPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editorPanel.Name = "editorPanel";
+            this.editorPanel.Size = new System.Drawing.Size(1744, 185);
+            this.editorPanel.TabIndex = 1;
+            // 
+            // lblService
+            // 
+            this.lblService.AutoSize = true;
+            this.lblService.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblService.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.lblService.Location = new System.Drawing.Point(129, 20);
+            this.lblService.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblService.Name = "lblService";
+            this.lblService.Size = new System.Drawing.Size(67, 23);
+            this.lblService.TabIndex = 0;
+            this.lblService.Text = "Dịch vụ";
+            // 
+            // cboService
+            // 
+            this.cboService.BackColor = System.Drawing.Color.Transparent;
+            this.cboService.BaseColor = System.Drawing.Color.White;
+            this.cboService.BorderColor = System.Drawing.Color.Silver;
+            this.cboService.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboService.FocusedColor = System.Drawing.Color.Empty;
+            this.cboService.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboService.ForeColor = System.Drawing.Color.Black;
+            this.cboService.FormattingEnabled = true;
+            this.cboService.Location = new System.Drawing.Point(129, 48);
+            this.cboService.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboService.Name = "cboService";
+            this.cboService.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.cboService.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cboService.Size = new System.Drawing.Size(265, 31);
+            this.cboService.TabIndex = 1;
+            // 
+            // lblBooking
+            // 
+            this.lblBooking.AutoSize = true;
+            this.lblBooking.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblBooking.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.lblBooking.Location = new System.Drawing.Point(488, 18);
+            this.lblBooking.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBooking.Name = "lblBooking";
+            this.lblBooking.Size = new System.Drawing.Size(72, 23);
+            this.lblBooking.TabIndex = 2;
+            this.lblBooking.Text = "Booking";
+            // 
+            // cboBooking
+            // 
+            this.cboBooking.BackColor = System.Drawing.Color.Transparent;
+            this.cboBooking.BaseColor = System.Drawing.Color.White;
+            this.cboBooking.BorderColor = System.Drawing.Color.Silver;
+            this.cboBooking.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboBooking.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboBooking.FocusedColor = System.Drawing.Color.Empty;
+            this.cboBooking.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboBooking.ForeColor = System.Drawing.Color.Black;
+            this.cboBooking.FormattingEnabled = true;
+            this.cboBooking.Location = new System.Drawing.Point(488, 47);
+            this.cboBooking.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboBooking.Name = "cboBooking";
+            this.cboBooking.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.cboBooking.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cboBooking.Size = new System.Drawing.Size(265, 31);
+            this.cboBooking.TabIndex = 3;
+            // 
+            // lblStaff
+            // 
+            this.lblStaff.AutoSize = true;
+            this.lblStaff.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblStaff.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.lblStaff.Location = new System.Drawing.Point(839, 18);
+            this.lblStaff.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStaff.Name = "lblStaff";
+            this.lblStaff.Size = new System.Drawing.Size(88, 23);
+            this.lblStaff.TabIndex = 4;
+            this.lblStaff.Text = "Nhân viên";
+            // 
+            // cboStaff
+            // 
+            this.cboStaff.BackColor = System.Drawing.Color.Transparent;
+            this.cboStaff.BaseColor = System.Drawing.Color.White;
+            this.cboStaff.BorderColor = System.Drawing.Color.Silver;
+            this.cboStaff.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cboStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStaff.FocusedColor = System.Drawing.Color.Empty;
+            this.cboStaff.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cboStaff.ForeColor = System.Drawing.Color.Black;
+            this.cboStaff.FormattingEnabled = true;
+            this.cboStaff.Location = new System.Drawing.Point(839, 47);
+            this.cboStaff.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboStaff.Name = "cboStaff";
+            this.cboStaff.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.cboStaff.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cboStaff.Size = new System.Drawing.Size(265, 31);
+            this.cboStaff.TabIndex = 5;
+            // 
+            // lblQuantity
+            // 
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblQuantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.lblQuantity.Location = new System.Drawing.Point(1196, 20);
+            this.lblQuantity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(78, 23);
+            this.lblQuantity.TabIndex = 6;
+            this.lblQuantity.Text = "Số lượng";
+            // 
+            // nudQuantity
+            // 
+            this.nudQuantity.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.nudQuantity.Location = new System.Drawing.Point(1196, 48);
+            this.nudQuantity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.nudQuantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.nudQuantity.Name = "nudQuantity";
+            this.nudQuantity.Size = new System.Drawing.Size(160, 30);
+            this.nudQuantity.TabIndex = 7;
+            this.nudQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // lblUsageDate
+            // 
+            this.lblUsageDate.AutoSize = true;
+            this.lblUsageDate.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblUsageDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.lblUsageDate.Location = new System.Drawing.Point(1432, 21);
+            this.lblUsageDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblUsageDate.Name = "lblUsageDate";
+            this.lblUsageDate.Size = new System.Drawing.Size(117, 23);
+            this.lblUsageDate.TabIndex = 8;
+            this.lblUsageDate.Text = "Ngày sử dụng";
+            // 
+            // dtpUsageDate
+            // 
+            this.dtpUsageDate.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.dtpUsageDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpUsageDate.Location = new System.Drawing.Point(1432, 49);
+            this.dtpUsageDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpUsageDate.Name = "dtpUsageDate";
+            this.dtpUsageDate.Size = new System.Drawing.Size(265, 30);
+            this.dtpUsageDate.TabIndex = 9;
             // 
             // dgvMain
             // 
@@ -209,25 +365,32 @@
             this.dgvMain.AllowUserToResizeRows = false;
             this.dgvMain.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMain.BackgroundColor = System.Drawing.Color.White;
-            this.dgvMain.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMain.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvMain.ColumnHeadersHeight = 30;
+            this.dgvMain.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvMain.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colUsageID,
-            this.colBookingID,
-            this.colServiceID,
+            this.colServiceName,
+            this.colCustomerName,
+            this.colRoomName,
             this.colQuantity,
-            this.colStaffID});
+            this.colTotalAmount,
+            this.colStaffName,
+            this.colUsageDate});
             this.dgvMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMain.Location = new System.Drawing.Point(0, 221);
+            this.dgvMain.GridColor = System.Drawing.Color.LightGray;
+            this.dgvMain.Location = new System.Drawing.Point(0, 283);
             this.dgvMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvMain.MultiSelect = false;
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.ReadOnly = true;
             this.dgvMain.RowHeadersVisible = false;
             this.dgvMain.RowHeadersWidth = 51;
-            this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMain.Size = new System.Drawing.Size(1267, 764);
-            this.dgvMain.TabIndex = 1;
+            this.dgvMain.RowTemplate.Height = 25;
+            this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvMain.Size = new System.Drawing.Size(1744, 702);
+            this.dgvMain.TabIndex = 2;
+            this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellClick);
             // 
             // colUsageID
             // 
@@ -236,196 +399,74 @@
             this.colUsageID.Name = "colUsageID";
             this.colUsageID.ReadOnly = true;
             // 
-            // colBookingID
+            // colServiceName
             // 
-            this.colBookingID.HeaderText = "BookingID";
-            this.colBookingID.MinimumWidth = 6;
-            this.colBookingID.Name = "colBookingID";
-            this.colBookingID.ReadOnly = true;
+            this.colServiceName.HeaderText = "Dịch vụ";
+            this.colServiceName.MinimumWidth = 6;
+            this.colServiceName.Name = "colServiceName";
+            this.colServiceName.ReadOnly = true;
             // 
-            // colServiceID
+            // colCustomerName
             // 
-            this.colServiceID.HeaderText = "ServiceID";
-            this.colServiceID.MinimumWidth = 6;
-            this.colServiceID.Name = "colServiceID";
-            this.colServiceID.ReadOnly = true;
+            this.colCustomerName.HeaderText = "Khách hàng";
+            this.colCustomerName.MinimumWidth = 6;
+            this.colCustomerName.Name = "colCustomerName";
+            this.colCustomerName.ReadOnly = true;
+            // 
+            // colRoomName
+            // 
+            this.colRoomName.HeaderText = "Phòng";
+            this.colRoomName.MinimumWidth = 6;
+            this.colRoomName.Name = "colRoomName";
+            this.colRoomName.ReadOnly = true;
             // 
             // colQuantity
             // 
-            this.colQuantity.HeaderText = "Quantity";
+            this.colQuantity.HeaderText = "Số lượng";
             this.colQuantity.MinimumWidth = 6;
             this.colQuantity.Name = "colQuantity";
             this.colQuantity.ReadOnly = true;
             // 
-            // colStaffID
+            // colTotalAmount
             // 
-            this.colStaffID.HeaderText = "StaffID";
-            this.colStaffID.MinimumWidth = 6;
-            this.colStaffID.Name = "colStaffID";
-            this.colStaffID.ReadOnly = true;
+            this.colTotalAmount.HeaderText = "Tổng tiền";
+            this.colTotalAmount.MinimumWidth = 6;
+            this.colTotalAmount.Name = "colTotalAmount";
+            this.colTotalAmount.ReadOnly = true;
             // 
-            // editorPanel
+            // colStaffName
             // 
-            this.editorPanel.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.editorPanel.Controls.Add(this.gunaComboBox3);
-            this.editorPanel.Controls.Add(this.gunaComboBox2);
-            this.editorPanel.Controls.Add(this.gunaComboBox1);
-            this.editorPanel.Controls.Add(this.lblBookingID);
-            this.editorPanel.Controls.Add(this.lblServiceID);
-            this.editorPanel.Controls.Add(this.lblQuantity);
-            this.editorPanel.Controls.Add(this.numQuantity);
-            this.editorPanel.Controls.Add(this.lblStaffID);
-            this.editorPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.editorPanel.Location = new System.Drawing.Point(0, 98);
-            this.editorPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.editorPanel.Name = "editorPanel";
-            this.editorPanel.Size = new System.Drawing.Size(1267, 123);
-            this.editorPanel.TabIndex = 6;
+            this.colStaffName.HeaderText = "Nhân viên";
+            this.colStaffName.MinimumWidth = 6;
+            this.colStaffName.Name = "colStaffName";
+            this.colStaffName.ReadOnly = true;
             // 
-            // lblBookingID
+            // colUsageDate
             // 
-            this.lblBookingID.AutoSize = true;
-            this.lblBookingID.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblBookingID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblBookingID.Location = new System.Drawing.Point(96, 15);
-            this.lblBookingID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBookingID.Name = "lblBookingID";
-            this.lblBookingID.Size = new System.Drawing.Size(119, 23);
-            this.lblBookingID.TabIndex = 0;
-            this.lblBookingID.Text = "Mã đặt phòng";
-            // 
-            // lblServiceID
-            // 
-            this.lblServiceID.AutoSize = true;
-            this.lblServiceID.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblServiceID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblServiceID.Location = new System.Drawing.Point(392, 15);
-            this.lblServiceID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblServiceID.Name = "lblServiceID";
-            this.lblServiceID.Size = new System.Drawing.Size(94, 23);
-            this.lblServiceID.TabIndex = 2;
-            this.lblServiceID.Text = "Mã dịch vụ";
-            // 
-            // lblQuantity
-            // 
-            this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblQuantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblQuantity.Location = new System.Drawing.Point(675, 15);
-            this.lblQuantity.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(78, 23);
-            this.lblQuantity.TabIndex = 4;
-            this.lblQuantity.Text = "Số lượng";
-            // 
-            // numQuantity
-            // 
-            this.numQuantity.Location = new System.Drawing.Point(653, 50);
-            this.numQuantity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.numQuantity.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numQuantity.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numQuantity.Name = "numQuantity";
-            this.numQuantity.Size = new System.Drawing.Size(160, 22);
-            this.numQuantity.TabIndex = 5;
-            this.numQuantity.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // lblStaffID
-            // 
-            this.lblStaffID.AutoSize = true;
-            this.lblStaffID.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.lblStaffID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblStaffID.Location = new System.Drawing.Point(968, 15);
-            this.lblStaffID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblStaffID.Name = "lblStaffID";
-            this.lblStaffID.Size = new System.Drawing.Size(60, 23);
-            this.lblStaffID.TabIndex = 6;
-            this.lblStaffID.Text = "StaffID";
-            // 
-            // gunaComboBox1
-            // 
-            this.gunaComboBox1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaComboBox1.BaseColor = System.Drawing.Color.White;
-            this.gunaComboBox1.BorderColor = System.Drawing.Color.Silver;
-            this.gunaComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.gunaComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gunaComboBox1.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaComboBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gunaComboBox1.ForeColor = System.Drawing.Color.Black;
-            this.gunaComboBox1.FormattingEnabled = true;
-            this.gunaComboBox1.Location = new System.Drawing.Point(943, 47);
-            this.gunaComboBox1.Name = "gunaComboBox1";
-            this.gunaComboBox1.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaComboBox1.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.gunaComboBox1.Size = new System.Drawing.Size(177, 31);
-            this.gunaComboBox1.TabIndex = 7;
-            // 
-            // gunaComboBox2
-            // 
-            this.gunaComboBox2.BackColor = System.Drawing.Color.Transparent;
-            this.gunaComboBox2.BaseColor = System.Drawing.Color.White;
-            this.gunaComboBox2.BorderColor = System.Drawing.Color.Silver;
-            this.gunaComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.gunaComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gunaComboBox2.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaComboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gunaComboBox2.ForeColor = System.Drawing.Color.Black;
-            this.gunaComboBox2.FormattingEnabled = true;
-            this.gunaComboBox2.Location = new System.Drawing.Point(72, 47);
-            this.gunaComboBox2.Name = "gunaComboBox2";
-            this.gunaComboBox2.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaComboBox2.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.gunaComboBox2.Size = new System.Drawing.Size(177, 31);
-            this.gunaComboBox2.TabIndex = 8;
-            // 
-            // gunaComboBox3
-            // 
-            this.gunaComboBox3.BackColor = System.Drawing.Color.Transparent;
-            this.gunaComboBox3.BaseColor = System.Drawing.Color.White;
-            this.gunaComboBox3.BorderColor = System.Drawing.Color.Silver;
-            this.gunaComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.gunaComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.gunaComboBox3.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaComboBox3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gunaComboBox3.ForeColor = System.Drawing.Color.Black;
-            this.gunaComboBox3.FormattingEnabled = true;
-            this.gunaComboBox3.Location = new System.Drawing.Point(362, 50);
-            this.gunaComboBox3.Name = "gunaComboBox3";
-            this.gunaComboBox3.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.gunaComboBox3.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.gunaComboBox3.Size = new System.Drawing.Size(177, 31);
-            this.gunaComboBox3.TabIndex = 9;
+            this.colUsageDate.HeaderText = "Ngày sử dụng";
+            this.colUsageDate.MinimumWidth = 6;
+            this.colUsageDate.Name = "colUsageDate";
+            this.colUsageDate.ReadOnly = true;
             // 
             // frmUseServiceAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1267, 985);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
+            this.ClientSize = new System.Drawing.Size(1744, 985);
             this.Controls.Add(this.dgvMain);
             this.Controls.Add(this.editorPanel);
             this.Controls.Add(this.headerPanel);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmUseServiceAdmin";
             this.Text = "frmUseServiceAdmin";
+            this.Load += new System.EventHandler(this.frmUseServiceAdmin_Load);
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
             this.editorPanel.ResumeLayout(false);
             this.editorPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -434,27 +475,29 @@
 
         private Guna.UI.WinForms.GunaPanel headerPanel;
         private System.Windows.Forms.Label lblTitle;
-        private Guna.UI.WinForms.GunaTextBox txtSearch;
         private Guna.UI.WinForms.GunaButton btnAdd;
         private Guna.UI.WinForms.GunaButton btnEdit;
         private Guna.UI.WinForms.GunaButton btnDelete;
         private Guna.UI.WinForms.GunaButton btnRefresh;
-        private System.Windows.Forms.DataGridView dgvMain;
-        // editor
         private Guna.UI.WinForms.GunaPanel editorPanel;
-        private System.Windows.Forms.Label lblBookingID;
-        private System.Windows.Forms.Label lblServiceID;
+        private System.Windows.Forms.Label lblService;
+        private Guna.UI.WinForms.GunaComboBox cboService;
+        private System.Windows.Forms.Label lblBooking;
+        private Guna.UI.WinForms.GunaComboBox cboBooking;
+        private System.Windows.Forms.Label lblStaff;
+        private Guna.UI.WinForms.GunaComboBox cboStaff;
         private System.Windows.Forms.Label lblQuantity;
-        private System.Windows.Forms.NumericUpDown numQuantity;
-        private System.Windows.Forms.Label lblStaffID;
-        // columns
+        private System.Windows.Forms.NumericUpDown nudQuantity;
+        private System.Windows.Forms.Label lblUsageDate;
+        private System.Windows.Forms.DateTimePicker dtpUsageDate;
+        private System.Windows.Forms.DataGridView dgvMain;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUsageID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBookingID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colServiceID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colServiceName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRoomName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colStaffID;
-        private Guna.UI.WinForms.GunaComboBox gunaComboBox3;
-        private Guna.UI.WinForms.GunaComboBox gunaComboBox2;
-        private Guna.UI.WinForms.GunaComboBox gunaComboBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalAmount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colStaffName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUsageDate;
     }
 }

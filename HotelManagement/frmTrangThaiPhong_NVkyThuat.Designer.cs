@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnCapNhat = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.dtGV_TrangThai = new System.Windows.Forms.DataGridView();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -46,13 +48,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtMaPhong = new Guna.UI2.WinForms.Guna2TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.dtGV_TrangThai = new System.Windows.Forms.DataGridView();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtGV_TrangThai)).BeginInit();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGV_TrangThai)).BeginInit();
             this.SuspendLayout();
             // 
             // guna2DragControl1
@@ -113,6 +114,37 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(759, 811);
             this.panel3.TabIndex = 2;
+            // 
+            // dtGV_TrangThai
+            // 
+            this.dtGV_TrangThai.AllowUserToDeleteRows = false;
+            this.dtGV_TrangThai.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtGV_TrangThai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dtGV_TrangThai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtGV_TrangThai.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dtGV_TrangThai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtGV_TrangThai.Location = new System.Drawing.Point(0, 58);
+            this.dtGV_TrangThai.Name = "dtGV_TrangThai";
+            this.dtGV_TrangThai.ReadOnly = true;
+            this.dtGV_TrangThai.RowHeadersWidth = 51;
+            this.dtGV_TrangThai.RowTemplate.Height = 24;
+            this.dtGV_TrangThai.Size = new System.Drawing.Size(759, 753);
+            this.dtGV_TrangThai.TabIndex = 1;
+            this.dtGV_TrangThai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGV_TrangThai_CellClick);
             // 
             // panel6
             // 
@@ -251,28 +283,6 @@
             this.txtMaPhong.Size = new System.Drawing.Size(274, 61);
             this.txtMaPhong.TabIndex = 0;
             // 
-            // dtGV_TrangThai
-            // 
-            this.dtGV_TrangThai.AllowUserToDeleteRows = false;
-            this.dtGV_TrangThai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtGV_TrangThai.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dtGV_TrangThai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtGV_TrangThai.Location = new System.Drawing.Point(0, 58);
-            this.dtGV_TrangThai.Name = "dtGV_TrangThai";
-            this.dtGV_TrangThai.ReadOnly = true;
-            this.dtGV_TrangThai.RowHeadersWidth = 51;
-            this.dtGV_TrangThai.RowTemplate.Height = 24;
-            this.dtGV_TrangThai.Size = new System.Drawing.Size(759, 753);
-            this.dtGV_TrangThai.TabIndex = 1;
-            this.dtGV_TrangThai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGV_TrangThai_CellClick);
-            // 
             // frmTrangThaiPhong_NVkyThuat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -291,11 +301,11 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtGV_TrangThai)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtGV_TrangThai)).EndInit();
             this.ResumeLayout(false);
 
         }

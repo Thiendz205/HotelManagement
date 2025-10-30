@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BUS;
+using ET;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,33 +21,163 @@ namespace HotelManagement
 
         private void frmExtraChargeAdminGUI_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Phòng");
-            dt.Columns.Add("Loại phí");
-            dt.Columns.Add("Số lượng");
-            dt.Columns.Add("Ngày ghi nhận");
-            dt.Columns.Add("Ghi chú");
+            LoadComboboxes();
+            LoadData();
+        }
 
-            dt.Rows.Add("A01", "Mất khăn tắm", "2", "2025-10-07", "Khách làm mất 2 khăn tắm");
-            dt.Rows.Add("A01", "Check-out muộn", "1", "2025-10-07", "Trả phòng lúc 15h30");
-            dt.Rows.Add("B02", "Thêm giường phụ", "1", "2025-10-06", "Yêu cầu thêm 1 giường");
-            dt.Rows.Add("C03", "Hỏng máy lạnh", "1", "2025-10-05", "Máy lạnh không hoạt động sau khi khách sử dụng");
-            dt.Rows.Add("C03", "Mini bar (đồ uống)", "3", "2025-10-05", "Uống 3 lon nước ngọt");
-            dt.Rows.Add("D04", "Check-in sớm", "1", "2025-10-04", "Nhận phòng lúc 8h sáng");
-            dt.Rows.Add("D04", "Thêm chăn", "2", "2025-10-04", "Yêu cầu thêm 2 chăn phụ");
+        private readonly BookingFeeBUS bus = new BookingFeeBUS();
+        public readonly FeeTypeBUS feebus = new FeeTypeBUS();
+        private void LoadComboboxes()
+        {
+          
+            var activeBookings = bus.GetBookingsWithActiveRooms();
 
-            dgvBookingFee.DataSource = dt;
-            dgvBookingFee.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            cboBooking.DataSource = activeBookings;
+            cboBooking.DisplayMember = "RoomName";  
+            cboBooking.ValueMember = "BookingID";    
+            cboBooking.SelectedIndex = -1;
+            cboBooking.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboBooking.AutoCompleteSource = AutoCompleteSource.ListItems;
+            var feeTypes = feebus.GetAllFeeTypes();
+            cboFeeType.DataSource = feeTypes;
+            cboFeeType.DisplayMember = "FeeTypeName";
+            cboFeeType.ValueMember = "FeeTypeID";
+            cboFeeType.SelectedIndex = -1;
+            cboFeeType.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboFeeType.AutoCompleteSource = AutoCompleteSource.ListItems;
+        }
 
-            // Làm đẹp phần tiêu đề
-            dgvBookingFee.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 102, 204);
-            dgvBookingFee.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvBookingFee.ColumnHeadersDefaultCellStyle.Font = new Font("Times New Roman", 12, FontStyle.Bold);
-            dgvBookingFee.EnableHeadersVisualStyles = false;
+        private bool ValidateInput()
+        {
+            if (cboBooking.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn đặt phòng hoặc phòng này đang không hoạt động!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
-            // Canh giữa + phải
-            dgvBookingFee.Columns["Số lượng"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvBookingFee.Columns["Ngày ghi nhận"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            if (cboFeeType.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn loại phí!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtQuantity.Text) ||
+                !int.TryParse(txtQuantity.Text, out int q) || q <= 0)
+            {
+                MessageBox.Show("Số lượng phải là số nguyên dương!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtNotes.Text.Length > 500)
+            {
+                MessageBox.Show("Ghi chú không được vượt quá 500 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+        private void LoadData()
+        {
+            dgvFeeList.DataSource = bus.GetAll();
+            dgvFeeList.ClearSelection();
+
+            dgvFeeList.Columns["BookingFeeID"].Visible = false;
+            dgvFeeList.Columns["BookingID"].Visible = false;
+            dgvFeeList.Columns["FeeTypeID"].Visible = false;
+            dgvFeeList.Columns["FeeTypeName"].HeaderText = "Loại phí";
+            dgvFeeList.Columns["Quantity"].HeaderText = "Số lượng";
+            dgvFeeList.Columns["CustomerName"].HeaderText = "Khách hàng";
+            dgvFeeList.Columns["RoomName"].HeaderText = "Phòng";
+            dgvFeeList.Columns["CreatedAt"].HeaderText = "Ngày tạo";
+            dgvFeeList.Columns["Notes"].HeaderText = "Ghi chú";
+            dgvFeeList.Columns["CreatedAt"].DefaultCellStyle.Format = "dd/MM/yyyy";
+            dgvFeeList.Columns["UnitPrice"].HeaderText = "Đơn giá (VNĐ)";
+            dgvFeeList.Columns["TotalAmount"].HeaderText = "Tổng tiền (VNĐ)";
+
+            dgvFeeList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvFeeList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (!ValidateInput()) return;
+
+            var dto = new BookingFeeET
+            {
+                BookingID = (int)cboBooking.SelectedValue,
+                FeeTypeID = (int)cboFeeType.SelectedValue,
+                Quantity = int.Parse(txtQuantity.Text),
+                Notes = txtNotes.Text
+            };
+            MessageBox.Show("Thêm thành công!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            bus.Insert(dto);
+            LoadData();
+            ClearForm();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+            {
+                MessageBox.Show("Vui lòng chọn phí cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!ValidateInput()) return;
+
+            var dto = new BookingFeeET
+            {
+                BookingFeeID = selectedId,
+                BookingID = (int)cboBooking.SelectedValue,
+                FeeTypeID = (int)cboFeeType.SelectedValue,
+                Quantity = int.Parse(txtQuantity.Text),
+                Notes = txtNotes.Text
+            };
+            MessageBox.Show("Sửa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            bus.Update(dto);
+            LoadData();
+            ClearForm();
+        }
+        private int selectedId = -1;
+        private void ClearForm()
+        {
+            selectedId = -1;
+            cboBooking.SelectedIndex = -1;
+            cboFeeType.SelectedIndex = -1;
+            txtQuantity.Clear();
+            txtNotes.Clear();
+            dgvFeeList.ClearSelection();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (selectedId == -1)
+            {
+                MessageBox.Show("Vui lòng chọn phí cần xóa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show("Bạn có chắc muốn xóa phí này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                bus.Delete(selectedId);
+                LoadData();
+                ClearForm();
+                MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void dgvFeeList_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var row = dgvFeeList.Rows[e.RowIndex];
+                selectedId = Convert.ToInt32(row.Cells["BookingFeeID"].Value);
+
+                cboBooking.Text = row.Cells["RoomName"].Value.ToString();
+                cboFeeType.Text = row.Cells["FeeTypeName"].Value.ToString();
+                txtQuantity.Text = row.Cells["Quantity"].Value.ToString();
+                txtNotes.Text = row.Cells["Notes"].Value?.ToString();
+            }
         }
     }
 }

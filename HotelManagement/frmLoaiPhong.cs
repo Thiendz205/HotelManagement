@@ -201,7 +201,9 @@ namespace HotelManagement
                 txtPricePerHour.Text = dtGV_RoomType.Rows[dong].Cells[3].Value.ToString();
                 cbCategory.Text = dtGV_RoomType.Rows[dong].Cells[4].Value.ToString();
                 txtMoTa.Text = dtGV_RoomType.Rows[dong].Cells[5].Value.ToString();
+                cbCategory.Enabled = false;
             }
+            
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
@@ -213,6 +215,8 @@ namespace HotelManagement
             txtRoomTypeID.Text = "";
             txtTypeName.Text = "";
             dtGV_RoomType.DataSource = roomType_BUS.getAllRoomTypes();
+            cbCategory.Enabled = true;
+
         }
 
         private void txtTypeName_TextChanged(object sender, EventArgs e)

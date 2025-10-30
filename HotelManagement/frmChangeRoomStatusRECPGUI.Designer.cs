@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.guna2Button39 = new Guna.UI2.WinForms.Guna2Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.lblCurrentStatus = new System.Windows.Forms.Label();
+            this.cboRoom = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.cboStatus = new System.Windows.Forms.ComboBox();
+            this.btnUpdateStatus = new Guna.UI2.WinForms.Guna2Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,10 +43,11 @@
             this.guna2GroupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox1.BorderRadius = 20;
             this.guna2GroupBox1.BorderThickness = 4;
-            this.guna2GroupBox1.Controls.Add(this.comboBox2);
+            this.guna2GroupBox1.Controls.Add(this.lblCurrentStatus);
+            this.guna2GroupBox1.Controls.Add(this.cboRoom);
             this.guna2GroupBox1.Controls.Add(this.label2);
-            this.guna2GroupBox1.Controls.Add(this.comboBox1);
-            this.guna2GroupBox1.Controls.Add(this.guna2Button39);
+            this.guna2GroupBox1.Controls.Add(this.cboStatus);
+            this.guna2GroupBox1.Controls.Add(this.btnUpdateStatus);
             this.guna2GroupBox1.Controls.Add(this.label1);
             this.guna2GroupBox1.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -54,28 +56,71 @@
             this.guna2GroupBox1.Location = new System.Drawing.Point(12, 36);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
             this.guna2GroupBox1.ShadowDecoration.Parent = this.guna2GroupBox1;
-            this.guna2GroupBox1.Size = new System.Drawing.Size(1085, 211);
+            this.guna2GroupBox1.Size = new System.Drawing.Size(1427, 211);
             this.guna2GroupBox1.TabIndex = 3;
             this.guna2GroupBox1.Text = "Chức năng";
             // 
-            // guna2Button39
+            // lblCurrentStatus
             // 
-            this.guna2Button39.BackColor = System.Drawing.Color.Transparent;
-            this.guna2Button39.BorderRadius = 20;
-            this.guna2Button39.CheckedState.Parent = this.guna2Button39;
-            this.guna2Button39.CustomImages.Parent = this.guna2Button39;
-            this.guna2Button39.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.guna2Button39.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button39.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button39.HoverState.Parent = this.guna2Button39;
-            this.guna2Button39.Image = global::HotelManagement.Properties.Resources.updateHR;
-            this.guna2Button39.ImageSize = new System.Drawing.Size(40, 40);
-            this.guna2Button39.Location = new System.Drawing.Point(711, 114);
-            this.guna2Button39.Name = "guna2Button39";
-            this.guna2Button39.ShadowDecoration.Parent = this.guna2Button39;
-            this.guna2Button39.Size = new System.Drawing.Size(205, 63);
-            this.guna2Button39.TabIndex = 3;
-            this.guna2Button39.Text = "Chuyển đổi";
+            this.lblCurrentStatus.AutoSize = true;
+            this.lblCurrentStatus.BackColor = System.Drawing.Color.Transparent;
+            this.lblCurrentStatus.Location = new System.Drawing.Point(636, 144);
+            this.lblCurrentStatus.Name = "lblCurrentStatus";
+            this.lblCurrentStatus.Size = new System.Drawing.Size(43, 33);
+            this.lblCurrentStatus.TabIndex = 7;
+            this.lblCurrentStatus.Text = "__";
+            // 
+            // cboRoom
+            // 
+            this.cboRoom.FormattingEnabled = true;
+            this.cboRoom.Location = new System.Drawing.Point(170, 74);
+            this.cboRoom.Name = "cboRoom";
+            this.cboRoom.Size = new System.Drawing.Size(389, 39);
+            this.cboRoom.TabIndex = 6;
+            this.cboRoom.SelectedIndexChanged += new System.EventHandler(this.cboRoom_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(25, 84);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(103, 22);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Chọn phòng";
+            // 
+            // cboStatus
+            // 
+            this.cboStatus.FormattingEnabled = true;
+            this.cboStatus.Items.AddRange(new object[] {
+            "Trống",
+            "Dọn dẹp",
+            "Bảo trì"});
+            this.cboStatus.Location = new System.Drawing.Point(170, 138);
+            this.cboStatus.Name = "cboStatus";
+            this.cboStatus.Size = new System.Drawing.Size(389, 39);
+            this.cboStatus.TabIndex = 4;
+            // 
+            // btnUpdateStatus
+            // 
+            this.btnUpdateStatus.BackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateStatus.BorderRadius = 20;
+            this.btnUpdateStatus.CheckedState.Parent = this.btnUpdateStatus;
+            this.btnUpdateStatus.CustomImages.Parent = this.btnUpdateStatus;
+            this.btnUpdateStatus.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnUpdateStatus.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateStatus.ForeColor = System.Drawing.Color.Black;
+            this.btnUpdateStatus.HoverState.Parent = this.btnUpdateStatus;
+            this.btnUpdateStatus.Image = global::HotelManagement.Properties.Resources.updateHR;
+            this.btnUpdateStatus.ImageSize = new System.Drawing.Size(40, 40);
+            this.btnUpdateStatus.Location = new System.Drawing.Point(1188, 114);
+            this.btnUpdateStatus.Name = "btnUpdateStatus";
+            this.btnUpdateStatus.ShadowDecoration.Parent = this.btnUpdateStatus;
+            this.btnUpdateStatus.Size = new System.Drawing.Size(205, 63);
+            this.btnUpdateStatus.TabIndex = 3;
+            this.btnUpdateStatus.Text = "Chuyển đổi";
+            this.btnUpdateStatus.Click += new System.EventHandler(this.btnUpdateStatus_Click);
             // 
             // label1
             // 
@@ -88,37 +133,6 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Chọn trạng thái";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Trống",
-            "Dọn dẹp",
-            "Bảo trì"});
-            this.comboBox1.Location = new System.Drawing.Point(170, 138);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(389, 39);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(170, 74);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(389, 39);
-            this.comboBox2.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 91);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(103, 22);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Chọn phòng";
-            // 
             // frmChangeRoomStatusRECPGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -128,6 +142,7 @@
             this.Controls.Add(this.guna2GroupBox1);
             this.Name = "frmChangeRoomStatusRECPGUI";
             this.Text = "frmChangeRoomStatusRECPGUI";
+            this.Load += new System.EventHandler(this.frmChangeRoomStatusRECPGUI_Load);
             this.guna2GroupBox1.ResumeLayout(false);
             this.guna2GroupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -137,10 +152,11 @@
         #endregion
 
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboRoom;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private Guna.UI2.WinForms.Guna2Button guna2Button39;
+        private System.Windows.Forms.ComboBox cboStatus;
+        private Guna.UI2.WinForms.Guna2Button btnUpdateStatus;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCurrentStatus;
     }
 }

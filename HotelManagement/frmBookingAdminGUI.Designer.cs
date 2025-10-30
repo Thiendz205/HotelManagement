@@ -28,28 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label3 = new System.Windows.Forms.Label();
-            this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnRefresh = new Guna.UI2.WinForms.Guna2Button();
+            this.btnUpdate = new Guna.UI2.WinForms.Guna2Button();
             this.label17 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.CancelBooking = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dateTimePicker3 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.cboRoomStatus = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.dtpCheckIn = new System.Windows.Forms.DateTimePicker();
+            this.dtpCheckOut = new System.Windows.Forms.DateTimePicker();
             this.label22 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
-            this.guna2CheckBox2 = new Guna.UI2.WinForms.Guna2CheckBox();
-            this.guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.rdoHour = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.rdoDay = new Guna.UI2.WinForms.Guna2CheckBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboRoom = new System.Windows.Forms.ComboBox();
+            this.cboCustomer = new System.Windows.Forms.ComboBox();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.dgvBooking = new System.Windows.Forms.DataGridView();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
@@ -66,59 +67,43 @@
             this.label3.TabIndex = 27;
             this.label3.Text = "Danh sách đặt phòng";
             // 
-            // guna2Button4
+            // btnRefresh
             // 
-            this.guna2Button4.BorderRadius = 20;
-            this.guna2Button4.CheckedState.Parent = this.guna2Button4;
-            this.guna2Button4.CustomImages.Parent = this.guna2Button4;
-            this.guna2Button4.FillColor = System.Drawing.Color.White;
-            this.guna2Button4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button4.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button4.HoverState.Parent = this.guna2Button4;
-            this.guna2Button4.Image = global::HotelManagement.Properties.Resources.refreshRECP;
-            this.guna2Button4.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button4.Location = new System.Drawing.Point(321, 165);
-            this.guna2Button4.Name = "guna2Button4";
-            this.guna2Button4.ShadowDecoration.Parent = this.guna2Button4;
-            this.guna2Button4.Size = new System.Drawing.Size(178, 62);
-            this.guna2Button4.TabIndex = 3;
-            this.guna2Button4.Text = "Làm mới";
+            this.btnRefresh.BorderRadius = 20;
+            this.btnRefresh.CheckedState.Parent = this.btnRefresh;
+            this.btnRefresh.CustomImages.Parent = this.btnRefresh;
+            this.btnRefresh.FillColor = System.Drawing.Color.White;
+            this.btnRefresh.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.ForeColor = System.Drawing.Color.Black;
+            this.btnRefresh.HoverState.Parent = this.btnRefresh;
+            this.btnRefresh.Image = global::HotelManagement.Properties.Resources.refreshRECP;
+            this.btnRefresh.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnRefresh.Location = new System.Drawing.Point(77, 161);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.ShadowDecoration.Parent = this.btnRefresh;
+            this.btnRefresh.Size = new System.Drawing.Size(178, 62);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Làm mới";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // guna2Button3
+            // btnUpdate
             // 
-            this.guna2Button3.BorderRadius = 20;
-            this.guna2Button3.CheckedState.Parent = this.guna2Button3;
-            this.guna2Button3.CustomImages.Parent = this.guna2Button3;
-            this.guna2Button3.FillColor = System.Drawing.Color.White;
-            this.guna2Button3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button3.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button3.HoverState.Parent = this.guna2Button3;
-            this.guna2Button3.Image = global::HotelManagement.Properties.Resources.updateHR;
-            this.guna2Button3.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button3.Location = new System.Drawing.Point(321, 67);
-            this.guna2Button3.Name = "guna2Button3";
-            this.guna2Button3.ShadowDecoration.Parent = this.guna2Button3;
-            this.guna2Button3.Size = new System.Drawing.Size(178, 62);
-            this.guna2Button3.TabIndex = 2;
-            this.guna2Button3.Text = "Sửa";
-            // 
-            // guna2Button1
-            // 
-            this.guna2Button1.BorderRadius = 20;
-            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
-            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
-            this.guna2Button1.FillColor = System.Drawing.Color.White;
-            this.guna2Button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button1.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button1.HoverState.Parent = this.guna2Button1;
-            this.guna2Button1.Image = global::HotelManagement.Properties.Resources.addHR;
-            this.guna2Button1.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button1.Location = new System.Drawing.Point(22, 67);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
-            this.guna2Button1.Size = new System.Drawing.Size(178, 62);
-            this.guna2Button1.TabIndex = 0;
-            this.guna2Button1.Text = "Thêm ";
+            this.btnUpdate.BorderRadius = 20;
+            this.btnUpdate.CheckedState.Parent = this.btnUpdate;
+            this.btnUpdate.CustomImages.Parent = this.btnUpdate;
+            this.btnUpdate.FillColor = System.Drawing.Color.White;
+            this.btnUpdate.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.Black;
+            this.btnUpdate.HoverState.Parent = this.btnUpdate;
+            this.btnUpdate.Image = global::HotelManagement.Properties.Resources.updateHR;
+            this.btnUpdate.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnUpdate.Location = new System.Drawing.Point(438, 66);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.ShadowDecoration.Parent = this.btnUpdate;
+            this.btnUpdate.Size = new System.Drawing.Size(178, 62);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "Sửa";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // label17
             // 
@@ -147,38 +132,41 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Khách hàng:";
             // 
-            // guna2Button2
+            // CancelBooking
             // 
-            this.guna2Button2.BorderRadius = 20;
-            this.guna2Button2.CheckedState.Parent = this.guna2Button2;
-            this.guna2Button2.CustomImages.Parent = this.guna2Button2;
-            this.guna2Button2.FillColor = System.Drawing.Color.White;
-            this.guna2Button2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button2.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button2.HoverState.Parent = this.guna2Button2;
-            this.guna2Button2.Image = global::HotelManagement.Properties.Resources.signs_close_icon_png;
-            this.guna2Button2.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button2.Location = new System.Drawing.Point(22, 165);
-            this.guna2Button2.Name = "guna2Button2";
-            this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
-            this.guna2Button2.Size = new System.Drawing.Size(178, 62);
-            this.guna2Button2.TabIndex = 1;
-            this.guna2Button2.Text = "Xóa";
+            this.CancelBooking.BorderRadius = 20;
+            this.CancelBooking.CheckedState.Parent = this.CancelBooking;
+            this.CancelBooking.CustomImages.Parent = this.CancelBooking;
+            this.CancelBooking.FillColor = System.Drawing.Color.White;
+            this.CancelBooking.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelBooking.ForeColor = System.Drawing.Color.Black;
+            this.CancelBooking.HoverState.Parent = this.CancelBooking;
+            this.CancelBooking.Image = global::HotelManagement.Properties.Resources.signs_close_icon_png;
+            this.CancelBooking.ImageSize = new System.Drawing.Size(30, 30);
+            this.CancelBooking.Location = new System.Drawing.Point(77, 69);
+            this.CancelBooking.Name = "CancelBooking";
+            this.CancelBooking.ShadowDecoration.Parent = this.CancelBooking;
+            this.CancelBooking.Size = new System.Drawing.Size(178, 62);
+            this.CancelBooking.TabIndex = 1;
+            this.CancelBooking.Text = "Hủy Lịch";
+            this.CancelBooking.Click += new System.EventHandler(this.CancelBooking_Click);
             // 
             // guna2GroupBox2
             // 
             this.guna2GroupBox2.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.Black;
-            this.guna2GroupBox2.Controls.Add(this.label2);
-            this.guna2GroupBox2.Controls.Add(this.dateTimePicker3);
-            this.guna2GroupBox2.Controls.Add(this.dateTimePicker1);
+            this.guna2GroupBox2.Controls.Add(this.cboRoomStatus);
+            this.guna2GroupBox2.Controls.Add(this.label1);
+            this.guna2GroupBox2.Controls.Add(this.lblPrice);
+            this.guna2GroupBox2.Controls.Add(this.dtpCheckIn);
+            this.guna2GroupBox2.Controls.Add(this.dtpCheckOut);
             this.guna2GroupBox2.Controls.Add(this.label22);
             this.guna2GroupBox2.Controls.Add(this.label19);
-            this.guna2GroupBox2.Controls.Add(this.guna2CheckBox2);
-            this.guna2GroupBox2.Controls.Add(this.guna2CheckBox1);
+            this.guna2GroupBox2.Controls.Add(this.rdoHour);
+            this.guna2GroupBox2.Controls.Add(this.rdoDay);
             this.guna2GroupBox2.Controls.Add(this.label23);
-            this.guna2GroupBox2.Controls.Add(this.comboBox2);
-            this.guna2GroupBox2.Controls.Add(this.comboBox1);
+            this.guna2GroupBox2.Controls.Add(this.cboRoom);
+            this.guna2GroupBox2.Controls.Add(this.cboCustomer);
             this.guna2GroupBox2.Controls.Add(this.label17);
             this.guna2GroupBox2.Controls.Add(this.label11);
             this.guna2GroupBox2.Controls.Add(this.label9);
@@ -189,38 +177,60 @@
             this.guna2GroupBox2.Location = new System.Drawing.Point(15, 26);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(951, 295);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(951, 324);
             this.guna2GroupBox2.TabIndex = 26;
             this.guna2GroupBox2.Text = "Thông tin xếp bậc khách hàng";
             // 
-            // label2
+            // cboRoomStatus
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(621, 217);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 22);
-            this.label2.TabIndex = 39;
-            this.label2.Text = "2000000VND";
+            this.cboRoomStatus.FormattingEnabled = true;
+            this.cboRoomStatus.Items.AddRange(new object[] {
+            "Đặt trước",
+            "Đang hoạt động"});
+            this.cboRoomStatus.Location = new System.Drawing.Point(155, 274);
+            this.cboRoomStatus.Name = "cboRoomStatus";
+            this.cboRoomStatus.Size = new System.Drawing.Size(231, 30);
+            this.cboRoomStatus.TabIndex = 41;
             // 
-            // dateTimePicker3
+            // label1
             // 
-            this.dateTimePicker3.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dateTimePicker3.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker3.Location = new System.Drawing.Point(625, 67);
-            this.dateTimePicker3.Name = "dateTimePicker3";
-            this.dateTimePicker3.ShowUpDown = true;
-            this.dateTimePicker3.Size = new System.Drawing.Size(175, 30);
-            this.dateTimePicker3.TabIndex = 38;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(30, 282);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 22);
+            this.label1.TabIndex = 40;
+            this.label1.Text = "Kiểu đặt:";
             // 
-            // dateTimePicker1
+            // lblPrice
             // 
-            this.dateTimePicker1.CustomFormat = "dd/MM/yyyy HH:mm";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(625, 126);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(175, 30);
-            this.dateTimePicker1.TabIndex = 37;
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(621, 217);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(121, 22);
+            this.lblPrice.TabIndex = 39;
+            this.lblPrice.Text = "2000000VND";
+            // 
+            // dtpCheckIn
+            // 
+            this.dtpCheckIn.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpCheckIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpCheckIn.Location = new System.Drawing.Point(625, 67);
+            this.dtpCheckIn.Name = "dtpCheckIn";
+            this.dtpCheckIn.ShowUpDown = true;
+            this.dtpCheckIn.Size = new System.Drawing.Size(175, 30);
+            this.dtpCheckIn.TabIndex = 38;
+            this.dtpCheckIn.ValueChanged += new System.EventHandler(this.dtpCheckIn_ValueChanged);
+            // 
+            // dtpCheckOut
+            // 
+            this.dtpCheckOut.CustomFormat = "dd/MM/yyyy HH:mm";
+            this.dtpCheckOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpCheckOut.Location = new System.Drawing.Point(625, 126);
+            this.dtpCheckOut.Name = "dtpCheckOut";
+            this.dtpCheckOut.ShowUpDown = true;
+            this.dtpCheckOut.Size = new System.Drawing.Size(175, 30);
+            this.dtpCheckOut.TabIndex = 37;
+            this.dtpCheckOut.ValueChanged += new System.EventHandler(this.dtpCheckOut_ValueChanged);
             // 
             // label22
             // 
@@ -240,43 +250,45 @@
             this.label19.TabIndex = 35;
             this.label19.Text = "Check In:";
             // 
-            // guna2CheckBox2
+            // rdoHour
             // 
-            this.guna2CheckBox2.AutoSize = true;
-            this.guna2CheckBox2.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox2.CheckedState.BorderRadius = 2;
-            this.guna2CheckBox2.CheckedState.BorderThickness = 0;
-            this.guna2CheckBox2.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox2.Location = new System.Drawing.Point(258, 216);
-            this.guna2CheckBox2.Name = "guna2CheckBox2";
-            this.guna2CheckBox2.Size = new System.Drawing.Size(72, 26);
-            this.guna2CheckBox2.TabIndex = 32;
-            this.guna2CheckBox2.Text = "Hour";
-            this.guna2CheckBox2.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox2.UncheckedState.BorderRadius = 2;
-            this.guna2CheckBox2.UncheckedState.BorderThickness = 0;
-            this.guna2CheckBox2.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox2.UseVisualStyleBackColor = true;
+            this.rdoHour.AutoSize = true;
+            this.rdoHour.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rdoHour.CheckedState.BorderRadius = 2;
+            this.rdoHour.CheckedState.BorderThickness = 0;
+            this.rdoHour.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rdoHour.Location = new System.Drawing.Point(258, 216);
+            this.rdoHour.Name = "rdoHour";
+            this.rdoHour.Size = new System.Drawing.Size(72, 26);
+            this.rdoHour.TabIndex = 32;
+            this.rdoHour.Text = "Hour";
+            this.rdoHour.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.rdoHour.UncheckedState.BorderRadius = 2;
+            this.rdoHour.UncheckedState.BorderThickness = 0;
+            this.rdoHour.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.rdoHour.UseVisualStyleBackColor = true;
+            this.rdoHour.CheckedChanged += new System.EventHandler(this.rdoHour_CheckedChanged);
             // 
-            // guna2CheckBox1
+            // rdoDay
             // 
-            this.guna2CheckBox1.AutoSize = true;
-            this.guna2CheckBox1.BackColor = System.Drawing.Color.Transparent;
-            this.guna2CheckBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox1.CheckedState.BorderRadius = 2;
-            this.guna2CheckBox1.CheckedState.BorderThickness = 0;
-            this.guna2CheckBox1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox1.ForeColor = System.Drawing.Color.Black;
-            this.guna2CheckBox1.Location = new System.Drawing.Point(155, 216);
-            this.guna2CheckBox1.Name = "guna2CheckBox1";
-            this.guna2CheckBox1.Size = new System.Drawing.Size(64, 26);
-            this.guna2CheckBox1.TabIndex = 31;
-            this.guna2CheckBox1.Text = "Day";
-            this.guna2CheckBox1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox1.UncheckedState.BorderRadius = 2;
-            this.guna2CheckBox1.UncheckedState.BorderThickness = 0;
-            this.guna2CheckBox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox1.UseVisualStyleBackColor = false;
+            this.rdoDay.AutoSize = true;
+            this.rdoDay.BackColor = System.Drawing.Color.Transparent;
+            this.rdoDay.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rdoDay.CheckedState.BorderRadius = 2;
+            this.rdoDay.CheckedState.BorderThickness = 0;
+            this.rdoDay.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.rdoDay.ForeColor = System.Drawing.Color.Black;
+            this.rdoDay.Location = new System.Drawing.Point(155, 216);
+            this.rdoDay.Name = "rdoDay";
+            this.rdoDay.Size = new System.Drawing.Size(64, 26);
+            this.rdoDay.TabIndex = 31;
+            this.rdoDay.Text = "Day";
+            this.rdoDay.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.rdoDay.UncheckedState.BorderRadius = 2;
+            this.rdoDay.UncheckedState.BorderThickness = 0;
+            this.rdoDay.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.rdoDay.UseVisualStyleBackColor = false;
+            this.rdoDay.CheckedChanged += new System.EventHandler(this.rdoDay_CheckedChanged);
             // 
             // label23
             // 
@@ -287,73 +299,74 @@
             this.label23.TabIndex = 30;
             this.label23.Text = "Kiểu thuê:";
             // 
-            // comboBox2
+            // cboRoom
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(155, 131);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(231, 30);
-            this.comboBox2.TabIndex = 11;
+            this.cboRoom.FormattingEnabled = true;
+            this.cboRoom.Location = new System.Drawing.Point(155, 131);
+            this.cboRoom.Name = "cboRoom";
+            this.cboRoom.Size = new System.Drawing.Size(231, 30);
+            this.cboRoom.TabIndex = 11;
+            this.cboRoom.SelectedIndexChanged += new System.EventHandler(this.cboRoom_SelectedIndexChanged);
             // 
-            // comboBox1
+            // cboCustomer
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(155, 64);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(231, 30);
-            this.comboBox1.TabIndex = 8;
+            this.cboCustomer.FormattingEnabled = true;
+            this.cboCustomer.Location = new System.Drawing.Point(155, 64);
+            this.cboCustomer.Name = "cboCustomer";
+            this.cboCustomer.Size = new System.Drawing.Size(231, 30);
+            this.cboCustomer.TabIndex = 8;
             // 
             // guna2GroupBox3
             // 
             this.guna2GroupBox3.BackColor = System.Drawing.Color.Transparent;
             this.guna2GroupBox3.BorderColor = System.Drawing.Color.Black;
-            this.guna2GroupBox3.Controls.Add(this.guna2Button5);
-            this.guna2GroupBox3.Controls.Add(this.guna2Button4);
-            this.guna2GroupBox3.Controls.Add(this.guna2Button3);
-            this.guna2GroupBox3.Controls.Add(this.guna2Button2);
-            this.guna2GroupBox3.Controls.Add(this.guna2Button1);
+            this.guna2GroupBox3.Controls.Add(this.btnSearch);
+            this.guna2GroupBox3.Controls.Add(this.btnRefresh);
+            this.guna2GroupBox3.Controls.Add(this.btnUpdate);
+            this.guna2GroupBox3.Controls.Add(this.CancelBooking);
             this.guna2GroupBox3.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.guna2GroupBox3.FillColor = System.Drawing.SystemColors.ActiveCaption;
             this.guna2GroupBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox3.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox3.Location = new System.Drawing.Point(1092, 26);
+            this.guna2GroupBox3.Location = new System.Drawing.Point(1179, 26);
             this.guna2GroupBox3.Name = "guna2GroupBox3";
             this.guna2GroupBox3.ShadowDecoration.Parent = this.guna2GroupBox3;
-            this.guna2GroupBox3.Size = new System.Drawing.Size(820, 252);
+            this.guna2GroupBox3.Size = new System.Drawing.Size(733, 252);
             this.guna2GroupBox3.TabIndex = 25;
             this.guna2GroupBox3.Text = "Chức Năng";
             // 
-            // guna2Button5
+            // btnSearch
             // 
-            this.guna2Button5.BorderRadius = 20;
-            this.guna2Button5.CheckedState.Parent = this.guna2Button5;
-            this.guna2Button5.CustomImages.Parent = this.guna2Button5;
-            this.guna2Button5.FillColor = System.Drawing.Color.White;
-            this.guna2Button5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button5.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button5.HoverState.Parent = this.guna2Button5;
-            this.guna2Button5.Image = global::HotelManagement.Properties.Resources.magnifier;
-            this.guna2Button5.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button5.Location = new System.Drawing.Point(584, 67);
-            this.guna2Button5.Name = "guna2Button5";
-            this.guna2Button5.ShadowDecoration.Parent = this.guna2Button5;
-            this.guna2Button5.Size = new System.Drawing.Size(178, 62);
-            this.guna2Button5.TabIndex = 4;
-            this.guna2Button5.Text = "Tìm kiếm";
+            this.btnSearch.BorderRadius = 20;
+            this.btnSearch.CheckedState.Parent = this.btnSearch;
+            this.btnSearch.CustomImages.Parent = this.btnSearch;
+            this.btnSearch.FillColor = System.Drawing.Color.White;
+            this.btnSearch.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.ForeColor = System.Drawing.Color.Black;
+            this.btnSearch.HoverState.Parent = this.btnSearch;
+            this.btnSearch.Image = global::HotelManagement.Properties.Resources.magnifier;
+            this.btnSearch.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnSearch.Location = new System.Drawing.Point(438, 161);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.ShadowDecoration.Parent = this.btnSearch;
+            this.btnSearch.Size = new System.Drawing.Size(178, 62);
+            this.btnSearch.TabIndex = 4;
+            this.btnSearch.Text = "Tìm kiếm";
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // dgvBooking
             // 
             this.dgvBooking.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBooking.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dgvBooking.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBooking.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBooking.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvBooking.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvBooking.GridColor = System.Drawing.Color.Wheat;
             this.dgvBooking.Location = new System.Drawing.Point(0, 638);
@@ -362,12 +375,13 @@
             this.dgvBooking.RowTemplate.Height = 24;
             this.dgvBooking.Size = new System.Drawing.Size(1924, 417);
             this.dgvBooking.TabIndex = 24;
+            this.dgvBooking.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBooking_CellClick);
             // 
             // frmBookingAdminGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.guna2GroupBox2);
@@ -388,26 +402,27 @@
         #endregion
 
         private System.Windows.Forms.Label label3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button4;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button btnRefresh;
+        private Guna.UI2.WinForms.Guna2Button btnUpdate;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label9;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button CancelBooking;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboCustomer;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button5;
+        private Guna.UI2.WinForms.Guna2Button btnSearch;
         private System.Windows.Forms.DataGridView dgvBooking;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox2;
-        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox1;
+        private System.Windows.Forms.ComboBox cboRoom;
+        private Guna.UI2.WinForms.Guna2CheckBox rdoHour;
+        private Guna.UI2.WinForms.Guna2CheckBox rdoDay;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.DateTimePicker dateTimePicker3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtpCheckIn;
+        private System.Windows.Forms.DateTimePicker dtpCheckOut;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.ComboBox cboRoomStatus;
+        private System.Windows.Forms.Label label1;
     }
 }
