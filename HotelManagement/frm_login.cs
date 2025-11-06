@@ -22,18 +22,19 @@ namespace HotelManagement
             InitializeComponent();
         }
 
-        private string HashPassword(string password) 
+        private string HashPassword(string password)
         {
-            using (SHA256 sha256 = SHA256.Create()) 
-            {   byte[] bytes = Encoding.UTF8.GetBytes(password); 
-                byte[] hash = sha256.ComputeHash(bytes); 
-                StringBuilder result = new StringBuilder(); 
-                foreach (byte b in hash) 
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(password);
+                byte[] hash = sha256.ComputeHash(bytes);
+                StringBuilder result = new StringBuilder();
+                foreach (byte b in hash)
                 {
-                    result.Append(b.ToString("x2")); 
+                    result.Append(b.ToString("x2"));
                 }
-                return result.ToString(); 
-            } 
+                return result.ToString();
+            }
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -61,11 +62,11 @@ namespace HotelManagement
                 return;
             }
 
-            if (password.Length < 8)
-            {
-                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (password.Length < 8)
+            //{
+            //    MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             bool hasUpper = password.Any(char.IsUpper);
             bool hasLower = password.Any(char.IsLower);
@@ -135,7 +136,7 @@ namespace HotelManagement
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
         {
-           
+
 
             if (txtUsername.Text.Length > 50)
             {

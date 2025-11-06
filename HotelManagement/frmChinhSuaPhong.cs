@@ -63,9 +63,9 @@ namespace HotelManagement
 
             if (status == "Đang sử dụng" || status == "Dọn dẹp" ||
                 status == "Đặt trước" || status == "Đang bảo trì"||
-                status == "Đang hoạt động")
+                status == "Đang hoạt động" || status == "Trống")
             {
-                MessageBox.Show("Trạng thái phòng mới phải là 'Trống'!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Trạng thái phòng mới phải là 'Mới tạo'!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -74,10 +74,12 @@ namespace HotelManagement
                 if (room_BUS.checkExistenceNameRoom(txtRoomName.Text))
                 {
                     room_ET.RoomName = txtRoomName.Text;
-                    room_ET.RoomTypeID = Convert.ToInt32(cbTypeRoom.SelectedValue);
+                    room_ET.RoomTypeID = cbTypeRoom.SelectedValue.ToString();
                     room_ET.Capacity = int.Parse(txtCapacity.Text.Replace(".", "").Replace(",", ""));
                     room_ET.Description = txtDescription.Text;
                     room_ET.Status = cbStatus.Text;
+                    room_ET.Official = "Chưa chứng thực";
+                   
                     bool success = room_BUS.addRoom(room_ET);
                     if (success)
                     {
@@ -108,6 +110,11 @@ namespace HotelManagement
                 MessageBox.Show("Vui lòng nhập ID phòng cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if(cbStatus.Text == "Đang hoạt động" || cbStatus.Text == "Đặt trước" || cbStatus.Text == "Dọn dẹp")
+            {
+                MessageBox.Show("Không thể xóa phòng đang hoạt động, đặt trước hoặc đang dọn dẹp!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn xóa phòng này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -115,8 +122,7 @@ namespace HotelManagement
                 {
                     return; 
                 }
-                int roomID = int.Parse(txtRoomID.Text);
-                bool success = room_BUS.removeRoom(roomID);
+                bool success = room_BUS.removeRoom(txtRoomID.Text);
                
                     if (success)
                     {
@@ -160,23 +166,33 @@ namespace HotelManagement
                 MessageBox.Show("Vui lòng chọn trạng thái phòng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            string status = cbStatus.Text.Trim();
+
+            if ( status == "Đặt trước" ||
+                status == "Đang hoạt động" )
+            {
+                MessageBox.Show("Chỉ được sửa phòng có trạng thái Mới tạo, Trống, Dọn dẹp", "Thông báo", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             try
             {
-                int roomId = int.Parse(txtRoomID.Text);
+                
                 string roomName = txtRoomName.Text;
 
-                if (room_BUS.checkExistenceNameRoom_UPDate(roomName, roomId))
+                if (room_BUS.checkExistenceNameRoom_UPDate(roomName, txtRoomID.Text))
                 {
                     MessageBox.Show("Tên phòng đã tồn tại! Vui lòng nhập tên khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                room_ET.RoomID = roomId;
+                room_ET.RoomID = txtRoomID.Text;
                 room_ET.RoomName = roomName;
-                room_ET.RoomTypeID = Convert.ToInt32(cbTypeRoom.SelectedValue);
+                room_ET.RoomTypeID = cbTypeRoom.SelectedValue.ToString();
                 room_ET.Capacity = int.Parse(txtCapacity.Text.Replace(".", "").Replace(",", ""));
                 room_ET.Description = txtDescription.Text;
                 room_ET.Status = cbStatus.Text;
+                room_ET.Official = cbOfficial.Text;
 
                 bool success = room_BUS.updateRoom(room_ET);
                 if (success)
@@ -197,7 +213,7 @@ namespace HotelManagement
 
         private void dtGV_Room_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            cbTypeRoom.Enabled = false;
+            
             int dong = e.RowIndex;
             if (dong >= 0)
             {
@@ -208,7 +224,7 @@ namespace HotelManagement
                 txtCapacity.Text = row.Cells["Capacity"].Value?.ToString();
                 txtDescription.Text = row.Cells["Description"].Value?.ToString();
                 cbStatus.Text = row.Cells["Status"].Value?.ToString();
-
+                cbOfficial.Text = row.Cells["Official"].Value?.ToString();       
             }
         }
 
@@ -222,6 +238,7 @@ namespace HotelManagement
             cbStatus.Text = "";
             dtGV_Room.DataSource = room_BUS.getAllRooms();
             cbTypeRoom.Enabled = true;
+            cbOfficial.Text = "Chưa chứng thực";
 
 
         }
@@ -280,6 +297,11 @@ namespace HotelManagement
                 isHandlingTextChanged = false;
                 return;
             }
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

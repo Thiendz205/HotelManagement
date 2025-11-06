@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace DAL
         HotelManagementDataContext db = new HotelManagementDataContext();
         Room_ET room_ET = new Room_ET();
 
-        public IQueryable<Room_ET>  getAllRooms()
+        public IQueryable<Room_ET> getAllRooms()
         {
             var rooms = from r in db.Rooms
                         join rt in db.RoomTypes on r.RoomTypeID equals rt.RoomTypeID
@@ -23,7 +24,8 @@ namespace DAL
                             TypeName = rt.TypeName,
                             Capacity = r.Capacity,
                             Description = r.Description,
-                            Status = r.Status
+                            Status = r.Status,
+                            Official = r.Official,
                         };
             return rooms;
         }
@@ -36,44 +38,61 @@ namespace DAL
             }
             return false;
         }
-        
-        public bool checkExistenceNameRoom_UPDate(string name, int currentRoomID)
+
+        public bool checkExistenceNameRoom_UPDate(string name, string currentRoomID)
         {
-            var roomName = db.Rooms.FirstOrDefault(x => x.RoomName == name && x.RoomID != currentRoomID);
-            return roomName != null;
+            // var roomName = db.Rooms.FirstOrDefault(x => x.RoomName == name && x.RoomID != currentRoomID);
+            // return roomName != null;
+            return false; //tem
         }
 
         public bool addRoom(Room_ET room)
         {
             try
             {
-                var roomID = db.Rooms.Where(x=>x.RoomID == room.RoomID).FirstOrDefault();
-                var roomName = db.Rooms.Where(x => x.RoomName == room.RoomName).FirstOrDefault();
-                if (roomID == null && roomName == null) 
-                {
-                    Room newRoom = new Room
-                    {
+                // Kiểm tra trùng tên phòng
+                var roomName = db.Rooms.FirstOrDefault(x => x.RoomName == room.RoomName);
+                if (roomName != null)
+                    return false;
 
-                        RoomName = room.RoomName,
-                        RoomTypeID = room.RoomTypeID,
-                        Capacity = room.Capacity,
-                        Description = room.Description,
-                        Status = room.Status
-                    };
-                    db.Rooms.InsertOnSubmit(newRoom);
-                    db.SubmitChanges();
-                    return true;
+                // 🔹 Lấy ID phòng lớn nhất hiện có
+                var lastRoom = db.Rooms
+                                 .OrderByDescending(x => x.RoomID)
+                                 .Select(x => x.RoomID)
+                                 .FirstOrDefault();
+
+                string newRoomID = "R001";
+
+                if (!string.IsNullOrEmpty(lastRoom))
+                {
+                    int num = int.Parse(lastRoom.Substring(1)) + 1;
+                    newRoomID = "R" + num.ToString("D3");
                 }
-                return false;
-                
+
+                Room newRoom = new Room
+                {
+                    RoomID = newRoomID,
+                    RoomName = room.RoomName,
+                    RoomTypeID = room.RoomTypeID,
+                    Capacity = room.Capacity,
+                    Description = room.Description,
+                    Status = room.Status,
+                    Official = room.Official
+                };
+
+                db.Rooms.InsertOnSubmit(newRoom);
+                db.SubmitChanges();
+                return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Lỗi thêm phòng: " + ex.Message);
                 return false;
             }
         }
 
-        public bool removeRoom(int roomID)
+
+        public bool removeRoom(string roomID)
         {
             try
             {
@@ -93,7 +112,7 @@ namespace DAL
         }
 
         public bool updateRoom(Room_ET room)
-       {
+        {
             try
             {
                 Room roomToUpdate = db.Rooms.SingleOrDefault(r => r.RoomID == room.RoomID);
@@ -104,6 +123,7 @@ namespace DAL
                     roomToUpdate.Capacity = room.Capacity;
                     roomToUpdate.Description = room.Description;
                     roomToUpdate.Status = room.Status;
+                    roomToUpdate.Official = room.Official;
                     db.SubmitChanges();
                     return true;
                 }

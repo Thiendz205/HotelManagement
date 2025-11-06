@@ -48,9 +48,13 @@
     <Compile Include="BookinggET.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CustomerET.cs" />
+    <Compile Include="EquipmentStorage_ET.cs" />
     <Compile Include="FeeTypeET.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RankCustomerET.cs" />
+    <Compile Include="RoomEquipment_ET.cs" />
+    <Compile Include="RoomEvaluation_ET.cs" />
+    <Compile Include="RoomTypePrice_ET.cs" />
     <Compile Include="Room_ET.cs" />
     <Compile Include="Room_Type_ET.cs" />
     <Compile Include="Infor_Staff_ET.cs" />

@@ -30,30 +30,46 @@ namespace DAL
         {
             try
             {
+                var lastType = db.RoomTypes
+                                 .OrderByDescending(x => x.RoomTypeID)
+                                 .Select(x => x.RoomTypeID)
+                                 .FirstOrDefault();
+
+                string newID = "RT001";
+                if (!string.IsNullOrEmpty(lastType))
+                {
+                    int num = int.Parse(lastType.Substring(2)) + 1;
+                    newID = "RT" + num.ToString("D3");
+                }
+
                 RoomType newRoomType = new RoomType
                 {
+                    RoomTypeID = newID,
                     TypeName = room_Type_ET.TypeName,
                     PricePerDay = room_Type_ET.PricePerDay,
                     PricePerHour = room_Type_ET.PricePerHour,
                     Category = room_Type_ET.Category,
                     Description = room_Type_ET.Description
                 };
+
                 db.RoomTypes.InsertOnSubmit(newRoomType);
                 db.SubmitChanges();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return false;
             }
         }
 
-        public bool removeRoomType(int roomTypeID)
+
+        public bool removeRoomType(string roomTypeID)
         {
             try
             {
-                using (var dbs = new HotelManagementDataContext()) {
-                    // tạo context mới cho mỗi thao tác
+                using (var dbs = new HotelManagementDataContext())
+                {
+                    //  tạo context mới cho mỗi thao tác
                     var roomType = dbs.RoomTypes.FirstOrDefault(rt => rt.RoomTypeID == roomTypeID);
                     if (roomType != null)
                     {
@@ -63,7 +79,7 @@ namespace DAL
                     }
                     return false;
 
-                } 
+                }
             }
             catch (Exception)
             {
@@ -96,7 +112,7 @@ namespace DAL
 
         public bool checkExistenceNameRoomType(string name, string category)
         {
-            var typeName = db.RoomTypes.Where(x => x.TypeName == name && x.Category == category).FirstOrDefault(); 
+            var typeName = db.RoomTypes.Where(x => x.TypeName == name && x.Category == category).FirstOrDefault();
             if (typeName == null)
             {
                 return true;
@@ -104,10 +120,19 @@ namespace DAL
             return false;
         }
 
-        public bool checkExistenceNameRoomType_UPDate(string name, int currentRoomID)
+        public bool checkExistenceNameRoomType_UPDate(string name, string currentRoomID)
         {
             var typeName = db.RoomTypes.FirstOrDefault(x => x.TypeName == name && x.RoomTypeID != currentRoomID);
             return typeName != null;
+
+        }
+
+        public bool IsRoomTypeInUse(string roomTypeID)
+        {
+            var usingRoom = db.Rooms.FirstOrDefault(r =>
+                r.RoomTypeID == roomTypeID && r.Status != "Trống" && r.Status != "Mới tạo");
+
+            return usingRoom != null;
         }
     }
 }
