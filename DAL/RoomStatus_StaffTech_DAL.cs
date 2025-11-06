@@ -27,12 +27,12 @@ namespace DAL
             return roomStatus;
         }
 
-        public bool updateStatusRooms_StaffTech(int roomID, string status)
+        public bool updateStatusRooms_StaffTech(string roomID, string status)
         {
             try
             {
                 var room = db.Rooms.SingleOrDefault(r => r.RoomID == roomID);
-                if (room != null && room.Status != status )
+                if (room != null && room.Status != status)
                 {
                     room.Status = status;
                     db.SubmitChanges();

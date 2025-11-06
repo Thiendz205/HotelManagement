@@ -1,4 +1,5 @@
 ﻿using DAL;
+using ET;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,17 @@ namespace BUS
         {
             return equipmentStorage_DAL.getAllEquipment();
         }
-
+        public bool addEquipment(EquipmentStorage_ET eq)
+        {
+            return equipmentStorage_DAL.addEquipment(eq);
+        }
+        public bool deleteEquipment(string equipmentID)
+        {
+            return equipmentStorage_DAL.deleteEquipment(equipmentID);
+        }
+        public bool updateEquipment(EquipmentStorage_ET eq)
+        {
+            return equipmentStorage_DAL.updateEquipment(eq);
+        }
     }
 }

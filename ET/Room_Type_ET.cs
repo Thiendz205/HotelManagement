@@ -10,7 +10,7 @@ namespace ET
     {
         public Room_Type_ET() { }
 
-        public Room_Type_ET(int roomTypeID, string typeName, decimal pricePerDay, decimal pricePerHour, string category, string description)
+        public Room_Type_ET(string roomTypeID, string typeName, decimal pricePerDay, decimal pricePerHour, string category, string description)
         {
             RoomTypeID = roomTypeID;
             TypeName = typeName;
@@ -20,7 +20,7 @@ namespace ET
             Description = description;
         }
 
-        public int RoomTypeID { get; set; }
+        public string RoomTypeID { get; set; }
         public string TypeName { get; set; }
         public decimal PricePerDay { get; set; }
         public decimal PricePerHour { get; set; }

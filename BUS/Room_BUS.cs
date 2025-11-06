@@ -19,7 +19,7 @@ namespace BUS
         {
             return roomDAL.addRoom(room);
         }
-        public bool removeRoom(int roomID)
+        public bool removeRoom(string roomID)
         {
             return roomDAL.removeRoom(roomID);
         }
@@ -32,7 +32,7 @@ namespace BUS
             return roomDAL.checkExistenceNameRoom(name);
         }
 
-        public bool checkExistenceNameRoom_UPDate(string name, int currentRoomID)
+        public bool checkExistenceNameRoom_UPDate(string name, string currentRoomID)
         {
             return roomDAL.checkExistenceNameRoom_UPDate(name, currentRoomID);
         }

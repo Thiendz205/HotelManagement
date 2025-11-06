@@ -1,0 +1,2 @@
+C:\Users\Admin\Downloads\test\HotelManagement\BUS\obj\Debug\BUS.csproj.AssemblyReference.cache
+C:\Users\Admin\Downloads\test\HotelManagement\BUS\obj\Debug\BUS.csproj.CoreCompileInputs.cache
