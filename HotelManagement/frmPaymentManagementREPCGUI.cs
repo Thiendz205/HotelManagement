@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BUS;
+using ET;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,85 +14,85 @@ namespace HotelManagement
 {
     public partial class frmPaymentManagementREPCGUI : Form
     {
-        public frmPaymentManagementREPCGUI()
+
+        public frmPaymentManagementREPCGUI(string staffId, string roomId, string roomName, string roomStatus)
         {
             InitializeComponent();
+            this.roomId = roomId;
+            this.roomName = roomName;
+            this.roomStatus = roomStatus;
+            this.staffId = staffId;
         }
-
+        private readonly string roomId;
+        private readonly string roomName;
+        private readonly string roomStatus;
+        private readonly string staffId;
+        private readonly InvoiceBUS invoiceBUS = new InvoiceBUS();
+        private readonly FeeTypeBUS feeTypeBUS = new FeeTypeBUS();
+        private string currentBookingId = "";
         private void frmPaymentManagementREPCGUI_Load(object sender, EventArgs e)
         {
-            // Thêm 2 lựa chọn
-            cboPaymentMethod.Items.Add("Tiền mặt");
-            cboPaymentMethod.Items.Add("Quét mã QR");
-
-            // Mặc định là Tiền mặt
-            cboPaymentMethod.SelectedIndex = 0;
-
-            // Ẩn hình QR ban đầu
+            LoadCustomerInfo();
+            LoadInvoiceDetails();
+            LoadExtraFees();
+            LoadPaymentMethods();
             picQRCode.Visible = false;
-            // ======== FONT + CHỦ ĐỀ ========
-            dgvPaymentDetail.BackgroundColor = Color.FromArgb(0, 102, 204); // xanh dương
-            dgvPaymentDetail.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(0, 76, 153);
-            dgvPaymentDetail.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvPaymentDetail.ColumnHeadersDefaultCellStyle.Font = new Font("Times New Roman", 12, FontStyle.Bold);
-            dgvPaymentDetail.EnableHeadersVisualStyles = false;
-
-            // ======== TẠO BẢNG DỮ LIỆU ========
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Mục");
-            dt.Columns.Add("Mục chi tiết");
-            dt.Columns.Add("Đơn giá (VNĐ)");
-            dt.Columns.Add("Số lượng");
-
-            // ======== PHÒNG ========
-            string[,] phongData = {
-        { "A01", "Day", "3", "500000" }
-    };
-
-            for (int i = 0; i < phongData.GetLength(0); i++)
-            {
-                string soPhong = phongData[i, 0];
-                string kieuThue = phongData[i, 1];
-                int soLuongThue = int.Parse(phongData[i, 2]);
-                decimal giaPhong = decimal.Parse(phongData[i, 3]);
-                string donVi = (kieuThue == "Day") ? "ngày" : "giờ";
-                string chiTietPhong = $"Phòng {soPhong} ({soLuongThue} {donVi} × {giaPhong.ToString("N0")} VNĐ/{donVi})";
-                dt.Rows.Add("Phòng", chiTietPhong, giaPhong.ToString("N0"), soLuongThue.ToString());
-            }
-
-            // ======== DỊCH VỤ ========
-            dt.Rows.Add("Dịch vụ", "Ăn sáng buffet", "100,000", "4");
-            dt.Rows.Add("Dịch vụ", "Giặt ủi quần áo", "80,000", "2");
-            dt.Rows.Add("Dịch vụ", "Đưa đón sân bay", "200,000", "1");
-            dt.Rows.Add("Dịch vụ", "Sử dụng hồ bơi VIP", "150,000", "3");
-            dt.Rows.Add("Dịch vụ", "Mini bar (đồ uống)", "50,000", "5");
-
-            // ======== PHỤ PHÍ ========
-            dt.Rows.Add("Phụ phí", "Thêm giường phụ", "150,000", "2");
-            dt.Rows.Add("Phụ phí", "Check-in sớm", "200,000", "1");
-            dt.Rows.Add("Phụ phí", "Check-out muộn", "250,000", "1");
-
-            // ======== BỒI THƯỜNG ========
-            dt.Rows.Add("Bồi thường", "Hỏng điều hòa", "300,000", "1");
-            dt.Rows.Add("Bồi thường", "Mất khăn tắm", "50,000", "2");
-
-            // ======== GÁN DỮ LIỆU VÀO DATAGRIDVIEW ========
-            dgvPaymentDetail.DataSource = dt;
-            dgvPaymentDetail.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvPaymentDetail.Columns["Đơn giá (VNĐ)"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-            dgvPaymentDetail.Columns["Số lượng"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-            // ======== TÍNH TỔNG TIỀN ========
-            decimal tongTien = 0;
-            foreach (DataRow row in dt.Rows)
-            {
-                decimal donGia = decimal.Parse(row["Đơn giá (VNĐ)"].ToString().Replace(",", ""));
-                int soLuong = int.Parse(row["Số lượng"].ToString());
-                tongTien += donGia * soLuong;
-            }
-            lblTongTien.Text = "Tổng cộng: " + tongTien.ToString("N0") + " VNĐ";
+        }
+        private void LoadExtraFees()
+        {
+            var list = feeTypeBUS.GetAllFeeTypes();
+            cboExtraFee.DataSource = list;
+            cboExtraFee.DisplayMember = "FeeTypeName";
+            cboExtraFee.ValueMember = "FeeTypeID";
+            if (list.Count > 0) cboExtraFee.SelectedIndex = 0;
         }
 
+        private void LoadInvoiceDetails()
+        {
+            var list = invoiceBUS.GetUsageDetailsByRoom(roomId);
+            if (list == null || list.Count == 0)
+            {
+                dgvInvoiceDetail.DataSource = null;
+                lblTotalAmount.Text = "0 VND";
+                return;
+            }
+
+            dgvInvoiceDetail.DataSource = list.Select(x => new
+            {
+                Loại = x.Type,
+                Mục = x.ItemName,
+                Giá = x.Price.ToString("N0"),
+                Số_lượng = x.Quantity,
+                Thành_tiền = (x.Price * x.Quantity).ToString("N0"),
+                Ngày_dùng = x.UsedAt.ToString("dd/MM/yyyy HH:mm")
+            }).ToList();
+
+            lblTotalAmount.Text = invoiceBUS.GetTotalAmount(roomId).ToString("N0") + " VND";
+        }
+
+        private void LoadCustomerInfo()
+        {
+            var info = invoiceBUS.GetCustomerInfoByRoom(roomId);
+            if (info == null)
+            {
+                MessageBox.Show("Không tìm thấy khách hàng đang CheckIn ở phòng này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            currentBookingId = info.BookingID;
+            lblCustomerName.Text = info.CustomerName;
+            lblPhone.Text = info.Phone;
+            lblRentalType.Text = info.RentalType;
+            lblCheckIn.Text = info.CheckIn.ToString("dd/MM/yyyy HH:mm");
+            lblCheckOut.Text = info.CheckOut?.ToString("dd/MM/yyyy HH:mm") ?? "Chưa CheckOut";
+            lblRoomName.Text = info.RoomName;
+        }
+
+        private void LoadPaymentMethods()
+        {
+            cboPaymentMethod.Items.Clear();
+            cboPaymentMethod.Items.AddRange(new string[] { "Tiền mặt", "Quét mã QR" });
+            cboPaymentMethod.SelectedIndex = 0;
+        }
         private void cboPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboPaymentMethod.SelectedItem.ToString() == "Quét mã QR")
@@ -103,22 +105,89 @@ namespace HotelManagement
             }
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
+
+        private void cboExtraFee_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var parent = Application.OpenForms["frmBookingStaffHomeGUI"] as frmBookingStaffHomeGUI;
-            if (parent != null)
+            if (cboExtraFee.SelectedItem is FeeTypeET fee)
+                lblExtraFeePrice.Text = $"{fee.DefaultPrice:N0} VND";
+        }
+
+        private void btnAddExtraFee_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(currentBookingId))
             {
-                var bookingDetailForm = new frmListRoomPaymentManagementREPCGUI();
-                parent.OpenChildForm(bookingDetailForm);
+                MessageBox.Show("Không có Booking đang hoạt động để thêm phí!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var selectedFee = cboExtraFee.SelectedItem as FeeTypeET;
+            if (selectedFee == null)
+                return;
+
+            DialogResult confirm = MessageBox.Show(
+                $"Xác nhận thêm phí '{selectedFee.FeeTypeName}' ({selectedFee.DefaultPrice:N0} VND)?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                bool success = invoiceBUS.AddExtraFeeToBooking(currentBookingId, selectedFee.FeeTypeID);
+                if (success)
+                {
+                    MessageBox.Show("Đã thêm phụ phí thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadInvoiceDetails();
+                }
+                else
+                    MessageBox.Show("Không thể thêm phụ phí!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void guna2Button2_Click(object sender, EventArgs e)
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(currentBookingId))
+            {
+                MessageBox.Show("Không có Booking đang hoạt động để thanh toán!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string method = cboPaymentMethod.SelectedItem?.ToString();
+            if (string.IsNullOrEmpty(method))
+            {
+                MessageBox.Show("Vui lòng chọn hình thức thanh toán!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            DialogResult confirm = MessageBox.Show(
+                $"Xác nhận thanh toán cho khách hàng '{lblCustomerName.Text}' bằng phương thức '{method}'?",
+                "Xác nhận thanh toán",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm == DialogResult.Yes)
+            {
+                bool success = invoiceBUS.PayInvoiceByBooking(currentBookingId, staffId, method, txtNote.Text);
+                if (success)
+                {
+                    MessageBox.Show("Thanh toán thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    frmReportInvoiceDetailByBooking reportForm = new frmReportInvoiceDetailByBooking(currentBookingId);
+                    reportForm.ShowDialog();
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Thanh toán thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
         {
             var parent = Application.OpenForms["frmBookingStaffHomeGUI"] as frmBookingStaffHomeGUI;
             if (parent != null)
             {
-                var bookingDetailForm = new frmListRoomPaymentManagementREPCGUI();
+                var bookingDetailForm = new frmListRoomPaymentManagementREPCGUI(staffId);
                 parent.OpenChildForm(bookingDetailForm);
             }
         }

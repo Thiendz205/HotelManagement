@@ -13,11 +13,12 @@ namespace HotelManagement
 {
     public partial class frmBookingStaffHomeGUI : Form
     {
-        public frmBookingStaffHomeGUI()
+        private readonly string staffId;
+        public frmBookingStaffHomeGUI(string staffId)
         {
             InitializeComponent();
+            this.staffId = staffId;
         }
-
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -46,7 +47,7 @@ namespace HotelManagement
         }
         private void btnBooking_Click(object sender, EventArgs e)
         {
-            var transferForm = new frmReceptionistsRoomList();
+            var transferForm = new frmReceptionistsRoomList(staffId);
             OpenChildForm(transferForm);
         }
 
@@ -58,13 +59,36 @@ namespace HotelManagement
 
         private void guna2Button1_Click(object sender, EventArgs e)
         {
-            var transferForm = new frmGuestCheckInRECPGUI();
+            var transferForm = new frmGuestCheckInRECPGUI(staffId);
             OpenChildForm(transferForm);
+        }
+
+        private void guna2Button4_Click(object sender, EventArgs e)
+        {
+            // Xác nhận người dùng có muốn đăng xuất không
+            DialogResult result = MessageBox.Show(
+                "Bạn có chắc chắn muốn đăng xuất không?",
+                "Đăng xuất",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                //// Ẩn form hiện tại
+                //this.Hide();
+
+                //// Mở lại form đăng nhập
+                //frmLogin loginForm = new frmLogin();
+                //loginForm.Show();
+
+                // Đóng form hiện tại hoàn toàn sau khi mở form đăng nhập
+                this.Close();
+            }
         }
 
         private void guna2Button2_Click(object sender, EventArgs e)
         {
-            var transferForm = new frmListRoomPaymentManagementREPCGUI();
+            var transferForm = new frmListRoomPaymentManagementREPCGUI(staffId);
             OpenChildForm(transferForm);
         }
 
@@ -78,20 +102,6 @@ namespace HotelManagement
         {
             var transferForm = new frmServiceAdmin();
             OpenChildForm(transferForm);
-        }
-
-        private void btnLogOut_Click(object sender, EventArgs e)
-        {
-            DialogResult result = MessageBox.Show(
-                  "Bạn có chắc muốn đăng xuất không?",
-                     "Đăng xuất",
-              MessageBoxButtons.YesNo,
-              MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
-            {
-                this.Close();
-            }
         }
     }
 }

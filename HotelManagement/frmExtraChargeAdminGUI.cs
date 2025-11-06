@@ -27,6 +27,7 @@ namespace HotelManagement
 
         private readonly BookingFeeBUS bus = new BookingFeeBUS();
         public readonly FeeTypeBUS feebus = new FeeTypeBUS();
+        private string selectedId = null;
         private void LoadComboboxes()
         {
           
@@ -81,7 +82,7 @@ namespace HotelManagement
             dgvFeeList.DataSource = bus.GetAll();
             dgvFeeList.ClearSelection();
 
-            dgvFeeList.Columns["BookingFeeID"].Visible = false;
+            dgvFeeList.Columns["BookingFeeID"].HeaderText = "Mã phí";
             dgvFeeList.Columns["BookingID"].Visible = false;
             dgvFeeList.Columns["FeeTypeID"].Visible = false;
             dgvFeeList.Columns["FeeTypeName"].HeaderText = "Loại phí";
@@ -101,23 +102,39 @@ namespace HotelManagement
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (!ValidateInput()) return;
+            string bookingFeeId = txtBookingFeeID.Text.Trim();
+
+    
+            if (bus.IsBookingFeeIdExists(bookingFeeId))
+            {
+                MessageBox.Show($"Mã phí phát sinh '{bookingFeeId}' đã tồn tại! Vui lòng nhập mã khác.",
+                                "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             var dto = new BookingFeeET
             {
-                BookingID = (int)cboBooking.SelectedValue,
-                FeeTypeID = (int)cboFeeType.SelectedValue,
+                BookingID = cboBooking.SelectedValue.ToString(),
+                FeeTypeID = cboFeeType.SelectedValue.ToString(),
                 Quantity = int.Parse(txtQuantity.Text),
                 Notes = txtNotes.Text
             };
-            MessageBox.Show("Thêm thành công!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            bus.Insert(dto);
-            LoadData();
-            ClearForm();
+
+            if (bus.Insert(dto))
+            {
+                MessageBox.Show("Thêm phí phát sinh thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                ClearForm();
+            }
+            else
+            {
+                MessageBox.Show("Không thể thêm phí phát sinh!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (selectedId == -1)
+            if (string.IsNullOrEmpty(selectedId))
             {
                 MessageBox.Show("Vui lòng chọn phí cần sửa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -128,41 +145,55 @@ namespace HotelManagement
             var dto = new BookingFeeET
             {
                 BookingFeeID = selectedId,
-                BookingID = (int)cboBooking.SelectedValue,
-                FeeTypeID = (int)cboFeeType.SelectedValue,
+                BookingID = cboBooking.SelectedValue.ToString(),
+                FeeTypeID = cboFeeType.SelectedValue.ToString(),
                 Quantity = int.Parse(txtQuantity.Text),
                 Notes = txtNotes.Text
             };
-            MessageBox.Show("Sửa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            bus.Update(dto);
-            LoadData();
-            ClearForm();
+
+            if (bus.Update(dto))
+            {
+                MessageBox.Show("Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadData();
+                ClearForm();
+            }
+            else
+            {
+                MessageBox.Show("Không thể cập nhật phí phát sinh!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-        private int selectedId = -1;
         private void ClearForm()
         {
-            selectedId = -1;
+            selectedId = null;
+            txtBookingFeeID.Clear();
             cboBooking.SelectedIndex = -1;
             cboFeeType.SelectedIndex = -1;
             txtQuantity.Clear();
             txtNotes.Clear();
             dgvFeeList.ClearSelection();
+            txtBookingFeeID.Enabled = true;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (selectedId == -1)
+            if (string.IsNullOrEmpty(selectedId))
             {
-                MessageBox.Show("Vui lòng chọn phí cần xóa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn phí cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (MessageBox.Show("Bạn có chắc muốn xóa phí này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                bus.Delete(selectedId);
-                LoadData();
-                ClearForm();
-                MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (bus.Delete(selectedId))
+                {
+                    MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                    ClearForm();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể xóa phí phát sinh!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -171,13 +202,42 @@ namespace HotelManagement
             if (e.RowIndex >= 0)
             {
                 var row = dgvFeeList.Rows[e.RowIndex];
-                selectedId = Convert.ToInt32(row.Cells["BookingFeeID"].Value);
+                selectedId = row.Cells["BookingFeeID"].Value.ToString();
 
+                txtBookingFeeID.Text = selectedId;
                 cboBooking.Text = row.Cells["RoomName"].Value.ToString();
                 cboFeeType.Text = row.Cells["FeeTypeName"].Value.ToString();
                 txtQuantity.Text = row.Cells["Quantity"].Value.ToString();
                 txtNotes.Text = row.Cells["Notes"].Value?.ToString();
+                txtBookingFeeID.Enabled = false;
             }
+        }
+
+        private void Search_Click(object sender, EventArgs e)
+        {
+            string bookingFeeId = txtBookingFeeID.Text.Trim();
+            string feeTypeId = cboFeeType.SelectedValue != null ? cboFeeType.SelectedValue.ToString() : "";
+            string bookingId = cboBooking.SelectedValue != null ? cboBooking.SelectedValue.ToString() : "";
+
+            var results = bus.Search(bookingFeeId, feeTypeId, bookingId);
+            dgvFeeList.DataSource = results;
+
+            if (results.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy kết quả nào!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show($"🔍 Tìm thấy {results.Count} kết quả phù hợp!",
+                    "Kết quả tìm kiếm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadData();
+            ClearForm();
         }
     }
 }

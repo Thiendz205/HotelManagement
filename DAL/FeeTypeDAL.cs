@@ -3,14 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL
 {
     public class FeeTypeDAL
     {
-        private readonly HotelManagementDataContext db = new HotelManagementDataContext(); 
+        private readonly HotelManagementDataContext db = new HotelManagementDataContext();
 
         public List<FeeTypeET> GetAllFeeTypes()
         {
@@ -24,18 +22,46 @@ namespace DAL
                          Notes = ft.Notes
                      }).ToList();
         }
-        public bool IsFeeTypeNameExists(string name, int? excludeId = null)
+
+        public bool IsFeeTypeNameExists(string name, string excludeId = null)
         {
             var q = db.FeeTypes.Where(f => f.FeeTypeName == name);
-            if (excludeId.HasValue)
-                q = q.Where(f => f.FeeTypeID != excludeId.Value);
+            if (!string.IsNullOrEmpty(excludeId))
+                q = q.Where(f => f.FeeTypeID != excludeId);
             return q.Any();
         }
 
-        public int AddFeeType(FeeTypeET et)
+        // 🔹 Hàm sinh mã tự động: F001, F002, ...
+        private string GenerateNewFeeTypeID()
         {
+            // Lấy ID cuối cùng theo thứ tự giảm dần
+            var lastId = db.FeeTypes
+                           .OrderByDescending(f => f.FeeTypeID)
+                           .Select(f => f.FeeTypeID)
+                           .FirstOrDefault();
+
+            if (string.IsNullOrEmpty(lastId))
+                return "F001"; // nếu chưa có dữ liệu
+            string numericPart = lastId.Substring(1); // bỏ ký tự 'F'
+            if (int.TryParse(numericPart, out int num))
+            {
+                num++;
+                return "F" + num.ToString("D3"); 
+            }
+
+            // Trường hợp bất thường → fallback
+            return "F001";
+        }
+
+        public string AddFeeType(FeeTypeET et)
+        {
+            // Nếu chưa có ID thì tự sinh
+            if (string.IsNullOrEmpty(et.FeeTypeID))
+                et.FeeTypeID = GenerateNewFeeTypeID();
+
             var ft = new FeeType
             {
+                FeeTypeID = et.FeeTypeID,
                 FeeTypeName = et.FeeTypeName,
                 Category = et.Category,
                 DefaultPrice = et.DefaultPrice,
@@ -44,6 +70,10 @@ namespace DAL
             db.FeeTypes.InsertOnSubmit(ft);
             db.SubmitChanges();
             return ft.FeeTypeID;
+        }
+        public bool IsFeeTypeIdExists(string feeTypeId)
+        {
+            return db.FeeTypes.Any(f => f.FeeTypeID == feeTypeId);
         }
 
         public bool UpdateFeeType(FeeTypeET et)
@@ -57,18 +87,18 @@ namespace DAL
             db.SubmitChanges();
             return true;
         }
-        
-        public bool CanDeleteFeeType(int feeTypeId)
+
+        public bool CanDeleteFeeType(string feeTypeId)
         {
             return !db.BookingFees.Any(bf => bf.FeeTypeID == feeTypeId);
         }
 
-        public bool DeleteFeeType(int feeTypeId)
+        public bool DeleteFeeType(string feeTypeId)
         {
             var ft = db.FeeTypes.FirstOrDefault(f => f.FeeTypeID == feeTypeId);
             if (ft == null) return false;
             if (!CanDeleteFeeType(feeTypeId))
-                return false; 
+                return false;
             db.FeeTypes.DeleteOnSubmit(ft);
             db.SubmitChanges();
             return true;

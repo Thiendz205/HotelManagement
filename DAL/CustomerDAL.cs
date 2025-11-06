@@ -11,144 +11,162 @@ namespace DAL
     {
         private HotelManagementDataContext db = new HotelManagementDataContext();
 
-        public decimal CalculateBookingTotal(int bookingId)
+        public decimal CalculateBookingTotal(string bookingId)
         {
             try
             {
                 var booking = db.Bookings.FirstOrDefault(b => b.BookingID == bookingId);
-                if (booking == null) return 0;
+                if (booking == null) return 0m;
 
-                decimal roomPrice = 0;
+                // 🔹 Lấy loại phòng
+                var room = db.Rooms.FirstOrDefault(r => r.RoomID == booking.RoomID);
+                if (room == null) return 0m;
 
-                // Lấy loại phòng
-                var roomTypeId = db.Rooms.FirstOrDefault(r => r.RoomID == booking.RoomID)?.RoomTypeID;
-                if (roomTypeId == null) return 0;
+                var roomType = db.RoomTypes.FirstOrDefault(rt => rt.RoomTypeID == room.RoomTypeID);
+                if (roomType == null) return 0m;
 
-                // Tìm giá động trong thời gian check-in
+                // 🔹 Xác định giá phòng
                 var dynamicPrice = db.RoomTypePrices
-                    .Where(p => p.RoomTypeID == roomTypeId &&
+                    .Where(p => p.RoomTypeID == roomType.RoomTypeID &&
                                 booking.CheckIn.Date >= p.StartDate &&
                                 booking.CheckIn.Date <= p.EndDate)
                     .OrderByDescending(p => p.StartDate)
                     .FirstOrDefault();
 
+                decimal pricePerUnit = 0;
                 if (dynamicPrice != null)
                 {
-                    roomPrice = (booking.RentalType == "Day") ? dynamicPrice.PricePerDay : dynamicPrice.PricePerHour;
+                    pricePerUnit = (booking.RentalType == "Day") ? dynamicPrice.PricePerDay : dynamicPrice.PricePerHour;
                 }
                 else
                 {
-                    var defaultRoomType = db.RoomTypes.FirstOrDefault(rt => rt.RoomTypeID == roomTypeId);
-                    if (defaultRoomType != null)
-                        roomPrice = (booking.RentalType == "Day") ? defaultRoomType.PricePerDay : defaultRoomType.PricePerHour;
+                    pricePerUnit = (booking.RentalType == "Day") ? roomType.PricePerDay : roomType.PricePerHour;
                 }
 
-                // Tính thời gian thuê
-                double totalHours = booking.CheckOut != null
-                    ? (booking.CheckOut.Value - booking.CheckIn).TotalHours
-                    : 24;
+                // 🔹 Tính thời gian thuê (nếu chưa checkout thì lấy giờ hiện tại)
+                DateTime checkOutTime = booking.CheckOut ?? DateTime.Now;
+                double totalHours = (checkOutTime - booking.CheckIn).TotalHours;
 
-                decimal roomTotal = (booking.RentalType == "Day")
-                    ? roomPrice * (decimal)Math.Ceiling(totalHours / 24)
-                    : roomPrice * (decimal)Math.Ceiling(totalHours);
+                // Số lượng đơn vị thuê (ngày hoặc giờ)
+                int quantity = (booking.RentalType == "Day")
+                    ? Math.Max(1, (int)Math.Ceiling(totalHours / 24))
+                    : Math.Max(1, (int)Math.Ceiling(totalHours));
 
-                // Dịch vụ
+                decimal roomTotal = pricePerUnit * quantity;
+
+                // 🔹 Dịch vụ
                 decimal serviceTotal = (from su in db.ServiceUsages
                                         join s in db.Services on su.ServiceID equals s.ServiceID
                                         where su.BookingID == booking.BookingID
                                         select (decimal?)(s.Price * su.Quantity)).Sum() ?? 0m;
 
-                // Phụ phí
+                // 🔹 Phụ phí
                 decimal feeTotal = (from bf in db.BookingFees
                                     join ft in db.FeeTypes on bf.FeeTypeID equals ft.FeeTypeID
                                     where bf.BookingID == booking.BookingID
                                     select (decimal?)(ft.DefaultPrice * bf.Quantity)).Sum() ?? 0m;
 
-                // Tổng
-                decimal bookingTotal = roomTotal + serviceTotal + feeTotal;
-                return bookingTotal;
+                // 🔹 Tổng cộng
+                decimal total = roomTotal + serviceTotal + feeTotal;
+                return total;
             }
             catch (Exception ex)
             {
-                return 0;
+                Console.WriteLine("❌ Lỗi CalculateBookingTotal: " + ex.Message);
+                return 0m;
             }
         }
-        //  Hàm lấy tổng chi tiêu khách hàng 
+
         // --- Tổng tiền gốc (để xét hạng) ---
-        public decimal GetTotalSpendingForRank(int customerId)
+        public decimal GetTotalSpendingForRank(string customerId)
         {
             try
             {
-                // Lấy danh sách BookingID của khách hàng
+                if (string.IsNullOrWhiteSpace(customerId))
+                    return 0m;
+
+                // 🔹 Lấy danh sách BookingID của khách hàng
                 var bookingIds = db.Bookings
                     .Where(b => b.CustomerID == customerId)
                     .Select(b => b.BookingID)
                     .ToList();
 
                 if (!bookingIds.Any())
-                    return 0;
+                    return 0m;
 
-                // Tổng tiền gốc (chưa trừ giảm giá)
+                // 🔹 Tính tổng tiền của các hóa đơn đã thanh toán
                 decimal total = db.Invoices
                     .Where(i => bookingIds.Contains(i.BookingID) && i.PaidStatus == "Paid")
                     .Sum(i => (decimal?)i.TotalAmount) ?? 0m;
 
-                return total; // Không trừ giảm giá ở đây
+                return total;
             }
-            catch
+            catch (Exception ex)
             {
-                return 0;
+                // Có thể log lỗi nếu cần: Console.WriteLine(ex.Message);
+                return 0m;
             }
         }
-        public decimal GetTotalSpending(int customerId)
+        public decimal GetTotalSpending(string customerId)
         {
             try
             {
-                // Lấy danh sách BookingID của khách hàng
+                if (string.IsNullOrWhiteSpace(customerId))
+                    return 0m;
+
+                // 🔹 Lấy danh sách BookingID của khách hàng
                 var bookingIds = db.Bookings
                     .Where(b => b.CustomerID == customerId)
                     .Select(b => b.BookingID)
                     .ToList();
 
                 if (!bookingIds.Any())
-                    return 0;
+                    return 0m;
 
-                // Lấy danh sách Invoice đã thanh toán
+                // 🔹 Lấy danh sách hóa đơn đã thanh toán
                 var paidInvoices = db.Invoices
                     .Where(i => bookingIds.Contains(i.BookingID) && i.PaidStatus == "Paid")
                     .ToList();
 
+                if (!paidInvoices.Any())
+                    return 0m;
+
                 decimal total = paidInvoices.Sum(i => i.TotalAmount);
 
-                // Áp dụng giảm giá theo rank 
+                // 🔹 Áp dụng giảm giá theo hạng thành viên
                 var customer = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
                 if (customer != null)
                 {
                     var rank = db.CustomerRanks.FirstOrDefault(r => r.RankID == customer.RankID);
                     if (rank != null && rank.DiscountPercent > 0)
                     {
-                        total = total - (total * rank.DiscountPercent / 100);
+                        total -= total * rank.DiscountPercent / 100;
                     }
                 }
 
                 return total;
             }
-            catch (Exception ex)
+            catch
             {
-                return 0;
+                return 0m;
             }
         }
 
         // Hàm tự động nâng hạng khách hàng
-        public string AutoUpgradeRank(int customerId)
+        public string AutoUpgradeRank(string customerId)
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(customerId))
+                    return null;
+
                 var customer = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
-                if (customer == null) return null;
+                if (customer == null)
+                    return null;
 
-                decimal totalSpent = GetTotalSpendingForRank(customerId);
+                decimal totalSpent = GetTotalSpending(customerId); // dùng hàm mới đã sửa kiểu string
 
+                // 🔹 Tìm rank phù hợp với tổng chi tiêu
                 var newRank = db.CustomerRanks
                     .Where(r => totalSpent >= r.MinSpending)
                     .OrderByDescending(r => r.MinSpending)
@@ -158,17 +176,16 @@ namespace DAL
                 {
                     customer.RankID = newRank.RankID;
                     db.SubmitChanges();
-                    return newRank.RankName;
+                    return newRank.RankName; // Trả về tên hạng mới
                 }
 
-                return null;
+                return null; // Không thay đổi hạng
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
             }
         }
-
         public List<CustomerET> GetAllCustomers()
         {
             var customers = (from c in db.Customers
@@ -246,22 +263,7 @@ namespace DAL
             }
         }
 
-        public bool DeleteCustomer(int customerId)
-        {
-            try
-            {
-                var entity = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
-                if (entity == null) return false;
-
-                db.Customers.DeleteOnSubmit(entity);
-                db.SubmitChanges();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
+      
         public List<CustomerET> SearchCustomers(string fullName, string phoneNumber, string nationalId)
         {
             try
@@ -318,7 +320,41 @@ namespace DAL
         {
             return db.Customers.Any(c => c.NationalID == nationalId);
         }
+        public CustomerET GetCustomerByPhoneOrId(string phone, string nationalId)
+        {
+            var c = db.Customers.FirstOrDefault(x =>
+                (!string.IsNullOrEmpty(phone) && x.PhoneNumber == phone) ||
+                (!string.IsNullOrEmpty(nationalId) && x.NationalID == nationalId));
 
+            if (c == null) return null;
+
+            return new CustomerET
+            {
+                CustomerID = c.CustomerID,
+                FullName = c.FullName,
+                PhoneNumber = c.PhoneNumber,
+                NationalID = c.NationalID,
+                Address = c.Address,
+                Country = c.Country,
+                Gender = c.Gender,
+                DateOfBirth = c.DateOfBirth,
+                RankID = c.RankID,
+                RankName = c.CustomerRank?.RankName ?? "Không xác định" 
+            };
+        }
+
+        // ✅ Lấy rank mặc định
+        public int GetDefaultRankId()
+        {
+            var defaultRank = db.CustomerRanks.OrderBy(r => r.RankID).FirstOrDefault();
+            return defaultRank?.RankID ?? 1;
+        }
+
+        // ✅ Lấy tên rank theo ID
+        public string GetRankNameById(int rankId)
+        {
+            return db.CustomerRanks.FirstOrDefault(r => r.RankID == rankId)?.RankName ?? "Không xác định";
+        }
     }
 }
 

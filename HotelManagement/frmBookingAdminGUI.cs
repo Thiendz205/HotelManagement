@@ -117,28 +117,28 @@ namespace HotelManagement
             }
         }
         private BookingBUS bookingBUS = new BookingBUS();
-        private int selectedBookingId = -1;
+        private string selectedBookingId = "-1";
         private void UpdateRoomPrice()
         {
             if (cboRoom.SelectedValue == null) return;
             if (!rdoDay.Checked && !rdoHour.Checked) return;
 
-            int roomId = (int)cboRoom.SelectedValue;
+            string roomId = cboRoom.SelectedValue.ToString(); // ✅ đổi int → string
             string rentalType = rdoDay.Checked ? "Day" : "Hour";
             DateTime checkIn = dtpCheckIn.Value;
             DateTime checkOut = dtpCheckOut.Value;
 
-            decimal price = bookingBUS.CalculateTotalPrice(roomId, rentalType, checkIn, checkOut);
+            decimal price = bookingBUS.CalculateTotalPrice(roomId, rentalType, checkIn, checkOut); // ✅ truyền string
 
             if (price > 0)
             {
                 lblPrice.Text = price.ToString("N0") + " VNĐ";
-                lblPrice.Tag = price; // ✅ Cập nhật lại Tag
+                lblPrice.Tag = price; // ✅ lưu giá trị thực
             }
             else
             {
                 lblPrice.Text = "Chưa có giá áp dụng";
-                lblPrice.Tag = 0; // ✅ Gán giá trị 0 cho an toàn
+                lblPrice.Tag = 0;
             }
         }
 
@@ -146,22 +146,33 @@ namespace HotelManagement
         {
             if (dgvBooking.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Vui lòng chọn một lịch để hủy.", "Thông báo",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn một lịch để hủy.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int bookingId = Convert.ToInt32(dgvBooking.SelectedRows[0].Cells["BookingID"].Value);
+            // ✅ Lấy BookingID dưới dạng string
+            string bookingId = dgvBooking.SelectedRows[0].Cells["BookingID"].Value?.ToString();
+
+            if (string.IsNullOrEmpty(bookingId))
+            {
+                MessageBox.Show("Không thể xác định BookingID để hủy.", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             bool result = bookingBUS.CancelBooking(bookingId);
 
             if (result)
             {
-                MessageBox.Show("Hủy lịch thành công.", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Hủy lịch thành công.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
             }
             else
             {
-                MessageBox.Show("Chỉ có thể hủy các lịch có trạng thái 'Đặt trước'.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chỉ có thể hủy các lịch có trạng thái 'Đặt trước'.",
+                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -177,7 +188,7 @@ namespace HotelManagement
                 isLoadingBooking = true; // ✅ chặn ValueChanged trong lúc load
 
                 DataGridViewRow row = dgvBooking.Rows[e.RowIndex];
-                selectedBookingId = Convert.ToInt32(row.Cells["BookingID"].Value);
+                selectedBookingId = row.Cells["BookingID"].Value?.ToString() ?? "-1";
 
                 // Phòng & khách hàng
                 cboRoom.SelectedValue = row.Cells["RoomID"].Value ?? -1;
@@ -220,63 +231,78 @@ namespace HotelManagement
         }
         private void LoadData()
         {
-            // Gọi BLL để lấy danh sách booking
+            // 🟩 Gọi BUS để lấy danh sách booking
             var list = bookingBUS.GetAll();
-
             dgvBooking.DataSource = list;
 
-            // Ẩn các cột ID
-            dgvBooking.Columns["BookingID"].Visible = false;
-            dgvBooking.Columns["CustomerID"].Visible = false;
-            dgvBooking.Columns["RoomID"].Visible = false;
-            dgvBooking.Columns["StaffID"].Visible = false;
+            // 🟦 Ẩn tất cả cột trước (để tránh lỗi nếu thiếu tên cột)
+            foreach (DataGridViewColumn col in dgvBooking.Columns)
+                col.Visible = false;
 
-            // Đặt tiêu đề tiếng Việt
+            // 🟩 Chỉ hiển thị các cột cần thiết
+            dgvBooking.Columns["CustomerName"].Visible = true;
+            dgvBooking.Columns["RoomName"].Visible = true;
+            dgvBooking.Columns["RentalType"].Visible = true;
+            dgvBooking.Columns["CheckIn"].Visible = true;
+            dgvBooking.Columns["CheckOut"].Visible = true;
+            dgvBooking.Columns["Price"].Visible = true;
+            dgvBooking.Columns["Status"].Visible = true;
+            dgvBooking.Columns["RoomStatus"].Visible = true;
+            dgvBooking.Columns["StaffName"].Visible = true;
+
+            // 🟨 Đặt tiêu đề tiếng Việt
             dgvBooking.Columns["CustomerName"].HeaderText = "Khách hàng";
             dgvBooking.Columns["RoomName"].HeaderText = "Phòng";
             dgvBooking.Columns["RentalType"].HeaderText = "Kiểu thuê";
             dgvBooking.Columns["CheckIn"].HeaderText = "Ngày nhận phòng";
             dgvBooking.Columns["CheckOut"].HeaderText = "Ngày trả phòng";
-            dgvBooking.Columns["Price"].HeaderText = "Giá";
+            dgvBooking.Columns["Price"].HeaderText = "Giá (VNĐ)";
             dgvBooking.Columns["Status"].HeaderText = "Trạng thái";
-            dgvBooking.Columns["RoomStatus"].HeaderText = "Trạng thái phòng";
-            dgvBooking.Columns["StaffName"].HeaderText = "Tên nhân viên";
+            dgvBooking.Columns["RoomStatus"].HeaderText = "Tình trạng phòng";
+            dgvBooking.Columns["StaffName"].HeaderText = "Nhân viên xử lý";
 
-            // Format hiển thị
+            // 🧾 Format giá & thời gian
             dgvBooking.Columns["Price"].DefaultCellStyle.Format = "N0";
             dgvBooking.Columns["Price"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvBooking.Columns["CheckIn"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
             dgvBooking.Columns["CheckOut"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
 
+            // 🧩 Thiết lập chung cho bảng
             dgvBooking.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBooking.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBooking.MultiSelect = false;
             dgvBooking.ReadOnly = true;
             dgvBooking.AllowUserToAddRows = false;
             dgvBooking.AllowUserToDeleteRows = false;
-        }
+            dgvBooking.RowHeadersVisible = false;
 
+            // 🧡 Căn giữa tiêu đề
+            foreach (DataGridViewColumn col in dgvBooking.Columns)
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (!ValidateBookingInput())
                 return;
 
-            if (selectedBookingId <= 0)
+            if (string.IsNullOrEmpty(selectedBookingId) || selectedBookingId == "-1")
             {
                 MessageBox.Show("Vui lòng chọn booking cần cập nhật!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             BookingET booking = new BookingET
             {
-                BookingID = selectedBookingId,
-                RoomID = (int)cboRoom.SelectedValue,
-                CustomerID = (int)cboCustomer.SelectedValue,
+                BookingID = selectedBookingId, // string
+                RoomID = cboRoom.SelectedValue?.ToString(),
+                CustomerID = cboCustomer.SelectedValue?.ToString(),
                 RentalType = rdoDay.Checked ? "Day" : "Hour",
                 CheckIn = dtpCheckIn.Value,
                 CheckOut = dtpCheckOut.Value,
                 Price = Convert.ToDecimal(lblPrice.Tag)
             };
+
             var result = bookingBUS.UpdateBookingInfoOnly(booking);
 
             switch (result)
@@ -321,7 +347,7 @@ namespace HotelManagement
             LoadData();
             ResetForm();
 
-            selectedBookingId = -1;
+            selectedBookingId = "-1";
             cboCustomer.Enabled = true;
         }
 

@@ -74,7 +74,7 @@ namespace HotelManagement
 
             var dto = new BookingET
             {
-                RoomID = Convert.ToInt32(cboRoom.SelectedValue),
+                RoomID = cboRoom.SelectedValue.ToString(), // ✅ đổi int → string
                 RoomStatus = cboStatus.SelectedItem.ToString()
             };
 
@@ -96,12 +96,10 @@ namespace HotelManagement
         private void cboRoom_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboRoom.SelectedValue == null) return;
+            string roomId = cboRoom.SelectedValue.ToString();
 
-            if (int.TryParse(cboRoom.SelectedValue.ToString(), out int roomId))
-            {
-                string currentStatus = bus.GetRoomStatus(roomId);
-                lblCurrentStatus.Text = $"Trạng thái hiện tại: {currentStatus}";
-            }
+            string currentStatus = bus.GetRoomStatus(roomId);
+            lblCurrentStatus.Text = $"Trạng thái hiện tại: {currentStatus}";
         }
     }
 }

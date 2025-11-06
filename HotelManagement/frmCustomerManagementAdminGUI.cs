@@ -20,7 +20,7 @@ namespace HotelManagement
         {
             InitializeComponent();
         }
-        private int? selectedCustomerId = null;
+        private string selectedCustomerId = null;
         private string oldPhone = "";
         private string oldCCCD = "";
         private void frmCustomerManagementAdminGUI_Load(object sender, EventArgs e)
@@ -85,21 +85,10 @@ namespace HotelManagement
 
         private bool ValidateInput()
         {
+            // 🔹 Họ tên
             if (string.IsNullOrWhiteSpace(txtFullName.Text))
             {
                 MessageBox.Show("Vui lòng nhập họ tên!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (!Regex.IsMatch(txtPhone.Text, @"^\d{9,15}$"))
-            {
-                MessageBox.Show("Số điện thoại phải là số và từ 9–15 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (!Regex.IsMatch(txtCCCD.Text, @"^\d{9,20}$"))
-            {
-                MessageBox.Show("CCCD phải là số và từ 9–20 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
@@ -109,18 +98,50 @@ namespace HotelManagement
                 return false;
             }
 
+            // ❌ Không cho phép ký tự đặc biệt (chỉ chữ + khoảng trắng)
+            if (!Regex.IsMatch(txtFullName.Text.Trim(), @"^[\p{L}\s]+$"))
+            {
+                MessageBox.Show("Họ tên chỉ được chứa chữ cái và khoảng trắng, không có ký tự đặc biệt!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 Số điện thoại
+            if (!Regex.IsMatch(txtPhone.Text.Trim(), @"^\d{9,15}$"))
+            {
+                MessageBox.Show("Số điện thoại phải là số và từ 9–15 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 CCCD
+            if (!Regex.IsMatch(txtCCCD.Text.Trim(), @"^\d{9,20}$"))
+            {
+                MessageBox.Show("CCCD phải là số và từ 9–20 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 Địa chỉ
             if (txtAddress.Text.Length > 200)
             {
                 MessageBox.Show("Địa chỉ không được vượt quá 200 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
+            // ❌ Chặn ký tự đặc biệt trong địa chỉ (cho phép số, chữ, khoảng trắng, , . / -)
+            if (!string.IsNullOrWhiteSpace(txtAddress.Text) &&
+                !Regex.IsMatch(txtAddress.Text.Trim(), @"^[\p{L}\p{N}\s,./-]+$"))
+            {
+                MessageBox.Show("Địa chỉ không được chứa ký tự đặc biệt!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 Quốc gia
             if (cboCountry.SelectedIndex < 0 || string.IsNullOrWhiteSpace(cboCountry.Text))
             {
                 MessageBox.Show("Vui lòng chọn quốc gia hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
+            // 🔹 Giới tính
             if (!rdoNam.Checked && !rdoNu.Checked)
             {
                 MessageBox.Show("Vui lòng chọn giới tính (Nam hoặc Nữ)!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -140,6 +161,7 @@ namespace HotelManagement
 
             return true;
         }
+
         private void ClearInput()
         {
             txtFullName.Clear();
@@ -181,7 +203,7 @@ namespace HotelManagement
             {
                 var row = dgvCustomers.Rows[e.RowIndex];
 
-                selectedCustomerId = Convert.ToInt32(row.Cells["CustomerID"].Value);
+                selectedCustomerId = row.Cells["CustomerID"].Value?.ToString();
                 txtFullName.Text = row.Cells["FullName"].Value?.ToString();
                 txtPhone.Text = row.Cells["PhoneNumber"].Value?.ToString();
                 txtCCCD.Text = row.Cells["NationalID"].Value?.ToString();
@@ -257,7 +279,7 @@ namespace HotelManagement
             string country = cboCountry.SelectedItem != null ? cboCountry.SelectedItem.ToString() : string.Empty;
             var customer = new CustomerET
             {
-                CustomerID = selectedCustomerId.Value,
+                CustomerID = selectedCustomerId,
                 FullName = txtFullName.Text.Trim(),
                 PhoneNumber = newPhone,
                 NationalID = newCCCD,

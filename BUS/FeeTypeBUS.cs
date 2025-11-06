@@ -17,9 +17,9 @@ namespace BUS
             return dal.GetAllFeeTypes();
         }
 
-        public bool Add(FeeTypeET et)
+        public string AddFeeType(FeeTypeET et)
         {
-            return dal.AddFeeType(et) > 0;
+            return dal.AddFeeType(et);
         }
 
         public bool Update(FeeTypeET et)
@@ -27,23 +27,27 @@ namespace BUS
             return dal.UpdateFeeType(et);
         }
 
-        public bool Delete(int feeTypeId)
+        public bool DeleteFeeType(string feeTypeId)
         {
             return dal.DeleteFeeType(feeTypeId);
         }
 
-        public bool IsFeeTypeNameExists(string name, int? excludeId = null)
+        public bool IsFeeTypeNameExists(string name, string excludeId = null)
         {
             return dal.IsFeeTypeNameExists(name, excludeId);
         }
 
-        public bool CanDeleteFeeType(int id)
+        public bool CanDeleteFeeType(string feeTypeId)
         {
-            return dal.CanDeleteFeeType(id);
+            return dal.CanDeleteFeeType(feeTypeId);
         }
         public List<FeeTypeET> GetAllFeeTypes()
         {
             return dal.GetAllFeeTypes();
+        }
+        public bool IsFeeTypeIdExists(string feeTypeId)
+        {
+            return dal.IsFeeTypeIdExists(feeTypeId);
         }
 
     }

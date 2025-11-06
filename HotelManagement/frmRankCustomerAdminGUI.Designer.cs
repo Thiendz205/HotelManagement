@@ -42,10 +42,8 @@
             this.txtMinSpending = new System.Windows.Forms.TextBox();
             this.txtDiscountPercent = new System.Windows.Forms.TextBox();
             this.txtRankName = new System.Windows.Forms.TextBox();
-            this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvRankCustomer = new System.Windows.Forms.DataGridView();
             this.guna2GroupBox2.SuspendLayout();
-            this.guna2GroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRankCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,13 +62,13 @@
             this.btnEdit.BorderRadius = 20;
             this.btnEdit.CheckedState.Parent = this.btnEdit;
             this.btnEdit.CustomImages.Parent = this.btnEdit;
-            this.btnEdit.FillColor = System.Drawing.Color.White;
+            this.btnEdit.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnEdit.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.Black;
             this.btnEdit.HoverState.Parent = this.btnEdit;
             this.btnEdit.Image = global::HotelManagement.Properties.Resources.updateHR;
             this.btnEdit.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnEdit.Location = new System.Drawing.Point(427, 67);
+            this.btnEdit.Location = new System.Drawing.Point(1161, 154);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.ShadowDecoration.Parent = this.btnEdit;
             this.btnEdit.Size = new System.Drawing.Size(178, 62);
@@ -83,13 +81,13 @@
             this.btnRefresh.BorderRadius = 20;
             this.btnRefresh.CheckedState.Parent = this.btnRefresh;
             this.btnRefresh.CustomImages.Parent = this.btnRefresh;
-            this.btnRefresh.FillColor = System.Drawing.Color.White;
+            this.btnRefresh.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnRefresh.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.Black;
             this.btnRefresh.HoverState.Parent = this.btnRefresh;
             this.btnRefresh.Image = global::HotelManagement.Properties.Resources.refreshRECP;
             this.btnRefresh.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnRefresh.Location = new System.Drawing.Point(622, 67);
+            this.btnRefresh.Location = new System.Drawing.Point(1490, 153);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.ShadowDecoration.Parent = this.btnRefresh;
             this.btnRefresh.Size = new System.Drawing.Size(178, 62);
@@ -102,13 +100,13 @@
             this.guna2Button1.BorderRadius = 20;
             this.guna2Button1.CheckedState.Parent = this.guna2Button1;
             this.guna2Button1.CustomImages.Parent = this.guna2Button1;
-            this.guna2Button1.FillColor = System.Drawing.Color.White;
+            this.guna2Button1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.guna2Button1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2Button1.ForeColor = System.Drawing.Color.Black;
             this.guna2Button1.HoverState.Parent = this.guna2Button1;
             this.guna2Button1.Image = global::HotelManagement.Properties.Resources.addHR;
             this.guna2Button1.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button1.Location = new System.Drawing.Point(26, 67);
+            this.guna2Button1.Location = new System.Drawing.Point(1161, 49);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
             this.guna2Button1.Size = new System.Drawing.Size(178, 62);
@@ -148,13 +146,13 @@
             this.btnDelete.BorderRadius = 20;
             this.btnDelete.CheckedState.Parent = this.btnDelete;
             this.btnDelete.CustomImages.Parent = this.btnDelete;
-            this.btnDelete.FillColor = System.Drawing.Color.White;
+            this.btnDelete.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnDelete.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.Black;
             this.btnDelete.HoverState.Parent = this.btnDelete;
             this.btnDelete.Image = global::HotelManagement.Properties.Resources.signs_close_icon_png;
             this.btnDelete.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnDelete.Location = new System.Drawing.Point(220, 67);
+            this.btnDelete.Location = new System.Drawing.Point(1490, 49);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.ShadowDecoration.Parent = this.btnDelete;
             this.btnDelete.Size = new System.Drawing.Size(178, 62);
@@ -177,7 +175,7 @@
             this.guna2GroupBox2.FillColor = System.Drawing.SystemColors.ActiveCaption;
             this.guna2GroupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(15, 104);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(12, 22);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
             this.guna2GroupBox2.Size = new System.Drawing.Size(951, 194);
@@ -204,26 +202,6 @@
             this.txtRankName.Name = "txtRankName";
             this.txtRankName.Size = new System.Drawing.Size(231, 30);
             this.txtRankName.TabIndex = 5;
-            // 
-            // guna2GroupBox3
-            // 
-            this.guna2GroupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2GroupBox3.BorderColor = System.Drawing.Color.Black;
-            this.guna2GroupBox3.BorderRadius = 1;
-            this.guna2GroupBox3.Controls.Add(this.btnRefresh);
-            this.guna2GroupBox3.Controls.Add(this.btnEdit);
-            this.guna2GroupBox3.Controls.Add(this.btnDelete);
-            this.guna2GroupBox3.Controls.Add(this.guna2Button1);
-            this.guna2GroupBox3.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.guna2GroupBox3.FillColor = System.Drawing.SystemColors.ActiveCaption;
-            this.guna2GroupBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2GroupBox3.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox3.Location = new System.Drawing.Point(1050, 110);
-            this.guna2GroupBox3.Name = "guna2GroupBox3";
-            this.guna2GroupBox3.ShadowDecoration.Parent = this.guna2GroupBox3;
-            this.guna2GroupBox3.Size = new System.Drawing.Size(810, 188);
-            this.guna2GroupBox3.TabIndex = 17;
-            this.guna2GroupBox3.Text = "Chức Năng";
             // 
             // dgvRankCustomer
             // 
@@ -261,18 +239,20 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.guna2GroupBox2);
-            this.Controls.Add(this.guna2GroupBox3);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.guna2Button1);
             this.Controls.Add(this.dgvRankCustomer);
             this.Name = "frmRankCustomerAdminGUI";
             this.Text = "frmRankCustomerAdminGUI";
             this.Load += new System.EventHandler(this.frmRankCustomerAdminGUI_Load);
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
-            this.guna2GroupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRankCustomer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -290,7 +270,6 @@
         private System.Windows.Forms.Label label9;
         private Guna.UI2.WinForms.Guna2Button btnDelete;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
-        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox3;
         private System.Windows.Forms.DataGridView dgvRankCustomer;
         private System.Windows.Forms.TextBox txtMinSpending;
         private System.Windows.Forms.TextBox txtDiscountPercent;

@@ -49,6 +49,7 @@
     <Compile Include="CustomerBUS.cs" />
     <Compile Include="EquipmentStorage_BUS.cs" />
     <Compile Include="FeeTypeBUS.cs" />
+    <Compile Include="InvoiceBUS.cs" />
     <Compile Include="Login_Logout_BUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RankCusstomerBUS.cs" />

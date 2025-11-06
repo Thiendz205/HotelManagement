@@ -17,7 +17,7 @@ namespace BUS
             return dal.GetAll();
         }
 
-        public bool CheckDuplicate(int bookingId, int feeTypeId, int? excludeId = null)
+        public bool CheckDuplicate(string bookingId, string feeTypeId, string excludeId = null)
         {
             return dal.CheckDuplicate(bookingId, feeTypeId, excludeId);
         }
@@ -31,14 +31,20 @@ namespace BUS
             return dal.Update(dto);
         }
 
-        public bool Delete(int id)
+        public bool Delete(string id)
         {
             return dal.Delete(id);
         }
-        // BookingBUS.cs
+
         public List<BookingFeeET> GetBookingsWithActiveRooms()
         {
             return dal.GetBookingsWithActiveRooms();
         }
+        public List<BookingFeeET> Search(string bookingFeeId, string customerName, string roomName)
+        {
+            return dal.Search(bookingFeeId, customerName, roomName);
+        }
+        public bool IsBookingFeeIdExists(string bookingFeeId) => dal.IsBookingFeeIdExists(bookingFeeId);
+
     }
 }

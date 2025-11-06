@@ -42,14 +42,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountET.cs" />
+    <Compile Include="AddBookingResult.cs" />
     <Compile Include="BillET.cs" />
     <Compile Include="BookingET.cs" />
     <Compile Include="BookingFeeET.cs" />
     <Compile Include="BookinggET.cs" />
+    <Compile Include="BookingHistoryET.cs" />
+    <Compile Include="BookingUsageET.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="CustomerET.cs" />
+    <Compile Include="CustomerPaymentInfoET.cs" />
     <Compile Include="EquipmentStorage_ET.cs" />
     <Compile Include="FeeTypeET.cs" />
+    <Compile Include="InvoiceET.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RankCustomerET.cs" />
     <Compile Include="RoomEquipment_ET.cs" />

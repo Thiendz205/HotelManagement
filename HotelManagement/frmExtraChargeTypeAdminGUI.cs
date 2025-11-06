@@ -25,9 +25,10 @@ namespace HotelManagement
             LoadFeeTypes();
         }
         private readonly FeeTypeBUS bus = new FeeTypeBUS();
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!ValidateInput()) return; // kiểm tra đầu vào trước
+            if (!ValidateInput()) return;
 
             if (bus.IsFeeTypeNameExists(txtFeeTypeName.Text.Trim()))
             {
@@ -43,11 +44,13 @@ namespace HotelManagement
                 Notes = txtNotes.Text.Trim()
             };
 
-            if (bus.Add(et))
+            string newId = bus.AddFeeType(et);
+            if (!string.IsNullOrEmpty(newId))
             {
-                MessageBox.Show("Thêm loại phí thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Thêm loại phí thành công! Mã mới: {newId}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadFeeTypes();
                 ClearInput();
+                txtFeeType.Text = newId;
             }
             else
             {
@@ -56,15 +59,17 @@ namespace HotelManagement
         }
         private void ClearInput()
         {
+            txtFeeType.Clear();
             txtFeeTypeName.Clear();
             txtDefaultPrice.Clear();
             txtNotes.Clear();
             cboCategory.SelectedIndex = -1;
             selectedFeeTypeId = null;
             oldFeeTypeName = "";
+            txtFeeType.Enabled = true;
         }
 
-        private int? selectedFeeTypeId = null;
+        private string selectedFeeTypeId = null;
         private string oldFeeTypeName = "";
         private bool ValidateInput()
         {
@@ -116,7 +121,9 @@ namespace HotelManagement
             if (e.RowIndex >= 0)
             {
                 var row = dgvFeeTypes.Rows[e.RowIndex];
-                selectedFeeTypeId = Convert.ToInt32(row.Cells["FeeTypeID"].Value);
+                selectedFeeTypeId = row.Cells["FeeTypeID"].Value?.ToString();
+
+                txtFeeType.Text = selectedFeeTypeId;
 
                 txtFeeTypeName.Text = row.Cells["FeeTypeName"].Value?.ToString();
                 cboCategory.Text = row.Cells["Category"].Value?.ToString();
@@ -124,23 +131,21 @@ namespace HotelManagement
                 txtNotes.Text = row.Cells["Notes"].Value?.ToString();
 
                 oldFeeTypeName = txtFeeTypeName.Text.Trim();
+                txtFeeType.Enabled = false;
             }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (selectedFeeTypeId == null)
+            if (string.IsNullOrEmpty(selectedFeeTypeId))
             {
                 MessageBox.Show("Vui lòng chọn loại phí cần cập nhật!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!ValidateInput())
-                return;
+            if (!ValidateInput()) return;
 
             string newName = txtFeeTypeName.Text.Trim();
-
-            // Kiểm tra trùng tên (chỉ khi tên bị thay đổi)
             if (!newName.Equals(oldFeeTypeName, StringComparison.OrdinalIgnoreCase))
             {
                 if (bus.IsFeeTypeNameExists(newName))
@@ -152,16 +157,14 @@ namespace HotelManagement
 
             var et = new FeeTypeET
             {
-                FeeTypeID = selectedFeeTypeId.Value,
+                FeeTypeID = selectedFeeTypeId,
                 FeeTypeName = newName,
                 Category = cboCategory.Text.Trim(),
                 DefaultPrice = decimal.Parse(txtDefaultPrice.Text),
                 Notes = txtNotes.Text.Trim()
             };
 
-            bool result = bus.Update(et);
-
-            if (result)
+            if (bus.Update(et))
             {
                 MessageBox.Show("Cập nhật loại phí thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadFeeTypes();
@@ -169,63 +172,54 @@ namespace HotelManagement
             }
             else
             {
-                MessageBox.Show("Cập nhật thất bại. Vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cập nhật thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (selectedFeeTypeId == null)
+            if (string.IsNullOrEmpty(selectedFeeTypeId))
             {
                 MessageBox.Show("Vui lòng chọn loại phí cần xóa!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa loại phí này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.No)
-                return;
-
-            bool canDelete = bus.CanDeleteFeeType(selectedFeeTypeId.Value);
-
-            if (!canDelete)
+            if (!bus.CanDeleteFeeType(selectedFeeTypeId))
             {
-                MessageBox.Show("Không thể xóa loại phí này vì đã được sử dụng trong hóa đơn hoặc booking!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Không thể xóa vì loại phí đã được sử dụng!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (bus.Delete(selectedFeeTypeId.Value))
+            var confirm = MessageBox.Show("Bạn có chắc muốn xóa loại phí này không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
             {
-                MessageBox.Show("Xóa loại phí thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadFeeTypes();
-                ClearInput();
-            }
-            else
-            {
-                MessageBox.Show("Xóa thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (bus.DeleteFeeType(selectedFeeTypeId))
+                {
+                    MessageBox.Show("Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadFeeTypes();
+                    ClearInput();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         private void LoadFeeTypes()
         {
             var list = bus.GetAllFeeTypes();
-
             dgvFeeTypes.DataSource = list;
 
             if (dgvFeeTypes.Columns.Count == 0) return;
 
-            // Ẩn cột ID
-            dgvFeeTypes.Columns["FeeTypeID"].Visible = false;
-
-            // Đặt tiêu đề tiếng Việt
+            dgvFeeTypes.Columns["FeeTypeID"].HeaderText = "Mã loại phí";
             dgvFeeTypes.Columns["FeeTypeName"].HeaderText = "Tên loại phí";
             dgvFeeTypes.Columns["Category"].HeaderText = "Nhóm loại phí";
             dgvFeeTypes.Columns["DefaultPrice"].HeaderText = "Giá mặc định (VNĐ)";
             dgvFeeTypes.Columns["Notes"].HeaderText = "Ghi chú";
 
-
-            // Căn giữa và tự động giãn cột
             dgvFeeTypes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvFeeTypes.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvFeeTypes.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)

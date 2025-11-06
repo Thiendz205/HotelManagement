@@ -8,9 +8,9 @@ namespace ET
 {
     public class BookingFeeET
     {
-        public int BookingFeeID { get; set; }
-        public int BookingID { get; set; }
-        public int FeeTypeID { get; set; }
+        public string BookingFeeID { get; set; }  
+        public string BookingID { get; set; }     
+        public string FeeTypeID { get; set; }      
         public string FeeTypeName { get; set; }
         public int Quantity { get; set; }
         public string CustomerName { get; set; }
@@ -19,6 +19,7 @@ namespace ET
         public string Notes { get; set; }
         public decimal UnitPrice { get; set; }     // Đơn giá
         public decimal TotalAmount { get; set; }   // Tổng tiền
+      
 
     }
 }

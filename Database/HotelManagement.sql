@@ -6,7 +6,7 @@ SET DATEFORMAT DMY;
 GO
 -- Bảng Tài khoản (Account)
 CREATE TABLE Account (
-    AccountID INT PRIMARY KEY IDENTITY(1,1),                          -- Mã tài khoản (tự tăng)
+    AccountID char(10),                          -- Mã tài khoản (tự tăng)
     Username NVARCHAR(50) NOT NULL,                                   -- Tên đăng nhập
     Password NVARCHAR(50) NOT NULL,                                   -- Mật khẩu (hash)
     StartDate DATE NOT NULL DEFAULT GETDATE(),                        -- Ngày bắt đầu tạo
@@ -33,7 +33,7 @@ GO
 
 -- Bảng Khách hàng (Customer)
 CREATE TABLE Customer (
-    CustomerID INT IDENTITY(1,1) PRIMARY KEY,        -- Mã khách hàng (tự tăng)
+    CustomerID char(10) PRIMARY KEY ,        -- Mã khách hàng (tự tăng)
     FullName NVARCHAR(100) NOT NULL,                 -- Họ tên
     PhoneNumber VARCHAR(15) NOT NULL UNIQUE,         -- Số điện thoại
     NationalID VARCHAR(20) NOT NULL UNIQUE,          -- Căn cước công dân (CCCD)
@@ -48,7 +48,7 @@ GO
 -- Bảng Loại khách hàng (Rank/Level)
 CREATE TABLE CustomerRank (
     RankID INT PRIMARY KEY IDENTITY(1,1),       -- Mã rank (0,1,2,3,4,5)
-    RankName NVARCHAR(50) NOT NULL,             -- Tên hạng (Thường, Silver, Gold...)
+    RankName NVARCHAR(50) NOT NULL UNIQUE,       -- Tên hạng (Thường, Silver, Gold...) - duy nhất
     DiscountPercent DECIMAL(5,2) NOT NULL,      -- % giảm giá
     MinSpending DECIMAL(18,2) DEFAULT 0         -- Điều kiện tổng chi tiêu tối thiểu
 );
@@ -56,7 +56,7 @@ GO
 
 --Bảng RoomType (loại phòng)
 CREATE TABLE RoomType (
-    RoomTypeID INT IDENTITY(1,1) PRIMARY KEY,   -- Mã loại phòng
+    RoomTypeID char(10)PRIMARY KEY,   -- Mã loại phòng
     TypeName NVARCHAR(50) NOT NULL,             -- Tên loại (Single, Double, VIP...)
     PricePerDay DECIMAL(18,2) NOT NULL,         -- Giá thuê theo ngày
     PricePerHour DECIMAL(18,2) NOT NULL,        -- Giá thuê theo giờ
@@ -68,7 +68,7 @@ GO
 -- Bảng giá phòng động theo thời gian
 CREATE TABLE RoomTypePrice (
     PriceID INT IDENTITY(1,1) PRIMARY KEY,
-    RoomTypeID INT NOT NULL,                     -- Loại phòng áp dụng
+    RoomTypeID char(10) not null,                     -- Loại phòng áp dụng
     StartDate DATE NOT NULL,                     -- Ngày bắt đầu áp dụng
     EndDate DATE NOT NULL,                       -- Ngày kết thúc áp dụng
     PricePerDay DECIMAL(18,2) NOT NULL,          -- Giá thuê theo ngày trong giai đoạn này
@@ -79,20 +79,21 @@ CREATE TABLE RoomTypePrice (
 
 -- Bảng Room (Phòng)
 CREATE TABLE Room (
-    RoomID INT IDENTITY(1,1) PRIMARY KEY,      -- Mã phòng (tự tăng)
+    RoomID char(10) PRIMARY KEY,      -- Mã phòng (tự tăng)
     RoomName NVARCHAR(50) NOT NULL,            -- Tên phòng
-    RoomTypeID INT NOT NULL,                   -- FK đến loại phòng
+    RoomTypeID char(10) NOT NULL,                   -- FK đến loại phòng
     Capacity INT NOT NULL DEFAULT 1,           -- Sức chứa tối đa
     Description NVARCHAR(MAX),                 -- Mô tả thêm
     Status NVARCHAR(20) NOT NULL               -- Trạng thái phòng
-        CONSTRAINT DF_Room_Status DEFAULT N'Available'
+        CONSTRAINT DF_Room_Status DEFAULT N'Available',
+	Official Nvarchar(50)
 );
 GO
 
 --Bảng đánh giá phòng
 CREATE TABLE RoomEvaluation (
     EvaluationID INT IDENTITY(1,1) PRIMARY KEY,
-    RoomID INT NOT NULL,                            
+    RoomID char(10) NOT NULL,                             
     EvaluationDate DATE NOT NULL DEFAULT GETDATE(), 
     
     -- Nhóm cơ bản
@@ -116,7 +117,7 @@ GO
 
 -- Bảng kho thiết bị
 CREATE TABLE EquipmentStorage (
-    EquipmentID INT IDENTITY(1,1) PRIMARY KEY,   -- Mã thiết bị trong kho
+    EquipmentID char(10) PRIMARY KEY,   -- Mã thiết bị trong kho
     EquipmentName NVARCHAR(100) NOT NULL,        -- Tên thiết bị
     EquipmentCategory NVARCHAR(50),              -- Nhóm thiết bị (Y tế, Nội thất, Điện tử...)
     Quantity INT NOT NULL DEFAULT 1,             -- Số lượng trong kho
@@ -129,9 +130,9 @@ GO
 
 -- Bảng nối giữa phòng và thiết bị
 CREATE TABLE RoomEquipment (
-    RoomEquipmentID INT IDENTITY(1,1) PRIMARY KEY, -- Mã tự tăng
-    RoomID INT NOT NULL,                           -- FK đến phòng
-    EquipmentStorage INT NOT NULL,                  -- FK đến loại thiết bị
+    RoomEquipmentID char(10) PRIMARY KEY, -- Mã tự tăng
+    RoomID char(10) NOT NULL,                           -- FK đến phòng
+    EquipmentStorage Char(10) NOT NULL,                  -- FK đến loại thiết bị
     Quantity INT NOT NULL DEFAULT 1,               -- Số lượng thiết bị
     InstalledDate DATE DEFAULT GETDATE(),          -- Ngày lắp đặt
     Condition NVARCHAR(50) DEFAULT N'Good',        -- Tình trạng (Good, Damaged, Under Maintenance...)
@@ -142,7 +143,7 @@ GO
 
 -- Loại phí (dịch vụ, bồi thường, khác) + giá mặc định
 CREATE TABLE FeeType (
-    FeeTypeID INT IDENTITY(1,1) PRIMARY KEY,
+    FeeTypeID Char(10) PRIMARY KEY,
     FeeTypeName NVARCHAR(100) NOT NULL,      -- Tên phí: 'Check-in sớm', 'Thêm giường', 'Hỏng máy lạnh'
     Category NVARCHAR(50) NOT NULL,          -- Nhóm: 'Phụ phí dịch vụ', 'Bồi thường hư hỏng'
     DefaultPrice DECIMAL(18,2) NOT NULL,     -- Giá mặc định cho loại phí này
@@ -152,9 +153,9 @@ GO
 
 -- Các phí phát sinh thực tế của từng booking
 CREATE TABLE BookingFee (
-    BookingFeeID INT IDENTITY(1,1) PRIMARY KEY,
-    BookingID INT NOT NULL,                      -- Liên kết booking
-    FeeTypeID INT NOT NULL,                      -- Liên kết loại phí
+    BookingFeeID char(10) PRIMARY KEY,
+    BookingID char(10) NOT NULL,                      -- Liên kết booking
+    FeeTypeID char(10) NOT NULL,                      -- Liên kết loại phí
     Quantity INT NOT NULL DEFAULT 1,             -- Số lượng (VD: 2 khăn tắm bị mất)
     CreatedAt DATETIME DEFAULT GETDATE(),        -- Ngày ghi nhận phí
     Notes NVARCHAR(max),                         -- Ghi chú thêm
@@ -163,9 +164,9 @@ GO
 
 -- Bảng Booking (Đặt phòng)
 CREATE TABLE Booking(
-    BookingID INT IDENTITY(1,1) PRIMARY KEY, -- Mã đặt phòng
-    CustomerID INT NOT NULL,                 -- Mã khách hàng
-    RoomID INT NOT NULL,                     -- Mã phòng
+    BookingID Char(10) PRIMARY KEY, -- Mã đặt phòng
+    CustomerID char(10) NOT NULL,                 -- Mã khách hàng
+    RoomID char(10) NOT NULL,                     -- Mã phòng
     RentalType NVARCHAR(10) NOT NULL         -- Kiểu thuê: 'Day' hoặc 'Hour'
         CONSTRAINT CK_Booking_RentalType CHECK (RentalType IN (N'Day', N'Hour')),
     CheckIn DATETIME NOT NULL,               -- Thời gian vào
@@ -179,7 +180,7 @@ GO
 
 -- Bảng Dịch vụ (Service)
 CREATE TABLE Service (
-    ServiceID INT IDENTITY(1,1) PRIMARY KEY,    -- Mã dịch vụ
+    ServiceID char(10) PRIMARY KEY,    -- Mã dịch vụ
     ServiceName NVARCHAR(100) NOT NULL,         -- Tên dịch vụ (Ăn sáng, Giặt ủi…)
     Category NVARCHAR(50),                      -- Nhóm dịch vụ (Ăn uống, Giặt ủi, Vận chuyển…)
     Price DECIMAL(18,2) NOT NULL,               -- Giá dịch vụ
@@ -189,18 +190,19 @@ GO
 
 -- Bảng Sử dụng dịch vụ (ServiceUsage)
 CREATE TABLE ServiceUsage (
-    UsageID INT IDENTITY(1,1) PRIMARY KEY,     -- Mã sử dụng dịch vụ
-    BookingID INT NOT NULL,                    -- Mã đặt phòng (liên kết Booking)
-    ServiceID INT NOT NULL,                    -- Mã dịch vụ (liên kết Service)
+    UsageID char(10) PRIMARY KEY,     -- Mã sử dụng dịch vụ
+    BookingID char(10) NOT NULL,                    -- Mã đặt phòng (liên kết Booking)
+    ServiceID char(10) NOT NULL,                    -- Mã dịch vụ (liên kết Service)
     Quantity INT NOT NULL DEFAULT 1,           -- Số lượng
-    StaffID Char(10) NOT NULL                  -- Nhân viên phụ trách dịch vụ
+    StaffID Char(10) NOT NULL,                  -- Nhân viên phụ trách dịch vụ
+	UsageDate DATETIME NOT NULL DEFAULT GETDATE()-- Ngày sử dụng dịch vụ
 );
 GO
 
 -- Bảng Hóa đơn
 CREATE TABLE Invoice (
-    InvoiceID INT IDENTITY(1,1) PRIMARY KEY, -- Mã hóa đơn
-    BookingID INT NOT NULL,                  -- Mã đặt phòng (FK)
+    InvoiceID char(10) PRIMARY KEY, -- Mã hóa đơn
+    BookingID char(10) NOT NULL,                  -- Mã đặt phòng (FK)
     InvoiceDate DATETIME NOT NULL DEFAULT GETDATE(), -- Ngày lập hóa đơn
     TotalAmount DECIMAL(18,2) NOT NULL,      -- Tổng tiền thanh toán
     PaymentMethod NVARCHAR(50) NOT NULL,     -- Hình thức thanh toán (Cash, Card, Transfer...)
@@ -208,6 +210,11 @@ CREATE TABLE Invoice (
         CONSTRAINT DF_Invoice_PaidStatus DEFAULT N'Unpaid', -- Trạng thái thanh toán
     StaffID CHAR(10) NOT NULL,               -- Nhân viên lập hóa đơn
     Note NVARCHAR(200),                      -- Ghi chú thêm
+	CreatedBy    NVARCHAR(20)  NOT NULL DEFAULT 'UNKNOWN',
+    AuditStatus  NVARCHAR(20)  NOT NULL DEFAULT 'OK',
+    AuditNote    NVARCHAR(255) NULL,
+    AuditedBy    NVARCHAR(20)  NULL,
+    AuditedAt    DATETIME      NULL
 );
 
 ALTER TABLE Booking 
@@ -219,7 +226,7 @@ ADD
     CONSTRAINT FK_Booking_Room FOREIGN KEY (RoomID) REFERENCES Room(RoomID),
 
      -- Khóa ngoại liên kết đến bảng Nhân viên (mỗi Booking phải thuộc 1 nhân viên)
-    CONSTRAINT FK_Booking_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID);
+    CONSTRAINT FK_Booking_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 -- Thêm khóa ngoại cho bảng ServiceUsage
 ALTER TABLE ServiceUsage 
@@ -231,51 +238,50 @@ ADD
     CONSTRAINT FK_ServiceUsage_Service FOREIGN KEY (ServiceID) REFERENCES Service(ServiceID),
     
       -- Khóa ngoại liên kết đến bảng Nhân viên (mỗi ServiceUsage phải thuộc 1 nhân viên)
-    CONSTRAINT FK_ServiceUsage_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID);
+    CONSTRAINT FK_ServiceUsage_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 
 -- Thêm khóa ngoại liên kết đến bảng Staff
 ALTER TABLE Account
-ADD CONSTRAINT FK_Account_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID);
+ADD CONSTRAINT FK_Account_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 -- Bảng BookingFee tham chiếu đến Booking và FeeType
 ALTER TABLE BookingFee
 ADD
     CONSTRAINT FK_BookingFee_Booking FOREIGN KEY (BookingID) REFERENCES Booking(BookingID),  -- Liên kết phí phát sinh với một Booking cụ thể
-    CONSTRAINT FK_BookingFee_FeeType FOREIGN KEY (FeeTypeID) REFERENCES FeeType(FeeTypeID);  -- Loại phí (dịch vụ, phụ thu...)
+    CONSTRAINT FK_BookingFee_FeeType FOREIGN KEY (FeeTypeID) REFERENCES FeeType(FeeTypeID)  ON DELETE CASCADE ON UPDATE CASCADE;  -- Loại phí (dịch vụ, phụ thu...)
 GO
 
 --Bảng khóa ngoại khách sạn
 ALTER TABLE Customer
-ADD CONSTRAINT FK_Customer_Rank FOREIGN KEY (RankID) REFERENCES CustomerRank(RankID);
+ADD CONSTRAINT FK_Customer_Rank FOREIGN KEY (RankID) REFERENCES CustomerRank(RankID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 -- Bảng Invoice tham chiếu đến Booking và Staff
 ALTER TABLE Invoice
 ADD
     CONSTRAINT FK_Invoice_Booking FOREIGN KEY (BookingID)  
-        REFERENCES Booking(BookingID) 
-        ON DELETE CASCADE ON UPDATE CASCADE,   -- Nếu xóa hoặc cập nhật Booking thì hóa đơn cũng thay đổi tương ứng
+        REFERENCES Booking(BookingID) ,   -- Nếu xóa hoặc cập nhật Booking thì hóa đơn cũng thay đổi tương ứng
     CONSTRAINT FK_Invoice_Staff FOREIGN KEY (StaffID)  
-        REFERENCES Staff(StaffID);             -- Nhân viên lập hóa đơn
+        REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;             -- Nhân viên lập hóa đơn
 GO
 -- Bảng Room tham chiếu đến RoomType
 ALTER TABLE Room
 ADD
-    CONSTRAINT FK_Room_RoomType FOREIGN KEY(RoomTypeID) REFERENCES RoomType(RoomTypeID); -- Mỗi phòng thuộc một loại phòng
+    CONSTRAINT FK_Room_RoomType FOREIGN KEY(RoomTypeID) REFERENCES RoomType(RoomTypeID)  ON DELETE CASCADE ON UPDATE CASCADE; -- Mỗi phòng thuộc một loại phòng
 GO
 ALTER TABLE RoomEquipment
 ADD CONSTRAINT FK_RoomEquipment_EquipmentStorage
-    FOREIGN KEY (EquipmentStorage) REFERENCES EquipmentStorage(EquipmentID);
+    FOREIGN KEY (EquipmentStorage) REFERENCES EquipmentStorage(EquipmentID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 
 ALTER TABLE RoomEquipment
 ADD CONSTRAINT FK_RoomEquipment_Staff
-    FOREIGN KEY (StaffID) REFERENCES Staff(StaffID);
-GO
+    FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)  ON DELETE CASCADE ON UPDATE CASCADE;
+GO 
 
 ALTER TABLE RoomEquipment
 ADD CONSTRAINT FK_RoomEquipment_Room
-    FOREIGN KEY (RoomID) REFERENCES Room(RoomID);
+    FOREIGN KEY (RoomID) REFERENCES Room(RoomID)  ON DELETE CASCADE ON UPDATE CASCADE;
 GO
 
 ALTER TABLE EquipmentStorage
@@ -284,9 +290,177 @@ ADD CONSTRAINT FK_EquipmentStorage_Staff
 GO
 ALter table RoomTypePrice
 ADD CONSTRAINT FK_RoomTypePrice_RoomType
-FOREIGN KEY (RoomTypeID) REFERENCES RoomType(RoomTypeID)
+FOREIGN KEY (RoomTypeID) REFERENCES RoomType(RoomTypeID)  ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE RoomEvaluation
 ADD CONSTRAINT FK_RoomEvaluation_Room
 FOREIGN KEY (RoomID) REFERENCES Room(RoomID) ON DELETE CASCADE ON UPDATE CASCADE;
 GO
+CREATE OR ALTER PROCEDURE sp_GetInvoiceDetailByBooking
+    @BookingID CHAR(10)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE 
+        @CustomerID CHAR(10),
+        @RankID CHAR(10),
+        @DiscountPercent DECIMAL(5,2) = 0,
+        @TotalBefore DECIMAL(18,2) = 0,
+        @TotalAfter DECIMAL(18,2) = 0;
+
+    -- 🔹 Lấy thông tin khách hàng
+    SELECT 
+        @CustomerID = b.CustomerID
+    FROM Booking b
+    WHERE b.BookingID = @BookingID;
+
+    SELECT 
+        @RankID = c.RankID
+    FROM Customer c
+    WHERE c.CustomerID = @CustomerID;
+
+    SELECT 
+        @DiscountPercent = ISNULL(r.DiscountPercent, 0)
+    FROM CustomerRank r
+    WHERE r.RankID = @RankID;
+
+    -- 🔹 Tính tổng tiền trước và sau giảm
+    SELECT 
+        @TotalBefore =
+        (
+            (
+                CASE 
+                    WHEN b.RentalType = 'Day' 
+                        THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                    ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
+                END *
+                CASE 
+                    WHEN b.RentalType = 'Day' 
+                        THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+                    ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
+                END
+            )
+            + ISNULL((SELECT SUM(s.Price * su.Quantity) FROM ServiceUsage su JOIN Service s ON s.ServiceID = su.ServiceID WHERE su.BookingID = b.BookingID), 0)
+            + ISNULL((SELECT SUM(ft.DefaultPrice * bf.Quantity) FROM BookingFee bf JOIN FeeType ft ON ft.FeeTypeID = bf.FeeTypeID WHERE bf.BookingID = b.BookingID), 0)
+        )
+    FROM Booking b
+    JOIN Room r ON r.RoomID = b.RoomID
+    JOIN RoomType rt ON rt.RoomTypeID = r.RoomTypeID
+    OUTER APPLY (
+        SELECT TOP 1 PricePerDay, PricePerHour
+        FROM RoomTypePrice p
+        WHERE p.RoomTypeID = rt.RoomTypeID
+          AND b.CheckIn BETWEEN p.StartDate AND p.EndDate
+        ORDER BY p.StartDate DESC
+    ) p
+    WHERE b.BookingID = @BookingID;
+
+    SET @TotalAfter = @TotalBefore * (1 - @DiscountPercent / 100.0);
+
+    -- 🔹 1️⃣ Thông tin khách hàng (chỉ 1 dòng)
+    SELECT 
+        N'Thông tin hóa đơn' AS [Section],
+        b.BookingID,
+        c.FullName AS CustomerName,
+        c.PhoneNumber,
+        ISNULL(rk.RankName, N'Không có') AS RankName,
+        @DiscountPercent AS DiscountPercent,
+        @TotalBefore AS TotalBeforeDiscount,
+        @TotalAfter AS TotalAfterDiscount,
+        b.CheckIn,
+        b.CheckOut
+    FROM Booking b
+    JOIN Customer c ON c.CustomerID = b.CustomerID
+    LEFT JOIN CustomerRank rk ON rk.RankID = c.RankID
+    WHERE b.BookingID = @BookingID;
+
+    -- 🔹 2️⃣ Chi tiết hóa đơn (nhiều dòng)
+    SELECT 
+        CASE WHEN Part.SortOrder = 1 THEN N'Tiền phòng'
+             WHEN Part.SortOrder = 2 THEN N'Dịch vụ'
+             WHEN Part.SortOrder = 3 THEN N'Phụ phí'
+        END AS [Type],
+        Part.ItemName,
+        Part.UnitPrice,
+        Part.Quantity,
+        Part.PriceBeforeDiscount,
+        Part.PriceAfterDiscount,
+        Part.UsedAt
+    FROM
+    (
+        -- Tiền phòng
+        SELECT 
+            1 AS SortOrder,
+            rt.TypeName AS ItemName,
+            CASE 
+                WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
+            END AS UnitPrice,
+            CASE 
+                WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+                ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
+            END AS Quantity,
+            (CASE 
+                WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
+            END *
+            CASE 
+                WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+                ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
+            END) AS PriceBeforeDiscount,
+            (CASE 
+                WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
+            END *
+            CASE 
+                WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+                ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
+            END) * (1 - @DiscountPercent / 100.0) AS PriceAfterDiscount,
+            b.CheckIn AS UsedAt
+        FROM Booking b
+        JOIN Room r ON r.RoomID = b.RoomID
+        JOIN RoomType rt ON rt.RoomTypeID = r.RoomTypeID
+        OUTER APPLY (
+            SELECT TOP 1 PricePerDay, PricePerHour
+            FROM RoomTypePrice p
+            WHERE p.RoomTypeID = rt.RoomTypeID
+              AND b.CheckIn BETWEEN p.StartDate AND p.EndDate
+            ORDER BY p.StartDate DESC
+        ) p
+        WHERE b.BookingID = @BookingID
+
+        UNION ALL
+
+        -- Dịch vụ
+        SELECT 
+            2 AS SortOrder,
+            s.ServiceName AS ItemName,
+            s.Price AS UnitPrice,
+            su.Quantity,
+            s.Price * su.Quantity AS PriceBeforeDiscount,
+            (s.Price * su.Quantity) * (1 - @DiscountPercent / 100.0) AS PriceAfterDiscount,
+            su.UsageDate AS UsedAt
+        FROM ServiceUsage su
+        JOIN Service s ON s.ServiceID = su.ServiceID
+        WHERE su.BookingID = @BookingID
+
+        UNION ALL
+
+        -- Phụ phí
+        SELECT 
+            3 AS SortOrder,
+            ft.FeeTypeName AS ItemName,
+            ft.DefaultPrice AS UnitPrice,
+            bf.Quantity,
+            ft.DefaultPrice * bf.Quantity AS PriceBeforeDiscount,
+            (ft.DefaultPrice * bf.Quantity) * (1 - @DiscountPercent / 100.0) AS PriceAfterDiscount,
+            bf.CreatedAt AS UsedAt
+        FROM BookingFee bf
+        JOIN FeeType ft ON ft.FeeTypeID = bf.FeeTypeID
+        WHERE bf.BookingID = @BookingID
+    ) AS Part
+    ORDER BY Part.SortOrder, Part.UsedAt;
+END;
+GO
+Exec sp_GetInvoiceDetailByBooking 'BK005'

@@ -8,7 +8,7 @@ namespace ET
 {
     public class FeeTypeET
     {
-        public int FeeTypeID { get; set; }
+        public string FeeTypeID { get; set; }
         public string FeeTypeName { get; set; }
         public string Category { get; set; }
         public decimal DefaultPrice { get; set; }

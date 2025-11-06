@@ -1,10 +1,14 @@
-﻿using System;
+﻿using BUS;
+using ET;
+using Guna.UI2.HtmlRenderer.Adapters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +20,7 @@ namespace HotelManagement
         {
             InitializeComponent();
         }
-
+        private CustomerBUS bus = new CustomerBUS();
         private void guna2Button3_Click(object sender, EventArgs e)
         {
             var parent = Application.OpenForms["frmBookingStaffHomeGUI"] as frmBookingStaffHomeGUI;
@@ -26,72 +30,287 @@ namespace HotelManagement
                 parent.OpenChildForm(bookingDetailForm);
             }
         }
-
+        private string selectedCustomerId = null;
+        private string oldPhone = "";
+        private string oldCCCD = "";
         private void frmCustomerRECPGUI_Load(object sender, EventArgs e)
         {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Họ tên khách hàng");
-            dt.Columns.Add("Hạng");
-            dt.Columns.Add("Phòng");
-            dt.Columns.Add("Kiểu thuê");
-            dt.Columns.Add("Giá phòng (VNĐ)");
-            dt.Columns.Add("Check-in");
-            dt.Columns.Add("Check-out");
+            LoadCustomersAndUpgrade();
+            cboCountry.DropDownStyle = ComboBoxStyle.DropDown;
+            cboCountry.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboCountry.AutoCompleteSource = AutoCompleteSource.ListItems;
 
-            // ===== DỮ LIỆU DEMO NHIỀU KHÁCH HÀNG =====
-            dt.Rows.Add("Nguyễn Văn A", "Gold", "A01", "Theo ngày", "550,000", "05/10/2025 14:00", "07/10/2025 12:00");
-            dt.Rows.Add("Trần Thị B", "Silver", "A02", "Theo giờ", "120,000", "07/10/2025 10:00", "07/10/2025 13:30");
-            dt.Rows.Add("Phạm Minh C", "Thường", "A03", "Theo ngày", "480,000", "06/10/2025 09:00", "08/10/2025 11:00");
-            dt.Rows.Add("Lê Thị D", "Platinum", "A04", "Theo ngày", "800,000", "07/10/2025 15:00", "09/10/2025 10:00");
-            dt.Rows.Add("Đỗ Quốc E", "Gold", "A05", "Theo giờ", "150,000", "07/10/2025 08:00", "07/10/2025 11:30");
-            dt.Rows.Add("Nguyễn Hoàng F", "Silver", "A06", "Theo ngày", "520,000", "05/10/2025 13:00", "06/10/2025 11:00");
-            dt.Rows.Add("Phan Văn G", "Thường", "A07", "Theo giờ", "110,000", "07/10/2025 09:30", "07/10/2025 12:00");
-            dt.Rows.Add("Lâm Thị H", "Gold", "A08", "Theo ngày", "600,000", "06/10/2025 11:00", "08/10/2025 12:00");
-            dt.Rows.Add("Vũ Anh I", "Silver", "A09", "Theo ngày", "500,000", "07/10/2025 10:00", "09/10/2025 11:00");
+        }
+        private void LoadCustomersAndUpgrade()
+        {
+            var customers = bus.GetAllCustomers();
 
-            dt.Rows.Add("Bùi Đức J", "Thường", "B01", "Theo ngày", "420,000", "06/10/2025 12:00", "08/10/2025 10:00");
-            dt.Rows.Add("Hoàng Gia K", "Gold", "B02", "Theo giờ", "130,000", "07/10/2025 08:30", "07/10/2025 10:30");
-            dt.Rows.Add("Đặng Mỹ L", "Silver", "B03", "Theo ngày", "550,000", "05/10/2025 15:00", "07/10/2025 12:00");
-            dt.Rows.Add("Phan Minh M", "Thường", "B04", "Theo ngày", "470,000", "06/10/2025 09:00", "08/10/2025 11:00");
-            dt.Rows.Add("Ngô Trọng N", "Gold", "B05", "Theo ngày", "600,000", "07/10/2025 15:30", "09/10/2025 10:00");
-            dt.Rows.Add("Đoàn Thị O", "Platinum", "B06", "Theo giờ", "200,000", "07/10/2025 07:00", "07/10/2025 10:00");
-            dt.Rows.Add("Huỳnh Quốc P", "Silver", "B07", "Theo ngày", "530,000", "06/10/2025 08:00", "08/10/2025 12:00");
-            dt.Rows.Add("Võ Hữu Q", "Gold", "B08", "Theo ngày", "650,000", "05/10/2025 14:00", "07/10/2025 12:00");
-            dt.Rows.Add("Nguyễn Huy R", "Thường", "B09", "Theo giờ", "120,000", "07/10/2025 09:00", "07/10/2025 11:00");
+            // 🔹 Tự động nâng hạng (không hiện thông báo)
+            foreach (var c in customers)
+            {
+                bus.AutoUpgradeRank(c.CustomerID);
+            }
 
-            dt.Rows.Add("Trịnh Thu S", "Silver", "C01", "Theo ngày", "480,000", "05/10/2025 11:00", "07/10/2025 10:00");
-            dt.Rows.Add("Đặng Nhật T", "Gold", "C02", "Theo ngày", "580,000", "06/10/2025 09:30", "08/10/2025 11:30");
-            dt.Rows.Add("Phan Tấn U", "Platinum", "C03", "Theo ngày", "850,000", "07/10/2025 10:00", "09/10/2025 11:00");
-            dt.Rows.Add("Lê Thanh V", "Thường", "C04", "Theo giờ", "100,000", "07/10/2025 08:30", "07/10/2025 10:00");
-            dt.Rows.Add("Ngô Bảo W", "Gold", "C05", "Theo ngày", "650,000", "05/10/2025 13:00", "07/10/2025 12:00");
-            dt.Rows.Add("Trần Mỹ X", "Silver", "C06", "Theo ngày", "520,000", "06/10/2025 10:00", "08/10/2025 11:00");
-            dt.Rows.Add("Đoàn Minh Y", "Gold", "C07", "Theo giờ", "130,000", "07/10/2025 09:00", "07/10/2025 11:30");
-            dt.Rows.Add("Phạm Hữu Z", "Thường", "C08", "Theo ngày", "430,000", "06/10/2025 11:00", "08/10/2025 10:00");
-            dt.Rows.Add("Nguyễn Khánh AA", "Platinum", "C09", "Theo ngày", "900,000", "07/10/2025 14:00", "09/10/2025 10:00");
+            // 🔹 Sau khi nâng hạng xong, load lại dữ liệu mới nhất
+            customers = bus.GetAllCustomers();
 
-            dt.Rows.Add("Trương Văn BB", "Silver", "D01", "Theo ngày", "500,000", "06/10/2025 13:00", "08/10/2025 12:00");
-            dt.Rows.Add("Đặng Thị CC", "Gold", "D02", "Theo giờ", "150,000", "07/10/2025 07:00", "07/10/2025 10:30");
-            dt.Rows.Add("Phan Bảo DD", "Thường", "D03", "Theo ngày", "450,000", "06/10/2025 08:00", "08/10/2025 11:00");
-            dt.Rows.Add("Nguyễn Văn EE", "Gold", "D04", "Theo ngày", "600,000", "05/10/2025 15:00", "07/10/2025 11:00");
-            dt.Rows.Add("Trần Thị FF", "Silver", "D05", "Theo ngày", "530,000", "06/10/2025 09:00", "08/10/2025 12:00");
-            dt.Rows.Add("Đỗ Văn GG", "Thường", "D06", "Theo giờ", "120,000", "07/10/2025 10:00", "07/10/2025 12:30");
-            dt.Rows.Add("Ngô Minh HH", "Gold", "D07", "Theo ngày", "670,000", "06/10/2025 11:00", "08/10/2025 10:00");
-            dt.Rows.Add("Lê Mỹ II", "Platinum", "D08", "Theo ngày", "880,000", "05/10/2025 14:00", "07/10/2025 11:00");
-            dt.Rows.Add("Vũ Anh JJ", "Silver", "D09", "Theo giờ", "140,000", "07/10/2025 08:00", "07/10/2025 10:30");
+            dgvCustomers.DataSource = customers;
+            dgvCustomers.AutoGenerateColumns = true;
+            dgvCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCustomers.ClearSelection();
+            ClearInput();
+            CustomizeCustomerGridView();
+        }
+        private void CustomizeCustomerGridView()
+        {
+            if (dgvCustomers.Columns.Count == 0) return;
 
-            dgvCustomerBooking.DataSource = dt;
+            if (dgvCustomers.Columns.Contains("RankID"))
+                dgvCustomers.Columns["RankID"].Visible = false;
 
-            // === Style ===
-            dgvCustomerBooking.DefaultCellStyle.Font = new Font("Times New Roman", 13, FontStyle.Regular);
-            dgvCustomerBooking.ColumnHeadersDefaultCellStyle.Font = new Font("Times New Roman", 13, FontStyle.Bold);
-            dgvCustomerBooking.ColumnHeadersDefaultCellStyle.BackColor = Color.SteelBlue;
-            dgvCustomerBooking.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvCustomerBooking.EnableHeadersVisualStyles = false;
+            dgvCustomers.Columns["CustomerID"].HeaderText = "Mã khách hàng";
+            dgvCustomers.Columns["FullName"].HeaderText = "Họ và tên";
+            dgvCustomers.Columns["PhoneNumber"].HeaderText = "Số điện thoại";
+            dgvCustomers.Columns["NationalID"].HeaderText = "CMND/CCCD";
+            dgvCustomers.Columns["Address"].HeaderText = "Địa chỉ";
+            dgvCustomers.Columns["Country"].HeaderText = "Quốc tịch";
+            dgvCustomers.Columns["Gender"].HeaderText = "Giới tính";
+            dgvCustomers.Columns["DateOfBirth"].HeaderText = "Ngày sinh";
+            dgvCustomers.Columns["RankName"].HeaderText = "Hạng thành viên";
+            dgvCustomers.Columns["TotalSpending"].HeaderText = "Tổng chi tiêu (VNĐ)";
+        }
+        private bool ValidateInput()
+        {
+            // 🔹 Họ tên
+            if (string.IsNullOrWhiteSpace(txtFullName.Text))
+            {
+                MessageBox.Show("Vui lòng nhập họ tên!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (txtFullName.Text.Length > 100)
+            {
+                MessageBox.Show("Họ tên không được vượt quá 100 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // ❌ Không cho phép ký tự đặc biệt (chỉ chữ + khoảng trắng)
+            if (!Regex.IsMatch(txtFullName.Text.Trim(), @"^[\p{L}\s]+$"))
+            {
+                MessageBox.Show("Họ tên chỉ được chứa chữ cái và khoảng trắng, không có ký tự đặc biệt!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 Số điện thoại
+            if (!Regex.IsMatch(txtPhone.Text.Trim(), @"^\d{9,15}$"))
+            {
+                MessageBox.Show("Số điện thoại phải là số và từ 9–15 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 CCCD
+            if (!Regex.IsMatch(txtCCCD.Text.Trim(), @"^\d{9,20}$"))
+            {
+                MessageBox.Show("CCCD phải là số và từ 9–20 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 Địa chỉ
+            if (txtAddress.Text.Length > 200)
+            {
+                MessageBox.Show("Địa chỉ không được vượt quá 200 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // ❌ Chặn ký tự đặc biệt trong địa chỉ (cho phép số, chữ, khoảng trắng, , . / -)
+            if (!string.IsNullOrWhiteSpace(txtAddress.Text) &&
+                !Regex.IsMatch(txtAddress.Text.Trim(), @"^[\p{L}\p{N}\s,./-]+$"))
+            {
+                MessageBox.Show("Địa chỉ không được chứa ký tự đặc biệt!", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 Quốc gia
+            if (cboCountry.SelectedIndex < 0 || string.IsNullOrWhiteSpace(cboCountry.Text))
+            {
+                MessageBox.Show("Vui lòng chọn quốc gia hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 Giới tính
+            if (!rdoNam.Checked && !rdoNu.Checked)
+            {
+                MessageBox.Show("Vui lòng chọn giới tính (Nam hoặc Nữ)!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // 🔹 Kiểm tra tuổi >= 18
+            DateTime dob = dtpDOB.Value.Date;
+            int age = DateTime.Today.Year - dob.Year;
+            if (dob > DateTime.Today.AddYears(-age)) age--;
+
+            if (age < 18)
+            {
+                MessageBox.Show("Khách hàng phải từ 18 tuổi trở lên!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+        private void ClearInput()
+        {
+            txtFullName.Clear();
+            txtPhone.Clear();
+            txtCCCD.Clear();
+            txtAddress.Clear();
+            cboCountry.SelectedIndex = -1;
+            rdoNam.Checked = false;
+            rdoNu.Checked = false;
+            dtpDOB.Value = DateTime.Today;
+
+            selectedCustomerId = null;
+            oldPhone = "";
+            oldCCCD = "";
         }
 
-        private void guna2Button1_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
+            string name = txtFullName.Text.Trim();
+            string phone = txtPhone.Text.Trim();
+            string id = txtCCCD.Text.Trim();
 
+            var result = bus.SearchCustomers(name, phone, id);
+
+            if (result.Any())
+            {
+                dgvCustomers.DataSource = result;
+                MessageBox.Show($"Tìm thấy {result.Count} khách hàng.", "Kết quả", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                dgvCustomers.DataSource = null;
+                MessageBox.Show("Vui lòng nhập thông tin khách hàng (Họ tên, CCCD, SDT) hoặc không tìm thấy khách hàng dựa trên thông tin nhập", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void dgvCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                var row = dgvCustomers.Rows[e.RowIndex];
+
+                selectedCustomerId = row.Cells["CustomerID"].Value?.ToString();
+                txtFullName.Text = row.Cells["FullName"].Value?.ToString();
+                txtPhone.Text = row.Cells["PhoneNumber"].Value?.ToString();
+                txtCCCD.Text = row.Cells["NationalID"].Value?.ToString();
+                txtAddress.Text = row.Cells["Address"].Value?.ToString();
+                string country = row.Cells["Country"].Value?.ToString();
+                if (!string.IsNullOrWhiteSpace(country))
+                {
+                    int index = cboCountry.Items.IndexOf(country);
+                    if (index >= 0)
+                        cboCountry.SelectedIndex = index;
+                    else
+                        cboCountry.Text = country;
+                }
+                else
+                {
+                    cboCountry.SelectedIndex = -1;
+                }
+
+                oldPhone = txtPhone.Text.Trim();
+                oldCCCD = txtCCCD.Text.Trim();
+
+                string gender = row.Cells["Gender"].Value?.ToString();
+                if (gender == "Nam")
+                    rdoNam.Checked = true;
+                else if (gender == "Nữ")
+                    rdoNu.Checked = true;
+                else
+                {
+                    rdoNam.Checked = false;
+                    rdoNu.Checked = false;
+                }
+
+                if (DateTime.TryParse(row.Cells["DateOfBirth"].Value?.ToString(), out DateTime dob))
+                    dtpDOB.Value = dob;
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (selectedCustomerId == null)
+            {
+                MessageBox.Show("Vui lòng chọn khách hàng cần cập nhật!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!ValidateInput())
+                return;
+
+            string newPhone = txtPhone.Text.Trim();
+            string newCCCD = txtCCCD.Text.Trim();
+
+            // 🔹 Kiểm tra trùng SĐT (nếu thay đổi)
+            if (!newPhone.Equals(oldPhone, StringComparison.OrdinalIgnoreCase))
+            {
+                if (bus.IsPhoneExists(newPhone))
+                {
+                    MessageBox.Show("Số điện thoại đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            // 🔹 Kiểm tra trùng CCCD (nếu thay đổi)
+            if (!newCCCD.Equals(oldCCCD, StringComparison.OrdinalIgnoreCase))
+            {
+                if (bus.IsNationalIDExists(newCCCD))
+                {
+                    MessageBox.Show("CCCD đã tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            string gender = rdoNam.Checked ? "Nam" : (rdoNu.Checked ? "Nữ" : "");
+            string country = cboCountry.SelectedItem != null ? cboCountry.SelectedItem.ToString() : string.Empty;
+            var customer = new CustomerET
+            {
+                CustomerID = selectedCustomerId,
+                FullName = txtFullName.Text.Trim(),
+                PhoneNumber = newPhone,
+                NationalID = newCCCD,
+                Address = txtAddress.Text.Trim(),
+                Country = country,
+                Gender = gender,
+                DateOfBirth = dtpDOB.Value
+            };
+
+            bool result = bus.UpdateCustomer(customer);
+
+            if (result)
+            {
+                MessageBox.Show("Cập nhật thông tin khách hàng thành công!", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCustomersAndUpgrade();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại. Vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadCustomersAndUpgrade();
+        }
+
+        private void dgvCustomers_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                string customerId = dgvCustomers.Rows[e.RowIndex].Cells["CustomerID"].Value.ToString();
+                frmCustomerDetailRECPGUI frm = new frmCustomerDetailRECPGUI(customerId);
+                frm.ShowDialog();
+            }
         }
     }
 }
