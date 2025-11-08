@@ -8,7 +8,7 @@ namespace ET
 {
     public class AccountET
     {
-        public AccountET(int accountID, string username, string password, DateTime startDate, string staffID, string status)
+        public AccountET(string accountID, string username, string password, DateTime startDate, string staffID, string status)
         {
             AccountID = accountID;
             Username = username;
@@ -23,7 +23,7 @@ namespace ET
            
         }
         
-        public int AccountID { get; set; }
+        public string AccountID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public DateTime StartDate { get; set; }

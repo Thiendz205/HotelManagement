@@ -51,10 +51,11 @@
     <Compile Include="EquipmentStorage_DAL.cs" />
     <Compile Include="FeeTypeDAL.cs" />
     <Compile Include="HotelManagement.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>HotelManagement.dbml</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="IDGenerator.cs" />
     <Compile Include="InvoiceDAL.cs" />
     <Compile Include="Login_Logout_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

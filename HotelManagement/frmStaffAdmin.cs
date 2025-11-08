@@ -418,40 +418,40 @@ namespace HotelManagement
             LoadData();
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            if (_isFillingControls) return; // <- quan trọng
+        //private void txtSearch_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (_isFillingControls) return; // <- quan trọng
 
-            if (!string.IsNullOrEmpty(txtSearch.Text) && txtSearch.Text != "Tìm kiếm theo tên nhân viên...")
-            {
-                var allStaffs = staffBUS.getAllStaffs().ToList();
-                var filteredStaffs = allStaffs.Where(s => s.FullName.Contains(txtSearch.Text)).ToList();
-                dgvMain.DataSource = filteredStaffs;
-            }
-            else
-            {
-                LoadData();
-            }
-        }
+        //    if (!string.IsNullOrEmpty(txtSearch.Text) && txtSearch.Text != "Tìm kiếm theo tên nhân viên...")
+        //    {
+        //        var allStaffs = staffBUS.getAllStaffs().ToList();
+        //        var filteredStaffs = allStaffs.Where(s => s.FullName.Contains(txtSearch.Text)).ToList();
+        //        dgvMain.DataSource = filteredStaffs;
+        //    }
+        //    else
+        //    {
+        //        LoadData();
+        //    }
+        //}
 
 
-        private void txtSearch_Enter(object sender, EventArgs e)
-        {
-            if (txtSearch.Text == "Tìm kiếm theo tên nhân viên...")
-            {
-                txtSearch.Text = "";
-                txtSearch.ForeColor = System.Drawing.Color.Black;
-            }
-        }
+        //private void txtSearch_Enter(object sender, EventArgs e)
+        //{
+        //    if (txtSearch.Text == "Tìm kiếm theo tên nhân viên...")
+        //    {
+        //        txtSearch.Text = "";
+        //        txtSearch.ForeColor = System.Drawing.Color.Black;
+        //    }
+        //}
 
-        private void txtSearch_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                txtSearch.Text = "Tìm kiếm theo tên nhân viên...";
-                txtSearch.ForeColor = System.Drawing.Color.Gray;
-            }
-        }
+        //private void txtSearch_Leave(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(txtSearch.Text))
+        //    {
+        //        txtSearch.Text = "Tìm kiếm theo tên nhân viên...";
+        //        txtSearch.ForeColor = System.Drawing.Color.Gray;
+        //    }
+        //}
 
         private void cboFilterRole_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -519,6 +519,11 @@ namespace HotelManagement
         }
 
         private void editorPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtNotes_TextChanged(object sender, EventArgs e)
         {
 
         }

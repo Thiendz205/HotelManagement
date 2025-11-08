@@ -11,43 +11,43 @@ namespace BUS
     public class ServiceBUS
     {
         ServiceDAL serviceDAL = new ServiceDAL();
-        
+
         public IQueryable<ServiceET> getAllServices()
         {
             return serviceDAL.getAllServices();
         }
-        
+
         public bool addService(ServiceET service)
         {
             return serviceDAL.addService(service);
         }
-        
-        public bool checkServiceHasForeignKey(int serviceID)
+
+        public bool checkServiceHasForeignKey(string serviceID)
         {
             return serviceDAL.checkServiceHasForeignKey(serviceID);
         }
 
-        public bool removeService(int serviceID)
+        public bool removeService(string serviceID)
         {
             return serviceDAL.removeService(serviceID);
         }
-        
+
         public bool updateService(ServiceET service)
         {
             return serviceDAL.updateService(service);
         }
-        
+
         public bool checkExistenceServiceName(string serviceName)
         {
             return serviceDAL.checkExistenceServiceName(serviceName);
         }
 
-        public bool checkExistenceServiceName_Update(string serviceName, int currentServiceID)
+        public bool checkExistenceServiceName_Update(string serviceName, string currentServiceID)
         {
             return serviceDAL.checkExistenceServiceName_Update(serviceName, currentServiceID);
         }
 
-        public int generateServiceID()
+        public string generateServiceID()
         {
             return serviceDAL.generateServiceID();
         }

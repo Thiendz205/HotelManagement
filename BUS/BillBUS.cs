@@ -15,16 +15,21 @@ namespace BUS
         public IQueryable<BillET> getAllBills() => billDAL.getAllBills();
         public bool addBill(BillET bill) => billDAL.addBill(bill);
 
-        public bool checkBillHasForeignKey(int invoiceID) => billDAL.checkBillHasForeignKey(invoiceID);
-        public bool removeBill(int invoiceID) => billDAL.removeBill(invoiceID);
+        public bool checkBillHasForeignKey(string invoiceID) => billDAL.checkBillHasForeignKey(invoiceID);
+        public bool removeBill(string invoiceID) => billDAL.removeBill(invoiceID);
         public bool updateBill(BillET bill) => billDAL.updateBill(bill);
 
         public IQueryable<BillET> getBillsByStatus(string status) => billDAL.getBillsByStatus(status);
         public IQueryable<BillET> getBillsByDateRange(DateTime start, DateTime end) => billDAL.getBillsByDateRange(start, end);
 
         // === Mới: cập nhật đánh giá/audit ===
-        public bool UpdateInvoiceAudit(int invoiceId, string newStatus, string note, string adminStaffId)
+        public bool UpdateInvoiceAudit(string invoiceId, string newStatus, string note, string adminStaffId)
             => billDAL.UpdateInvoiceAudit(invoiceId, newStatus, note, adminStaffId);
+
+        public string generateInvoiceID()
+        {
+            return billDAL.generateInvoiceID();
+        }
 
         //public IQueryable<BillET> getBillsByStatus(string status)
         //{

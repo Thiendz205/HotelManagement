@@ -12,9 +12,11 @@ namespace HotelManagement
 {
     public partial class frmAdminMain : Form
     {
-        public frmAdminMain()
+        string maNhanVien;
+        public frmAdminMain(string maNhanVien)
         {
             InitializeComponent();
+            this.maNhanVien = maNhanVien;
         }
         private Form currentFormChild;
         private void OpenChildForm(Form childForm)
@@ -100,12 +102,12 @@ namespace HotelManagement
 
         private void gunaButton7_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmKhoThietBi());
+            OpenChildForm(new frmKhoThietBi(maNhanVien));
         }
 
         private void gunaButton8_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmTrangThietBiPhong());
+            OpenChildForm(new frmTrangThietBiPhong(maNhanVien));
         }
 
         private void gunaButton9_Click(object sender, EventArgs e)

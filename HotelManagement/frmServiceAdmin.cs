@@ -28,7 +28,7 @@ namespace HotelManagement
         {
             dgvMain.AutoGenerateColumns = false;
             dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            
+
             // Thiết lập các cột cho DataGridView
             colServiceID.DataPropertyName = "ServiceID";
             colServiceName.DataPropertyName = "ServiceName";
@@ -115,11 +115,13 @@ namespace HotelManagement
                     return;
                 }
 
+                // Generate ServiceID tự động
+                serviceET.ServiceID = serviceBUS.generateServiceID();
                 serviceET.ServiceName = txtServiceName.Text;
                 serviceET.Category = gunaComboBox1.Text;
                 serviceET.Price = price;
                 serviceET.Description = txtDescription.Text;
-                
+
                 bool success = serviceBUS.addService(serviceET);
                 if (success)
                 {
@@ -166,17 +168,17 @@ namespace HotelManagement
             try
             {
                 // Lấy ServiceID từ selection hiện tại
-                int currentServiceID = 0;
+                string currentServiceID = null;
                 if (dgvMain.SelectedRows.Count > 0)
                 {
-                    int.TryParse(dgvMain.SelectedRows[0].Cells[0].Value?.ToString(), out currentServiceID);
+                    currentServiceID = dgvMain.SelectedRows[0].Cells[0].Value?.ToString();
                 }
                 else if (dgvMain.CurrentRow != null)
                 {
-                    int.TryParse(dgvMain.CurrentRow.Cells[0].Value?.ToString(), out currentServiceID);
+                    currentServiceID = dgvMain.CurrentRow.Cells[0].Value?.ToString();
                 }
-                
-                if (currentServiceID == 0)
+
+                if (string.IsNullOrEmpty(currentServiceID))
                 {
                     MessageBox.Show("Vui lòng chọn dịch vụ cần sửa!", "Thông báo",
                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -202,7 +204,7 @@ namespace HotelManagement
                 serviceET.Category = gunaComboBox1.Text;
                 serviceET.Price = price;
                 serviceET.Description = txtDescription.Text;
-                
+
                 bool success = serviceBUS.updateService(serviceET);
                 if (success)
                 {
@@ -233,28 +235,28 @@ namespace HotelManagement
             try
             {
                 // Lấy ServiceID từ selection hiện tại
-                int serviceID = 0;
+                string serviceID = null;
                 if (dgvMain.SelectedRows.Count > 0)
                 {
-                    int.TryParse(dgvMain.SelectedRows[0].Cells[0].Value?.ToString(), out serviceID);
+                    serviceID = dgvMain.SelectedRows[0].Cells[0].Value?.ToString();
                 }
                 else if (dgvMain.CurrentRow != null)
                 {
-                    int.TryParse(dgvMain.CurrentRow.Cells[0].Value?.ToString(), out serviceID);
+                    serviceID = dgvMain.CurrentRow.Cells[0].Value?.ToString();
                 }
-                
-                if (serviceID == 0)
+
+                if (string.IsNullOrEmpty(serviceID))
                 {
                     MessageBox.Show("Vui lòng chọn dịch vụ cần xóa!", "Thông báo",
                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                
+
                 // Kiểm tra khóa ngoại trước khi xóa
                 if (serviceBUS.checkServiceHasForeignKey(serviceID))
                 {
                     MessageBox.Show("Không thể xóa dịch vụ này vì đang được sử dụng trong hệ thống!\n" +
-                                    "Vui lòng xóa các bản ghi liên quan trước.", "Thông báo", 
+                                    "Vui lòng xóa các bản ghi liên quan trước.", "Thông báo",
                                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
@@ -303,7 +305,7 @@ namespace HotelManagement
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi khi đọc dữ liệu hàng: " + ex.Message, "Lỗi", 
+                MessageBox.Show("Có lỗi khi đọc dữ liệu hàng: " + ex.Message, "Lỗi",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -314,39 +316,39 @@ namespace HotelManagement
             LoadData();
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            if (_isFillingControls) return;
+        //private void txtSearch_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (_isFillingControls) return;
 
-            if (!string.IsNullOrEmpty(txtSearch.Text) && txtSearch.Text != "Tìm kiếm theo tên dịch vụ...")
-            {
-                var allServices = serviceBUS.getAllServices().ToList();
-                var filteredServices = allServices.Where(s => s.ServiceName.Contains(txtSearch.Text)).ToList();
-                dgvMain.DataSource = filteredServices;
-            }
-            else
-            {
-                LoadData();
-            }
-        }
+        //    if (!string.IsNullOrEmpty(txtSearch.Text) && txtSearch.Text != "Tìm kiếm theo tên dịch vụ...")
+        //    {
+        //        var allServices = serviceBUS.getAllServices().ToList();
+        //        var filteredServices = allServices.Where(s => s.ServiceName.Contains(txtSearch.Text)).ToList();
+        //        dgvMain.DataSource = filteredServices;
+        //    }
+        //    else
+        //    {
+        //        LoadData();
+        //    }
+        //}
 
-        private void txtSearch_Enter(object sender, EventArgs e)
-        {
-            if (txtSearch.Text == "Tìm kiếm theo tên dịch vụ...")
-            {
-                txtSearch.Text = "";
-                txtSearch.ForeColor = System.Drawing.Color.Black;
-            }
-        }
+        //private void txtSearch_Enter(object sender, EventArgs e)
+        //{
+        //    if (txtSearch.Text == "Tìm kiếm theo tên dịch vụ...")
+        //    {
+        //        txtSearch.Text = "";
+        //        txtSearch.ForeColor = System.Drawing.Color.Black;
+        //    }
+        //}
 
-        private void txtSearch_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                txtSearch.Text = "Tìm kiếm theo tên dịch vụ...";
-                txtSearch.ForeColor = System.Drawing.Color.Gray;
-            }
-        }
+        //private void txtSearch_Leave(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(txtSearch.Text))
+        //    {
+        //        txtSearch.Text = "Tìm kiếm theo tên dịch vụ...";
+        //        txtSearch.ForeColor = System.Drawing.Color.Gray;
+        //    }
+        //}
 
         private void gunaComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -381,7 +383,7 @@ namespace HotelManagement
 
         private bool _isFillingControls = false;
         private List<ServiceET> _cacheAllServices = new List<ServiceET>();
-        
+
         private void ClearForm()
         {
             txtServiceID.Text = "";
@@ -392,6 +394,11 @@ namespace HotelManagement
         }
 
         private void editorPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblTitle_Click(object sender, EventArgs e)
         {
 
         }

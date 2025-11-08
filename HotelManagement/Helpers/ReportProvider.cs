@@ -34,7 +34,8 @@ namespace GUI.Helpers
             {
             }
 
-            return Environment.MachineName;
+            return Environment.MachineName + "\\SQLEXPRESS"
+;
         }
 
         public static ReportDocument LoadReport(string reportFileName, Dictionary<string, object> parameters = null)

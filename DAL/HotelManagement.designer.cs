@@ -78,7 +78,7 @@ namespace DAL
     #endregion
 		
 		public HotelManagementDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString3, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

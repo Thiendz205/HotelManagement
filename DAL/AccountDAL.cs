@@ -47,7 +47,7 @@ namespace DAL
         }
 
         // true nếu username có thể dùng khi update (không đụng ai khác)
-        public bool IsUsernameAvailableForUpdate(string username, int accountId)
+        public bool IsUsernameAvailableForUpdate(string username, string accountId)
         {
             string u = (username ?? "").Trim();
             return !db.Accounts.Any(x => x.Username == u && x.AccountID != accountId);
@@ -89,6 +89,7 @@ namespace DAL
             // 5) Thêm
             var newAccount = new Account
             {
+                AccountID = account.AccountID, // Sử dụng AccountID được generate từ form
                 Username = username,
                 Password = account.Password,
                 StartDate = account.StartDate == default ? DateTime.Now : account.StartDate,
@@ -152,12 +153,34 @@ namespace DAL
         public IQueryable getAll_ID_and_Name_Staff()
         {
             var staffs = from s in db.Staffs
-                        select new
-                        {
-                            s.StaffID,
-                            s.FullName
-                        };
+                         select new
+                         {
+                             s.StaffID,
+                             s.FullName
+                         };
             return staffs;
+        }
+
+        public string generateAccountID()
+        {
+            try
+            {
+                var lastAccount = db.Accounts.OrderByDescending(a => a.AccountID).FirstOrDefault();
+                if (lastAccount == null)
+                {
+                    return "AC001";
+                }
+                else
+                {
+                    string lastID = lastAccount.AccountID;
+                    int number = int.Parse(lastID.Substring(2)) + 1;
+                    return "AC" + number.ToString("D3");
+                }
+            }
+            catch (Exception)
+            {
+                return "AC001";
+            }
         }
     }
 }

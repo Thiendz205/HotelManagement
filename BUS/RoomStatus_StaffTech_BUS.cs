@@ -14,7 +14,7 @@ namespace BUS
         {
             return roomStatus_StaffTech.getAllRoomStatus();
         }
-        public bool updateStatusRooms_StaffTech(int roomID, string status)
+        public bool updateStatusRooms_StaffTech(string roomID, string status)
         {
             return roomStatus_StaffTech.updateStatusRooms_StaffTech(roomID, status);
         }

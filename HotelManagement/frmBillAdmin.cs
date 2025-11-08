@@ -40,23 +40,42 @@ namespace HotelManagement
             colPaidStatus.DataPropertyName = "PaidStatus";
             colStaffID.DataPropertyName = "StaffID";
 
-            // Map cột audit NẾU bạn đã thêm trong Designer (không bắt buộc)
             if (dgvMain.Columns.Contains("colCreatedBy"))
+            {
                 dgvMain.Columns["colCreatedBy"].DataPropertyName = "CreatedBy";
+                dgvMain.Columns["colCreatedBy"].HeaderText = "Người tạo";
+            }
+
             if (dgvMain.Columns.Contains("colAuditStatus"))
+            {
                 dgvMain.Columns["colAuditStatus"].DataPropertyName = "AuditStatus";
+                dgvMain.Columns["colAuditStatus"].HeaderText = "Trạng thái kiểm duyệt";
+            }
+
             if (dgvMain.Columns.Contains("colAuditNote"))
+            {
                 dgvMain.Columns["colAuditNote"].DataPropertyName = "AuditNote";
+                dgvMain.Columns["colAuditNote"].HeaderText = "Ghi chú kiểm duyệt";
+            }
+
             if (dgvMain.Columns.Contains("colAuditedBy"))
+            {
                 dgvMain.Columns["colAuditedBy"].DataPropertyName = "AuditedBy";
+                dgvMain.Columns["colAuditedBy"].HeaderText = "Người kiểm duyệt";
+            }
+
             if (dgvMain.Columns.Contains("colAuditedAt"))
+            {
                 dgvMain.Columns["colAuditedAt"].DataPropertyName = "AuditedAt";
+                dgvMain.Columns["colAuditedAt"].HeaderText = "Thời gian kiểm duyệt";
+            }
+
 
             // Combobox lọc Audit (đúng “Lọc theo đánh giá”)
             if (cboFilterAudit != null)
             {
                 cboFilterAudit.Items.Clear();
-                cboFilterAudit.Items.AddRange(new[] { "Tất cả", "OK", "REVIEW", "WARNING", "FAIL" });
+                cboFilterAudit.Items.AddRange(new[] { "Tất cả", "Tốt", "Xem xét", "Cảnh báo", "Thất bại" });
                 cboFilterAudit.SelectedIndex = 0;
                 cboFilterAudit.SelectedIndexChanged += (s, e) => ApplyFilters();
             }
@@ -64,7 +83,7 @@ namespace HotelManagement
             if (gunaComboBox1 != null)
             {
                 gunaComboBox1.Items.Clear();
-                gunaComboBox1.Items.AddRange(new[] { "Tất cả", "Paid", "Unpaid" });
+                gunaComboBox1.Items.AddRange(new[] { "Tất cả", "Đã thanh toán", "Chưa thanh toán" });
                 gunaComboBox1.SelectedIndex = 0;
                 gunaComboBox1.SelectedIndexChanged += gunaComboBox1_SelectedIndexChanged;
             }
@@ -73,20 +92,20 @@ namespace HotelManagement
             if (cboAuditStatus != null)
             {
                 cboAuditStatus.Items.Clear();
-                cboAuditStatus.Items.AddRange(new[] { "OK", "REVIEW", "WARNING", "FAIL" });
+                cboAuditStatus.Items.AddRange(new[] { "Tốt", "Xem xét", "Cảnh báo", "Thất bại" });
                 cboAuditStatus.SelectedIndex = 0;
             }
 
-            // Search
-            if (txtSearch != null)
-            {
-                txtSearch.ForeColor = Color.Gray;
-                if (string.IsNullOrEmpty(txtSearch.Text))
-                    txtSearch.Text = "Tìm kiếm theo mã hóa đơn...";
-                txtSearch.TextChanged += txtSearch_TextChanged;
-                txtSearch.Enter += txtSearch_Enter;
-                txtSearch.Leave += txtSearch_Leave;
-            }
+            //// Search
+            //if (txtSearch != null)
+            //{
+            //    txtSearch.ForeColor = Color.Gray;
+            //    if (string.IsNullOrEmpty(txtSearch.Text))
+            //        txtSearch.Text = "Tìm kiếm theo mã hóa đơn...";
+            //    txtSearch.TextChanged += txtSearch_TextChanged;
+            //    txtSearch.Enter += txtSearch_Enter;
+            //    txtSearch.Leave += txtSearch_Leave;
+            //}
             EnsureAuditColumns();
         }
         private void EnsureAuditColumns()
@@ -147,9 +166,9 @@ namespace HotelManagement
             foreach (DataGridViewRow r in dgvMain.Rows)
             {
                 var st = r.Cells["colAuditStatus"]?.Value?.ToString();
-                if (st == "FAIL") r.DefaultCellStyle.BackColor = Color.MistyRose;
-                else if (st == "WARNING") r.DefaultCellStyle.BackColor = Color.LemonChiffon;
-                else if (st == "REVIEW") r.DefaultCellStyle.BackColor = Color.LightCyan;
+                if (st == "Thất Bại") r.DefaultCellStyle.BackColor = Color.MistyRose;
+                else if (st == "Cảnh báo") r.DefaultCellStyle.BackColor = Color.LemonChiffon;
+                else if (st == "Xem xét") r.DefaultCellStyle.BackColor = Color.LightCyan;
                 else r.DefaultCellStyle.BackColor = Color.White;
             }
         }
@@ -172,23 +191,23 @@ namespace HotelManagement
                 cboFilterAudit.SelectedItem.ToString() != "Tất cả")
             {
                 string audit = cboFilterAudit.SelectedItem.ToString();
-                list = list.Where(x => (x.AuditStatus ?? "OK") == audit).ToList();
+                list = list.Where(x => (x.AuditStatus ?? "Tốt") == audit).ToList();
             }
-            // filter keyword
-            if (txtSearch != null)
-            {
-                string kw = txtSearch.Text?.Trim();
-                if (!string.IsNullOrEmpty(kw) && kw != "Tìm kiếm theo mã hóa đơn...")
-                {
-                    list = list.Where(b =>
-                        b.InvoiceID.ToString().Contains(kw) ||
-                        b.BookingID.ToString().Contains(kw) ||
-                        (b.StaffID ?? "").Contains(kw) ||
-                        (b.CustomerName ?? "").Contains(kw) ||
-                        (b.CreatedBy ?? "").Contains(kw)
-                    ).ToList();
-                }
-            }
+            //// filter keyword
+            //if (txtSearch != null)
+            //{
+            //    string kw = txtSearch.Text?.Trim();
+            //    if (!string.IsNullOrEmpty(kw) && kw != "Tìm kiếm theo mã hóa đơn...")
+            //    {
+            //        list = list.Where(b =>
+            //            (b.InvoiceID ?? "").Contains(kw) ||
+            //            (b.BookingID ?? "").Contains(kw) ||
+            //            (b.StaffID ?? "").Contains(kw) ||
+            //            (b.CustomerName ?? "").Contains(kw) ||
+            //            (b.CreatedBy ?? "").Contains(kw)
+            //        ).ToList();
+            //    }
+            //}
 
             dgvMain.DataSource = list;
             ColorizeRows();
@@ -206,13 +225,13 @@ namespace HotelManagement
 
             try
             {
-                int invoiceID = 0;
+                string invoiceID = null;
                 if (dgvMain.SelectedRows.Count > 0)
-                    int.TryParse(dgvMain.SelectedRows[0].Cells[0].Value?.ToString(), out invoiceID);
+                    invoiceID = dgvMain.SelectedRows[0].Cells["colInvoiceID"].Value?.ToString();
                 else if (dgvMain.CurrentRow != null)
-                    int.TryParse(dgvMain.CurrentRow.Cells[0].Value?.ToString(), out invoiceID);
+                    invoiceID = dgvMain.CurrentRow.Cells["colInvoiceID"].Value?.ToString();
 
-                if (invoiceID == 0)
+                if (string.IsNullOrEmpty(invoiceID))
                 {
                     MessageBox.Show("Vui lòng chọn hóa đơn cần xem!", "Thông báo",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -255,7 +274,8 @@ namespace HotelManagement
                 return;
             }
 
-            if (!int.TryParse(dgvMain.CurrentRow.Cells["colInvoiceID"].Value?.ToString(), out int invoiceId))
+            string invoiceId = dgvMain.CurrentRow.Cells["colInvoiceID"].Value?.ToString();
+            if (string.IsNullOrEmpty(invoiceId))
             {
                 MessageBox.Show("Không đọc được InvoiceID!", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -288,23 +308,23 @@ namespace HotelManagement
 
         private void txtSearch_TextChanged(object sender, EventArgs e) => ApplyFilters();
 
-        private void txtSearch_Enter(object sender, EventArgs e)
-        {
-            if (txtSearch.Text == "Tìm kiếm theo mã hóa đơn...")
-            {
-                txtSearch.Text = "";
-                txtSearch.ForeColor = Color.Black;
-            }
-        }
+        //private void txtSearch_Enter(object sender, EventArgs e)
+        //{
+        //    if (txtSearch.Text == "Tìm kiếm theo mã hóa đơn...")
+        //    {
+        //        txtSearch.Text = "";
+        //        txtSearch.ForeColor = Color.Black;
+        //    }
+        //}
 
-        private void txtSearch_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                txtSearch.Text = "Tìm kiếm theo mã hóa đơn...";
-                txtSearch.ForeColor = Color.Gray;
-            }
-        }
+        //private void txtSearch_Leave(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(txtSearch.Text))
+        //    {
+        //        txtSearch.Text = "Tìm kiếm theo mã hóa đơn...";
+        //        txtSearch.ForeColor = Color.Gray;
+        //    }
+        //}
 
         private void gunaComboBox1_SelectedIndexChanged(object sender, EventArgs e) => ApplyFilters();
 

@@ -14,14 +14,14 @@ namespace DAL
         public IQueryable<ServiceET> getAllServices()
         {
             var services = from s in db.Services
-                          select new ServiceET
-                          {
-                              ServiceID = s.ServiceID,
-                              ServiceName = s.ServiceName,
-                              Category = s.Category,
-                              Price = s.Price,
-                              Description = s.Description
-                          };
+                           select new ServiceET
+                           {
+                               ServiceID = s.ServiceID,
+                               ServiceName = s.ServiceName,
+                               Category = s.Category,
+                               Price = s.Price,
+                               Description = s.Description
+                           };
             return services;
         }
 
@@ -31,7 +31,7 @@ namespace DAL
             return service == null;
         }
 
-        public bool checkExistenceServiceName_Update(string serviceName, int currentServiceID)
+        public bool checkExistenceServiceName_Update(string serviceName, string currentServiceID)
         {
             var service = db.Services.FirstOrDefault(x => x.ServiceName == serviceName && x.ServiceID != currentServiceID);
             return service == null;
@@ -46,6 +46,7 @@ namespace DAL
                 {
                     Service newService = new Service
                     {
+                        ServiceID = service.ServiceID, // ServiceID được generate từ code
                         ServiceName = service.ServiceName,
                         Category = service.Category,
                         Price = service.Price,
@@ -63,7 +64,7 @@ namespace DAL
             }
         }
 
-        public bool checkServiceHasForeignKey(int serviceID)
+        public bool checkServiceHasForeignKey(string serviceID)
         {
             try
             {
@@ -79,7 +80,7 @@ namespace DAL
             }
         }
 
-        public bool removeService(int serviceID)
+        public bool removeService(string serviceID)
         {
             try
             {
@@ -126,23 +127,25 @@ namespace DAL
             }
         }
 
-        public int generateServiceID()
+        public string generateServiceID()
         {
             try
             {
                 var lastService = db.Services.OrderByDescending(s => s.ServiceID).FirstOrDefault();
                 if (lastService == null)
                 {
-                    return 1;
+                    return "SV001";
                 }
                 else
                 {
-                    return lastService.ServiceID + 1;
+                    string lastID = lastService.ServiceID;
+                    int number = int.Parse(lastID.Substring(2)) + 1;
+                    return "SV" + number.ToString("D3");
                 }
             }
             catch (Exception)
             {
-                return 1;
+                return "SV001";
             }
         }
     }
