@@ -15,58 +15,59 @@ namespace DAL
         {
             try
             {
-                var booking = db.Bookings.FirstOrDefault(b => b.BookingID == bookingId);
-                if (booking == null) return 0;
+                //var booking = db.Bookings.FirstOrDefault(b => b.BookingID == bookingId);
+                //if (booking == null) return 0;
 
-                decimal roomPrice = 0;
+                //decimal roomPrice = 0;
 
-                // Lấy loại phòng
-                var roomTypeId = db.Rooms.FirstOrDefault(r => r.RoomID == booking.RoomID)?.RoomTypeID;
-                if (roomTypeId == null) return 0;
+                //// Lấy loại phòng
+                //var roomTypeId = db.Rooms.FirstOrDefault(r => r.RoomID == booking.RoomID)?.RoomTypeID;
+                //if (roomTypeId == null) return 0;
 
-                // Tìm giá động trong thời gian check-in
-                var dynamicPrice = db.RoomTypePrices
-                    .Where(p => p.RoomTypeID == roomTypeId &&
-                                booking.CheckIn.Date >= p.StartDate &&
-                                booking.CheckIn.Date <= p.EndDate)
-                    .OrderByDescending(p => p.StartDate)
-                    .FirstOrDefault();
+                //// Tìm giá động trong thời gian check-in
+                //var dynamicPrice = db.RoomTypePrices
+                //    .Where(p => p.RoomTypeID == roomTypeId &&
+                //                booking.CheckIn.Date >= p.StartDate &&
+                //                booking.CheckIn.Date <= p.EndDate)
+                //    .OrderByDescending(p => p.StartDate)
+                //    .FirstOrDefault();
 
-                if (dynamicPrice != null)
-                {
-                    roomPrice = (booking.RentalType == "Day") ? dynamicPrice.PricePerDay : dynamicPrice.PricePerHour;
-                }
-                else
-                {
-                    var defaultRoomType = db.RoomTypes.FirstOrDefault(rt => rt.RoomTypeID == roomTypeId);
-                    if (defaultRoomType != null)
-                        roomPrice = (booking.RentalType == "Day") ? defaultRoomType.PricePerDay : defaultRoomType.PricePerHour;
-                }
+                //if (dynamicPrice != null)
+                //{
+                //    roomPrice = (booking.RentalType == "Day") ? dynamicPrice.PricePerDay : dynamicPrice.PricePerHour;
+                //}
+                //else
+                //{
+                //    var defaultRoomType = db.RoomTypes.FirstOrDefault(rt => rt.RoomTypeID == roomTypeId);
+                //    if (defaultRoomType != null)
+                //        roomPrice = (booking.RentalType == "Day") ? defaultRoomType.PricePerDay : defaultRoomType.PricePerHour;
+                //}
 
                 // Tính thời gian thuê
-                double totalHours = booking.CheckOut != null
-                    ? (booking.CheckOut.Value - booking.CheckIn).TotalHours
-                    : 24;
+                //double totalHours = booking.CheckOut != null
+                //    ? (booking.CheckOut.Value - booking.CheckIn).TotalHours
+                //    : 24;
 
-                decimal roomTotal = (booking.RentalType == "Day")
-                    ? roomPrice * (decimal)Math.Ceiling(totalHours / 24)
-                    : roomPrice * (decimal)Math.Ceiling(totalHours);
+                //decimal roomTotal = (booking.RentalType == "Day")
+                //    ? roomPrice * (decimal)Math.Ceiling(totalHours / 24)
+                //    : roomPrice * (decimal)Math.Ceiling(totalHours);
 
-                // Dịch vụ
-                decimal serviceTotal = (from su in db.ServiceUsages
-                                        join s in db.Services on su.ServiceID equals s.ServiceID
-                                        where su.BookingID == booking.BookingID
-                                        select (decimal?)(s.Price * su.Quantity)).Sum() ?? 0m;
+                //// Dịch vụ
+                //decimal serviceTotal = (from su in db.ServiceUsages
+                //                        join s in db.Services on su.ServiceID equals s.ServiceID
+                //                        where su.BookingID == booking.BookingID
+                //                        select (decimal?)(s.Price * su.Quantity)).Sum() ?? 0m;
 
-                // Phụ phí
-                decimal feeTotal = (from bf in db.BookingFees
-                                    join ft in db.FeeTypes on bf.FeeTypeID equals ft.FeeTypeID
-                                    where bf.BookingID == booking.BookingID
-                                    select (decimal?)(ft.DefaultPrice * bf.Quantity)).Sum() ?? 0m;
+                //// Phụ phí
+                //decimal feeTotal = (from bf in db.BookingFees
+                //                    join ft in db.FeeTypes on bf.FeeTypeID equals ft.FeeTypeID
+                //                    where bf.BookingID == booking.BookingID
+                //                    select (decimal?)(ft.DefaultPrice * bf.Quantity)).Sum() ?? 0m;
 
-                // Tổng
-                decimal bookingTotal = roomTotal + serviceTotal + feeTotal;
-                return bookingTotal;
+                //// Tổng
+                //decimal bookingTotal = roomTotal + serviceTotal + feeTotal;
+                //return bookingTotal;
+                return 0;//tam
             }
             catch (Exception ex)
             {
@@ -81,7 +82,7 @@ namespace DAL
             {
                 // Lấy danh sách BookingID của khách hàng
                 var bookingIds = db.Bookings
-                    .Where(b => b.CustomerID == customerId)
+                   // .Where(b => b.CustomerID == customerId)
                     .Select(b => b.BookingID)
                     .ToList();
 
@@ -106,7 +107,7 @@ namespace DAL
             {
                 // Lấy danh sách BookingID của khách hàng
                 var bookingIds = db.Bookings
-                    .Where(b => b.CustomerID == customerId)
+                  //  .Where(b => b.CustomerID == customerId)
                     .Select(b => b.BookingID)
                     .ToList();
 
@@ -121,15 +122,15 @@ namespace DAL
                 decimal total = paidInvoices.Sum(i => i.TotalAmount);
 
                 // Áp dụng giảm giá theo rank 
-                var customer = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
-                if (customer != null)
-                {
-                    var rank = db.CustomerRanks.FirstOrDefault(r => r.RankID == customer.RankID);
-                    if (rank != null && rank.DiscountPercent > 0)
-                    {
-                        total = total - (total * rank.DiscountPercent / 100);
-                    }
-                }
+                //var customer = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
+                //if (customer != null)
+                //{
+                //    var rank = db.CustomerRanks.FirstOrDefault(r => r.RankID == customer.RankID);
+                //    if (rank != null && rank.DiscountPercent > 0)
+                //    {
+                //        total = total - (total * rank.DiscountPercent / 100);
+                //    }
+                //}
 
                 return total;
             }
@@ -144,22 +145,22 @@ namespace DAL
         {
             try
             {
-                var customer = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
-                if (customer == null) return null;
+                //var customer = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
+                //if (customer == null) return null;
 
-                decimal totalSpent = GetTotalSpendingForRank(customerId);
+                //decimal totalSpent = GetTotalSpendingForRank(customerId);
 
-                var newRank = db.CustomerRanks
-                    .Where(r => totalSpent >= r.MinSpending)
-                    .OrderByDescending(r => r.MinSpending)
-                    .FirstOrDefault();
+                //var newRank = db.CustomerRanks
+                //    .Where(r => totalSpent >= r.MinSpending)
+                //    .OrderByDescending(r => r.MinSpending)
+                //    .FirstOrDefault();
 
-                if (newRank != null && newRank.RankID != customer.RankID)
-                {
-                    customer.RankID = newRank.RankID;
-                    db.SubmitChanges();
-                    return newRank.RankName;
-                }
+                //if (newRank != null && newRank.RankID != customer.RankID)
+                //{
+                //    customer.RankID = newRank.RankID;
+                //    db.SubmitChanges();
+                //    return newRank.RankName;
+                //}
 
                 return null;
             }
@@ -176,7 +177,7 @@ namespace DAL
                              from r in rankJoin.DefaultIfEmpty()
                              select new CustomerET
                              {
-                                 CustomerID = c.CustomerID,
+                               //  CustomerID = c.CustomerID,
                                  FullName = c.FullName,
                                  PhoneNumber = c.PhoneNumber,
                                  NationalID = c.NationalID,
@@ -226,18 +227,18 @@ namespace DAL
         {
             try
             {
-                var entity = db.Customers.FirstOrDefault(c => c.CustomerID == customer.CustomerID);
-                if (entity == null) return false;
+                //var entity = db.Customers.FirstOrDefault(c => c.CustomerID == customer.CustomerID);
+                //if (entity == null) return false;
 
-                entity.FullName = customer.FullName;
-                entity.PhoneNumber = customer.PhoneNumber;
-                entity.NationalID = customer.NationalID;
-                entity.Address = customer.Address;
-                entity.Country = customer.Country;
-                entity.Gender = customer.Gender;
-                entity.DateOfBirth = customer.DateOfBirth;
+                //entity.FullName = customer.FullName;
+                //entity.PhoneNumber = customer.PhoneNumber;
+                //entity.NationalID = customer.NationalID;
+                //entity.Address = customer.Address;
+                //entity.Country = customer.Country;
+                //entity.Gender = customer.Gender;
+                //entity.DateOfBirth = customer.DateOfBirth;
 
-                db.SubmitChanges();
+                //db.SubmitChanges();
                 return true;
             }
             catch
@@ -250,11 +251,11 @@ namespace DAL
         {
             try
             {
-                var entity = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
-                if (entity == null) return false;
+                //var entity = db.Customers.FirstOrDefault(c => c.CustomerID == customerId);
+                //if (entity == null) return false;
 
-                db.Customers.DeleteOnSubmit(entity);
-                db.SubmitChanges();
+                //db.Customers.DeleteOnSubmit(entity);
+                //db.SubmitChanges();
                 return true;
             }
             catch
@@ -283,7 +284,7 @@ namespace DAL
 
                 var customers = query.Select(x => new CustomerET
                 {
-                    CustomerID = x.c.CustomerID,
+                  //  CustomerID = x.c.CustomerID,
                     FullName = x.c.FullName,
                     PhoneNumber = x.c.PhoneNumber,
                     NationalID = x.c.NationalID,

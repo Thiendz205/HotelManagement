@@ -18,7 +18,7 @@ namespace BUS
         {
             return roomTypeDAL.addRoomType(roomType);
         }
-        public bool removeRoomType(int roomTypeID)
+        public bool removeRoomType(string roomTypeID)
         {
             return roomTypeDAL.removeRoomType(roomTypeID);
         }
@@ -30,9 +30,14 @@ namespace BUS
         {
             return roomTypeDAL.checkExistenceNameRoomType(name, category);
         }
-        public bool checkExistenceNameRoomType_UPDate(string name, int currentRoomID)
+        public bool checkExistenceNameRoomType_UPDate(string name, string currentRoomID)
         {
             return roomTypeDAL.checkExistenceNameRoomType_UPDate(name, currentRoomID);
+        }
+
+        public bool IsRoomTypeInUse(string roomTypeID)
+        {
+            return roomTypeDAL.IsRoomTypeInUse(roomTypeID);
         }
 
 

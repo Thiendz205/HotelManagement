@@ -61,11 +61,11 @@ namespace HotelManagement
                 return;
             }
 
-            if (password.Length < 8)
-            {
-                MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            //if (password.Length < 8)
+            //{
+            //    MessageBox.Show("Mật khẩu phải có ít nhất 8 ký tự!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             bool hasUpper = password.Any(char.IsUpper);
             bool hasLower = password.Any(char.IsLower);

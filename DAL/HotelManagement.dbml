@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HotelManagement" Class="HotelManagementDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-EKLM582L\MSSQLSERVER01;Initial Catalog=HotelManagement;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HotelManagementConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-J4SN4OIQ\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HotelManagementConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
-      <Column Name="AccountID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AccountID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
       <Column Name="Username" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="StartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="StaffID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
@@ -32,9 +32,9 @@
   </Table>
   <Table Name="dbo.Booking" Member="Bookings">
     <Type Name="Booking">
-      <Column Name="BookingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BookingID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CustomerID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="RentalType" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
       <Column Name="CheckIn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="CheckOut" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
@@ -51,9 +51,9 @@
   </Table>
   <Table Name="dbo.BookingFee" Member="BookingFees">
     <Type Name="BookingFee">
-      <Column Name="BookingFeeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="BookingID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="FeeTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BookingFeeID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BookingID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="FeeTypeID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
@@ -63,7 +63,7 @@
   </Table>
   <Table Name="dbo.Customer" Member="Customers">
     <Type Name="Customer">
-      <Column Name="CustomerID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CustomerID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FullName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="PhoneNumber" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
       <Column Name="NationalID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
@@ -87,7 +87,7 @@
   </Table>
   <Table Name="dbo.EquipmentStorage" Member="EquipmentStorages">
     <Type Name="EquipmentStorage">
-      <Column Name="EquipmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EquipmentID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="EquipmentName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="EquipmentCategory" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -101,7 +101,7 @@
   </Table>
   <Table Name="dbo.FeeType" Member="FeeTypes">
     <Type Name="FeeType">
-      <Column Name="FeeTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FeeTypeID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="FeeTypeName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Category" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="DefaultPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
@@ -111,31 +111,27 @@
   </Table>
   <Table Name="dbo.Invoice" Member="Invoices">
     <Type Name="Invoice">
-      <Column Name="InvoiceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="BookingID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BookingID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="PaymentMethod" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="PaidStatus" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="StaffID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="Note" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="AuditStatus" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="AuditNote" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="AuditedBy" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="AuditedAt" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Booking_Invoice" Member="Booking" ThisKey="BookingID" OtherKey="BookingID" Type="Booking" IsForeignKey="true" />
       <Association Name="Staff_Invoice" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.Room" Member="Rooms">
     <Type Name="Room">
-      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="RoomName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="RoomTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomTypeID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="Capacity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Official" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="Room_Booking" Member="Bookings" ThisKey="RoomID" OtherKey="RoomID" Type="Booking" />
       <Association Name="Room_RoomEquipment" Member="RoomEquipments" ThisKey="RoomID" OtherKey="RoomID" Type="RoomEquipment" />
       <Association Name="Room_RoomEvaluation" Member="RoomEvaluations" ThisKey="RoomID" OtherKey="RoomID" Type="RoomEvaluation" />
@@ -144,9 +140,9 @@
   </Table>
   <Table Name="dbo.RoomEquipment" Member="RoomEquipments">
     <Type Name="RoomEquipment">
-      <Column Name="RoomEquipmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="EquipmentStorage" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomEquipmentID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="EquipmentStorage" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="InstalledDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Condition" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -160,7 +156,7 @@
   <Table Name="dbo.RoomEvaluation" Member="RoomEvaluations">
     <Type Name="RoomEvaluation">
       <Column Name="EvaluationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RoomID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="EvaluationDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="CleanlinessScore" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ComfortScore" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -177,7 +173,7 @@
   </Table>
   <Table Name="dbo.RoomType" Member="RoomTypes">
     <Type Name="RoomType">
-      <Column Name="RoomTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RoomTypeID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TypeName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="PricePerDay" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="PricePerHour" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
@@ -190,7 +186,7 @@
   <Table Name="dbo.RoomTypePrice" Member="RoomTypePrices">
     <Type Name="RoomTypePrice">
       <Column Name="PriceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="RoomTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomTypeID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="StartDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="EndDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
       <Column Name="PricePerDay" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
@@ -201,7 +197,7 @@
   </Table>
   <Table Name="dbo.Service" Member="Services">
     <Type Name="Service">
-      <Column Name="ServiceID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ServiceID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ServiceName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Category" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Price" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
@@ -211,12 +207,11 @@
   </Table>
   <Table Name="dbo.ServiceUsage" Member="ServiceUsages">
     <Type Name="ServiceUsage">
-      <Column Name="UsageID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="BookingID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ServiceID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UsageID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BookingID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StaffID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
-      <Column Name="UsageDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="Booking_ServiceUsage" Member="Booking" ThisKey="BookingID" OtherKey="BookingID" Type="Booking" IsForeignKey="true" />
       <Association Name="Service_ServiceUsage" Member="Service" ThisKey="ServiceID" OtherKey="ServiceID" Type="Service" IsForeignKey="true" />
       <Association Name="Staff_ServiceUsage" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />

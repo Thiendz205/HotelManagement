@@ -208,6 +208,7 @@
             // 
             // frm_login
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImage = global::HotelManagement.Properties.Resources.img_backr_login;

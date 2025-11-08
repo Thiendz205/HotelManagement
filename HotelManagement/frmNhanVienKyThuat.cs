@@ -46,12 +46,12 @@ namespace HotelManagement
 
         private void btnThietBiTrongPhong_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmTrangThietBiPhong());
+            OpenChildForm(new frmTrangThietBiPhong(staffID));
         }
 
         private void btnKhoThietBi_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmKhoThietBi());
+            OpenChildForm(new frmKhoThietBi(staffID));
         }
 
         private void btnThayDoiTrangThai_Click(object sender, EventArgs e)

@@ -16,7 +16,7 @@ namespace DAL
             var services = from s in db.Services
                           select new ServiceET
                           {
-                              ServiceID = s.ServiceID,
+                             // ServiceID = s.ServiceID,
                               ServiceName = s.ServiceName,
                               Category = s.Category,
                               Price = s.Price,
@@ -33,8 +33,9 @@ namespace DAL
 
         public bool checkExistenceServiceName_Update(string serviceName, int currentServiceID)
         {
-            var service = db.Services.FirstOrDefault(x => x.ServiceName == serviceName && x.ServiceID != currentServiceID);
-            return service == null;
+            //var service = db.Services.FirstOrDefault(x => x.ServiceName == serviceName && x.ServiceID != currentServiceID);
+            // return service == null;
+            return false; //tam
         }
 
         public bool addService(ServiceET service)
@@ -68,8 +69,8 @@ namespace DAL
             try
             {
                 // Kiểm tra xem dịch vụ có được sử dụng trong bảng ServiceUsage không
-                var serviceUsageExists = db.ServiceUsages.Any(su => su.ServiceID == serviceID);
-                if (serviceUsageExists) return true;
+                //var serviceUsageExists = db.ServiceUsages.Any(su => su.ServiceID == serviceID);
+                //if (serviceUsageExists) return true;
 
                 return false;
             }
@@ -84,18 +85,18 @@ namespace DAL
             try
             {
                 // Kiểm tra khóa ngoại trước khi xóa
-                if (checkServiceHasForeignKey(serviceID))
-                {
-                    return false; // Không thể xóa vì có khóa ngoại
-                }
+                //if (checkServiceHasForeignKey(serviceID))
+                //{
+                //    return false; // Không thể xóa vì có khóa ngoại
+                //}
 
-                Service serviceToDelete = db.Services.SingleOrDefault(s => s.ServiceID == serviceID);
-                if (serviceToDelete != null)
-                {
-                    db.Services.DeleteOnSubmit(serviceToDelete);
-                    db.SubmitChanges();
-                    return true;
-                }
+                //Service serviceToDelete = db.Services.SingleOrDefault(s => s.ServiceID == serviceID);
+                //if (serviceToDelete != null)
+                //{
+                //    db.Services.DeleteOnSubmit(serviceToDelete);
+                //    db.SubmitChanges();
+                //    return true;
+                //}
                 return false;
             }
             catch (Exception)
@@ -108,16 +109,16 @@ namespace DAL
         {
             try
             {
-                Service serviceToUpdate = db.Services.SingleOrDefault(s => s.ServiceID == service.ServiceID);
-                if (serviceToUpdate != null)
-                {
-                    serviceToUpdate.ServiceName = service.ServiceName;
-                    serviceToUpdate.Category = service.Category;
-                    serviceToUpdate.Price = service.Price;
-                    serviceToUpdate.Description = service.Description;
-                    db.SubmitChanges();
-                    return true;
-                }
+                //Service serviceToUpdate = db.Services.SingleOrDefault(s => s.ServiceID == service.ServiceID);
+                //if (serviceToUpdate != null)
+                //{
+                //    serviceToUpdate.ServiceName = service.ServiceName;
+                //    serviceToUpdate.Category = service.Category;
+                //    serviceToUpdate.Price = service.Price;
+                //    serviceToUpdate.Description = service.Description;
+                //    db.SubmitChanges();
+                //    return true;
+                //}
                 return false;
             }
             catch (Exception)
@@ -137,7 +138,8 @@ namespace DAL
                 }
                 else
                 {
-                    return lastService.ServiceID + 1;
+                    //return lastService.ServiceID + 1;
+                    return 0;
                 }
             }
             catch (Exception)

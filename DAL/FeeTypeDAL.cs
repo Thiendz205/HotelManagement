@@ -17,7 +17,7 @@ namespace DAL
             return db.FeeTypes
                      .Select(ft => new FeeTypeET
                      {
-                         FeeTypeID = ft.FeeTypeID,
+                        // FeeTypeID = ft.FeeTypeID,
                          FeeTypeName = ft.FeeTypeName,
                          Category = ft.Category,
                          DefaultPrice = ft.DefaultPrice,
@@ -26,10 +26,11 @@ namespace DAL
         }
         public bool IsFeeTypeNameExists(string name, int? excludeId = null)
         {
-            var q = db.FeeTypes.Where(f => f.FeeTypeName == name);
-            if (excludeId.HasValue)
-                q = q.Where(f => f.FeeTypeID != excludeId.Value);
-            return q.Any();
+            //var q = db.FeeTypes.Where(f => f.FeeTypeName == name);
+            //if (excludeId.HasValue)
+            //    q = q.Where(f => f.FeeTypeID != excludeId.Value);
+            //return q.Any();
+            return true; //tam
         }
 
         public int AddFeeType(FeeTypeET et)
@@ -43,34 +44,36 @@ namespace DAL
             };
             db.FeeTypes.InsertOnSubmit(ft);
             db.SubmitChanges();
-            return ft.FeeTypeID;
+            // return ft.FeeTypeID;
+            return 0;
         }
 
         public bool UpdateFeeType(FeeTypeET et)
         {
-            var ft = db.FeeTypes.FirstOrDefault(f => f.FeeTypeID == et.FeeTypeID);
-            if (ft == null) return false;
-            ft.FeeTypeName = et.FeeTypeName;
-            ft.Category = et.Category;
-            ft.DefaultPrice = et.DefaultPrice;
-            ft.Notes = et.Notes;
-            db.SubmitChanges();
+            //var ft = db.FeeTypes.FirstOrDefault(f => f.FeeTypeID == et.FeeTypeID);
+            //if (ft == null) return false;
+            //ft.FeeTypeName = et.FeeTypeName;
+            //ft.Category = et.Category;
+            //ft.DefaultPrice = et.DefaultPrice;
+            //ft.Notes = et.Notes;
+            //db.SubmitChanges();
             return true;
         }
         
         public bool CanDeleteFeeType(int feeTypeId)
         {
-            return !db.BookingFees.Any(bf => bf.FeeTypeID == feeTypeId);
+           // return !db.BookingFees.Any(bf => bf.FeeTypeID == feeTypeId);
+           return false;
         }
 
         public bool DeleteFeeType(int feeTypeId)
         {
-            var ft = db.FeeTypes.FirstOrDefault(f => f.FeeTypeID == feeTypeId);
-            if (ft == null) return false;
-            if (!CanDeleteFeeType(feeTypeId))
-                return false; 
-            db.FeeTypes.DeleteOnSubmit(ft);
-            db.SubmitChanges();
+            //var ft = db.FeeTypes.FirstOrDefault(f => f.FeeTypeID == feeTypeId);
+            //if (ft == null) return false;
+            //if (!CanDeleteFeeType(feeTypeId))
+            //    return false; 
+            //db.FeeTypes.DeleteOnSubmit(ft);
+            //db.SubmitChanges();
             return true;
         }
     }

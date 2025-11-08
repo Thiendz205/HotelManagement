@@ -19,7 +19,7 @@ namespace DAL
                           from s in staffGroup.DefaultIfEmpty()
                           select new AccountET
                           {
-                              AccountID = a.AccountID,
+                              //AccountID = a.AccountID,
                               Username = a.Username,
                               Password = a.Password,
                               StartDate = a.StartDate,
@@ -50,7 +50,8 @@ namespace DAL
         public bool IsUsernameAvailableForUpdate(string username, int accountId)
         {
             string u = (username ?? "").Trim();
-            return !db.Accounts.Any(x => x.Username == u && x.AccountID != accountId);
+            //return !db.Accounts.Any(x => x.Username == u //&& x.AccountID != accountId);
+            return true;
         }
 
         // (MỚI) true nếu StaffID tồn tại trong bảng Staff
@@ -117,11 +118,11 @@ namespace DAL
             string staffId = (account.StaffID ?? "").Trim();
             string status = (account.Status ?? "").Trim();
 
-            var acc = db.Accounts.SingleOrDefault(a => a.AccountID == account.AccountID);
-            if (acc == null) return false;
+          //  var acc = db.Accounts.SingleOrDefault(a => a.AccountID == account.AccountID);
+          //  if (acc == null) return false;
 
             // Không cho trùng username với account khác
-            if (db.Accounts.Any(a => a.Username == username && a.AccountID != account.AccountID))
+         //   if (db.Accounts.Any(a => a.Username == username && a.AccountID != account.AccountID))
                 return false;
 
             // Staff phải tồn tại
@@ -129,13 +130,13 @@ namespace DAL
                 return false;
 
             // Không cho 2 account dùng chung 1 Staff
-            if (db.Accounts.Any(a => a.StaffID == staffId && a.AccountID != account.AccountID))
+           // if (db.Accounts.Any(a => a.StaffID == staffId && a.AccountID != account.AccountID))
                 return false;
 
-            acc.Username = username;
-            acc.Password = account.Password;
-            acc.StaffID = staffId;
-            acc.Status = string.IsNullOrWhiteSpace(status) ? "Active" : status;
+            //acc.Username = username;
+            //acc.Password = account.Password;
+            //acc.StaffID = staffId;
+            //acc.Status = string.IsNullOrWhiteSpace(status) ? "Active" : status;
 
             try
             {

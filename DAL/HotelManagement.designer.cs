@@ -30,9 +30,6 @@ namespace DAL
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAccount(Account instance);
-    partial void UpdateAccount(Account instance);
-    partial void DeleteAccount(Account instance);
     partial void InsertStaff(Staff instance);
     partial void UpdateStaff(Staff instance);
     partial void DeleteStaff(Staff instance);
@@ -81,7 +78,7 @@ namespace DAL
     #endregion
 		
 		public HotelManagementDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString1, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -240,12 +237,10 @@ namespace DAL
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Account")]
-	public partial class Account : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class Account
 	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _AccountID;
+		private string _AccountID;
 		
 		private string _Username;
 		
@@ -257,34 +252,12 @@ namespace DAL
 		
 		private string _Status;
 		
-		private EntityRef<Staff> _Staff;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAccountIDChanging(int value);
-    partial void OnAccountIDChanged();
-    partial void OnUsernameChanging(string value);
-    partial void OnUsernameChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnStartDateChanging(System.DateTime value);
-    partial void OnStartDateChanged();
-    partial void OnStaffIDChanging(string value);
-    partial void OnStaffIDChanged();
-    partial void OnStatusChanging(string value);
-    partial void OnStatusChanged();
-    #endregion
-		
 		public Account()
 		{
-			this._Staff = default(EntityRef<Staff>);
-			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int AccountID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccountID", DbType="Char(10)")]
+		public string AccountID
 		{
 			get
 			{
@@ -294,11 +267,7 @@ namespace DAL
 			{
 				if ((this._AccountID != value))
 				{
-					this.OnAccountIDChanging(value);
-					this.SendPropertyChanging();
 					this._AccountID = value;
-					this.SendPropertyChanged("AccountID");
-					this.OnAccountIDChanged();
 				}
 			}
 		}
@@ -314,16 +283,12 @@ namespace DAL
 			{
 				if ((this._Username != value))
 				{
-					this.OnUsernameChanging(value);
-					this.SendPropertyChanging();
 					this._Username = value;
-					this.SendPropertyChanged("Username");
-					this.OnUsernameChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Password", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
 		public string Password
 		{
 			get
@@ -334,11 +299,7 @@ namespace DAL
 			{
 				if ((this._Password != value))
 				{
-					this.OnPasswordChanging(value);
-					this.SendPropertyChanging();
 					this._Password = value;
-					this.SendPropertyChanged("Password");
-					this.OnPasswordChanged();
 				}
 			}
 		}
@@ -354,11 +315,7 @@ namespace DAL
 			{
 				if ((this._StartDate != value))
 				{
-					this.OnStartDateChanging(value);
-					this.SendPropertyChanging();
 					this._StartDate = value;
-					this.SendPropertyChanged("StartDate");
-					this.OnStartDateChanged();
 				}
 			}
 		}
@@ -374,15 +331,7 @@ namespace DAL
 			{
 				if ((this._StaffID != value))
 				{
-					if (this._Staff.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStaffIDChanging(value);
-					this.SendPropertyChanging();
 					this._StaffID = value;
-					this.SendPropertyChanged("StaffID");
-					this.OnStaffIDChanged();
 				}
 			}
 		}
@@ -398,66 +347,8 @@ namespace DAL
 			{
 				if ((this._Status != value))
 				{
-					this.OnStatusChanging(value);
-					this.SendPropertyChanging();
 					this._Status = value;
-					this.SendPropertyChanged("Status");
-					this.OnStatusChanged();
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true, DeleteRule="CASCADE")]
-		public Staff Staff
-		{
-			get
-			{
-				return this._Staff.Entity;
-			}
-			set
-			{
-				Staff previousValue = this._Staff.Entity;
-				if (((previousValue != value) 
-							|| (this._Staff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Staff.Entity = null;
-						previousValue.Accounts.Remove(this);
-					}
-					this._Staff.Entity = value;
-					if ((value != null))
-					{
-						value.Accounts.Add(this);
-						this._StaffID = value.StaffID;
-					}
-					else
-					{
-						this._StaffID = default(string);
-					}
-					this.SendPropertyChanged("Staff");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -485,8 +376,6 @@ namespace DAL
 		private System.DateTime _StartDate;
 		
 		private string _Notes;
-		
-		private EntitySet<Account> _Accounts;
 		
 		private EntitySet<Booking> _Bookings;
 		
@@ -524,7 +413,6 @@ namespace DAL
 		
 		public Staff()
 		{
-			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
 			this._Bookings = new EntitySet<Booking>(new Action<Booking>(this.attach_Bookings), new Action<Booking>(this.detach_Bookings));
 			this._EquipmentStorages = new EntitySet<EquipmentStorage>(new Action<EquipmentStorage>(this.attach_EquipmentStorages), new Action<EquipmentStorage>(this.detach_EquipmentStorages));
 			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
@@ -713,19 +601,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Account", Storage="_Accounts", ThisKey="StaffID", OtherKey="StaffID")]
-		public EntitySet<Account> Accounts
-		{
-			get
-			{
-				return this._Accounts;
-			}
-			set
-			{
-				this._Accounts.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_Booking", Storage="_Bookings", ThisKey="StaffID", OtherKey="StaffID")]
 		public EntitySet<Booking> Bookings
 		{
@@ -811,18 +686,6 @@ namespace DAL
 			}
 		}
 		
-		private void attach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = this;
-		}
-		
-		private void detach_Accounts(Account entity)
-		{
-			this.SendPropertyChanging();
-			entity.Staff = null;
-		}
-		
 		private void attach_Bookings(Booking entity)
 		{
 			this.SendPropertyChanging();
@@ -890,11 +753,11 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _BookingID;
+		private string _BookingID;
 		
-		private int _CustomerID;
+		private string _CustomerID;
 		
-		private int _RoomID;
+		private string _RoomID;
 		
 		private string _RentalType;
 		
@@ -924,11 +787,11 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnBookingIDChanging(int value);
+    partial void OnBookingIDChanging(string value);
     partial void OnBookingIDChanged();
-    partial void OnCustomerIDChanging(int value);
+    partial void OnCustomerIDChanging(string value);
     partial void OnCustomerIDChanged();
-    partial void OnRoomIDChanging(int value);
+    partial void OnRoomIDChanging(string value);
     partial void OnRoomIDChanged();
     partial void OnRentalTypeChanging(string value);
     partial void OnRentalTypeChanged();
@@ -955,8 +818,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int BookingID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string BookingID
 		{
 			get
 			{
@@ -975,8 +838,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="Int NOT NULL")]
-		public int CustomerID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string CustomerID
 		{
 			get
 			{
@@ -999,8 +862,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomID", DbType="Int NOT NULL")]
-		public int RoomID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string RoomID
 		{
 			get
 			{
@@ -1247,7 +1110,7 @@ namespace DAL
 					}
 					else
 					{
-						this._CustomerID = default(int);
+						this._CustomerID = default(string);
 					}
 					this.SendPropertyChanged("Customer");
 				}
@@ -1281,7 +1144,7 @@ namespace DAL
 					}
 					else
 					{
-						this._RoomID = default(int);
+						this._RoomID = default(string);
 					}
 					this.SendPropertyChanged("Room");
 				}
@@ -1351,11 +1214,11 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _BookingFeeID;
+		private string _BookingFeeID;
 		
-		private int _BookingID;
+		private string _BookingID;
 		
-		private int _FeeTypeID;
+		private string _FeeTypeID;
 		
 		private int _Quantity;
 		
@@ -1371,11 +1234,11 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnBookingFeeIDChanging(int value);
+    partial void OnBookingFeeIDChanging(string value);
     partial void OnBookingFeeIDChanged();
-    partial void OnBookingIDChanging(int value);
+    partial void OnBookingIDChanging(string value);
     partial void OnBookingIDChanged();
-    partial void OnFeeTypeIDChanging(int value);
+    partial void OnFeeTypeIDChanging(string value);
     partial void OnFeeTypeIDChanged();
     partial void OnQuantityChanging(int value);
     partial void OnQuantityChanged();
@@ -1392,8 +1255,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingFeeID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int BookingFeeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingFeeID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string BookingFeeID
 		{
 			get
 			{
@@ -1412,8 +1275,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingID", DbType="Int NOT NULL")]
-		public int BookingID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string BookingID
 		{
 			get
 			{
@@ -1436,8 +1299,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeTypeID", DbType="Int NOT NULL")]
-		public int FeeTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeTypeID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string FeeTypeID
 		{
 			get
 			{
@@ -1547,7 +1410,7 @@ namespace DAL
 					}
 					else
 					{
-						this._BookingID = default(int);
+						this._BookingID = default(string);
 					}
 					this.SendPropertyChanged("Booking");
 				}
@@ -1581,7 +1444,7 @@ namespace DAL
 					}
 					else
 					{
-						this._FeeTypeID = default(int);
+						this._FeeTypeID = default(string);
 					}
 					this.SendPropertyChanged("FeeType");
 				}
@@ -1615,7 +1478,7 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _CustomerID;
+		private string _CustomerID;
 		
 		private string _FullName;
 		
@@ -1641,7 +1504,7 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnCustomerIDChanging(int value);
+    partial void OnCustomerIDChanging(string value);
     partial void OnCustomerIDChanged();
     partial void OnFullNameChanging(string value);
     partial void OnFullNameChanged();
@@ -1668,8 +1531,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int CustomerID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CustomerID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string CustomerID
 		{
 			get
 			{
@@ -2100,7 +1963,7 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _EquipmentID;
+		private string _EquipmentID;
 		
 		private string _EquipmentName;
 		
@@ -2124,7 +1987,7 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnEquipmentIDChanging(int value);
+    partial void OnEquipmentIDChanging(string value);
     partial void OnEquipmentIDChanged();
     partial void OnEquipmentNameChanging(string value);
     partial void OnEquipmentNameChanged();
@@ -2149,8 +2012,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EquipmentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int EquipmentID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EquipmentID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string EquipmentID
 		{
 			get
 			{
@@ -2399,7 +2262,7 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _FeeTypeID;
+		private string _FeeTypeID;
 		
 		private string _FeeTypeName;
 		
@@ -2415,7 +2278,7 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnFeeTypeIDChanging(int value);
+    partial void OnFeeTypeIDChanging(string value);
     partial void OnFeeTypeIDChanged();
     partial void OnFeeTypeNameChanging(string value);
     partial void OnFeeTypeNameChanged();
@@ -2433,8 +2296,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeTypeID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int FeeTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FeeTypeID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string FeeTypeID
 		{
 			get
 			{
@@ -2585,9 +2448,9 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _InvoiceID;
+		private string _InvoiceID;
 		
-		private int _BookingID;
+		private string _BookingID;
 		
 		private System.DateTime _InvoiceDate;
 		
@@ -2601,16 +2464,6 @@ namespace DAL
 		
 		private string _Note;
 		
-		private string _CreatedBy;
-		
-		private string _AuditStatus;
-		
-		private string _AuditNote;
-		
-		private string _AuditedBy;
-		
-		private System.Nullable<System.DateTime> _AuditedAt;
-		
 		private EntityRef<Booking> _Booking;
 		
 		private EntityRef<Staff> _Staff;
@@ -2619,9 +2472,9 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnInvoiceIDChanging(int value);
+    partial void OnInvoiceIDChanging(string value);
     partial void OnInvoiceIDChanged();
-    partial void OnBookingIDChanging(int value);
+    partial void OnBookingIDChanging(string value);
     partial void OnBookingIDChanged();
     partial void OnInvoiceDateChanging(System.DateTime value);
     partial void OnInvoiceDateChanged();
@@ -2635,16 +2488,6 @@ namespace DAL
     partial void OnStaffIDChanged();
     partial void OnNoteChanging(string value);
     partial void OnNoteChanged();
-    partial void OnCreatedByChanging(string value);
-    partial void OnCreatedByChanged();
-    partial void OnAuditStatusChanging(string value);
-    partial void OnAuditStatusChanged();
-    partial void OnAuditNoteChanging(string value);
-    partial void OnAuditNoteChanged();
-    partial void OnAuditedByChanging(string value);
-    partial void OnAuditedByChanged();
-    partial void OnAuditedAtChanging(System.Nullable<System.DateTime> value);
-    partial void OnAuditedAtChanged();
     #endregion
 		
 		public Invoice()
@@ -2654,8 +2497,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int InvoiceID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string InvoiceID
 		{
 			get
 			{
@@ -2674,8 +2517,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingID", DbType="Int NOT NULL")]
-		public int BookingID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string BookingID
 		{
 			get
 			{
@@ -2822,106 +2665,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditStatus", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string AuditStatus
-		{
-			get
-			{
-				return this._AuditStatus;
-			}
-			set
-			{
-				if ((this._AuditStatus != value))
-				{
-					this.OnAuditStatusChanging(value);
-					this.SendPropertyChanging();
-					this._AuditStatus = value;
-					this.SendPropertyChanged("AuditStatus");
-					this.OnAuditStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditNote", DbType="NVarChar(255)")]
-		public string AuditNote
-		{
-			get
-			{
-				return this._AuditNote;
-			}
-			set
-			{
-				if ((this._AuditNote != value))
-				{
-					this.OnAuditNoteChanging(value);
-					this.SendPropertyChanging();
-					this._AuditNote = value;
-					this.SendPropertyChanged("AuditNote");
-					this.OnAuditNoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditedBy", DbType="NVarChar(20)")]
-		public string AuditedBy
-		{
-			get
-			{
-				return this._AuditedBy;
-			}
-			set
-			{
-				if ((this._AuditedBy != value))
-				{
-					this.OnAuditedByChanging(value);
-					this.SendPropertyChanging();
-					this._AuditedBy = value;
-					this.SendPropertyChanged("AuditedBy");
-					this.OnAuditedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuditedAt", DbType="DateTime")]
-		public System.Nullable<System.DateTime> AuditedAt
-		{
-			get
-			{
-				return this._AuditedAt;
-			}
-			set
-			{
-				if ((this._AuditedAt != value))
-				{
-					this.OnAuditedAtChanging(value);
-					this.SendPropertyChanging();
-					this._AuditedAt = value;
-					this.SendPropertyChanged("AuditedAt");
-					this.OnAuditedAtChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Booking_Invoice", Storage="_Booking", ThisKey="BookingID", OtherKey="BookingID", IsForeignKey=true)]
 		public Booking Booking
 		{
@@ -2949,7 +2692,7 @@ namespace DAL
 					}
 					else
 					{
-						this._BookingID = default(int);
+						this._BookingID = default(string);
 					}
 					this.SendPropertyChanged("Booking");
 				}
@@ -3017,17 +2760,19 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _RoomID;
+		private string _RoomID;
 		
 		private string _RoomName;
 		
-		private int _RoomTypeID;
+		private string _RoomTypeID;
 		
 		private int _Capacity;
 		
 		private string _Description;
 		
 		private string _Status;
+		
+		private string _Official;
 		
 		private EntitySet<Booking> _Bookings;
 		
@@ -3041,11 +2786,11 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnRoomIDChanging(int value);
+    partial void OnRoomIDChanging(string value);
     partial void OnRoomIDChanged();
     partial void OnRoomNameChanging(string value);
     partial void OnRoomNameChanged();
-    partial void OnRoomTypeIDChanging(int value);
+    partial void OnRoomTypeIDChanging(string value);
     partial void OnRoomTypeIDChanged();
     partial void OnCapacityChanging(int value);
     partial void OnCapacityChanged();
@@ -3053,6 +2798,8 @@ namespace DAL
     partial void OnDescriptionChanged();
     partial void OnStatusChanging(string value);
     partial void OnStatusChanged();
+    partial void OnOfficialChanging(string value);
+    partial void OnOfficialChanged();
     #endregion
 		
 		public Room()
@@ -3064,8 +2811,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int RoomID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string RoomID
 		{
 			get
 			{
@@ -3104,8 +2851,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomTypeID", DbType="Int NOT NULL")]
-		public int RoomTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomTypeID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string RoomTypeID
 		{
 			get
 			{
@@ -3188,6 +2935,26 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Official", DbType="NVarChar(50)")]
+		public string Official
+		{
+			get
+			{
+				return this._Official;
+			}
+			set
+			{
+				if ((this._Official != value))
+				{
+					this.OnOfficialChanging(value);
+					this.SendPropertyChanging();
+					this._Official = value;
+					this.SendPropertyChanged("Official");
+					this.OnOfficialChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_Booking", Storage="_Bookings", ThisKey="RoomID", OtherKey="RoomID")]
 		public EntitySet<Booking> Bookings
 		{
@@ -3254,7 +3021,7 @@ namespace DAL
 					}
 					else
 					{
-						this._RoomTypeID = default(int);
+						this._RoomTypeID = default(string);
 					}
 					this.SendPropertyChanged("RoomType");
 				}
@@ -3324,11 +3091,11 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _RoomEquipmentID;
+		private string _RoomEquipmentID;
 		
-		private int _RoomID;
+		private string _RoomID;
 		
-		private int _EquipmentStorage;
+		private string _EquipmentStorage;
 		
 		private int _Quantity;
 		
@@ -3350,11 +3117,11 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnRoomEquipmentIDChanging(int value);
+    partial void OnRoomEquipmentIDChanging(string value);
     partial void OnRoomEquipmentIDChanged();
-    partial void OnRoomIDChanging(int value);
+    partial void OnRoomIDChanging(string value);
     partial void OnRoomIDChanged();
-    partial void OnEquipmentStorageChanging(int value);
+    partial void OnEquipmentStorageChanging(string value);
     partial void OnEquipmentStorageChanged();
     partial void OnQuantityChanging(int value);
     partial void OnQuantityChanged();
@@ -3376,8 +3143,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomEquipmentID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int RoomEquipmentID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomEquipmentID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string RoomEquipmentID
 		{
 			get
 			{
@@ -3396,8 +3163,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomID", DbType="Int NOT NULL")]
-		public int RoomID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string RoomID
 		{
 			get
 			{
@@ -3420,8 +3187,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EquipmentStorage", DbType="Int NOT NULL")]
-		public int EquipmentStorage
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EquipmentStorage", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string EquipmentStorage
 		{
 			get
 			{
@@ -3575,7 +3342,7 @@ namespace DAL
 					}
 					else
 					{
-						this._EquipmentStorage = default(int);
+						this._EquipmentStorage = default(string);
 					}
 					this.SendPropertyChanged("EquipmentStorage1");
 				}
@@ -3609,7 +3376,7 @@ namespace DAL
 					}
 					else
 					{
-						this._RoomID = default(int);
+						this._RoomID = default(string);
 					}
 					this.SendPropertyChanged("Room");
 				}
@@ -3679,7 +3446,7 @@ namespace DAL
 		
 		private int _EvaluationID;
 		
-		private int _RoomID;
+		private string _RoomID;
 		
 		private System.DateTime _EvaluationDate;
 		
@@ -3711,7 +3478,7 @@ namespace DAL
     partial void OnCreated();
     partial void OnEvaluationIDChanging(int value);
     partial void OnEvaluationIDChanged();
-    partial void OnRoomIDChanging(int value);
+    partial void OnRoomIDChanging(string value);
     partial void OnRoomIDChanged();
     partial void OnEvaluationDateChanging(System.DateTime value);
     partial void OnEvaluationDateChanged();
@@ -3763,8 +3530,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomID", DbType="Int NOT NULL")]
-		public int RoomID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string RoomID
 		{
 			get
 			{
@@ -4034,7 +3801,7 @@ namespace DAL
 					}
 					else
 					{
-						this._RoomID = default(int);
+						this._RoomID = default(string);
 					}
 					this.SendPropertyChanged("Room");
 				}
@@ -4068,7 +3835,7 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _RoomTypeID;
+		private string _RoomTypeID;
 		
 		private string _TypeName;
 		
@@ -4088,7 +3855,7 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnRoomTypeIDChanging(int value);
+    partial void OnRoomTypeIDChanging(string value);
     partial void OnRoomTypeIDChanged();
     partial void OnTypeNameChanging(string value);
     partial void OnTypeNameChanged();
@@ -4109,8 +3876,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomTypeID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int RoomTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomTypeID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string RoomTypeID
 		{
 			get
 			{
@@ -4308,7 +4075,7 @@ namespace DAL
 		
 		private int _PriceID;
 		
-		private int _RoomTypeID;
+		private string _RoomTypeID;
 		
 		private System.DateTime _StartDate;
 		
@@ -4328,7 +4095,7 @@ namespace DAL
     partial void OnCreated();
     partial void OnPriceIDChanging(int value);
     partial void OnPriceIDChanged();
-    partial void OnRoomTypeIDChanging(int value);
+    partial void OnRoomTypeIDChanging(string value);
     partial void OnRoomTypeIDChanged();
     partial void OnStartDateChanging(System.DateTime value);
     partial void OnStartDateChanged();
@@ -4368,8 +4135,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomTypeID", DbType="Int NOT NULL")]
-		public int RoomTypeID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomTypeID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string RoomTypeID
 		{
 			get
 			{
@@ -4519,7 +4286,7 @@ namespace DAL
 					}
 					else
 					{
-						this._RoomTypeID = default(int);
+						this._RoomTypeID = default(string);
 					}
 					this.SendPropertyChanged("RoomType");
 				}
@@ -4553,7 +4320,7 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _ServiceID;
+		private string _ServiceID;
 		
 		private string _ServiceName;
 		
@@ -4569,7 +4336,7 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnServiceIDChanging(int value);
+    partial void OnServiceIDChanging(string value);
     partial void OnServiceIDChanged();
     partial void OnServiceNameChanging(string value);
     partial void OnServiceNameChanged();
@@ -4587,8 +4354,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ServiceID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string ServiceID
 		{
 			get
 			{
@@ -4739,17 +4506,15 @@ namespace DAL
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _UsageID;
+		private string _UsageID;
 		
-		private int _BookingID;
+		private string _BookingID;
 		
-		private int _ServiceID;
+		private string _ServiceID;
 		
 		private int _Quantity;
 		
 		private string _StaffID;
-		
-		private System.DateTime _UsageDate;
 		
 		private EntityRef<Booking> _Booking;
 		
@@ -4761,18 +4526,16 @@ namespace DAL
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnUsageIDChanging(int value);
+    partial void OnUsageIDChanging(string value);
     partial void OnUsageIDChanged();
-    partial void OnBookingIDChanging(int value);
+    partial void OnBookingIDChanging(string value);
     partial void OnBookingIDChanged();
-    partial void OnServiceIDChanging(int value);
+    partial void OnServiceIDChanging(string value);
     partial void OnServiceIDChanged();
     partial void OnQuantityChanging(int value);
     partial void OnQuantityChanged();
     partial void OnStaffIDChanging(string value);
     partial void OnStaffIDChanged();
-    partial void OnUsageDateChanging(System.DateTime value);
-    partial void OnUsageDateChanged();
     #endregion
 		
 		public ServiceUsage()
@@ -4783,8 +4546,8 @@ namespace DAL
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsageID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int UsageID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsageID", DbType="Char(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string UsageID
 		{
 			get
 			{
@@ -4803,8 +4566,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingID", DbType="Int NOT NULL")]
-		public int BookingID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BookingID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string BookingID
 		{
 			get
 			{
@@ -4827,8 +4590,8 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceID", DbType="Int NOT NULL")]
-		public int ServiceID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string ServiceID
 		{
 			get
 			{
@@ -4895,26 +4658,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UsageDate", DbType="DateTime NOT NULL")]
-		public System.DateTime UsageDate
-		{
-			get
-			{
-				return this._UsageDate;
-			}
-			set
-			{
-				if ((this._UsageDate != value))
-				{
-					this.OnUsageDateChanging(value);
-					this.SendPropertyChanging();
-					this._UsageDate = value;
-					this.SendPropertyChanged("UsageDate");
-					this.OnUsageDateChanged();
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Booking_ServiceUsage", Storage="_Booking", ThisKey="BookingID", OtherKey="BookingID", IsForeignKey=true)]
 		public Booking Booking
 		{
@@ -4942,7 +4685,7 @@ namespace DAL
 					}
 					else
 					{
-						this._BookingID = default(int);
+						this._BookingID = default(string);
 					}
 					this.SendPropertyChanged("Booking");
 				}
@@ -4976,7 +4719,7 @@ namespace DAL
 					}
 					else
 					{
-						this._ServiceID = default(int);
+						this._ServiceID = default(string);
 					}
 					this.SendPropertyChanged("Service");
 				}

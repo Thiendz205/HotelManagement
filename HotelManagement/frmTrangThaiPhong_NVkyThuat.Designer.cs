@@ -29,18 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.dtGV_TrangThai = new System.Windows.Forms.DataGridView();
             this.btnCapNhat = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.dtGV_TrangThai = new System.Windows.Forms.DataGridView();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.cbStatus = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -50,9 +47,8 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGV_TrangThai)).BeginInit();
-            this.panel6.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,14 +62,14 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1920, 100);
+            this.panel1.Size = new System.Drawing.Size(1680, 94);
             this.panel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(643, 26);
+            this.label1.Location = new System.Drawing.Point(563, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(389, 37);
             this.label1.TabIndex = 0;
@@ -81,12 +77,27 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btnCapNhat);
+            this.panel2.Controls.Add(this.dtGV_TrangThai);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 911);
+            this.panel2.Location = new System.Drawing.Point(0, 630);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1920, 169);
+            this.panel2.Size = new System.Drawing.Size(1680, 382);
             this.panel2.TabIndex = 1;
+            // 
+            // dtGV_TrangThai
+            // 
+            this.dtGV_TrangThai.AllowUserToDeleteRows = false;
+            this.dtGV_TrangThai.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dtGV_TrangThai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtGV_TrangThai.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dtGV_TrangThai.Location = new System.Drawing.Point(0, 0);
+            this.dtGV_TrangThai.Name = "dtGV_TrangThai";
+            this.dtGV_TrangThai.ReadOnly = true;
+            this.dtGV_TrangThai.RowHeadersWidth = 51;
+            this.dtGV_TrangThai.RowTemplate.Height = 24;
+            this.dtGV_TrangThai.Size = new System.Drawing.Size(1680, 382);
+            this.dtGV_TrangThai.TabIndex = 1;
+            this.dtGV_TrangThai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGV_TrangThai_CellClick);
             // 
             // btnCapNhat
             // 
@@ -97,77 +108,26 @@
             this.btnCapNhat.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCapNhat.ForeColor = System.Drawing.Color.White;
             this.btnCapNhat.HoverState.Parent = this.btnCapNhat;
-            this.btnCapNhat.Location = new System.Drawing.Point(615, 45);
+            this.btnCapNhat.Location = new System.Drawing.Point(28, 41);
             this.btnCapNhat.Name = "btnCapNhat";
             this.btnCapNhat.ShadowDecoration.Parent = this.btnCapNhat;
-            this.btnCapNhat.Size = new System.Drawing.Size(223, 74);
+            this.btnCapNhat.Size = new System.Drawing.Size(195, 69);
             this.btnCapNhat.TabIndex = 0;
             this.btnCapNhat.Text = "Cập nhật";
             this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dtGV_TrangThai);
-            this.panel3.Controls.Add(this.panel6);
+            this.panel3.Controls.Add(this.btnCapNhat);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(1161, 100);
+            this.panel3.Location = new System.Drawing.Point(1427, 94);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(759, 811);
+            this.panel3.Size = new System.Drawing.Size(253, 536);
             this.panel3.TabIndex = 2;
-            // 
-            // dtGV_TrangThai
-            // 
-            this.dtGV_TrangThai.AllowUserToDeleteRows = false;
-            this.dtGV_TrangThai.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtGV_TrangThai.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dtGV_TrangThai.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtGV_TrangThai.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dtGV_TrangThai.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dtGV_TrangThai.Location = new System.Drawing.Point(0, 58);
-            this.dtGV_TrangThai.Name = "dtGV_TrangThai";
-            this.dtGV_TrangThai.ReadOnly = true;
-            this.dtGV_TrangThai.RowHeadersWidth = 51;
-            this.dtGV_TrangThai.RowTemplate.Height = 24;
-            this.dtGV_TrangThai.Size = new System.Drawing.Size(759, 753);
-            this.dtGV_TrangThai.TabIndex = 1;
-            this.dtGV_TrangThai.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtGV_TrangThai_CellClick);
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel6.Controls.Add(this.label2);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 0);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(759, 58);
-            this.panel6.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(311, 18);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 26);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Danh sách phòng";
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.panel4);
             this.panel5.Controls.Add(this.cbStatus);
             this.panel5.Controls.Add(this.label5);
             this.panel5.Controls.Add(this.label4);
@@ -175,10 +135,18 @@
             this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.txtMaPhong);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(0, 100);
+            this.panel5.Location = new System.Drawing.Point(0, 94);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1161, 811);
+            this.panel5.Size = new System.Drawing.Size(1427, 536);
             this.panel5.TabIndex = 4;
+            // 
+            // panel4
+            // 
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(175, 536);
+            this.panel4.TabIndex = 7;
             // 
             // cbStatus
             // 
@@ -197,17 +165,17 @@
             "Trống",
             "Đang bảo trì"});
             this.cbStatus.ItemsAppearance.Parent = this.cbStatus;
-            this.cbStatus.Location = new System.Drawing.Point(376, 322);
+            this.cbStatus.Location = new System.Drawing.Point(528, 264);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.ShadowDecoration.Parent = this.cbStatus;
-            this.cbStatus.Size = new System.Drawing.Size(275, 36);
+            this.cbStatus.Size = new System.Drawing.Size(241, 36);
             this.cbStatus.TabIndex = 6;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(117, 323);
+            this.label5.Location = new System.Drawing.Point(301, 265);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(177, 26);
             this.label5.TabIndex = 5;
@@ -217,7 +185,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(117, 224);
+            this.label4.Location = new System.Drawing.Point(301, 172);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 26);
             this.label4.TabIndex = 3;
@@ -238,21 +206,21 @@
             this.txtRoomName.FocusedState.Parent = this.txtRoomName;
             this.txtRoomName.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtRoomName.HoverState.Parent = this.txtRoomName;
-            this.txtRoomName.Location = new System.Drawing.Point(376, 224);
+            this.txtRoomName.Location = new System.Drawing.Point(528, 172);
             this.txtRoomName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRoomName.Name = "txtRoomName";
             this.txtRoomName.PasswordChar = '\0';
             this.txtRoomName.PlaceholderText = "";
             this.txtRoomName.SelectedText = "";
             this.txtRoomName.ShadowDecoration.Parent = this.txtRoomName;
-            this.txtRoomName.Size = new System.Drawing.Size(274, 61);
+            this.txtRoomName.Size = new System.Drawing.Size(240, 57);
             this.txtRoomName.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(119, 135);
+            this.label3.Location = new System.Drawing.Point(303, 89);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 26);
             this.label3.TabIndex = 1;
@@ -273,26 +241,27 @@
             this.txtMaPhong.FocusedState.Parent = this.txtMaPhong;
             this.txtMaPhong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txtMaPhong.HoverState.Parent = this.txtMaPhong;
-            this.txtMaPhong.Location = new System.Drawing.Point(377, 135);
+            this.txtMaPhong.Location = new System.Drawing.Point(528, 89);
             this.txtMaPhong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtMaPhong.Name = "txtMaPhong";
             this.txtMaPhong.PasswordChar = '\0';
             this.txtMaPhong.PlaceholderText = "";
             this.txtMaPhong.SelectedText = "";
             this.txtMaPhong.ShadowDecoration.Parent = this.txtMaPhong;
-            this.txtMaPhong.Size = new System.Drawing.Size(274, 61);
+            this.txtMaPhong.Size = new System.Drawing.Size(240, 57);
             this.txtMaPhong.TabIndex = 0;
             // 
             // frmTrangThaiPhong_NVkyThuat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1680, 1012);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Times New Roman", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTrangThaiPhong_NVkyThuat";
             this.Text = "frmTrangThaiPhong_NVkyThuat";
@@ -300,10 +269,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtGV_TrangThai)).EndInit();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.ResumeLayout(false);
@@ -315,8 +282,6 @@
         private Guna.UI2.WinForms.Guna2DragControl guna2DragControl1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
@@ -329,5 +294,6 @@
         private Guna.UI2.WinForms.Guna2ComboBox cbStatus;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.DataGridView dtGV_TrangThai;
+        private System.Windows.Forms.Panel panel4;
     }
 }

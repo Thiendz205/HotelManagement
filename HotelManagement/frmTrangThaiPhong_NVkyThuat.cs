@@ -53,11 +53,11 @@ namespace HotelManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            int roomID = Convert.ToInt32(txtMaPhong.Text);
+            
             string status = cbStatus.SelectedItem.ToString();
             try
             {
-                bool result = roomStatus_StaffTech_BUS.updateStatusRooms_StaffTech(roomID, status);
+                bool result = roomStatus_StaffTech_BUS.updateStatusRooms_StaffTech(txtMaPhong.Text, status);
                 if (result)
                 {
                     MessageBox.Show("Cập nhật trạng thái phòng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

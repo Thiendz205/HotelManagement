@@ -80,6 +80,7 @@ namespace HotelManagement
                     MessageBox.Show("Loại phòng này đã có, vui lòng nhập tên khác!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                roomType_ET.RoomTypeID = txtRoomTypeID.Text;
                 roomType_ET.TypeName = txtTypeName.Text;
                 roomType_ET.PricePerDay = decimal.Parse(txtPricePerDay.Text.Replace(".", "").Replace(",", ""));
                 roomType_ET.PricePerHour = decimal.Parse(txtPricePerHour.Text.Replace(".", "").Replace(",", ""));
@@ -116,8 +117,7 @@ namespace HotelManagement
             }
             try
             {
-                int roomTypeID = int.Parse(txtRoomTypeID.Text);
-                bool success = roomType_BUS.removeRoomType(roomTypeID);
+                bool success = roomType_BUS.removeRoomType(txtRoomTypeID.Text);
                 if (success)
                 {
                     MessageBox.Show("Xóa loại phòng thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -158,16 +158,26 @@ namespace HotelManagement
                 MessageBox.Show("Vui lòng nhập loại phòng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (roomType_BUS.IsRoomTypeInUse(txtRoomTypeID.Text))
+            {
+                MessageBox.Show(
+                    "Không thể cập nhật loại phòng này vì đang có phòng thuộc loại này đang được sử dụng!",
+                    "Thông báo",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                return;
+            }
             try
             {
-                if (roomType_BUS.checkExistenceNameRoomType_UPDate(txtTypeName.Text, int.Parse(txtRoomTypeID.Text)))
+                if (roomType_BUS.checkExistenceNameRoomType_UPDate(txtTypeName.Text, txtRoomTypeID.Text))
                 {
                     MessageBox.Show("Tên loại phòng đã tồn tại, vui lòng nhập tên khác!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtTypeName.Clear();
                     txtRoomTypeID.Focus();
                     return;
                 }
-                roomType_ET.RoomTypeID = int.Parse(txtRoomTypeID.Text);
+                roomType_ET.RoomTypeID = txtRoomTypeID.Text;
                 roomType_ET.TypeName = txtTypeName.Text;
                 roomType_ET.PricePerDay = decimal.Parse(txtPricePerDay.Text.Replace(".", "").Replace(",", ""));
                 roomType_ET.PricePerHour = decimal.Parse(txtPricePerHour.Text.Replace(".", "").Replace(",", ""));
@@ -201,7 +211,7 @@ namespace HotelManagement
                 txtPricePerHour.Text = dtGV_RoomType.Rows[dong].Cells[3].Value.ToString();
                 cbCategory.Text = dtGV_RoomType.Rows[dong].Cells[4].Value.ToString();
                 txtMoTa.Text = dtGV_RoomType.Rows[dong].Cells[5].Value.ToString();
-                cbCategory.Enabled = false;
+                
             }
             
         }
@@ -354,7 +364,5 @@ namespace HotelManagement
 
             isHandlingTextChanged = false;
         }
-
-       
     }
 }

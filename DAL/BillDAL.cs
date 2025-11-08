@@ -22,8 +22,8 @@ namespace DAL
                 orderby i.InvoiceDate descending
                 select new BillET
                 {
-                    InvoiceID = i.InvoiceID,
-                    BookingID = i.BookingID,
+                    //InvoiceID = i.InvoiceID,
+                    //BookingID = i.BookingID,
                     InvoiceDate = i.InvoiceDate,
                     TotalAmount = i.TotalAmount,
                     PaymentMethod = i.PaymentMethod,
@@ -38,11 +38,11 @@ namespace DAL
                     CheckOut = b.CheckOut ?? DateTime.Now,
 
                     // audit
-                    CreatedBy = i.CreatedBy,
-                    AuditStatus = i.AuditStatus,
-                    AuditNote = i.AuditNote,
-                    AuditedBy = i.AuditedBy,
-                    AuditedAt = i.AuditedAt
+                    //CreatedBy = i.CreatedBy,
+                    //AuditStatus = i.AuditStatus,
+                    //AuditNote = i.AuditNote,
+                    //AuditedBy = i.AuditedBy,
+                    //AuditedAt = i.AuditedAt
                 };
             return bills;
         }
@@ -56,20 +56,20 @@ namespace DAL
                 // Không tự sinh InvoiceID thủ công ở đây (để IDENTITY tự chạy)
                 var newInvoice = new Invoice
                 {
-                    BookingID = bill.BookingID,
-                    InvoiceDate = bill.InvoiceDate == default ? DateTime.Now : bill.InvoiceDate,
-                    TotalAmount = bill.TotalAmount,
-                    PaymentMethod = bill.PaymentMethod,
-                    PaidStatus = bill.PaidStatus,
-                    StaffID = bill.StaffID,
-                    Note = bill.Note,
+                    //BookingID = bill.BookingID,
+                    //InvoiceDate = bill.InvoiceDate == default ? DateTime.Now : bill.InvoiceDate,
+                    //TotalAmount = bill.TotalAmount,
+                    //PaymentMethod = bill.PaymentMethod,
+                    //PaidStatus = bill.PaidStatus,
+                    //StaffID = bill.StaffID,
+                    //Note = bill.Note,
 
-                    // audit defaults
-                    CreatedBy = string.IsNullOrWhiteSpace(bill.CreatedBy) ? bill.StaffID : bill.CreatedBy,
-                    AuditStatus = string.IsNullOrWhiteSpace(bill.AuditStatus) ? "OK" : bill.AuditStatus,
-                    AuditNote = bill.AuditNote,
-                    AuditedBy = bill.AuditedBy,
-                    AuditedAt = bill.AuditedAt
+                    //// audit defaults
+                    //CreatedBy = string.IsNullOrWhiteSpace(bill.CreatedBy) ? bill.StaffID : bill.CreatedBy,
+                    //AuditStatus = string.IsNullOrWhiteSpace(bill.AuditStatus) ? "OK" : bill.AuditStatus,
+                    //AuditNote = bill.AuditNote,
+                    //AuditedBy = bill.AuditedBy,
+                    //AuditedAt = bill.AuditedAt
                 };
 
                 db.Invoices.InsertOnSubmit(newInvoice);
@@ -95,15 +95,15 @@ namespace DAL
         {
             try
             {
-                var inv = db.Invoices.SingleOrDefault(i => i.InvoiceID == bill.InvoiceID);
-                if (inv == null) return false;
+                //var inv = db.Invoices.SingleOrDefault(i => i.InvoiceID == bill.InvoiceID);
+                //if (inv == null) return false;
 
-                inv.TotalAmount = bill.TotalAmount;
-                inv.PaymentMethod = bill.PaymentMethod;
-                inv.PaidStatus = bill.PaidStatus;
-                inv.Note = bill.Note;
+                //inv.TotalAmount = bill.TotalAmount;
+                //inv.PaymentMethod = bill.PaymentMethod;
+                //inv.PaidStatus = bill.PaidStatus;
+                //inv.Note = bill.Note;
 
-                db.SubmitChanges();
+                //db.SubmitChanges();
                 return true;
             }
             catch
@@ -117,15 +117,15 @@ namespace DAL
         {
             try
             {
-                var inv = db.Invoices.SingleOrDefault(i => i.InvoiceID == invoiceId);
-                if (inv == null) return false;
+                //var inv = db.Invoices.SingleOrDefault(i => i.InvoiceID == invoiceId);
+                //if (inv == null) return false;
 
-                inv.AuditStatus = newStatus;
-                inv.AuditNote = note;
-                inv.AuditedBy = adminStaffId;
-                inv.AuditedAt = DateTime.Now;
+                //inv.AuditStatus = newStatus;
+                //inv.AuditNote = note;
+                //inv.AuditedBy = adminStaffId;
+                //inv.AuditedAt = DateTime.Now;
 
-                db.SubmitChanges();
+                //db.SubmitChanges();
                 return true;
             }
             catch
@@ -143,8 +143,8 @@ namespace DAL
                        where i.PaidStatus == status
                        select new BillET
                        {
-                           InvoiceID = i.InvoiceID,
-                           BookingID = i.BookingID,
+                           //InvoiceID = i.InvoiceID,
+                           //BookingID = i.BookingID,
                            InvoiceDate = i.InvoiceDate,
                            TotalAmount = i.TotalAmount,
                            PaymentMethod = i.PaymentMethod,
@@ -170,8 +170,8 @@ namespace DAL
                        where i.InvoiceDate >= startDate && i.InvoiceDate <= endDate
                        select new BillET
                        {
-                           InvoiceID = i.InvoiceID,
-                           BookingID = i.BookingID,
+                           //InvoiceID = i.InvoiceID,
+                           //BookingID = i.BookingID,
                            InvoiceDate = i.InvoiceDate,
                            TotalAmount = i.TotalAmount,
                            PaymentMethod = i.PaymentMethod,

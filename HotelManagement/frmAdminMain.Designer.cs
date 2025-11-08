@@ -47,10 +47,11 @@
             this.gunaButton15 = new Guna.UI.WinForms.GunaButton();
             this.gunaButton13 = new Guna.UI.WinForms.GunaButton();
             this.gunaButton17 = new Guna.UI.WinForms.GunaButton();
-            this.btnDangXuat = new Guna.UI.WinForms.GunaButton();
+            this.btnBaoCao = new Guna.UI.WinForms.GunaButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnDangXuat = new Guna.UI.WinForms.GunaButton();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -98,6 +99,7 @@
             this.flowLayoutPanel1.Controls.Add(this.gunaButton15);
             this.flowLayoutPanel1.Controls.Add(this.gunaButton13);
             this.flowLayoutPanel1.Controls.Add(this.gunaButton17);
+            this.flowLayoutPanel1.Controls.Add(this.btnBaoCao);
             this.flowLayoutPanel1.Controls.Add(this.btnDangXuat);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(193, 0);
@@ -540,32 +542,31 @@
             this.gunaButton17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.gunaButton17.Click += new System.EventHandler(this.gunaButton11_Click);
             // 
-            // btnDangXuat
+            // btnBaoCao
             // 
-            this.btnDangXuat.AnimationHoverSpeed = 0.07F;
-            this.btnDangXuat.AnimationSpeed = 0.03F;
-            this.btnDangXuat.BaseColor = System.Drawing.Color.Red;
-            this.btnDangXuat.BorderColor = System.Drawing.Color.Black;
-            this.btnDangXuat.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnDangXuat.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDangXuat.FocusedColor = System.Drawing.Color.Empty;
-            this.btnDangXuat.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDangXuat.ForeColor = System.Drawing.Color.White;
-            this.btnDangXuat.Image = null;
-            this.btnDangXuat.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDangXuat.Location = new System.Drawing.Point(5682, 43);
-            this.btnDangXuat.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
-            this.btnDangXuat.Name = "btnDangXuat";
-            this.btnDangXuat.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnDangXuat.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnDangXuat.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnDangXuat.OnHoverImage = null;
-            this.btnDangXuat.OnPressedColor = System.Drawing.Color.Black;
-            this.btnDangXuat.Size = new System.Drawing.Size(313, 63);
-            this.btnDangXuat.TabIndex = 39;
-            this.btnDangXuat.Text = "Đăng Xuất";
-            this.btnDangXuat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click);
+            this.btnBaoCao.AnimationHoverSpeed = 0.07F;
+            this.btnBaoCao.AnimationSpeed = 0.03F;
+            this.btnBaoCao.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnBaoCao.BorderColor = System.Drawing.Color.Black;
+            this.btnBaoCao.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnBaoCao.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBaoCao.FocusedColor = System.Drawing.Color.Empty;
+            this.btnBaoCao.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBaoCao.ForeColor = System.Drawing.Color.White;
+            this.btnBaoCao.Image = null;
+            this.btnBaoCao.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnBaoCao.Location = new System.Drawing.Point(5682, 43);
+            this.btnBaoCao.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
+            this.btnBaoCao.Name = "btnBaoCao";
+            this.btnBaoCao.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.btnBaoCao.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnBaoCao.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnBaoCao.OnHoverImage = null;
+            this.btnBaoCao.OnPressedColor = System.Drawing.Color.Black;
+            this.btnBaoCao.Size = new System.Drawing.Size(313, 63);
+            this.btnBaoCao.TabIndex = 39;
+            this.btnBaoCao.Text = "Báo cáo";
+            this.btnBaoCao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel3
             // 
@@ -608,6 +609,33 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(193, 159);
             this.panel2.TabIndex = 0;
+            // 
+            // btnDangXuat
+            // 
+            this.btnDangXuat.AnimationHoverSpeed = 0.07F;
+            this.btnDangXuat.AnimationSpeed = 0.03F;
+            this.btnDangXuat.BaseColor = System.Drawing.Color.Red;
+            this.btnDangXuat.BorderColor = System.Drawing.Color.Black;
+            this.btnDangXuat.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnDangXuat.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnDangXuat.FocusedColor = System.Drawing.Color.Empty;
+            this.btnDangXuat.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnDangXuat.ForeColor = System.Drawing.Color.White;
+            this.btnDangXuat.Image = null;
+            this.btnDangXuat.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnDangXuat.Location = new System.Drawing.Point(6039, 43);
+            this.btnDangXuat.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
+            this.btnDangXuat.Name = "btnDangXuat";
+            this.btnDangXuat.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnDangXuat.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnDangXuat.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnDangXuat.OnHoverImage = null;
+            this.btnDangXuat.OnPressedColor = System.Drawing.Color.Black;
+            this.btnDangXuat.Size = new System.Drawing.Size(313, 63);
+            this.btnDangXuat.TabIndex = 40;
+            this.btnDangXuat.Text = "Đăng xuất:";
+            this.btnDangXuat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click_1);
             // 
             // frmAdminMain
             // 
@@ -654,6 +682,7 @@
         private Guna.UI.WinForms.GunaButton gunaButton15;
         private Guna.UI.WinForms.GunaButton gunaButton13;
         private Guna.UI.WinForms.GunaButton gunaButton17;
+        private Guna.UI.WinForms.GunaButton btnBaoCao;
         private Guna.UI.WinForms.GunaButton btnDangXuat;
     }
 }

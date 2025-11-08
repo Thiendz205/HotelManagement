@@ -22,9 +22,9 @@ namespace DAL
                     join r in db.Rooms on b.RoomID equals r.RoomID
                     select new BookingFeeET
                     {
-                        BookingFeeID = f.BookingFeeID,
-                        BookingID = f.BookingID,
-                        FeeTypeID = f.FeeTypeID,
+                        //BookingFeeID = f.BookingFeeID,
+                        //BookingID = f.BookingID,
+                        //FeeTypeID = f.FeeTypeID,
                         FeeTypeName = t.FeeTypeName,
                         UnitPrice = t.DefaultPrice,                             // ✅ Lấy đơn giá
                         Quantity = f.Quantity,
@@ -38,10 +38,11 @@ namespace DAL
 
         public bool CheckDuplicate(int bookingId, int feeTypeId, int? excludeId = null)
         {
-            return db.BookingFees.Any(x =>
-                x.BookingID == bookingId &&
-                x.FeeTypeID == feeTypeId &&
-                (excludeId == null || x.BookingFeeID != excludeId));
+           // return db.BookingFees.Any(x =>
+                //x.BookingID == bookingId &&
+                //x.FeeTypeID == feeTypeId &&
+                //(excludeId == null || x.BookingFeeID != excludeId));
+                return false; //tam
         }
         // BookingDAL.cs
         public List<BookingFeeET> GetBookingsWithActiveRooms()
@@ -52,7 +53,7 @@ namespace DAL
                     where r.Status == "Đang hoạt động"
                     select new BookingFeeET
                     {
-                        BookingID = b.BookingID,
+                        //BookingID = b.BookingID,
                         CustomerName = c.FullName,
                         RoomName = r.RoomName
                     }).ToList();
@@ -61,8 +62,8 @@ namespace DAL
         {
             var entity = new BookingFee
             {
-                BookingID = dto.BookingID,
-                FeeTypeID = dto.FeeTypeID,
+                //BookingID = dto.BookingID,
+                //FeeTypeID = dto.FeeTypeID,
                 Quantity = dto.Quantity,
                 Notes = dto.Notes,
                 CreatedAt = DateTime.Now
@@ -75,25 +76,25 @@ namespace DAL
 
         public bool Update(BookingFeeET dto)
         {
-            var fee = db.BookingFees.FirstOrDefault(f => f.BookingFeeID == dto.BookingFeeID);
-            if (fee == null) return false;
+            //var fee = db.BookingFees.FirstOrDefault(f => f.BookingFeeID == dto.BookingFeeID);
+            //if (fee == null) return false;
 
-            fee.BookingID = dto.BookingID;
-            fee.FeeTypeID = dto.FeeTypeID;
-            fee.Quantity = dto.Quantity;
-            fee.Notes = dto.Notes;
+            //fee.BookingID = dto.BookingID;
+            //fee.FeeTypeID = dto.FeeTypeID;
+            //fee.Quantity = dto.Quantity;
+            //fee.Notes = dto.Notes;
 
-            db.SubmitChanges();
+            //db.SubmitChanges();
             return true;
         }
 
         public bool Delete(int id)
         {
-            var fee = db.BookingFees.FirstOrDefault(f => f.BookingFeeID == id);
-            if (fee == null) return false;
+           // var fee = db.BookingFees.FirstOrDefault(f => f.BookingFeeID == id);
+            //if (fee == null) return false;
 
-            db.BookingFees.DeleteOnSubmit(fee);
-            db.SubmitChanges();
+            //db.BookingFees.DeleteOnSubmit(fee);
+            //db.SubmitChanges();
             return true;
         }
     }

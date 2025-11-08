@@ -12,8 +12,10 @@ namespace HotelManagement
 {
     public partial class frmAdminMain : Form
     {
-        public frmAdminMain()
+        public string maNhanVien;   
+        public frmAdminMain(string maNhanVien)
         {
+            this.maNhanVien = maNhanVien;
             InitializeComponent();
         }
         private Form currentFormChild;
@@ -100,12 +102,12 @@ namespace HotelManagement
 
         private void gunaButton7_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmKhoThietBi());
+            OpenChildForm(new frmKhoThietBi(maNhanVien));
         }
 
         private void gunaButton8_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmTrangThietBiPhong());
+            OpenChildForm(new frmTrangThietBiPhong(maNhanVien));
         }
 
         private void gunaButton9_Click(object sender, EventArgs e)
@@ -132,15 +134,20 @@ namespace HotelManagement
       
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnDangXuat_Click_1(object sender, EventArgs e)
+        {
             DialogResult result = MessageBox.Show(
-                 "Bạn có chắc muốn đăng xuất không?",
-                    "Đăng xuất",
-             MessageBoxButtons.YesNo,
-             MessageBoxIcon.Question);
+           "Bạn có chắc muốn đăng xuất không?",
+           "Đăng xuất",
+           MessageBoxButtons.YesNo,
+           MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
-                this.Close(); 
+                this.Close();
             }
         }
     }

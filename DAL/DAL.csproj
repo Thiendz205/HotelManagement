@@ -63,7 +63,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RankCusstomerDAL.cs" />
+    <Compile Include="RoomEquipment_DAL.cs" />
+    <Compile Include="RoomEvaluation_DAL.cs" />
     <Compile Include="RoomStatus_StaffTech_DAL.cs" />
+    <Compile Include="RoomTypePrice_DAL.cs" />
     <Compile Include="Room_DAL.cs" />
     <Compile Include="Room_Type_DAL.cs" />
     <Compile Include="ServiceDAL.cs" />

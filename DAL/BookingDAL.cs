@@ -21,10 +21,10 @@ namespace DAL
                        from s in staffJoin.DefaultIfEmpty()
                        select new BookingET
                        {
-                           BookingID = b.BookingID,
-                           CustomerID = b.CustomerID,
-                           CustomerName = c.FullName,
-                           RoomID = b.RoomID,
+                           //BookingID = b.BookingID,
+                           //CustomerID = b.CustomerID,
+                           //CustomerName = c.FullName,
+                           //RoomID = b.RoomID,
                            RoomName = r.RoomName,
                            RentalType = b.RentalType,
                            CheckIn = b.CheckIn,
@@ -68,10 +68,10 @@ namespace DAL
 
             var result = list.Select(x => new BookingET
             {
-                BookingID = x.b.BookingID,
-                CustomerID = x.b.CustomerID,
-                CustomerName = x.c.FullName,
-                RoomID = x.b.RoomID,
+                //BookingID = x.b.BookingID,
+                //CustomerID = x.b.CustomerID,
+                //CustomerName = x.c.FullName,
+                //RoomID = x.b.RoomID,
                 RoomName = x.r.RoomName,
                 RentalType = x.b.RentalType,
                 CheckIn = x.b.CheckIn,
@@ -89,85 +89,86 @@ namespace DAL
 
         public bool HasInvoice(int bookingId)
         {
-            return db.Invoices.Any(i => i.BookingID == bookingId);
+            //return db.Invoices.Any(i => i.BookingID == bookingId);
+            return false;// tạm thời bỏ kiểm tra
         }
 
         public UpdateResult UpdateBookingInfoOnly(BookingET booking)
         {
-            var existing = db.Bookings.SingleOrDefault(b => b.BookingID == booking.BookingID);
-            if (existing == null)
-                return UpdateResult.NotFound;
+            //var existing = db.Bookings.SingleOrDefault(b => b.BookingID == booking.BookingID);
+            //if (existing == null)
+            //    return UpdateResult.NotFound;
 
-            // Chỉ cho phép cập nhật khi trạng thái booking là Check-in
-            if (existing.Status.Trim() != "CheckIn")
-                return UpdateResult.InvalidStatus;
+            //// Chỉ cho phép cập nhật khi trạng thái booking là Check-in
+            //if (existing.Status.Trim() != "CheckIn")
+            //    return UpdateResult.InvalidStatus;
 
-            // Lưu lại phòng cũ để xử lý sau
-            int oldRoomId = existing.RoomID;
+            //// Lưu lại phòng cũ để xử lý sau
+            //int oldRoomId = existing.RoomID;
 
-            // Kiểm tra phòng mục tiêu
-            var targetRoom = db.Rooms.SingleOrDefault(r => r.RoomID == booking.RoomID);
-            if (targetRoom == null)
-                return UpdateResult.RoomNotAvailable;
+            //// Kiểm tra phòng mục tiêu
+            //var targetRoom = db.Rooms.SingleOrDefault(r => r.RoomID == booking.RoomID);
+            //if (targetRoom == null)
+            //    return UpdateResult.RoomNotAvailable;
 
-            // Giới hạn loại phòng được cập nhật
-            if (targetRoom.Status.Trim() != "CheckIn" && targetRoom.Status != "Đặt trước" && targetRoom.Status != "Available")
-                return UpdateResult.RoomNotAvailable;
+            //// Giới hạn loại phòng được cập nhật
+            //if (targetRoom.Status.Trim() != "CheckIn" && targetRoom.Status != "Đặt trước" && targetRoom.Status != "Available")
+            //    return UpdateResult.RoomNotAvailable;
 
-            DateTime sqlMinDate = new DateTime(1753, 1, 1);
-            DateTime sqlMaxDate = new DateTime(9999, 12, 31);
+            //DateTime sqlMinDate = new DateTime(1753, 1, 1);
+            //DateTime sqlMaxDate = new DateTime(9999, 12, 31);
 
-            // Nếu phòng là "Đặt trước", kiểm tra trùng giờ cách ít nhất 1 tiếng
-            if (targetRoom.Status == "Đặt trước")
-            {
-                bool isConflict = db.Bookings.Any(b =>
-                    b.RoomID == booking.RoomID &&
-                    b.BookingID != booking.BookingID &&
-                    b.Status == "Đặt trước" &&
-                    b.CheckIn < (booking.CheckOut ?? sqlMaxDate).AddHours(1) &&
-                    (b.CheckOut ?? sqlMinDate) > booking.CheckIn.AddHours(-1)
-                );
+            //// Nếu phòng là "Đặt trước", kiểm tra trùng giờ cách ít nhất 1 tiếng
+            //if (targetRoom.Status == "Đặt trước")
+            //{
+            //    bool isConflict = db.Bookings.Any(b =>
+            //        b.RoomID == booking.RoomID &&
+            //        b.BookingID != booking.BookingID &&
+            //        b.Status == "Đặt trước" &&
+            //        b.CheckIn < (booking.CheckOut ?? sqlMaxDate).AddHours(1) &&
+            //        (b.CheckOut ?? sqlMinDate) > booking.CheckIn.AddHours(-1)
+            //    );
 
-                if (isConflict)
-                    return UpdateResult.RoomConflict;
-            }
+            //    if (isConflict)
+            //        return UpdateResult.RoomConflict;
+            //}
 
-            // Cập nhật thông tin đặt phòng
-            existing.RoomID = booking.RoomID;
-            existing.RentalType = booking.RentalType;
-            existing.CheckIn = booking.CheckIn;
-            existing.CheckOut = booking.CheckOut;
-            existing.Price = booking.Price;
+            //// Cập nhật thông tin đặt phòng
+            //existing.RoomID = booking.RoomID;
+            //existing.RentalType = booking.RentalType;
+            //existing.CheckIn = booking.CheckIn;
+            //existing.CheckOut = booking.CheckOut;
+            //existing.Price = booking.Price;
 
             // Cập nhật trạng thái phòng mới theo ComboBox (RoomStatus)
             if (!string.IsNullOrEmpty(booking.RoomStatus))
             {
-                targetRoom.Status = booking.RoomStatus.Trim();
+                //targetRoom.Status = booking.RoomStatus.Trim();
             }
 
             // ✅ Nếu chuyển phòng → xử lý phòng cũ
-            if (oldRoomId != booking.RoomID)
-            {
-                var oldRoom = db.Rooms.SingleOrDefault(r => r.RoomID == oldRoomId);
-                if (oldRoom != null)
-                {
-                    // Kiểm tra còn booking nào đặt/ở trong phòng cũ không
-                    bool hasActiveBooking = db.Bookings.Any(b =>
-                        b.RoomID == oldRoomId &&
-                        (b.Status == "CheckIn" || b.Status == "Đặt trước") &&
-                        b.BookingID != existing.BookingID
-                    );
+            //if (oldRoomId != booking.RoomID)
+            //{
+            //    var oldRoom = db.Rooms.SingleOrDefault(r => r.RoomID == oldRoomId);
+            //    if (oldRoom != null)
+            //    {
+            //        // Kiểm tra còn booking nào đặt/ở trong phòng cũ không
+            //        bool hasActiveBooking = db.Bookings.Any(b =>
+            //            b.RoomID == oldRoomId &&
+            //            (b.Status == "CheckIn" || b.Status == "Đặt trước") &&
+            //            b.BookingID != existing.BookingID
+            //        );
 
-                    if (!hasActiveBooking)
-                    {
-                        // Nếu phòng vừa CheckIn trước đó → chuyển sang Đang dọn dẹp
-                        if (oldRoom.Status.Trim() == "CheckIn")
-                            oldRoom.Status = "Đang dọn dẹp";
-                        else
-                            oldRoom.Status = "Available"; // nếu không có booking nào → set trống
-                    }
-                }
-            }
+            //        if (!hasActiveBooking)
+            //        {
+            //            // Nếu phòng vừa CheckIn trước đó → chuyển sang Đang dọn dẹp
+            //            if (oldRoom.Status.Trim() == "CheckIn")
+            //                oldRoom.Status = "Đang dọn dẹp";
+            //            else
+            //                oldRoom.Status = "Available"; // nếu không có booking nào → set trống
+            //        }
+            //    }
+            //}
 
             db.SubmitChanges();
             return UpdateResult.Success;
@@ -178,7 +179,7 @@ namespace DAL
                      .OrderBy(c => c.FullName)
                      .Select(c => new BookingET
                      {
-                         CustomerID = c.CustomerID,
+                         //CustomerID = c.CustomerID,
                          CustomerName = c.FullName
                      })
                      .ToList();
@@ -191,7 +192,7 @@ namespace DAL
                      .OrderBy(r => r.RoomName)
                      .Select(r => new BookingET
                      {
-                         RoomID = r.RoomID,
+                        // RoomID = r.RoomID,
                          RoomName = r.RoomName
                      })
                      .ToList();
@@ -223,19 +224,19 @@ namespace DAL
         }
         public bool CancelBooking(int bookingId)
         {
-            var booking = db.Bookings.SingleOrDefault(b => b.BookingID == bookingId);
-            if (booking == null)
+           // var booking = db.Bookings.SingleOrDefault(b => b.BookingID == bookingId);
+           // if (booking == null)
                 return false;
 
-            var room = db.Rooms.SingleOrDefault(r => r.RoomID == booking.RoomID);
-            if (room == null)
-                return false;
+           // var room = db.Rooms.SingleOrDefault(r => r.RoomID == booking.RoomID);
+          //  if (room == null)
+          //      return false;
 
-            if (room.Status.Trim() != "Đặt trước")
-                return false;
+          //  if (room.Status.Trim() != "Đặt trước")
+          //      return false;
 
-            booking.Status = "Hủy lịch";
-            room.Status = "Trống";
+          ////  booking.Status = "Hủy lịch";
+          //  room.Status = "Trống";
 
             db.SubmitChanges();
             return true;
@@ -246,41 +247,42 @@ namespace DAL
         {
             try
             {
-                var room = db.Rooms.FirstOrDefault(r => r.RoomID == roomId);
-                if (room == null) return 0;
+                //var room = db.Rooms.FirstOrDefault(r => r.RoomID == roomId);
+                //if (room == null) return 0;
 
-                var roomTypeId = room.RoomTypeID;
+                //var roomTypeId = room.RoomTypeID;
 
-                // 🔹 Ưu tiên lấy giá trong bảng RoomTypePrice nếu có hiệu lực tại thời điểm checkIn
-                var priceRecord = db.RoomTypePrices
-                    .Where(p => p.RoomTypeID == roomTypeId
-                             && p.StartDate <= checkIn
-                             && p.EndDate >= checkIn)
-                    .OrderByDescending(p => p.StartDate)
-                    .FirstOrDefault();
+                //// 🔹 Ưu tiên lấy giá trong bảng RoomTypePrice nếu có hiệu lực tại thời điểm checkIn
+                //var priceRecord = db.RoomTypePrices
+                //    .Where(p => p.RoomTypeID == roomTypeId
+                //             && p.StartDate <= checkIn
+                //             && p.EndDate >= checkIn)
+                //    .OrderByDescending(p => p.StartDate)
+                //    .FirstOrDefault();
 
-                decimal price = 0;
+                //decimal price = 0;
 
-                if (priceRecord != null)
-                {
-                    // ✅ Lấy giá theo loại thuê
-                    price = rentalType == "Day"
-                        ? priceRecord.PricePerDay
-                        : priceRecord.PricePerHour;
-                }
-                else
-                {
-                    // 🔹 Nếu không có giá đặc biệt, lấy giá mặc định từ RoomType
-                    var defaultPrice = db.RoomTypes.FirstOrDefault(t => t.RoomTypeID == roomTypeId);
-                    if (defaultPrice != null)
-                    {
-                        price = rentalType == "Day"
-                            ? defaultPrice.PricePerDay
-                            : defaultPrice.PricePerHour;
-                    }
-                }
+                //if (priceRecord != null)
+                //{
+                //    // ✅ Lấy giá theo loại thuê
+                //    price = rentalType == "Day"
+                //        ? priceRecord.PricePerDay
+                //        : priceRecord.PricePerHour;
+                //}
+                //else
+                //{
+                //    // 🔹 Nếu không có giá đặc biệt, lấy giá mặc định từ RoomType
+                //    var defaultPrice = db.RoomTypes.FirstOrDefault(t => t.RoomTypeID == roomTypeId);
+                //    if (defaultPrice != null)
+                //    {
+                //        price = rentalType == "Day"
+                //            ? defaultPrice.PricePerDay
+                //            : defaultPrice.PricePerHour;
+                //    }
+                //}
 
-                return price;
+                //return price;
+                return 0;// tạm thời bỏ lấy giá
             }
             catch (Exception ex)
             {
@@ -298,7 +300,7 @@ namespace DAL
                          RoomStatus = null,
                          RentalType = rt.TypeName,
                          Price = rt.PricePerDay,
-                         BookingID = rt.RoomTypeID 
+                         //BookingID = rt.RoomTypeID 
                      })
                      .ToList();
         }
@@ -306,10 +308,10 @@ namespace DAL
         public List<BookingET> GetRoomsByType(int roomTypeId)
         {
             return db.Rooms
-                     .Where(r => r.RoomTypeID == roomTypeId)
+                    // .Where(r => r.RoomTypeID == roomTypeId)
                      .Select(r => new BookingET
                      {
-                         RoomID = r.RoomID,
+                        // RoomID = r.RoomID,
                          RoomName = r.RoomName,
                          RoomStatus = r.Status
                      })
@@ -318,18 +320,18 @@ namespace DAL
 
         public bool UpdateRoomStatus(BookingET dto)
         {
-            var room = db.Rooms.FirstOrDefault(r => r.RoomID == dto.RoomID);
-            if (room == null) return false;
+           // var room = db.Rooms.FirstOrDefault(r => r.RoomID == dto.RoomID);
+            //if (room == null) return false;
 
-            room.Status = dto.RoomStatus;
-            db.SubmitChanges();
+            //room.Status = dto.RoomStatus;
+            //db.SubmitChanges();
             return true;
         }
 
         public string GetRoomStatus(int roomId)
         {
             return db.Rooms
-                     .Where(r => r.RoomID == roomId)
+                  //   .Where(r => r.RoomID == roomId)
                      .Select(r => r.Status)
                      .FirstOrDefault();
         }
@@ -338,12 +340,12 @@ namespace DAL
         {
             try
             {
-                var room = db.Rooms.FirstOrDefault(r => r.RoomID == roomId);
-                if (room == null) return 0;
+               // var room = db.Rooms.FirstOrDefault(r => r.RoomID == roomId);
+                //if (room == null) return 0;
 
-                var roomTypeId = room.RoomTypeID;
-                var defaultType = db.RoomTypes.FirstOrDefault(t => t.RoomTypeID == roomTypeId);
-                if (defaultType == null) return 0;
+                //var roomTypeId = room.RoomTypeID;
+                //var defaultType = db.RoomTypes.FirstOrDefault(t => t.RoomTypeID == roomTypeId);
+                //if (defaultType == null) return 0;
 
                 decimal totalPrice = 0;
 
@@ -354,35 +356,35 @@ namespace DAL
 
                     int roundedHours = (int)Math.Ceiling(totalHours);
 
-                    var specialPrice = db.RoomTypePrices
-                        .Where(p => p.RoomTypeID == roomTypeId
-                                 && p.StartDate <= checkIn
-                                 && p.EndDate >= checkIn)
-                        .OrderByDescending(p => p.StartDate)
-                        .FirstOrDefault();
+                    //var specialPrice = db.RoomTypePrices
+                        //.Where(p => p.RoomTypeID == roomTypeId
+                                 //&& p.StartDate <= checkIn
+                                 //&& p.EndDate >= checkIn)
+                       // .OrderByDescending(p => p.StartDate)
+                       // .FirstOrDefault();
 
-                    decimal pricePerHour = specialPrice != null
-                        ? specialPrice.PricePerHour
-                        : defaultType.PricePerHour;
+                   // decimal pricePerHour = specialPrice != null
+                       // ? specialPrice.PricePerHour
+                       // : defaultType.PricePerHour;
 
-                    totalPrice = pricePerHour * roundedHours;
+                    //totalPrice = pricePerHour * roundedHours;
                 }
                 else if (rentalType == "Day")
                 {
                     for (var date = checkIn.Date; date < checkOut.Date; date = date.AddDays(1))
                     {
-                        var priceRecord = db.RoomTypePrices
-                            .Where(p => p.RoomTypeID == roomTypeId
-                                     && p.StartDate <= date
-                                     && p.EndDate >= date)
-                            .OrderByDescending(p => p.StartDate)
-                            .FirstOrDefault();
+                        //var priceRecord = db.RoomTypePrices
+                        //    .Where(p => p.RoomTypeID == roomTypeId
+                        //             && p.StartDate <= date
+                        //             && p.EndDate >= date)
+                        //    .OrderByDescending(p => p.StartDate)
+                        //    .FirstOrDefault();
 
-                        decimal dayPrice = priceRecord != null
-                            ? priceRecord.PricePerDay
-                            : defaultType.PricePerDay;
+                        //decimal dayPrice = priceRecord != null
+                        //    ? priceRecord.PricePerDay
+                        //    : defaultType.PricePerDay;
 
-                        totalPrice += dayPrice;
+                        //totalPrice += dayPrice;
                     }
                 }
 

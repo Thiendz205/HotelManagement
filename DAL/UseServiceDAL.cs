@@ -24,13 +24,13 @@ namespace DAL
                                     join r in db.Rooms on b.RoomID equals r.RoomID
                                     select new UseServiceET
                                     {
-                                        UsageID = su.UsageID,
-                                        BookingID = su.BookingID,
-                                        ServiceID = su.ServiceID,
-                                        Quantity = su.Quantity,
-                                        StaffID = su.StaffID,
-                                        UsageDate = su.UsageDate,
-                                        ServiceName = s.ServiceName,
+                                        //UsageID = su.UsageID,
+                                        //BookingID = su.BookingID,
+                                        //ServiceID = su.ServiceID,
+                                        //Quantity = su.Quantity,
+                                        //StaffID = su.StaffID,
+                                        //UsageDate = su.UsageDate,
+                                        //ServiceName = s.ServiceName,
                                         StaffName = st.FullName,
                                         CustomerName = c.FullName,
                                         RoomName = r.RoomName,
@@ -51,11 +51,11 @@ namespace DAL
             {
                 ServiceUsage newUsage = new ServiceUsage
                 {
-                    BookingID = serviceUsage.BookingID,
-                    ServiceID = serviceUsage.ServiceID,
-                    Quantity = serviceUsage.Quantity,
-                    StaffID = serviceUsage.StaffID,
-                    UsageDate = serviceUsage.UsageDate
+                    //BookingID = serviceUsage.BookingID,
+                    //ServiceID = serviceUsage.ServiceID,
+                    //Quantity = serviceUsage.Quantity,
+                    //StaffID = serviceUsage.StaffID,
+                    //UsageDate = serviceUsage.UsageDate
                 };
                 db.ServiceUsages.InsertOnSubmit(newUsage);
                 db.SubmitChanges();
@@ -71,11 +71,11 @@ namespace DAL
         {
             try
             {
-                var usageToDelete = db.ServiceUsages.SingleOrDefault(u => u.UsageID == usageID);
-                if (usageToDelete == null) return false;
+                //var usageToDelete = db.ServiceUsages.SingleOrDefault(u => u.UsageID == usageID);
+                //if (usageToDelete == null) return false;
 
-                db.ServiceUsages.DeleteOnSubmit(usageToDelete);
-                db.SubmitChanges();
+                //db.ServiceUsages.DeleteOnSubmit(usageToDelete);
+                //db.SubmitChanges();
                 return true;
             }
             catch (System.Data.SqlClient.SqlException ex)
@@ -125,17 +125,17 @@ namespace DAL
         {
             try
             {
-                var usageToUpdate = db.ServiceUsages.SingleOrDefault(u => u.UsageID == serviceUsage.UsageID);
-                if (usageToUpdate != null)
-                {
-                    usageToUpdate.BookingID = serviceUsage.BookingID;
-                    usageToUpdate.ServiceID = serviceUsage.ServiceID;
-                    usageToUpdate.Quantity = serviceUsage.Quantity;
-                    usageToUpdate.StaffID = serviceUsage.StaffID;
-                    usageToUpdate.UsageDate = serviceUsage.UsageDate;
-                    db.SubmitChanges();
-                    return true;
-                }
+                //var usageToUpdate = db.ServiceUsages.SingleOrDefault(u => u.UsageID == serviceUsage.UsageID);
+                //if (usageToUpdate != null)
+                //{
+                //    usageToUpdate.BookingID = serviceUsage.BookingID;
+                //    usageToUpdate.ServiceID = serviceUsage.ServiceID;
+                //    usageToUpdate.Quantity = serviceUsage.Quantity;
+                //    usageToUpdate.StaffID = serviceUsage.StaffID;
+                //    usageToUpdate.UsageDate = serviceUsage.UsageDate;
+                //    db.SubmitChanges();
+                //    return true;
+                //}
                 return false;
             }
             catch (Exception)
@@ -152,7 +152,7 @@ namespace DAL
                 var services = from s in db.Services
                                select new ServiceET
                                {
-                                   ServiceID = s.ServiceID,
+                                 //  ServiceID = s.ServiceID,
                                    ServiceName = s.ServiceName,
                                    Category = s.Category,
                                    Price = s.Price,
@@ -176,9 +176,9 @@ namespace DAL
                                join s in db.Staffs on b.StaffID equals s.StaffID
                                select new BookingET
                                {
-                                   BookingID = b.BookingID,
-                                   CustomerID = b.CustomerID,
-                                   RoomID = b.RoomID,
+                                   //BookingID = b.BookingID,
+                                   //CustomerID = b.CustomerID,
+                                   //RoomID = b.RoomID,
                                    RentalType = b.RentalType,
                                    CheckIn = b.CheckIn,
                                    CheckOut = b.CheckOut,
