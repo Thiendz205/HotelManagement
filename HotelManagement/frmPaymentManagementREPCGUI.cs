@@ -45,6 +45,11 @@ namespace HotelManagement
             cboExtraFee.DisplayMember = "FeeTypeName";
             cboExtraFee.ValueMember = "FeeTypeID";
             if (list.Count > 0) cboExtraFee.SelectedIndex = 0;
+            cboExtraFee.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cboExtraFee.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            var auto = new AutoCompleteStringCollection();
+            auto.AddRange(list.Select(f => f.FeeTypeName).ToArray());
+            cboExtraFee.AutoCompleteCustomSource = auto;
         }
 
         private void LoadInvoiceDetails()
@@ -120,26 +125,48 @@ namespace HotelManagement
                 return;
             }
 
+            // ✅ Kiểm tra nếu chưa chọn hoặc nhập tên phí không hợp lệ
+            if (cboExtraFee.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn loại phí hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cboExtraFee.Focus();
+                return;
+            }
+
             var selectedFee = cboExtraFee.SelectedItem as FeeTypeET;
             if (selectedFee == null)
+            {
+                MessageBox.Show("Loại phí không tồn tại trong danh sách!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboExtraFee.Focus();
                 return;
+            }
+
+            int quantity = (int)numExtraFeeQuantity.Value;
+            if (quantity <= 0)
+            {
+                MessageBox.Show("Số lượng phải lớn hơn 0!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                numExtraFeeQuantity.Focus();
+                return;
+            }
 
             DialogResult confirm = MessageBox.Show(
-                $"Xác nhận thêm phí '{selectedFee.FeeTypeName}' ({selectedFee.DefaultPrice:N0} VND)?",
+                $"Xác nhận thêm phí '{selectedFee.FeeTypeName}' ({selectedFee.DefaultPrice:N0} VND x {quantity})?",
                 "Xác nhận",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
 
             if (confirm == DialogResult.Yes)
             {
-                bool success = invoiceBUS.AddExtraFeeToBooking(currentBookingId, selectedFee.FeeTypeID);
+                bool success = invoiceBUS.AddExtraFeeToBooking(currentBookingId, selectedFee.FeeTypeID, quantity);
                 if (success)
                 {
                     MessageBox.Show("Đã thêm phụ phí thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadInvoiceDetails();
+                    LoadInvoiceDetails(); // 🔄 Cập nhật lại danh sách chi tiết hóa đơn
                 }
                 else
+                {
                     MessageBox.Show("Không thể thêm phụ phí!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

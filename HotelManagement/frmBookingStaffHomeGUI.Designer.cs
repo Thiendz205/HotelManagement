@@ -30,16 +30,17 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel_Body = new System.Windows.Forms.Panel();
             this.btnBooking = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button6 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel_Body = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -63,6 +64,7 @@
             this.flowLayoutPanel1.Controls.Add(this.guna2Button3);
             this.flowLayoutPanel1.Controls.Add(this.guna2Button1);
             this.flowLayoutPanel1.Controls.Add(this.guna2Button2);
+            this.flowLayoutPanel1.Controls.Add(this.guna2Button6);
             this.flowLayoutPanel1.Controls.Add(this.guna2Button5);
             this.flowLayoutPanel1.Controls.Add(this.guna2Button4);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -72,6 +74,25 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1023, 144);
             this.flowLayoutPanel1.TabIndex = 2;
             this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.Transparent;
+            this.panel3.Controls.Add(this.btnClose);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(1223, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(25, 144);
+            this.panel3.TabIndex = 1;
+            // 
+            // panel_Body
+            // 
+            this.panel_Body.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.panel_Body.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel_Body.Location = new System.Drawing.Point(0, 144);
+            this.panel_Body.Name = "panel_Body";
+            this.panel_Body.Size = new System.Drawing.Size(1248, 610);
+            this.panel_Body.TabIndex = 6;
             // 
             // btnBooking
             // 
@@ -153,6 +174,26 @@
             this.guna2Button2.Text = "Thanh Toán";
             this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
+            // guna2Button6
+            // 
+            this.guna2Button6.BorderRadius = 20;
+            this.guna2Button6.CheckedState.Parent = this.guna2Button6;
+            this.guna2Button6.CustomImages.Parent = this.guna2Button6;
+            this.guna2Button6.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.guna2Button6.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button6.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button6.HoverState.Parent = this.guna2Button6;
+            this.guna2Button6.Image = global::HotelManagement.Properties.Resources.updateHR;
+            this.guna2Button6.ImageSize = new System.Drawing.Size(40, 40);
+            this.guna2Button6.Location = new System.Drawing.Point(1051, 43);
+            this.guna2Button6.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
+            this.guna2Button6.Name = "guna2Button6";
+            this.guna2Button6.ShadowDecoration.Parent = this.guna2Button6;
+            this.guna2Button6.Size = new System.Drawing.Size(241, 72);
+            this.guna2Button6.TabIndex = 6;
+            this.guna2Button6.Text = "Sửa đặt phòng";
+            this.guna2Button6.Click += new System.EventHandler(this.guna2Button6_Click_1);
+            // 
             // guna2Button5
             // 
             this.guna2Button5.BorderRadius = 20;
@@ -164,7 +205,7 @@
             this.guna2Button5.HoverState.Parent = this.guna2Button5;
             this.guna2Button5.Image = global::HotelManagement.Properties.Resources.updateHR;
             this.guna2Button5.ImageSize = new System.Drawing.Size(40, 40);
-            this.guna2Button5.Location = new System.Drawing.Point(1051, 43);
+            this.guna2Button5.Location = new System.Drawing.Point(1325, 43);
             this.guna2Button5.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
             this.guna2Button5.Name = "guna2Button5";
             this.guna2Button5.ShadowDecoration.Parent = this.guna2Button5;
@@ -184,7 +225,7 @@
             this.guna2Button4.HoverState.Parent = this.guna2Button4;
             this.guna2Button4.Image = global::HotelManagement.Properties.Resources.logoutHR;
             this.guna2Button4.ImageSize = new System.Drawing.Size(40, 40);
-            this.guna2Button4.Location = new System.Drawing.Point(1471, 43);
+            this.guna2Button4.Location = new System.Drawing.Point(1745, 43);
             this.guna2Button4.Margin = new System.Windows.Forms.Padding(3, 3, 30, 3);
             this.guna2Button4.Name = "guna2Button4";
             this.guna2Button4.ShadowDecoration.Parent = this.guna2Button4;
@@ -192,16 +233,6 @@
             this.guna2Button4.TabIndex = 4;
             this.guna2Button4.Text = "Đăng xuất ";
             this.guna2Button4.Click += new System.EventHandler(this.guna2Button4_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Transparent;
-            this.panel3.Controls.Add(this.btnClose);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(1223, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(25, 144);
-            this.panel3.TabIndex = 1;
             // 
             // btnClose
             // 
@@ -231,15 +262,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 144);
             this.panel2.TabIndex = 0;
-            // 
-            // panel_Body
-            // 
-            this.panel_Body.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.panel_Body.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Body.Location = new System.Drawing.Point(0, 144);
-            this.panel_Body.Name = "panel_Body";
-            this.panel_Body.Size = new System.Drawing.Size(1248, 610);
-            this.panel_Body.TabIndex = 6;
             // 
             // frmBookingStaffHomeGUI
             // 
@@ -278,5 +300,6 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2Button guna2Button5;
+        private Guna.UI2.WinForms.Guna2Button guna2Button6;
     }
 }

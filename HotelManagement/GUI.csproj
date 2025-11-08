@@ -32,6 +32,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -41,10 +61,10 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Guna.UI">
-      <HintPath>..\..\..\..\..\..\NguyenHoaiPhuongNam\ChuyenDe.Net\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
+      <HintPath>..\..\..\Users\THIS PC\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2">
-      <HintPath>..\..\..\..\..\..\NguyenHoaiPhuongNam\ChuyenDe.Net\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+      <HintPath>..\..\..\Users\THIS PC\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
@@ -54,6 +74,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -263,6 +285,12 @@
     <Compile Include="frmReportRoomEvaluation.Designer.cs">
       <DependentUpon>frmReportRoomEvaluation.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRevenueChartGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRevenueChartGUI.Designer.cs">
+      <DependentUpon>frmRevenueChartGUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRoomTransferRECPGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -322,6 +350,12 @@
     </Compile>
     <Compile Include="frmTrangThietBiPhong.Designer.cs">
       <DependentUpon>frmTrangThietBiPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdateBookingRECPGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateBookingRECPGUI.Designer.cs">
+      <DependentUpon>frmUpdateBookingRECPGUI.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUseServiceAdmin.cs">
       <SubType>Form</SubType>
@@ -454,6 +488,9 @@
     <EmbeddedResource Include="frmReportRoomEvaluation.resx">
       <DependentUpon>frmReportRoomEvaluation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRevenueChartGUI.resx">
+      <DependentUpon>frmRevenueChartGUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRoomMonitoring.resx">
       <DependentUpon>frmRoomMonitoring.cs</DependentUpon>
     </EmbeddedResource>
@@ -483,6 +520,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTrangThietBiPhong.resx">
       <DependentUpon>frmTrangThietBiPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateBookingRECPGUI.resx">
+      <DependentUpon>frmUpdateBookingRECPGUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUseServiceAdmin.resx">
       <DependentUpon>frmUseServiceAdmin.cs</DependentUpon>

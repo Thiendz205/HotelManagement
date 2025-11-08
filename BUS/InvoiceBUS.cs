@@ -38,6 +38,9 @@ namespace BUS
         {
             return dal.CreateInvoiceByBooking(bookingId, staffId, paymentMethod, note);
         }
-
+        public List<(string Period, decimal Revenue)> GetRevenueStatistics(string mode, int year, int? month = null)
+        {
+            return dal.GetRevenueStatistics(mode, year, month);
+        }
     }
 }

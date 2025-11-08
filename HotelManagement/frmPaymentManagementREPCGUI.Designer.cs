@@ -34,6 +34,9 @@
             this.dgvInvoiceDetail = new System.Windows.Forms.DataGridView();
             this.lblTotalAmount = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblExtraFeePrice = new System.Windows.Forms.Label();
@@ -57,13 +60,13 @@
             this.btnBack = new Guna.UI2.WinForms.Guna2Button();
             this.btnPay = new Guna.UI2.WinForms.Guna2Button();
             this.picQRCode = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.numExtraFeeQuantity = new System.Windows.Forms.NumericUpDown();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceDetail)).BeginInit();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picQRCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numExtraFeeQuantity)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvInvoiceDetail
@@ -99,7 +102,7 @@
             // lblTotalAmount
             // 
             this.lblTotalAmount.AutoSize = true;
-            this.lblTotalAmount.Location = new System.Drawing.Point(835, 271);
+            this.lblTotalAmount.Location = new System.Drawing.Point(836, 374);
             this.lblTotalAmount.Name = "lblTotalAmount";
             this.lblTotalAmount.Size = new System.Drawing.Size(40, 22);
             this.lblTotalAmount.TabIndex = 2;
@@ -111,6 +114,8 @@
             this.guna2GroupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox2.BorderRadius = 20;
             this.guna2GroupBox2.BorderThickness = 4;
+            this.guna2GroupBox2.Controls.Add(this.label8);
+            this.guna2GroupBox2.Controls.Add(this.numExtraFeeQuantity);
             this.guna2GroupBox2.Controls.Add(this.label7);
             this.guna2GroupBox2.Controls.Add(this.label4);
             this.guna2GroupBox2.Controls.Add(this.label1);
@@ -144,6 +149,35 @@
             this.guna2GroupBox2.TabIndex = 16;
             this.guna2GroupBox2.Text = "Thông tin thanh toán";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(733, 260);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(81, 23);
+            this.label7.TabIndex = 56;
+            this.label7.Text = "Giá Phí:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(733, 373);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(97, 23);
+            this.label4.TabIndex = 55;
+            this.label4.Text = "Tổng tiền:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(367, 381);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 22);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Ghi chú :";
+            // 
             // txtNote
             // 
             this.txtNote.Location = new System.Drawing.Point(487, 373);
@@ -164,7 +198,7 @@
             // 
             this.lblExtraFeePrice.AutoSize = true;
             this.lblExtraFeePrice.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExtraFeePrice.Location = new System.Drawing.Point(835, 164);
+            this.lblExtraFeePrice.Location = new System.Drawing.Point(835, 260);
             this.lblExtraFeePrice.Name = "lblExtraFeePrice";
             this.lblExtraFeePrice.Size = new System.Drawing.Size(40, 23);
             this.lblExtraFeePrice.TabIndex = 51;
@@ -400,34 +434,31 @@
             this.picQRCode.TabIndex = 18;
             this.picQRCode.TabStop = false;
             // 
-            // label1
+            // numExtraFeeQuantity
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(367, 381);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 22);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "Ghi chú :";
+            this.numExtraFeeQuantity.Location = new System.Drawing.Point(839, 163);
+            this.numExtraFeeQuantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numExtraFeeQuantity.Name = "numExtraFeeQuantity";
+            this.numExtraFeeQuantity.Size = new System.Drawing.Size(144, 30);
+            this.numExtraFeeQuantity.TabIndex = 57;
+            this.numExtraFeeQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // label4
+            // label8
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(732, 270);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(97, 23);
-            this.label4.TabIndex = 55;
-            this.label4.Text = "Tổng tiền:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(733, 164);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(81, 23);
-            this.label7.TabIndex = 56;
-            this.label7.Text = "Giá Phí:";
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(733, 171);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 22);
+            this.label8.TabIndex = 58;
+            this.label8.Text = "Số lượng: ";
             // 
             // frmPaymentManagementREPCGUI
             // 
@@ -447,6 +478,7 @@
             this.guna2GroupBox2.PerformLayout();
             this.guna2GroupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picQRCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numExtraFeeQuantity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -482,5 +514,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numExtraFeeQuantity;
     }
 }

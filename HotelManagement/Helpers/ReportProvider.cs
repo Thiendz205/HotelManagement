@@ -34,7 +34,7 @@ namespace GUI.Helpers
             {
             }
 
-            return Environment.MachineName + "\\SQLEXPRESS"
+            return Environment.MachineName
 ;
         }
 

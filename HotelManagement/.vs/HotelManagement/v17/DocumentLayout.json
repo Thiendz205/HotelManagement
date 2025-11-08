@@ -1,0 +1,750 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A150D63B-F335-4CFD-AEB6-3FA9E9EDA81B}|..\\DAL\\DAL.csproj|c:\\chuyende.net\\hotelmanagement\\dal\\invoicedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmrevenuechartgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmrevenuechartgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmrevenuechartgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmrevenuechartgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4738DAC-C059-4FB8-B100-4998C12D0D70}|..\\BUS\\BUS.csproj|c:\\chuyende.net\\hotelmanagement\\bus\\bookingbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmupdatebookingrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmupdatebookingrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmserviceadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmserviceadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmreportroomevaluation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmreportroomevaluation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmreceptionistsroomlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmreceptionistsroomlist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmrankcustomeradmingui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmrankcustomeradmingui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmpaymentmanagementrepcgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmpaymentmanagementrepcgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmpersonal_information.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmpersonal_information.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmadminmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmadminmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmadminmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmadminmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmbookingstaffhomegui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmbookingstaffhomegui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmlistroompaymentmanagementrepcgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmlistroompaymentmanagementrepcgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmloaiphong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmloaiphong.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmmenuadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmmenuadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmnhanvienkythuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmnhanvienkythuat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmreportinvoicedetailbybooking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmreportinvoicedetailbybooking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmgiaphongdongtheothoigian.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmgiaphongdongtheothoigian.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4738DAC-C059-4FB8-B100-4998C12D0D70}|..\\BUS\\BUS.csproj|c:\\chuyende.net\\hotelmanagement\\bus\\invoicebus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmrevenuechartgui.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmrevenuechartgui.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4738DAC-C059-4FB8-B100-4998C12D0D70}|..\\BUS\\BUS.csproj|c:\\chuyende.net\\hotelmanagement\\bus\\accountbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4738DAC-C059-4FB8-B100-4998C12D0D70}|..\\BUS\\BUS.csproj|c:\\chuyende.net\\hotelmanagement\\bus\\customerbus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4738DAC-C059-4FB8-B100-4998C12D0D70}|..\\BUS\\BUS.csproj|c:\\chuyende.net\\hotelmanagement\\bus\\class1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A150D63B-F335-4CFD-AEB6-3FA9E9EDA81B}|..\\DAL\\DAL.csproj|c:\\chuyende.net\\hotelmanagement\\dal\\staffdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A150D63B-F335-4CFD-AEB6-3FA9E9EDA81B}|..\\DAL\\DAL.csproj|c:\\chuyende.net\\hotelmanagement\\dal\\servicedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\reports\\rptinvoicedetailbybooking.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:reports\\rptinvoicedetailbybooking.rpt||{C0EF7560-990E-4D61-B970-65A6096B6866}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\helpers\\reportprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:helpers\\reportprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmcustomerdetailrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmcustomerdetailrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmreportinvoicedetailbybooking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmreportinvoicedetailbybooking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A150D63B-F335-4CFD-AEB6-3FA9E9EDA81B}|..\\DAL\\DAL.csproj|c:\\chuyende.net\\hotelmanagement\\dal\\hotelmanagement.dbml||{B465B5AD-8799-4507-B90A-EE29ACF36AF9}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmpaymentmanagementrepcgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmpaymentmanagementrepcgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A150D63B-F335-4CFD-AEB6-3FA9E9EDA81B}|..\\DAL\\DAL.csproj|c:\\chuyende.net\\hotelmanagement\\dal\\idgenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A150D63B-F335-4CFD-AEB6-3FA9E9EDA81B}|..\\DAL\\DAL.csproj|c:\\chuyende.net\\hotelmanagement\\dal\\login_logout_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A150D63B-F335-4CFD-AEB6-3FA9E9EDA81B}|..\\DAL\\DAL.csproj|c:\\chuyende.net\\hotelmanagement\\dal\\bookingdal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A150D63B-F335-4CFD-AEB6-3FA9E9EDA81B}|..\\DAL\\DAL.csproj|c:\\chuyende.net\\hotelmanagement\\dal\\room_dal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmguestcheckinrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmguestcheckinrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmextrachargetypeadmingui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmextrachargetypeadmingui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmupdatebookingrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmupdatebookingrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmcustomermanagementadmingui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmcustomermanagementadmingui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frmcustomerrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frmcustomerrecpgui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A150D63B-F335-4CFD-AEB6-3FA9E9EDA81B}|..\\DAL\\DAL.csproj|c:\\chuyende.net\\hotelmanagement\\dal\\feetypedal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:frm_login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|c:\\chuyende.net\\hotelmanagement\\hotelmanagement\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{13AB1E9E-88E8-49C6-A258-C878507FDAD8}|GUI.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmRevenueChartGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmRevenueChartGUI.cs",
+              "RelativeDocumentMoniker": "frmRevenueChartGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmRevenueChartGUI.cs [Design]",
+              "RelativeToolTip": "frmRevenueChartGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:07:14.025Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmUpdateBookingRECPGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmUpdateBookingRECPGUI.cs",
+              "RelativeDocumentMoniker": "frmUpdateBookingRECPGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmUpdateBookingRECPGUI.cs [Design]",
+              "RelativeToolTip": "frmUpdateBookingRECPGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:48:34.05Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "frmRevenueChartGUI.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmRevenueChartGUI.cs",
+              "RelativeDocumentMoniker": "frmRevenueChartGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmRevenueChartGUI.cs",
+              "RelativeToolTip": "frmRevenueChartGUI.cs",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAUwFsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:07:21.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InvoiceDAL.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\InvoiceDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\InvoiceDAL.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\InvoiceDAL.cs",
+              "RelativeToolTip": "..\\DAL\\InvoiceDAL.cs",
+              "ViewState": "AgIAACsBAAAAAAAAAAAmwEUBAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:45:41.864Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookingBUS.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\BookingBUS.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\BookingBUS.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\BookingBUS.cs",
+              "RelativeToolTip": "..\\BUS\\BookingBUS.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:38:20.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmReportRoomEvaluation.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmReportRoomEvaluation.cs",
+              "RelativeDocumentMoniker": "frmReportRoomEvaluation.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmReportRoomEvaluation.cs [Design]",
+              "RelativeToolTip": "frmReportRoomEvaluation.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:38:49.01Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "frmServiceAdmin.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmServiceAdmin.cs",
+              "RelativeDocumentMoniker": "frmServiceAdmin.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmServiceAdmin.cs [Design]",
+              "RelativeToolTip": "frmServiceAdmin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:48:04.985Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "frmReceptionistsRoomList.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmReceptionistsRoomList.cs",
+              "RelativeDocumentMoniker": "frmReceptionistsRoomList.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmReceptionistsRoomList.cs [Design]",
+              "RelativeToolTip": "frmReceptionistsRoomList.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:42:09.809Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "frmRankCustomerAdminGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmRankCustomerAdminGUI.cs",
+              "RelativeDocumentMoniker": "frmRankCustomerAdminGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmRankCustomerAdminGUI.cs [Design]",
+              "RelativeToolTip": "frmRankCustomerAdminGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:42:08.708Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "frmPaymentManagementREPCGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmPaymentManagementREPCGUI.cs",
+              "RelativeDocumentMoniker": "frmPaymentManagementREPCGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmPaymentManagementREPCGUI.cs [Design]",
+              "RelativeToolTip": "frmPaymentManagementREPCGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:41:57.988Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "frmPersonal_Information.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmPersonal_Information.cs",
+              "RelativeDocumentMoniker": "frmPersonal_Information.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmPersonal_Information.cs [Design]",
+              "RelativeToolTip": "frmPersonal_Information.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:41:57.658Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "frmAdminMain.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmAdminMain.cs",
+              "RelativeDocumentMoniker": "frmAdminMain.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmAdminMain.cs",
+              "RelativeToolTip": "frmAdminMain.cs",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAiwI4AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:41:25.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "frmLoaiPhong.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmLoaiPhong.cs",
+              "RelativeDocumentMoniker": "frmLoaiPhong.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmLoaiPhong.cs [Design]",
+              "RelativeToolTip": "frmLoaiPhong.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:38:55.674Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "frmListRoomPaymentManagementREPCGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmListRoomPaymentManagementREPCGUI.cs",
+              "RelativeDocumentMoniker": "frmListRoomPaymentManagementREPCGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmListRoomPaymentManagementREPCGUI.cs [Design]",
+              "RelativeToolTip": "frmListRoomPaymentManagementREPCGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:39:37.865Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "frmAdminMain.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmAdminMain.cs",
+              "RelativeDocumentMoniker": "frmAdminMain.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmAdminMain.cs [Design]",
+              "RelativeToolTip": "frmAdminMain.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:39:41.852Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "frmBookingStaffHomeGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmBookingStaffHomeGUI.cs",
+              "RelativeDocumentMoniker": "frmBookingStaffHomeGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmBookingStaffHomeGUI.cs [Design]",
+              "RelativeToolTip": "frmBookingStaffHomeGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:28:42.853Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "frmMenuAdmin.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmMenuAdmin.cs",
+              "RelativeDocumentMoniker": "frmMenuAdmin.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmMenuAdmin.cs [Design]",
+              "RelativeToolTip": "frmMenuAdmin.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:38:54.538Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "frmNhanVienKyThuat.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmNhanVienKyThuat.cs",
+              "RelativeDocumentMoniker": "frmNhanVienKyThuat.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmNhanVienKyThuat.cs [Design]",
+              "RelativeToolTip": "frmNhanVienKyThuat.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:38:52.038Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "frmReportInvoiceDetailByBooking.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmReportInvoiceDetailByBooking.cs",
+              "RelativeDocumentMoniker": "frmReportInvoiceDetailByBooking.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmReportInvoiceDetailByBooking.cs [Design]",
+              "RelativeToolTip": "frmReportInvoiceDetailByBooking.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:55:13.549Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "frmGiaPhongDongTheoThoiGIan.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmGiaPhongDongTheoThoiGIan.cs",
+              "RelativeDocumentMoniker": "frmGiaPhongDongTheoThoiGIan.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmGiaPhongDongTheoThoiGIan.cs [Design]",
+              "RelativeToolTip": "frmGiaPhongDongTheoThoiGIan.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:42:24.648Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "InvoiceBUS.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\InvoiceBUS.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\InvoiceBUS.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\InvoiceBUS.cs",
+              "RelativeToolTip": "..\\BUS\\InvoiceBUS.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwCsAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:06:01.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "frmRevenueChartGUI.Designer.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmRevenueChartGUI.Designer.cs",
+              "RelativeDocumentMoniker": "frmRevenueChartGUI.Designer.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmRevenueChartGUI.Designer.cs",
+              "RelativeToolTip": "frmRevenueChartGUI.Designer.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAcwBwAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:09:08.16Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CustomerBUS.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\CustomerBUS.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\CustomerBUS.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\CustomerBUS.cs",
+              "RelativeToolTip": "..\\BUS\\CustomerBUS.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:05:53.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AccountBUS.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\AccountBUS.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\AccountBUS.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\AccountBUS.cs",
+              "RelativeToolTip": "..\\BUS\\AccountBUS.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA7wC0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T11:50:12.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Class1.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\Class1.cs",
+              "RelativeDocumentMoniker": "..\\BUS\\Class1.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\BUS\\Class1.cs",
+              "RelativeToolTip": "..\\BUS\\Class1.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T14:05:52.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "ServiceDAL.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\ServiceDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\ServiceDAL.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\ServiceDAL.cs",
+              "RelativeToolTip": "..\\DAL\\ServiceDAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T11:51:12.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "StaffDAL.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\StaffDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\StaffDAL.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\StaffDAL.cs",
+              "RelativeToolTip": "..\\DAL\\StaffDAL.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAiwLsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T11:49:31.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "rptInvoiceDetailByBooking.rpt",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Reports\\rptInvoiceDetailByBooking.rpt",
+              "RelativeDocumentMoniker": "Reports\\rptInvoiceDetailByBooking.rpt",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Reports\\rptInvoiceDetailByBooking.rpt",
+              "RelativeToolTip": "Reports\\rptInvoiceDetailByBooking.rpt",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPESURBVDhPrZRLaFxVHMZ/59w7k8lkJpmZTDJ5m1pJ2iY0JoWA0aKFUK1dtF2I2ampoggiSHAjaHFVRBA3FXSjuJFaqDbFCl1Z00JNMkmahGIe5lHznplM7rxn7sNFHp1JuvQPH/f\u002Bz\u002BX73fP4OPB/lmVZIr9v6XjhzKs9736WP/akWpieHLz63eUP9o8DqPmNq9TjP9r6bGfbYT\u002BKIhEU/A\u002BAfzdijHgrqvVcNn37\u002BvdfxrYia/nflfymrrGp7flTr1w42VaL112Mx1WEz\u002B3Am6dYMkvWspWdfK6zfT0ciW6GNlaSCW1zlyHzgQACkEKQSOXYjKWJ7FMyo\u002BN22jlxrK645\u002BJHl9u7ul9zl/kCu/4DwL0SIJ4kYD2a5MbALFoyy9me9z7tPv9G367tAHB31xQhUOS2sjLN71Y/q2KJ\u002BoCbrpYaOo9W0dVaw6G68uKSkmLHrr8AKIRASoFg\u002BymlJC5jPLDGuBm/zg9b3zIpBgn4SqjakcthQ5GPMfuAIHemKIQgYoSYNv5mSjzkYXKCX\u002BPX\u002BCX\u002BMxO5UeTO7IUoTIJUnJUOxVlZqjgrPcJe5jQtiWFapK0EwXSQgdQAhpKlyCzCMAxua7e4Ev6KSC6EJYwDQLX63NWXwGwD/KLS0Ta9YhGJ5ehP3GQmM4OOQTQVJbapoRs6mBAMD/H\u002BSi9fH7\u002BCoLgQ\u002BM2Hx52ZXM4T1nLVsysZ7\u002Bh8lks/hVA9TYQDc0QDQSyXiTQU0mMZMktpGqob6Xv9YyodFUREvAAo9djClBlf/LPOHbvTeVidaWlwsBzOMjvl59FYK\u002BH5p0mqcaQuMZZ02tUOLh57mxcrTuGyuQ4sWYnqZRvB0cl5IVhorPVWHGkoOe2wq8yuGYRXKxBZP3ZviOTWMk\u002Bl63mzs5e3unsRYvtAVsNxgsPDg2N/3bkFoMxO3GV24p6ZzNkSamnVM7XV5RdOd/hY2zLZ0EySIS/WP0ewe4J8/vInnGs7jyrlXrzWIilGgkODI/e3gXuxGb//G\u002BN3b2C3qZQU22muKaLBb8PpUPAWldN36BJNzlYsQMidiElQ5OOoFQDTCY1UYgshBaYliabAEJIyl4q3xI7fFkA17ZimubfcfB0AAugGbCZgcCbNUsRCURTq/ZLmgE5US7IcirO0EWNxXdtTKqsj84AF96GQiqZb9rnxxXSlXcXRWCFwq3rSXxQLLS5HE\u002BFNLYuRMjIpzcr3hdaXF3bfC4A1PsfI2RO\u002BLzI5/Z14It28Fc\u002BytBYfnZze\u002BHFqbm0opxuPHtzr14b/uJbL9\u002BXXf8LCnE6KaQGDAAAAAElFTkSuQmCC",
+              "WhenOpened": "2025-11-08T11:15:10.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "frmReportInvoiceDetailByBooking.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmReportInvoiceDetailByBooking.cs",
+              "RelativeDocumentMoniker": "frmReportInvoiceDetailByBooking.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmReportInvoiceDetailByBooking.cs",
+              "RelativeToolTip": "frmReportInvoiceDetailByBooking.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIAwwBcAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:55:15.84Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "frmCustomerDetailRECPGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmCustomerDetailRECPGUI.cs",
+              "RelativeDocumentMoniker": "frmCustomerDetailRECPGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmCustomerDetailRECPGUI.cs [Design]",
+              "RelativeToolTip": "frmCustomerDetailRECPGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:28:41.661Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ReportProvider.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Helpers\\ReportProvider.cs",
+              "RelativeDocumentMoniker": "Helpers\\ReportProvider.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Helpers\\ReportProvider.cs",
+              "RelativeToolTip": "Helpers\\ReportProvider.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAUwCQAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:23:40.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "HotelManagement.dbml",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\HotelManagement.dbml",
+              "RelativeDocumentMoniker": "..\\DAL\\HotelManagement.dbml",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\HotelManagement.dbml",
+              "RelativeToolTip": "..\\DAL\\HotelManagement.dbml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001722|",
+              "WhenOpened": "2025-11-08T10:19:41.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "frmPaymentManagementREPCGUI.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmPaymentManagementREPCGUI.cs",
+              "RelativeDocumentMoniker": "frmPaymentManagementREPCGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmPaymentManagementREPCGUI.cs",
+              "RelativeToolTip": "frmPaymentManagementREPCGUI.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJ0AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:46:27.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "IDGenerator.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\IDGenerator.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\IDGenerator.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\IDGenerator.cs",
+              "RelativeToolTip": "..\\DAL\\IDGenerator.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:45:42.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Login_Logout_DAL.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\Login_Logout_DAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Login_Logout_DAL.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\Login_Logout_DAL.cs",
+              "RelativeToolTip": "..\\DAL\\Login_Logout_DAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:45:41.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "Room_DAL.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\Room_DAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\Room_DAL.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\Room_DAL.cs",
+              "RelativeToolTip": "..\\DAL\\Room_DAL.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:42:52.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "BookingDAL.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\BookingDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\BookingDAL.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\BookingDAL.cs",
+              "RelativeToolTip": "..\\DAL\\BookingDAL.cs",
+              "ViewState": "AgIAAHACAAAAAAAAAAAcwCAEAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:32:37.134Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "frmGuestCheckInRECPGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmGuestCheckInRECPGUI.cs",
+              "RelativeDocumentMoniker": "frmGuestCheckInRECPGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmGuestCheckInRECPGUI.cs [Design]",
+              "RelativeToolTip": "frmGuestCheckInRECPGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:42:20.972Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "frmExtraChargeTypeAdminGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmExtraChargeTypeAdminGUI.cs",
+              "RelativeDocumentMoniker": "frmExtraChargeTypeAdminGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmExtraChargeTypeAdminGUI.cs [Design]",
+              "RelativeToolTip": "frmExtraChargeTypeAdminGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:42:22.278Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "frmUpdateBookingRECPGUI.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmUpdateBookingRECPGUI.cs",
+              "RelativeDocumentMoniker": "frmUpdateBookingRECPGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmUpdateBookingRECPGUI.cs",
+              "RelativeToolTip": "frmUpdateBookingRECPGUI.cs",
+              "ViewState": "AgIAAMkAAAAAAAAAAAAswN0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:32:24.546Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "frmCustomerManagementAdminGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmCustomerManagementAdminGUI.cs",
+              "RelativeDocumentMoniker": "frmCustomerManagementAdminGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmCustomerManagementAdminGUI.cs [Design]",
+              "RelativeToolTip": "frmCustomerManagementAdminGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:28:48.766Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "frmCustomerRECPGUI.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmCustomerRECPGUI.cs",
+              "RelativeDocumentMoniker": "frmCustomerRECPGUI.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frmCustomerRECPGUI.cs [Design]",
+              "RelativeToolTip": "frmCustomerRECPGUI.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:28:47.833Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "FeeTypeDAL.cs",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\FeeTypeDAL.cs",
+              "RelativeDocumentMoniker": "..\\DAL\\FeeTypeDAL.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\DAL\\FeeTypeDAL.cs",
+              "RelativeToolTip": "..\\DAL\\FeeTypeDAL.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAowD0AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:19:12.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "frm_login.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frm_login.cs",
+              "RelativeDocumentMoniker": "frm_login.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\frm_login.cs [Design]",
+              "RelativeToolTip": "frm_login.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:18:40.478Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\ChuyenDe.Net\\HotelManagement\\HotelManagement\\Form1.cs [Design]",
+              "RelativeToolTip": "Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-08T10:18:37.198Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

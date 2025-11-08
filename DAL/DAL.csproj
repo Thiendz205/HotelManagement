@@ -51,9 +51,9 @@
     <Compile Include="EquipmentStorage_DAL.cs" />
     <Compile Include="FeeTypeDAL.cs" />
     <Compile Include="HotelManagement.designer.cs">
-      <DependentUpon>HotelManagement.dbml</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HotelManagement.dbml</DependentUpon>
     </Compile>
     <Compile Include="IDGenerator.cs" />
     <Compile Include="InvoiceDAL.cs" />

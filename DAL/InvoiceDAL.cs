@@ -277,6 +277,58 @@ namespace DAL
                 return false;
             }
         }
+        public List<(string Period, decimal Revenue)> GetRevenueStatistics(string mode, int year, int? month = null)
+        {
+            try
+            {
+                var query = db.Invoices
+                              .Where(i => i.PaidStatus.ToLower() == "paid")
+                              .AsQueryable();
+
+                if (mode == "Day" && month.HasValue)
+                {
+                    // Doanh thu theo ngày trong 1 tháng
+                    return query
+                        .Where(i => i.InvoiceDate.Year == year && i.InvoiceDate.Month == month.Value)
+                        .GroupBy(i => i.InvoiceDate.Day)
+                        .Select(g => new { Day = g.Key, Revenue = g.Sum(i => i.TotalAmount) })
+                        .AsEnumerable()
+                        .Select(x => ($"{x.Day:D2}/{month.Value:D2}", x.Revenue))
+                        .OrderBy(x => x.Item1)
+                        .ToList();
+                }
+                else if (mode == "Month")
+                {
+                    // Doanh thu theo tháng trong 1 năm
+                    return query
+                        .Where(i => i.InvoiceDate.Year == year)
+                        .GroupBy(i => i.InvoiceDate.Month)
+                        .Select(g => new { Month = g.Key, Revenue = g.Sum(i => i.TotalAmount) })
+                        .AsEnumerable()
+                        .Select(x => ($"Tháng {x.Month}", x.Revenue))
+                        .OrderBy(x => x.Item1)
+                        .ToList();
+                }
+                else if (mode == "Year")
+                {
+                    // Doanh thu theo từng năm
+                    return query
+                        .GroupBy(i => i.InvoiceDate.Year)
+                        .Select(g => new { Year = g.Key, Revenue = g.Sum(i => i.TotalAmount) })
+                        .AsEnumerable()
+                        .Select(x => ($"Năm {x.Year}", x.Revenue))
+                        .OrderBy(x => x.Item1)
+                        .ToList();
+                }
+
+                return new List<(string, decimal)>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("❌ Lỗi GetRevenueStatistics: " + ex.Message);
+                return new List<(string, decimal)>();
+            }
+        }
 
     }
 }

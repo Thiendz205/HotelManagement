@@ -145,5 +145,10 @@ namespace HotelManagement
                 this.Close(); 
             }
         }
+
+        private void RevenueChart_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmRevenueChartGUI());
+        }
     }
 }

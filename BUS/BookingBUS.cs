@@ -159,6 +159,9 @@ namespace BUS
         {
             return bookingDAL.FindActiveRooms(roomName, roomTypeName);
         }
-
+        public UpdateResult UpdateBookingInfoByStaff(BookingET booking, string staffId)
+        {
+            return bookingDAL.UpdateBookingInfoByStaff(booking, staffId);
+        }
     }
 }

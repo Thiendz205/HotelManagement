@@ -51,6 +51,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.RevenueChart = new Guna.UI.WinForms.GunaButton();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -99,6 +100,7 @@
             this.flowLayoutPanel1.Controls.Add(this.gunaButton13);
             this.flowLayoutPanel1.Controls.Add(this.gunaButton17);
             this.flowLayoutPanel1.Controls.Add(this.btnDangXuat);
+            this.flowLayoutPanel1.Controls.Add(this.RevenueChart);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(193, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -609,6 +611,33 @@
             this.panel2.Size = new System.Drawing.Size(193, 159);
             this.panel2.TabIndex = 0;
             // 
+            // RevenueChart
+            // 
+            this.RevenueChart.AnimationHoverSpeed = 0.07F;
+            this.RevenueChart.AnimationSpeed = 0.03F;
+            this.RevenueChart.BaseColor = System.Drawing.Color.LimeGreen;
+            this.RevenueChart.BorderColor = System.Drawing.Color.Black;
+            this.RevenueChart.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.RevenueChart.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RevenueChart.FocusedColor = System.Drawing.Color.Empty;
+            this.RevenueChart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.RevenueChart.ForeColor = System.Drawing.Color.White;
+            this.RevenueChart.Image = null;
+            this.RevenueChart.ImageSize = new System.Drawing.Size(20, 20);
+            this.RevenueChart.Location = new System.Drawing.Point(6039, 43);
+            this.RevenueChart.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
+            this.RevenueChart.Name = "RevenueChart";
+            this.RevenueChart.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.RevenueChart.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.RevenueChart.OnHoverForeColor = System.Drawing.Color.White;
+            this.RevenueChart.OnHoverImage = null;
+            this.RevenueChart.OnPressedColor = System.Drawing.Color.Black;
+            this.RevenueChart.Size = new System.Drawing.Size(313, 63);
+            this.RevenueChart.TabIndex = 40;
+            this.RevenueChart.Text = "Thông Kê";
+            this.RevenueChart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.RevenueChart.Click += new System.EventHandler(this.RevenueChart_Click);
+            // 
             // frmAdminMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -655,5 +684,6 @@
         private Guna.UI.WinForms.GunaButton gunaButton13;
         private Guna.UI.WinForms.GunaButton gunaButton17;
         private Guna.UI.WinForms.GunaButton btnDangXuat;
+        private Guna.UI.WinForms.GunaButton RevenueChart;
     }
 }

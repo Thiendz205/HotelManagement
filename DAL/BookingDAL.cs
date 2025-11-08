@@ -92,86 +92,107 @@ namespace DAL
             return db.Invoices.Any(i => i.BookingID == bookingId);
         }
 
-        public UpdateResult UpdateBookingInfoOnly(BookingET booking)
+            public UpdateResult UpdateBookingInfoOnly(BookingET booking)
+            {
+                var existing = db.Bookings.SingleOrDefault(b => b.BookingID == booking.BookingID);
+                if (existing == null)
+                    return UpdateResult.NotFound;
+
+                // Chỉ cho phép cập nhật khi trạng thái booking là Check-in
+                if (existing.Status.Trim() != "CheckIn" && existing.Status.Trim() != "Đặt trước")
+                    return UpdateResult.InvalidStatus;
+
+                // Lưu lại phòng cũ để xử lý sau
+                string oldRoomId = existing.RoomID;
+
+                // Kiểm tra phòng mục tiêu
+                var targetRoom = db.Rooms.SingleOrDefault(r => r.RoomID == booking.RoomID);
+                if (targetRoom == null)
+                    return UpdateResult.RoomNotAvailable;
+
+                // Giới hạn loại phòng được cập nhật
+                if (targetRoom.Status.Trim() != "CheckIn" && targetRoom.Status != "Đặt trước" && targetRoom.Status != "Available")
+                    return UpdateResult.RoomNotAvailable;
+
+                DateTime sqlMinDate = new DateTime(1753, 1, 1);
+                DateTime sqlMaxDate = new DateTime(9999, 12, 31);
+
+                // Nếu phòng là "Đặt trước", kiểm tra trùng giờ cách ít nhất 1 tiếng
+                if (targetRoom.Status == "Đặt trước")
+                {
+                    bool isConflict = db.Bookings.Any(b =>
+                        b.RoomID == booking.RoomID &&
+                        b.BookingID != booking.BookingID &&
+                        b.Status == "Đặt trước" &&
+                        b.CheckIn < (booking.CheckOut ?? sqlMaxDate).AddHours(1) &&
+                        (b.CheckOut ?? sqlMinDate) > booking.CheckIn.AddHours(-1)
+                    );
+
+                    if (isConflict)
+                        return UpdateResult.RoomConflict;
+                }
+
+                // Cập nhật thông tin đặt phòng
+                existing.RoomID = booking.RoomID;
+                existing.RentalType = booking.RentalType;
+                existing.CheckIn = booking.CheckIn;
+                existing.CheckOut = booking.CheckOut;
+                existing.Price = booking.Price;
+
+                // Cập nhật trạng thái phòng mới theo ComboBox (RoomStatus)
+                if (!string.IsNullOrEmpty(booking.RoomStatus))
+                {
+                    targetRoom.Status = booking.RoomStatus.Trim();
+                }
+
+                // ✅ Nếu chuyển phòng → xử lý phòng cũ
+                if (oldRoomId != booking.RoomID)
+                {
+                    var oldRoom = db.Rooms.SingleOrDefault(r => r.RoomID == oldRoomId);
+                    if (oldRoom != null)
+                    {
+                        // Kiểm tra còn booking nào đặt/ở trong phòng cũ không
+                        bool hasActiveBooking = db.Bookings.Any(b =>
+                            b.RoomID == oldRoomId &&
+                            (b.Status == "CheckIn" || b.Status == "Đặt trước") &&
+                            b.BookingID != existing.BookingID
+                        );
+
+                        if (!hasActiveBooking)
+                        {
+                            // Nếu phòng vừa CheckIn trước đó → chuyển sang Đang dọn dẹp
+                            if (oldRoom.Status.Trim() == "CheckIn")
+                                oldRoom.Status = "Đang dọn dẹp";
+                            else
+                                oldRoom.Status = "Available"; // nếu không có booking nào → set trống
+                        }
+                    }
+                }
+
+                db.SubmitChanges();
+                return UpdateResult.Success;
+            }
+        public UpdateResult UpdateBookingInfoByStaff(BookingET booking, string staffId)
         {
+            // Gọi lại hàm sửa gốc
+            var result = UpdateBookingInfoOnly(booking);
+
+            // Nếu sửa thất bại → trả kết quả luôn
+            if (result != UpdateResult.Success)
+                return result;
+
+            // Lấy thông tin booking vừa sửa
             var existing = db.Bookings.SingleOrDefault(b => b.BookingID == booking.BookingID);
             if (existing == null)
                 return UpdateResult.NotFound;
 
-            // Chỉ cho phép cập nhật khi trạng thái booking là Check-in
-            if (existing.Status.Trim() != "CheckIn")
-                return UpdateResult.InvalidStatus;
-
-            // Lưu lại phòng cũ để xử lý sau
-            string oldRoomId = existing.RoomID;
-
-            // Kiểm tra phòng mục tiêu
-            var targetRoom = db.Rooms.SingleOrDefault(r => r.RoomID == booking.RoomID);
-            if (targetRoom == null)
-                return UpdateResult.RoomNotAvailable;
-
-            // Giới hạn loại phòng được cập nhật
-            if (targetRoom.Status.Trim() != "CheckIn" && targetRoom.Status != "Đặt trước" && targetRoom.Status != "Available")
-                return UpdateResult.RoomNotAvailable;
-
-            DateTime sqlMinDate = new DateTime(1753, 1, 1);
-            DateTime sqlMaxDate = new DateTime(9999, 12, 31);
-
-            // Nếu phòng là "Đặt trước", kiểm tra trùng giờ cách ít nhất 1 tiếng
-            if (targetRoom.Status == "Đặt trước")
-            {
-                bool isConflict = db.Bookings.Any(b =>
-                    b.RoomID == booking.RoomID &&
-                    b.BookingID != booking.BookingID &&
-                    b.Status == "Đặt trước" &&
-                    b.CheckIn < (booking.CheckOut ?? sqlMaxDate).AddHours(1) &&
-                    (b.CheckOut ?? sqlMinDate) > booking.CheckIn.AddHours(-1)
-                );
-
-                if (isConflict)
-                    return UpdateResult.RoomConflict;
-            }
-
-            // Cập nhật thông tin đặt phòng
-            existing.RoomID = booking.RoomID;
-            existing.RentalType = booking.RentalType;
-            existing.CheckIn = booking.CheckIn;
-            existing.CheckOut = booking.CheckOut;
-            existing.Price = booking.Price;
-
-            // Cập nhật trạng thái phòng mới theo ComboBox (RoomStatus)
-            if (!string.IsNullOrEmpty(booking.RoomStatus))
-            {
-                targetRoom.Status = booking.RoomStatus.Trim();
-            }
-
-            // ✅ Nếu chuyển phòng → xử lý phòng cũ
-            if (oldRoomId != booking.RoomID)
-            {
-                var oldRoom = db.Rooms.SingleOrDefault(r => r.RoomID == oldRoomId);
-                if (oldRoom != null)
-                {
-                    // Kiểm tra còn booking nào đặt/ở trong phòng cũ không
-                    bool hasActiveBooking = db.Bookings.Any(b =>
-                        b.RoomID == oldRoomId &&
-                        (b.Status == "CheckIn" || b.Status == "Đặt trước") &&
-                        b.BookingID != existing.BookingID
-                    );
-
-                    if (!hasActiveBooking)
-                    {
-                        // Nếu phòng vừa CheckIn trước đó → chuyển sang Đang dọn dẹp
-                        if (oldRoom.Status.Trim() == "CheckIn")
-                            oldRoom.Status = "Đang dọn dẹp";
-                        else
-                            oldRoom.Status = "Available"; // nếu không có booking nào → set trống
-                    }
-                }
-            }
+            // ✅ Gán nhân viên thực hiện chỉnh sửa
+            existing.StaffID = staffId;
 
             db.SubmitChanges();
             return UpdateResult.Success;
         }
+
         public List<BookingET> GetAllCustomers()
         {
             return db.Customers
