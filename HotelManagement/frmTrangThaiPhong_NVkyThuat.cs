@@ -53,7 +53,7 @@ namespace HotelManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            int roomID = Convert.ToInt32(txtMaPhong.Text);
+            string roomID = txtMaPhong.Text;
             string status = cbStatus.SelectedItem.ToString();
             try
             {

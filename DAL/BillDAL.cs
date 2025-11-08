@@ -53,9 +53,10 @@ namespace DAL
         {
             try
             {
-                // Không tự sinh InvoiceID thủ công ở đây (để IDENTITY tự chạy)
+                // Sử dụng InvoiceID được generate từ form
                 var newInvoice = new Invoice
                 {
+                    InvoiceID = bill.InvoiceID, // InvoiceID được generate từ code
                     BookingID = bill.BookingID,
                     InvoiceDate = bill.InvoiceDate == default ? DateTime.Now : bill.InvoiceDate,
                     TotalAmount = bill.TotalAmount,
@@ -83,9 +84,9 @@ namespace DAL
         }
 
         // Chính sách: KHÔNG xóa hóa đơn
-        public bool checkBillHasForeignKey(int invoiceID) => true; // ép coi như có ràng buộc để chặn xóa
+        public bool checkBillHasForeignKey(string invoiceID) => true; // ép coi như có ràng buộc để chặn xóa
 
-        public bool removeBill(int invoiceID)
+        public bool removeBill(string invoiceID)
         {
             // Không cho xóa hóa đơn theo chính sách
             return false;
@@ -113,7 +114,7 @@ namespace DAL
         }
 
         // === Mới: cập nhật đánh giá/audit ===
-        public bool UpdateInvoiceAudit(int invoiceId, string newStatus, string note, string adminStaffId)
+        public bool UpdateInvoiceAudit(string invoiceId, string newStatus, string note, string adminStaffId)
         {
             try
             {
@@ -133,57 +134,79 @@ namespace DAL
                 return false;
             }
         }
+
+        public string generateInvoiceID()
+        {
+            try
+            {
+                var lastInvoice = db.Invoices.OrderByDescending(i => i.InvoiceID).FirstOrDefault();
+                if (lastInvoice == null)
+                {
+                    return "IV001";
+                }
+                else
+                {
+                    string lastID = lastInvoice.InvoiceID;
+                    int number = int.Parse(lastID.Substring(2)) + 1;
+                    return "IV" + number.ToString("D3");
+                }
+            }
+            catch (Exception)
+            {
+                return "IV001";
+            }
+        }
         public IQueryable<BillET> getBillsByStatus(string status)
         {
             var bills = from i in db.Invoices
-                       join b in db.Bookings on i.BookingID equals b.BookingID
-                       join c in db.Customers on b.CustomerID equals c.CustomerID
-                       join r in db.Rooms on b.RoomID equals r.RoomID
-                       join s in db.Staffs on i.StaffID equals s.StaffID
-                       where i.PaidStatus == status
-                       select new BillET
-                       {
-                           InvoiceID = i.InvoiceID,
-                           BookingID = i.BookingID,
-                           InvoiceDate = i.InvoiceDate,
-                           TotalAmount = i.TotalAmount,
-                           PaymentMethod = i.PaymentMethod,
-                           PaidStatus = i.PaidStatus,
-                           StaffID = i.StaffID,
-                           Note = i.Note,
-                           CustomerName = c.FullName,
-                           RoomName = r.RoomName,
-                           StaffName = s.FullName,
-                           CheckIn = b.CheckIn,
-                           CheckOut = b.CheckOut ?? DateTime.Now
-                       };
+                        join b in db.Bookings on i.BookingID equals b.BookingID
+                        join c in db.Customers on b.CustomerID equals c.CustomerID
+                        join r in db.Rooms on b.RoomID equals r.RoomID
+                        join s in db.Staffs on i.StaffID equals s.StaffID
+                        where i.PaidStatus == status
+                        select new BillET
+                        {
+                            InvoiceID = i.InvoiceID,
+                            BookingID = i.BookingID,
+                            InvoiceDate = i.InvoiceDate,
+                            TotalAmount = i.TotalAmount,
+                            PaymentMethod = i.PaymentMethod,
+                            PaidStatus = i.PaidStatus,
+                            StaffID = i.StaffID,
+                            Note = i.Note,
+                            CustomerName = c.FullName,
+                            RoomName = r.RoomName,
+                            StaffName = s.FullName,
+                            CheckIn = b.CheckIn,
+                            CheckOut = b.CheckOut ?? DateTime.Now
+                        };
             return bills;
         }
 
         public IQueryable<BillET> getBillsByDateRange(DateTime startDate, DateTime endDate)
         {
             var bills = from i in db.Invoices
-                       join b in db.Bookings on i.BookingID equals b.BookingID
-                       join c in db.Customers on b.CustomerID equals c.CustomerID
-                       join r in db.Rooms on b.RoomID equals r.RoomID
-                       join s in db.Staffs on i.StaffID equals s.StaffID
-                       where i.InvoiceDate >= startDate && i.InvoiceDate <= endDate
-                       select new BillET
-                       {
-                           InvoiceID = i.InvoiceID,
-                           BookingID = i.BookingID,
-                           InvoiceDate = i.InvoiceDate,
-                           TotalAmount = i.TotalAmount,
-                           PaymentMethod = i.PaymentMethod,
-                           PaidStatus = i.PaidStatus,
-                           StaffID = i.StaffID,
-                           Note = i.Note,
-                           CustomerName = c.FullName,
-                           RoomName = r.RoomName,
-                           StaffName = s.FullName,
-                           CheckIn = b.CheckIn,
-                           CheckOut = b.CheckOut ?? DateTime.Now
-                       };
+                        join b in db.Bookings on i.BookingID equals b.BookingID
+                        join c in db.Customers on b.CustomerID equals c.CustomerID
+                        join r in db.Rooms on b.RoomID equals r.RoomID
+                        join s in db.Staffs on i.StaffID equals s.StaffID
+                        where i.InvoiceDate >= startDate && i.InvoiceDate <= endDate
+                        select new BillET
+                        {
+                            InvoiceID = i.InvoiceID,
+                            BookingID = i.BookingID,
+                            InvoiceDate = i.InvoiceDate,
+                            TotalAmount = i.TotalAmount,
+                            PaymentMethod = i.PaymentMethod,
+                            PaidStatus = i.PaidStatus,
+                            StaffID = i.StaffID,
+                            Note = i.Note,
+                            CustomerName = c.FullName,
+                            RoomName = r.RoomName,
+                            StaffName = s.FullName,
+                            CheckIn = b.CheckIn,
+                            CheckOut = b.CheckOut ?? DateTime.Now
+                        };
             return bills;
         }
     }

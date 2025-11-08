@@ -8,7 +8,7 @@ namespace ET
 {
     public class UseServiceET
     {
-        public UseServiceET(int usageID, int bookingID, int serviceID, int quantity, string staffID, DateTime usageDate)
+        public UseServiceET(string usageID, string bookingID, string serviceID, int quantity, string staffID, DateTime usageDate)
         {
             UsageID = usageID;
             BookingID = bookingID;
@@ -23,9 +23,9 @@ namespace ET
            
         }
         
-        public int UsageID { get; set; }
-        public int BookingID { get; set; }
-        public int ServiceID { get; set; }
+        public string UsageID { get; set; }
+        public string BookingID { get; set; }
+        public string ServiceID { get; set; }
         public int Quantity { get; set; }
         public string StaffID { get; set; }
         public DateTime UsageDate { get; set; }
@@ -37,5 +37,6 @@ namespace ET
         public string RoomName { get; set; }
         public decimal ServicePrice { get; set; }
         public decimal TotalAmount { get; set; }
+
     }
 }

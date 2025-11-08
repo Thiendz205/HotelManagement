@@ -17,7 +17,7 @@ namespace HotelManagement
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //  Application.Run(new frmChinhSuaPhong());
+            //Application.Run(new frmServiceProvision());
 
             bool exitApp = false;
 
@@ -32,7 +32,7 @@ namespace HotelManagement
                     switch (loginForm.UserRole)
                     {
                         case "Admin":
-                            Application.Run(new frmAdminMain());
+                            Application.Run(new frmAdminMain(loginForm.StaffID));
                             break;
                         case "Kỹ thuật":
                             Application.Run(new frmNhanVienKyThuat(loginForm.StaffID));
@@ -43,8 +43,8 @@ namespace HotelManagement
                         case "Dịch vụ":
                             Application.Run(new frmServiceStaffMain());
                             break;
-                        case "Lễ Tân":
-                            Application.Run(new frmBookingStaffHomeGUI());
+                        case "Lễ tân":
+                            Application.Run(new frmBookingStaffHomeGUI(loginForm.StaffID));
                             break;
                         default:
                             MessageBox.Show("Vai trò không hợp lệ: " + loginForm.UserRole, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);

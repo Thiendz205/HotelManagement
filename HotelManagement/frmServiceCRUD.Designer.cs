@@ -32,7 +32,6 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnClose = new Guna.UI.WinForms.GunaButton();
             this.pnlMain = new Guna.UI.WinForms.GunaPanel();
-            this.gunaGroupBox2 = new Guna.UI.WinForms.GunaGroupBox();
             this.dgvServices = new System.Windows.Forms.DataGridView();
             this.btnSearch = new Guna.UI.WinForms.GunaButton();
             this.txtSearch = new Guna.UI.WinForms.GunaTextBox();
@@ -53,9 +52,9 @@
             this.btnDelete = new Guna.UI.WinForms.GunaButton();
             this.btnUpdate = new Guna.UI.WinForms.GunaButton();
             this.btnAdd = new Guna.UI.WinForms.GunaButton();
+            this.label6 = new System.Windows.Forms.Label();
             this.pnlHeader.SuspendLayout();
             this.pnlMain.SuspendLayout();
-            this.gunaGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).BeginInit();
             this.gunaGroupBox1.SuspendLayout();
             this.pnlButtons.SuspendLayout();
@@ -69,7 +68,7 @@
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1000, 60);
+            this.pnlHeader.Size = new System.Drawing.Size(1322, 60);
             this.pnlHeader.TabIndex = 0;
             // 
             // lblTitle
@@ -96,7 +95,7 @@
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Image = null;
             this.btnClose.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnClose.Location = new System.Drawing.Point(950, 15);
+            this.btnClose.Location = new System.Drawing.Point(1272, 15);
             this.btnClose.Name = "btnClose";
             this.btnClose.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnClose.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -112,52 +111,34 @@
             // pnlMain
             // 
             this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
-            this.pnlMain.Controls.Add(this.gunaGroupBox2);
+            this.pnlMain.Controls.Add(this.label6);
+            this.pnlMain.Controls.Add(this.dgvServices);
+            this.pnlMain.Controls.Add(this.btnSearch);
             this.pnlMain.Controls.Add(this.gunaGroupBox1);
+            this.pnlMain.Controls.Add(this.txtSearch);
             this.pnlMain.Controls.Add(this.pnlButtons);
+            this.pnlMain.Controls.Add(this.label5);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 60);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1000, 640);
+            this.pnlMain.Size = new System.Drawing.Size(1322, 640);
             this.pnlMain.TabIndex = 1;
-            // 
-            // gunaGroupBox2
-            // 
-            this.gunaGroupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gunaGroupBox2.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGroupBox2.BaseColor = System.Drawing.Color.White;
-            this.gunaGroupBox2.BorderColor = System.Drawing.Color.Gainsboro;
-            this.gunaGroupBox2.Controls.Add(this.dgvServices);
-            this.gunaGroupBox2.Controls.Add(this.btnSearch);
-            this.gunaGroupBox2.Controls.Add(this.txtSearch);
-            this.gunaGroupBox2.Controls.Add(this.label5);
-            this.gunaGroupBox2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.gunaGroupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.gunaGroupBox2.LineColor = System.Drawing.Color.Gainsboro;
-            this.gunaGroupBox2.Location = new System.Drawing.Point(520, 20);
-            this.gunaGroupBox2.Name = "gunaGroupBox2";
-            this.gunaGroupBox2.Size = new System.Drawing.Size(460, 570);
-            this.gunaGroupBox2.TabIndex = 2;
-            this.gunaGroupBox2.Text = "Danh sách Dịch vụ";
-            this.gunaGroupBox2.TextLocation = new System.Drawing.Point(10, 8);
+            this.pnlMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMain_Paint);
             // 
             // dgvServices
             // 
             this.dgvServices.AllowUserToAddRows = false;
             this.dgvServices.AllowUserToDeleteRows = false;
-            this.dgvServices.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvServices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvServices.BackgroundColor = System.Drawing.Color.White;
             this.dgvServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvServices.Location = new System.Drawing.Point(20, 80);
+            this.dgvServices.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvServices.EnableHeadersVisualStyles = false;
+            this.dgvServices.Location = new System.Drawing.Point(0, 372);
             this.dgvServices.Name = "dgvServices";
             this.dgvServices.ReadOnly = true;
-            this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvServices.Size = new System.Drawing.Size(420, 470);
+            this.dgvServices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvServices.Size = new System.Drawing.Size(1322, 268);
             this.dgvServices.TabIndex = 3;
             this.dgvServices.SelectionChanged += new System.EventHandler(this.dgvServices_SelectionChanged);
             // 
@@ -173,7 +154,7 @@
             this.btnSearch.ForeColor = System.Drawing.Color.White;
             this.btnSearch.Image = null;
             this.btnSearch.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnSearch.Location = new System.Drawing.Point(350, 40);
+            this.btnSearch.Location = new System.Drawing.Point(1215, 140);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnSearch.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -196,19 +177,20 @@
             this.txtSearch.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtSearch.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtSearch.Location = new System.Drawing.Point(80, 40);
+            this.txtSearch.Location = new System.Drawing.Point(945, 140);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.PasswordChar = '\0';
             this.txtSearch.SelectedText = "";
             this.txtSearch.Size = new System.Drawing.Size(260, 30);
             this.txtSearch.TabIndex = 1;
+            this.txtSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearch_KeyDown);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label5.Location = new System.Drawing.Point(7, 40);
+            this.label5.Location = new System.Drawing.Point(872, 140);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 19);
             this.label5.TabIndex = 0;
@@ -237,7 +219,7 @@
             this.gunaGroupBox1.LineColor = System.Drawing.Color.Gainsboro;
             this.gunaGroupBox1.Location = new System.Drawing.Point(20, 20);
             this.gunaGroupBox1.Name = "gunaGroupBox1";
-            this.gunaGroupBox1.Size = new System.Drawing.Size(480, 400);
+            this.gunaGroupBox1.Size = new System.Drawing.Size(803, 266);
             this.gunaGroupBox1.TabIndex = 1;
             this.gunaGroupBox1.Text = "Thông tin Dịch vụ";
             this.gunaGroupBox1.TextLocation = new System.Drawing.Point(10, 8);
@@ -252,12 +234,12 @@
             this.txtDescription.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtDescription.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtDescription.Location = new System.Drawing.Point(140, 320);
+            this.txtDescription.Location = new System.Drawing.Point(526, 140);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.PasswordChar = '\0';
             this.txtDescription.SelectedText = "";
-            this.txtDescription.Size = new System.Drawing.Size(320, 60);
+            this.txtDescription.Size = new System.Drawing.Size(244, 86);
             this.txtDescription.TabIndex = 9;
             // 
             // label4
@@ -265,7 +247,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label4.Location = new System.Drawing.Point(20, 330);
+            this.label4.Location = new System.Drawing.Point(444, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 19);
             this.label4.TabIndex = 8;
@@ -281,19 +263,20 @@
             this.txtPrice.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.txtPrice.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtPrice.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtPrice.Location = new System.Drawing.Point(140, 260);
+            this.txtPrice.Location = new System.Drawing.Point(526, 79);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.PasswordChar = '\0';
             this.txtPrice.SelectedText = "";
-            this.txtPrice.Size = new System.Drawing.Size(320, 30);
+            this.txtPrice.Size = new System.Drawing.Size(244, 30);
             this.txtPrice.TabIndex = 7;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label3.Location = new System.Drawing.Point(20, 270);
+            this.label3.Location = new System.Drawing.Point(444, 90);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 19);
             this.label3.TabIndex = 6;
@@ -314,7 +297,7 @@
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.cmbCategory.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cmbCategory.Size = new System.Drawing.Size(320, 26);
+            this.cmbCategory.Size = new System.Drawing.Size(240, 26);
             this.cmbCategory.TabIndex = 5;
             // 
             // label2
@@ -342,7 +325,7 @@
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.PasswordChar = '\0';
             this.txtServiceName.SelectedText = "";
-            this.txtServiceName.Size = new System.Drawing.Size(320, 30);
+            this.txtServiceName.Size = new System.Drawing.Size(240, 30);
             this.txtServiceName.TabIndex = 3;
             // 
             // label1
@@ -372,7 +355,7 @@
             this.txtServiceID.PasswordChar = '\0';
             this.txtServiceID.ReadOnly = true;
             this.txtServiceID.SelectedText = "";
-            this.txtServiceID.Size = new System.Drawing.Size(320, 30);
+            this.txtServiceID.Size = new System.Drawing.Size(240, 30);
             this.txtServiceID.TabIndex = 1;
             // 
             // lblServiceID
@@ -394,7 +377,7 @@
             this.pnlButtons.Controls.Add(this.btnDelete);
             this.pnlButtons.Controls.Add(this.btnUpdate);
             this.pnlButtons.Controls.Add(this.btnAdd);
-            this.pnlButtons.Location = new System.Drawing.Point(20, 440);
+            this.pnlButtons.Location = new System.Drawing.Point(837, 20);
             this.pnlButtons.Name = "pnlButtons";
             this.pnlButtons.Size = new System.Drawing.Size(480, 50);
             this.pnlButtons.TabIndex = 0;
@@ -411,7 +394,7 @@
             this.btnClear.ForeColor = System.Drawing.Color.White;
             this.btnClear.Image = null;
             this.btnClear.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnClear.Location = new System.Drawing.Point(360, 10);
+            this.btnClear.Location = new System.Drawing.Point(368, 10);
             this.btnClear.Name = "btnClear";
             this.btnClear.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
             this.btnClear.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -436,7 +419,7 @@
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Image = null;
             this.btnDelete.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDelete.Location = new System.Drawing.Point(250, 10);
+            this.btnDelete.Location = new System.Drawing.Point(254, 10);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnDelete.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -499,14 +482,26 @@
             this.btnAdd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
+            this.label6.Location = new System.Drawing.Point(616, 305);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(207, 30);
+            this.label6.TabIndex = 4;
+            this.label6.Text = "Danh Sách Dịch Vụ";
+            // 
             // frmServiceCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 700);
+            this.ClientSize = new System.Drawing.Size(1322, 700);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlHeader);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.Name = "frmServiceCRUD";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý Dịch vụ";
@@ -514,8 +509,7 @@
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
             this.pnlMain.ResumeLayout(false);
-            this.gunaGroupBox2.ResumeLayout(false);
-            this.gunaGroupBox2.PerformLayout();
+            this.pnlMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvServices)).EndInit();
             this.gunaGroupBox1.ResumeLayout(false);
             this.gunaGroupBox1.PerformLayout();
@@ -530,7 +524,6 @@
         private System.Windows.Forms.Label lblTitle;
         private Guna.UI.WinForms.GunaButton btnClose;
         private Guna.UI.WinForms.GunaPanel pnlMain;
-        private Guna.UI.WinForms.GunaGroupBox gunaGroupBox2;
         private System.Windows.Forms.DataGridView dgvServices;
         private Guna.UI.WinForms.GunaButton btnSearch;
         private Guna.UI.WinForms.GunaTextBox txtSearch;
@@ -551,5 +544,6 @@
         private Guna.UI.WinForms.GunaButton btnDelete;
         private Guna.UI.WinForms.GunaButton btnUpdate;
         private Guna.UI.WinForms.GunaButton btnAdd;
+        private System.Windows.Forms.Label label6;
     }
 }

@@ -10,8 +10,8 @@ namespace ET
     {
         public BillET() { }
 
-        public int InvoiceID { get; set; }
-        public int BookingID { get; set; }
+        public string InvoiceID { get; set; }
+        public string BookingID { get; set; }
         public DateTime InvoiceDate { get; set; }
         public decimal TotalAmount { get; set; }
         public string PaymentMethod { get; set; }

@@ -16,7 +16,7 @@ namespace HotelManagement
 {
     public partial class frmAccountAdmin : Form
     {
-        private int? _selectedAccountId;
+        private string _selectedAccountId;
         AccountBUS accountBUS = new AccountBUS();
         AccountET accountET = new AccountET();
 
@@ -30,7 +30,7 @@ namespace HotelManagement
         {
             dgvMain.AutoGenerateColumns = false;
             dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            
+
             // Thiết lập các cột cho DataGridView
             colAccountID.DataPropertyName = "AccountID";
             colUsername.DataPropertyName = "Username";
@@ -78,7 +78,7 @@ namespace HotelManagement
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-           
+
             if (string.IsNullOrWhiteSpace(txtUsername.Text))
             { MessageBox.Show("Vui lòng nhập username!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
 
@@ -115,6 +115,8 @@ namespace HotelManagement
                 // Nếu có rule mật khẩu riêng thì kiểm tra ở đây
                 if (!ValidatePassword(txtPassword.Text)) return;
 
+                // Generate AccountID tự động
+                accountET.AccountID = accountBUS.generateAccountID();
                 accountET.Username = txtUsername.Text.Trim();
                 accountET.Password = HashPassword(txtPassword.Text);
                 accountET.StaffID = staffId;
@@ -159,10 +161,10 @@ namespace HotelManagement
             try
             {
                 // Lấy AccountID ưu tiên từ _selectedAccountId, nếu không có thì dùng CurrentRow
-                int accountID;
-                if (_selectedAccountId.HasValue)
+                string accountID;
+                if (!string.IsNullOrEmpty(_selectedAccountId))
                 {
-                    accountID = _selectedAccountId.Value;
+                    accountID = _selectedAccountId;
                 }
                 else
                 {
@@ -177,11 +179,12 @@ namespace HotelManagement
                     // Nếu bạn không đặt Name cho cột, có thể dùng index 0:
                     // object cellVal = dgvMain.CurrentRow.Cells[0].Value;
 
-                    if (cellVal == null || cellVal == DBNull.Value || !int.TryParse(cellVal.ToString(), out accountID))
+                    if (cellVal == null || cellVal == DBNull.Value)
                     {
                         MessageBox.Show("Không đọc được AccountID từ dòng đã chọn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                    accountID = cellVal.ToString();
                 }
 
                 // Không cho trùng username với account khác
@@ -246,9 +249,8 @@ namespace HotelManagement
             // Đổi "colAccountID" cho khớp Name cột ID trong Designer (hoặc dùng index [0] nếu chắc chắn)
             object idVal = row.Cells["colAccountID"].Value;
             if (idVal == null || idVal == DBNull.Value) return;
-            if (!int.TryParse(idVal.ToString(), out var id)) return;
-
-            _selectedAccountId = id;
+            
+            _selectedAccountId = idVal.ToString();
 
             // Fill UI
             txtUsername.Text = row.Cells["colUsername"]?.Value?.ToString() ?? string.Empty;
@@ -295,38 +297,38 @@ namespace HotelManagement
             }
         }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            // Lọc theo username
-            if (!string.IsNullOrEmpty(txtSearch.Text) && txtSearch.Text != "Tìm kiếm theo username...")
-            {
-                var allAccounts = accountBUS.getAllAccounts().ToList();
-                var filteredAccounts = allAccounts.Where(a => a.Username.Contains(txtSearch.Text)).ToList();
-                dgvMain.DataSource = filteredAccounts;
-            }
-            else
-            {
-                LoadData();
-            }
-        }
+        //private void txtSearch_TextChanged(object sender, EventArgs e)
+        //{
+        //    // Lọc theo username
+        //    if (!string.IsNullOrEmpty(txtSearch.Text) && txtSearch.Text != "Tìm kiếm theo username...")
+        //    {
+        //        var allAccounts = accountBUS.getAllAccounts().ToList();
+        //        var filteredAccounts = allAccounts.Where(a => a.Username.Contains(txtSearch.Text)).ToList();
+        //        dgvMain.DataSource = filteredAccounts;
+        //    }
+        //    else
+        //    {
+        //        LoadData();
+        //    }
+        //}
 
-        private void txtSearch_Enter(object sender, EventArgs e)
-        {
-            if (txtSearch.Text == "Tìm kiếm theo username...")
-            {
-                txtSearch.Text = "";
-                txtSearch.ForeColor = System.Drawing.Color.Black;
-            }
-        }
+        //private void txtSearch_Enter(object sender, EventArgs e)
+        //{
+        //    if (txtSearch.Text == "Tìm kiếm theo username...")
+        //    {
+        //        txtSearch.Text = "";
+        //        txtSearch.ForeColor = System.Drawing.Color.Black;
+        //    }
+        //}
 
-        private void txtSearch_Leave(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                txtSearch.Text = "Tìm kiếm theo username...";
-                txtSearch.ForeColor = System.Drawing.Color.Gray;
-            }
-        }
+        //private void txtSearch_Leave(object sender, EventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(txtSearch.Text))
+        //    {
+        //        txtSearch.Text = "Tìm kiếm theo username...";
+        //        txtSearch.ForeColor = System.Drawing.Color.Gray;
+        //    }
+        //}
 
         private void cboFilterStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -441,6 +443,11 @@ namespace HotelManagement
         }
 
         private void editorPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void guna2GroupBox2_Click(object sender, EventArgs e)
         {
 
         }

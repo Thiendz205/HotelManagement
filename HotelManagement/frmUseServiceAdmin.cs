@@ -25,7 +25,7 @@ namespace HotelManagement
 
         private void SetupLayout()
         {
-            dgvMain.AutoGenerateColumns = false; 
+            dgvMain.AutoGenerateColumns = false;
             dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             // map cột (đúng tên DataProperty của ET)
@@ -38,23 +38,23 @@ namespace HotelManagement
             colStaffName.DataPropertyName = "StaffName";
             colUsageDate.DataPropertyName = "UsageDate";
         }
-        private int GetSelectedUsageId()
+        private string GetSelectedUsageId()
         {
-            if (dgvMain.SelectedRows.Count == 0 && dgvMain.CurrentRow == null) return 0;
+            if (dgvMain.SelectedRows.Count == 0 && dgvMain.CurrentRow == null) return null;
             var row = (dgvMain.SelectedRows.Count > 0) ? dgvMain.SelectedRows[0] : dgvMain.CurrentRow;
 
             // ưu tiên cột tên "colUsageID" (đúng theo Designer)
             if (dgvMain.Columns.Contains("colUsageID"))
             {
-                if (int.TryParse(row.Cells["colUsageID"].Value?.ToString(), out int id)) return id;
+                return row.Cells["colUsageID"].Value?.ToString();
             }
 
             // fallback: tìm theo DataPropertyName = "UsageID"
             var col = dgvMain.Columns.Cast<DataGridViewColumn>()
                          .FirstOrDefault(c => string.Equals(c.DataPropertyName, "UsageID", StringComparison.OrdinalIgnoreCase));
-            if (col != null && int.TryParse(row.Cells[col.Index].Value?.ToString(), out int id2)) return id2;
+            if (col != null) return row.Cells[col.Index].Value?.ToString();
 
-            return 0;
+            return null;
         }
         private void frmUseServiceAdmin_Load(object sender, EventArgs e)
         {
@@ -67,7 +67,7 @@ namespace HotelManagement
             try
             {
                 var list = useServiceBUS.getAllServiceUsages().ToList();
-                dgvMain.DataSource = list;     
+                dgvMain.DataSource = list;
             }
             catch (Exception ex)
             {
@@ -128,12 +128,14 @@ namespace HotelManagement
 
             try
             {
-                useServiceET.BookingID = Convert.ToInt32(cboBooking.SelectedValue);
-                useServiceET.ServiceID = Convert.ToInt32(cboService.SelectedValue);
+                // Generate UsageID tự động
+                useServiceET.UsageID = useServiceBUS.generateUsageID();
+                useServiceET.BookingID = cboBooking.SelectedValue?.ToString();
+                useServiceET.ServiceID = cboService.SelectedValue?.ToString();
                 useServiceET.Quantity = Convert.ToInt32(nudQuantity.Value);
-                useServiceET.StaffID = cboStaff.SelectedValue.ToString();
+                useServiceET.StaffID = cboStaff.SelectedValue?.ToString();
                 useServiceET.UsageDate = dtpUsageDate.Value;
-                
+
                 bool success = useServiceBUS.addServiceUsage(useServiceET);
                 if (success)
                 {
@@ -182,10 +184,10 @@ namespace HotelManagement
                 var et = new UseServiceET
                 {
                     UsageID = selected.UsageID,
-                    BookingID = Convert.ToInt32(cboBooking.SelectedValue),
-                    ServiceID = Convert.ToInt32(cboService.SelectedValue),
+                    BookingID = cboBooking.SelectedValue?.ToString(),
+                    ServiceID = cboService.SelectedValue?.ToString(),
                     Quantity = Convert.ToInt32(nudQuantity.Value),
-                    StaffID = cboStaff.SelectedValue.ToString(),
+                    StaffID = cboStaff.SelectedValue?.ToString(),
                     UsageDate = dtpUsageDate.Value
                 };
 

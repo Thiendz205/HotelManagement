@@ -13,7 +13,7 @@ namespace ET
            
         }
         
-        public int ServiceID { get; set; }
+        public string ServiceID { get; set; }
         public string ServiceName { get; set; }
         public string Category { get; set; }
         public decimal Price { get; set; }

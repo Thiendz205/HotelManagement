@@ -51,6 +51,7 @@ namespace DAL
             {
                 ServiceUsage newUsage = new ServiceUsage
                 {
+                    UsageID = serviceUsage.UsageID, // UsageID được generate từ code
                     BookingID = serviceUsage.BookingID,
                     ServiceID = serviceUsage.ServiceID,
                     Quantity = serviceUsage.Quantity,
@@ -67,7 +68,7 @@ namespace DAL
             }
         }
 
-        public bool removeServiceUsage(int usageID)
+        public bool removeServiceUsage(string usageID)
         {
             try
             {
@@ -91,6 +92,28 @@ namespace DAL
             }
 
 
+        }
+
+        public string generateUsageID()
+        {
+            try
+            {
+                var lastUsage = db.ServiceUsages.OrderByDescending(u => u.UsageID).FirstOrDefault();
+                if (lastUsage == null)
+                {
+                    return "US001";
+                }
+                else
+                {
+                    string lastID = lastUsage.UsageID;
+                    int number = int.Parse(lastID.Substring(2)) + 1;
+                    return "US" + number.ToString("D3");
+                }
+            }
+            catch (Exception)
+            {
+                return "US001";
+            }
         }
         public IQueryable<StaffET> getServiceStaffs()
         {
@@ -144,7 +167,7 @@ namespace DAL
             }
         }
 
-     
+
         public IQueryable<ServiceET> getAllServices()
         {
             try
@@ -214,6 +237,109 @@ namespace DAL
                 throw new Exception("Lỗi khi lấy danh sách nhân viên: " + ex.Message);
             }
         }
+        //public IQueryable<UseServiceET> GetAll(string bookingId = null, DateTime? from = null, DateTime? to = null)
+        //{
+        //    var q =
+        //        from su in db.ServiceUsages
+        //        join s in db.Services on su.ServiceID equals s.ServiceID
+        //        join b in db.Bookings on su.BookingID equals b.BookingID
+        //        join r in db.Rooms on b.RoomID equals r.RoomID
+        //        join c in db.Customers on b.CustomerID equals c.CustomerID
+        //        join st in db.Staffs on su.StaffID equals st.StaffID into stj
+        //        from st in stj.DefaultIfEmpty()
+        //        select new UseServiceET
+        //        {
+        //            UsageID = su.UsageID,
+        //            BookingID = su.BookingID,
+        //            ServiceID = su.ServiceID,
+        //            Quantity = su.Quantity ?? 0,
+        //            StaffID = su.StaffID,
+        //            UsageDate = su.UsageDate,
+
+        //            ServiceName = s.ServiceName,
+        //            ServicePrice = s.Price,
+        //            RoomName = r.RoomName,
+        //            CustomerName = c.FullName,
+        //            StaffName = st != null ? st.FullName : null
+        //        };
+
+        //    if (!string.IsNullOrWhiteSpace(bookingId))
+        //        q = q.Where(x => x.BookingID == bookingId);
+        //    if (from.HasValue) q = q.Where(x => x.UsageDate >= from.Value);
+        //    if (to.HasValue) q = q.Where(x => x.UsageDate < to.Value);
+
+        //    return q.OrderByDescending(x => x.UsageDate);
+        //}
+
+        //// Thêm mới (tự sinh UsageID)
+        //public string Insert(UseServiceET et)
+        //{
+        //    var gen = new IDGenerator(db);
+        //    string newId = gen.GenerateUseServiceID();
+
+        //    var row = new ServiceUsage
+        //    {
+        //        UsageID = newId,
+        //        BookingID = et.BookingID,
+        //        ServiceID = et.ServiceID,
+        //        Quantity = et.Quantity,
+        //        StaffID = et.StaffID,
+        //        UsageDate = et.UsageDate == default ? DateTime.Now : et.UsageDate
+        //    };
+        //    db.ServiceUsages.InsertOnSubmit(row);
+        //    db.SubmitChanges();
+        //    return newId;
+        //}
+
+        //// Cập nhật
+        //public void Update(UseServiceET et)
+        //{
+        //    var row = db.ServiceUsages.SingleOrDefault(x => x.UsageID == et.UsageID);
+        //    if (row == null) throw new Exception("Không tìm thấy UsageID.");
+
+        //    row.BookingID = et.BookingID;
+        //    row.ServiceID = et.ServiceID;
+        //    row.Quantity = et.Quantity;
+        //    row.StaffID = et.StaffID;
+        //    row.UsageDate = et.UsageDate;
+        //    db.SubmitChanges();
+        //}
+
+        //// Xóa
+        //public void Delete(string usageId)
+        //{
+        //    var row = db.ServiceUsages.SingleOrDefault(x => x.UsageID == usageId);
+        //    if (row == null) return;
+        //    db.ServiceUsages.DeleteOnSubmit(row);
+        //    db.SubmitChanges();
+        //}
+
+        //// Dữ liệu cho combobox Booking (lọc đang CheckIn)
+        //public IQueryable<(string Id, string Display)> GetActiveBookingsForSelect()
+        //{
+        //    var q =
+        //        from b in db.Bookings
+        //        where b.Status == "CheckIn"     // mặc định / đang ở
+        //        join r in db.Rooms on b.RoomID equals r.RoomID
+        //        join c in db.Customers on b.CustomerID equals c.CustomerID
+        //        select new { b.BookingID, Display = r.RoomName + " - " + c.FullName };
+
+        //    return q.AsEnumerable()
+        //            .Select(x => (x.BookingID, x.Display))
+        //            .AsQueryable();
+        //}
+
+        //// Dữ liệu cho combobox Service
+        //public IQueryable<(string Id, string Name, decimal Price)> GetServicesForSelect()
+        //{
+        //    var q = from s in db.Services
+        //            select new { s.ServiceID, s.ServiceName, s.Price };
+
+        //    return q.AsEnumerable()
+        //            .Select(x => (x.ServiceID, x.ServiceName, x.Price))
+        //            .AsQueryable();
+        //}
+
 
     }
 }

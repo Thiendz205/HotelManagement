@@ -30,7 +30,6 @@
         {
             this.pnlSidebar = new Guna.UI.WinForms.GunaPanel();
             this.btnLogout = new Guna.UI.WinForms.GunaButton();
-            this.btnRoomMonitoring = new Guna.UI.WinForms.GunaButton();
             this.btnServiceProvision = new Guna.UI.WinForms.GunaButton();
             this.btnServiceCRUD = new Guna.UI.WinForms.GunaButton();
             this.btnServiceManagement = new Guna.UI.WinForms.GunaButton();
@@ -44,7 +43,6 @@
             // 
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
             this.pnlSidebar.Controls.Add(this.btnLogout);
-            this.pnlSidebar.Controls.Add(this.btnRoomMonitoring);
             this.pnlSidebar.Controls.Add(this.btnServiceProvision);
             this.pnlSidebar.Controls.Add(this.btnServiceCRUD);
             this.pnlSidebar.Controls.Add(this.btnServiceManagement);
@@ -52,7 +50,7 @@
             this.pnlSidebar.Controls.Add(this.lblWelcome);
             this.pnlSidebar.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSidebar.Location = new System.Drawing.Point(0, 0);
-            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlSidebar.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSidebar.Name = "pnlSidebar";
             this.pnlSidebar.Size = new System.Drawing.Size(333, 985);
             this.pnlSidebar.TabIndex = 0;
@@ -71,7 +69,7 @@
             this.btnLogout.Image = null;
             this.btnLogout.ImageSize = new System.Drawing.Size(20, 20);
             this.btnLogout.Location = new System.Drawing.Point(27, 886);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnLogout.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -83,32 +81,6 @@
             this.btnLogout.Text = "Đăng xuất";
             this.btnLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // btnRoomMonitoring
-            // 
-            this.btnRoomMonitoring.AnimationHoverSpeed = 0.07F;
-            this.btnRoomMonitoring.AnimationSpeed = 0.03F;
-            this.btnRoomMonitoring.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(89)))), ((int)(((byte)(182)))));
-            this.btnRoomMonitoring.BorderColor = System.Drawing.Color.Black;
-            this.btnRoomMonitoring.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnRoomMonitoring.FocusedColor = System.Drawing.Color.Empty;
-            this.btnRoomMonitoring.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnRoomMonitoring.ForeColor = System.Drawing.Color.White;
-            this.btnRoomMonitoring.Image = null;
-            this.btnRoomMonitoring.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnRoomMonitoring.Location = new System.Drawing.Point(27, 443);
-            this.btnRoomMonitoring.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btnRoomMonitoring.Name = "btnRoomMonitoring";
-            this.btnRoomMonitoring.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.btnRoomMonitoring.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnRoomMonitoring.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnRoomMonitoring.OnHoverImage = null;
-            this.btnRoomMonitoring.OnPressedColor = System.Drawing.Color.Black;
-            this.btnRoomMonitoring.Size = new System.Drawing.Size(280, 62);
-            this.btnRoomMonitoring.TabIndex = 3;
-            this.btnRoomMonitoring.Text = "Theo dõi Phòng";
-            this.btnRoomMonitoring.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnRoomMonitoring.Click += new System.EventHandler(this.btnRoomMonitoring_Click);
             // 
             // btnServiceProvision
             // 
@@ -123,7 +95,7 @@
             this.btnServiceProvision.Image = null;
             this.btnServiceProvision.ImageSize = new System.Drawing.Size(20, 20);
             this.btnServiceProvision.Location = new System.Drawing.Point(27, 357);
-            this.btnServiceProvision.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnServiceProvision.Margin = new System.Windows.Forms.Padding(4);
             this.btnServiceProvision.Name = "btnServiceProvision";
             this.btnServiceProvision.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
             this.btnServiceProvision.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -149,7 +121,7 @@
             this.btnServiceCRUD.Image = null;
             this.btnServiceCRUD.ImageSize = new System.Drawing.Size(20, 20);
             this.btnServiceCRUD.Location = new System.Drawing.Point(27, 271);
-            this.btnServiceCRUD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnServiceCRUD.Margin = new System.Windows.Forms.Padding(4);
             this.btnServiceCRUD.Name = "btnServiceCRUD";
             this.btnServiceCRUD.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
             this.btnServiceCRUD.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -175,7 +147,7 @@
             this.btnServiceManagement.Image = null;
             this.btnServiceManagement.ImageSize = new System.Drawing.Size(20, 20);
             this.btnServiceManagement.Location = new System.Drawing.Point(27, 185);
-            this.btnServiceManagement.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnServiceManagement.Margin = new System.Windows.Forms.Padding(4);
             this.btnServiceManagement.Name = "btnServiceManagement";
             this.btnServiceManagement.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnServiceManagement.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -217,7 +189,7 @@
             this.pnlMainContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.pnlMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMainContent.Location = new System.Drawing.Point(333, 0);
-            this.pnlMainContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlMainContent.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMainContent.Name = "pnlMainContent";
             this.pnlMainContent.Size = new System.Drawing.Size(1267, 985);
             this.pnlMainContent.TabIndex = 1;
@@ -230,8 +202,9 @@
             this.ClientSize = new System.Drawing.Size(1600, 985);
             this.Controls.Add(this.pnlMainContent);
             this.Controls.Add(this.pnlSidebar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmServiceStaffMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hệ thống Quản lý Khách sạn - Nhân viên Dịch vụ";
@@ -250,7 +223,6 @@
         private Guna.UI.WinForms.GunaButton btnServiceManagement;
         private Guna.UI.WinForms.GunaButton btnServiceCRUD;
         private Guna.UI.WinForms.GunaButton btnServiceProvision;
-        private Guna.UI.WinForms.GunaButton btnRoomMonitoring;
         private Guna.UI.WinForms.GunaButton btnLogout;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblStaffInfo;
