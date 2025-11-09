@@ -134,32 +134,26 @@ namespace DAL
         {
             try
             {
-                // Lấy dữ liệu gốc
                 var oldData = db.RoomEquipments.FirstOrDefault(x => x.RoomEquipmentID == et.RoomEquipmentID);
                 if (oldData == null)
                     return false;
 
-                // Nếu thay đổi thiết bị khác
                 if (oldData.EquipmentStorage != et.EquipmentStorage)
                 {
-                    // Cộng lại kho cũ
                     var oldStorage = db.EquipmentStorages.FirstOrDefault(x => x.EquipmentID == oldData.EquipmentStorage);
                     if (oldStorage != null)
                         oldStorage.Quantity += oldData.Quantity;
 
-                    // Trừ kho mới
                     var newStorage = db.EquipmentStorages.FirstOrDefault(x => x.EquipmentID == et.EquipmentStorage);
                     if (newStorage == null || newStorage.Quantity < et.Quantity)
-                        return false; // Không đủ hàng trong kho mới
+                        return false; 
                     newStorage.Quantity -= et.Quantity;
 
-                    // Cập nhật thông tin thiết bị mới
                     oldData.EquipmentStorage = et.EquipmentStorage;
                     oldData.Quantity = et.Quantity;
                 }
                 else
                 {
-                    // Nếu cùng thiết bị nhưng thay đổi số lượng
                     int diff = et.Quantity - oldData.Quantity;
                     var storage = db.EquipmentStorages.FirstOrDefault(x => x.EquipmentID == oldData.EquipmentStorage);
 
@@ -168,21 +162,18 @@ namespace DAL
 
                     if (diff > 0)
                     {
-                        // Cần thêm thiết bị → trừ kho
                         if (storage.Quantity < diff)
-                            return false; // Không đủ hàng
+                            return false; 
                         storage.Quantity -= diff;
                     }
                     else if (diff < 0)
                     {
-                        // Giảm số lượng → cộng lại kho
                         storage.Quantity += Math.Abs(diff);
                     }
 
                     oldData.Quantity = et.Quantity;
                 }
 
-                // Cập nhật các thông tin khác
                 oldData.RoomID = et.RoomID;
                 oldData.InstalledDate = et.InstalledDate;
                 oldData.Condition = et.Condition;
@@ -197,5 +188,31 @@ namespace DAL
                 return false;
             }
         }
+
+        public bool UpdateStatusRoom(string roomID)
+        {
+            try
+            {
+                var room = db.Rooms.FirstOrDefault(x => x.RoomID == roomID);
+
+                if (room != null)
+                {
+                    if (room.Status == "Mới tạo")
+                    {
+                        room.Status = "Trống";
+                        db.SubmitChanges();
+                        return true;
+                    }
+                }
+
+                return false; 
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi cập nhật trạng thái phòng: " + ex.Message);
+                return false;
+            }
+        }
+
     }
 }

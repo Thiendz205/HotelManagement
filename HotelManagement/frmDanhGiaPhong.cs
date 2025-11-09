@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,9 +15,12 @@ namespace HotelManagement
 {
     public partial class frmDanhGiaPhong : Form
     {
-        public frmDanhGiaPhong()
+        public string maNhanVien;
+        public frmDanhGiaPhong(string maNhanVien)
         {
             InitializeComponent();
+            this.maNhanVien = maNhanVien;
+
         }
 
         RoomEvaluation_BUS roomEvaluation_BUS = new RoomEvaluation_BUS();
@@ -302,6 +306,14 @@ namespace HotelManagement
             txtTong.Text = "0";
             dtG_RoomEvalua.DataSource = roomEvaluation_BUS.getAllRoomEvaluation();
             dtNgayDanhGia.Value = DateTime.Now;
+        }
+
+        private void btnInPhieuDanhGia_Click(object sender, EventArgs e)
+        {
+            frmReportRoomEvaluation frm = new frmReportRoomEvaluation(cbPhong.SelectedValue.ToString());
+            frm.Show();
+            
+
         }
     }
 }

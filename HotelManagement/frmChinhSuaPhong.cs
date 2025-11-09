@@ -175,7 +175,46 @@ namespace HotelManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
+            if(cbStatus.Text == "Mới tạo")
+            {
+                bool check = room_BUS.checkRoomHasEquipment(txtRoomID.Text);
+                if (check)
+                {
+                    MessageBox.Show("Phòng đã có thiết bị, không thể chuyển về trạng thái Mới tạo!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            if(cbStatus.Text == "Dọn dẹp")
+            {
+                bool check = room_BUS.checkRoomHasEquipment(txtRoomID.Text);
+                if (!check)
+                {
+                    MessageBox.Show("Phòng không có thiết bị, không thể chuyển về trạng thái Đang dọn dẹp!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            if(cbStatus.Text == "Đang bảo trì")
+            {
+                bool check = room_BUS.checkRoomHasEquipment(txtRoomID.Text);
+                if (!check)
+                {
+                    MessageBox.Show("Phòng không có thiết bị, không thể chuyển về trạng thái Đang bảo trì!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            if(cbStatus.Text == "Trống")
+            {
+                bool check = room_BUS.checkRoomHasEquipment(txtRoomID.Text);
+                if (!check)
+                {
+                    MessageBox.Show("Phòng không có thiết bị, không thể chuyển về trạng thái Trống!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
             try
             {
                 

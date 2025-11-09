@@ -69,6 +69,10 @@ namespace HotelManagement
                 if (result)
                 {
                     MessageBox.Show("Thêm thiết bị thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if(roomEquipment_BUS.UpdateStatusRoom(cbPhong.SelectedValue.ToString()))
+                    {
+                        MessageBox.Show($"Cập nhật trạng thái phòng {cbPhong.Text} từ mới tạo thành trống thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     dtGV_RoomEquipment.DataSource = roomEquipment_BUS.getAllRoomEquipment();
                 }
                 else

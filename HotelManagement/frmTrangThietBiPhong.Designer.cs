@@ -29,43 +29,43 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.dtGV_RoomEquipment = new System.Windows.Forms.DataGridView();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.cbPhong = new System.Windows.Forms.ComboBox();
+            this.cbTinhTrang = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtNote = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtQTY = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbThietBi = new System.Windows.Forms.ComboBox();
+            this.dtNgayLapDat = new System.Windows.Forms.DateTimePicker();
             this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.gunaPanel3 = new Guna.UI.WinForms.GunaPanel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnThem = new Guna.UI2.WinForms.Guna2Button();
+            this.btnXoa = new Guna.UI2.WinForms.Guna2Button();
+            this.btnSua = new Guna.UI2.WinForms.Guna2Button();
+            this.btnLamMoi = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.guna2Button5 = new Guna.UI2.WinForms.Guna2Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
-            this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.dtNgayLapDat = new System.Windows.Forms.DateTimePicker();
-            this.cbThietBi = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtQTY = new Guna.UI2.WinForms.Guna2TextBox();
-            this.txtNote = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cbTinhTrang = new System.Windows.Forms.ComboBox();
-            this.cbPhong = new System.Windows.Forms.ComboBox();
-            this.btnThem = new Guna.UI2.WinForms.Guna2Button();
-            this.btnXoa = new Guna.UI2.WinForms.Guna2Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.btnSua = new Guna.UI2.WinForms.Guna2Button();
-            this.btnLamMoi = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtGV_RoomEquipment)).BeginInit();
             this.guna2Panel3.SuspendLayout();
-            this.gunaPanel3.SuspendLayout();
-            this.guna2Panel1.SuspendLayout();
             this.guna2GroupBox2.SuspendLayout();
+            this.gunaPanel3.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.guna2Panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2DragControl1
@@ -88,23 +88,23 @@
             this.dtGV_RoomEquipment.AllowUserToAddRows = false;
             this.dtGV_RoomEquipment.AllowUserToDeleteRows = false;
             this.dtGV_RoomEquipment.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtGV_RoomEquipment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtGV_RoomEquipment.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dtGV_RoomEquipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtGV_RoomEquipment.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtGV_RoomEquipment.DefaultCellStyle = dataGridViewCellStyle2;
             this.dtGV_RoomEquipment.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dtGV_RoomEquipment.Location = new System.Drawing.Point(0, 4);
             this.dtGV_RoomEquipment.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -129,61 +129,6 @@
             this.guna2Panel3.ShadowDecoration.Parent = this.guna2Panel3;
             this.guna2Panel3.Size = new System.Drawing.Size(1920, 666);
             this.guna2Panel3.TabIndex = 18;
-            // 
-            // guna2Panel4
-            // 
-            this.guna2Panel4.BorderColor = System.Drawing.Color.Black;
-            this.guna2Panel4.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.guna2Panel4.BorderThickness = 1;
-            this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.guna2Panel4.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.ShadowDecoration.Parent = this.guna2Panel4;
-            this.guna2Panel4.Size = new System.Drawing.Size(112, 666);
-            this.guna2Panel4.TabIndex = 17;
-            // 
-            // gunaPanel3
-            // 
-            this.gunaPanel3.BackColor = System.Drawing.Color.Transparent;
-            this.gunaPanel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.gunaPanel3.Controls.Add(this.panel3);
-            this.gunaPanel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gunaPanel3.Location = new System.Drawing.Point(1590, 0);
-            this.gunaPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.gunaPanel3.Name = "gunaPanel3";
-            this.gunaPanel3.Size = new System.Drawing.Size(330, 666);
-            this.gunaPanel3.TabIndex = 15;
-            // 
-            // guna2Panel1
-            // 
-            this.guna2Panel1.BorderColor = System.Drawing.Color.Black;
-            this.guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.guna2Panel1.BorderThickness = 1;
-            this.guna2Panel1.Controls.Add(this.guna2Button5);
-            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
-            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.guna2Panel1.Name = "guna2Panel1";
-            this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
-            this.guna2Panel1.Size = new System.Drawing.Size(1920, 80);
-            this.guna2Panel1.TabIndex = 16;
-            // 
-            // guna2Button5
-            // 
-            this.guna2Button5.CheckedState.Parent = this.guna2Button5;
-            this.guna2Button5.CustomImages.Parent = this.guna2Button5;
-            this.guna2Button5.FillColor = System.Drawing.Color.Transparent;
-            this.guna2Button5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Button5.ForeColor = System.Drawing.Color.Black;
-            this.guna2Button5.HoverState.Parent = this.guna2Button5;
-            this.guna2Button5.Image = global::HotelManagement.Properties.Resources.living_room;
-            this.guna2Button5.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button5.Location = new System.Drawing.Point(834, 27);
-            this.guna2Button5.Name = "guna2Button5";
-            this.guna2Button5.ShadowDecoration.Parent = this.guna2Button5;
-            this.guna2Button5.Size = new System.Drawing.Size(314, 46);
-            this.guna2Button5.TabIndex = 0;
-            this.guna2Button5.Text = "TRANG THIẾT BỊ PHÒNG";
             // 
             // guna2GroupBox2
             // 
@@ -212,99 +157,33 @@
             this.guna2GroupBox2.TabIndex = 29;
             this.guna2GroupBox2.Text = "Thông tin trang thiết bị trong phòng";
             // 
-            // dtNgayLapDat
+            // cbPhong
             // 
-            this.dtNgayLapDat.CustomFormat = "dd/MM/yyyy HH:mm:ss";
-            this.dtNgayLapDat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtNgayLapDat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtNgayLapDat.Location = new System.Drawing.Point(770, 109);
-            this.dtNgayLapDat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dtNgayLapDat.Name = "dtNgayLapDat";
-            this.dtNgayLapDat.ShowUpDown = true;
-            this.dtNgayLapDat.Size = new System.Drawing.Size(293, 30);
-            this.dtNgayLapDat.TabIndex = 16;
+            this.cbPhong.FormattingEnabled = true;
+            this.cbPhong.Location = new System.Drawing.Point(271, 116);
+            this.cbPhong.Name = "cbPhong";
+            this.cbPhong.Size = new System.Drawing.Size(273, 42);
+            this.cbPhong.TabIndex = 19;
             // 
-            // cbThietBi
+            // cbTinhTrang
             // 
-            this.cbThietBi.FormattingEnabled = true;
-            this.cbThietBi.Location = new System.Drawing.Point(271, 204);
-            this.cbThietBi.Name = "cbThietBi";
-            this.cbThietBi.Size = new System.Drawing.Size(273, 42);
-            this.cbThietBi.TabIndex = 18;
+            this.cbTinhTrang.FormattingEnabled = true;
+            this.cbTinhTrang.Items.AddRange(new object[] {
+            "Good"});
+            this.cbTinhTrang.Location = new System.Drawing.Point(770, 197);
+            this.cbTinhTrang.Name = "cbTinhTrang";
+            this.cbTinhTrang.Size = new System.Drawing.Size(293, 42);
+            this.cbTinhTrang.TabIndex = 20;
             // 
-            // label5
+            // label2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(645, 199);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 22);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Tình trạng:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(118, 303);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(142, 22);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Số lượng thiết bị";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(645, 110);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 22);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Ngày lắp đặt";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(160, 117);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 22);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Tên phòng:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(663, 296);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 22);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Ghi chú:";
-            // 
-            // txtQTY
-            // 
-            this.txtQTY.BorderRadius = 10;
-            this.txtQTY.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtQTY.DefaultText = "";
-            this.txtQTY.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtQTY.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtQTY.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtQTY.DisabledState.Parent = this.txtQTY;
-            this.txtQTY.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtQTY.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtQTY.FocusedState.Parent = this.txtQTY;
-            this.txtQTY.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtQTY.HoverState.Parent = this.txtQTY;
-            this.txtQTY.Location = new System.Drawing.Point(271, 289);
-            this.txtQTY.Margin = new System.Windows.Forms.Padding(6);
-            this.txtQTY.Name = "txtQTY";
-            this.txtQTY.PasswordChar = '\0';
-            this.txtQTY.PlaceholderText = "";
-            this.txtQTY.SelectedText = "";
-            this.txtQTY.ShadowDecoration.Parent = this.txtQTY;
-            this.txtQTY.Size = new System.Drawing.Size(273, 38);
-            this.txtQTY.TabIndex = 5;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(176, 206);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 22);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Thiết bị:";
             // 
             // txtNote
             // 
@@ -330,33 +209,136 @@
             this.txtNote.Size = new System.Drawing.Size(293, 38);
             this.txtNote.TabIndex = 13;
             // 
-            // label2
+            // txtQTY
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(176, 206);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 22);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Thiết bị:";
+            this.txtQTY.BorderRadius = 10;
+            this.txtQTY.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtQTY.DefaultText = "";
+            this.txtQTY.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtQTY.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtQTY.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtQTY.DisabledState.Parent = this.txtQTY;
+            this.txtQTY.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtQTY.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtQTY.FocusedState.Parent = this.txtQTY;
+            this.txtQTY.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtQTY.HoverState.Parent = this.txtQTY;
+            this.txtQTY.Location = new System.Drawing.Point(271, 289);
+            this.txtQTY.Margin = new System.Windows.Forms.Padding(6);
+            this.txtQTY.Name = "txtQTY";
+            this.txtQTY.PasswordChar = '\0';
+            this.txtQTY.PlaceholderText = "";
+            this.txtQTY.SelectedText = "";
+            this.txtQTY.ShadowDecoration.Parent = this.txtQTY;
+            this.txtQTY.Size = new System.Drawing.Size(273, 38);
+            this.txtQTY.TabIndex = 5;
             // 
-            // cbTinhTrang
+            // label7
             // 
-            this.cbTinhTrang.FormattingEnabled = true;
-            this.cbTinhTrang.Items.AddRange(new object[] {
-            "Good"});
-            this.cbTinhTrang.Location = new System.Drawing.Point(770, 197);
-            this.cbTinhTrang.Name = "cbTinhTrang";
-            this.cbTinhTrang.Size = new System.Drawing.Size(293, 42);
-            this.cbTinhTrang.TabIndex = 20;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(663, 296);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 22);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Ghi chú:";
             // 
-            // cbPhong
+            // label1
             // 
-            this.cbPhong.FormattingEnabled = true;
-            this.cbPhong.Location = new System.Drawing.Point(271, 116);
-            this.cbPhong.Name = "cbPhong";
-            this.cbPhong.Size = new System.Drawing.Size(273, 42);
-            this.cbPhong.TabIndex = 19;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(160, 117);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 22);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Tên phòng:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(645, 110);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 22);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Ngày lắp đặt";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(118, 303);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(142, 22);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Số lượng thiết bị";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(645, 199);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(96, 22);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Tình trạng:";
+            // 
+            // cbThietBi
+            // 
+            this.cbThietBi.FormattingEnabled = true;
+            this.cbThietBi.Location = new System.Drawing.Point(271, 204);
+            this.cbThietBi.Name = "cbThietBi";
+            this.cbThietBi.Size = new System.Drawing.Size(273, 42);
+            this.cbThietBi.TabIndex = 18;
+            // 
+            // dtNgayLapDat
+            // 
+            this.dtNgayLapDat.CustomFormat = "dd/MM/yyyy HH:mm:ss";
+            this.dtNgayLapDat.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtNgayLapDat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtNgayLapDat.Location = new System.Drawing.Point(770, 109);
+            this.dtNgayLapDat.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dtNgayLapDat.Name = "dtNgayLapDat";
+            this.dtNgayLapDat.ShowUpDown = true;
+            this.dtNgayLapDat.Size = new System.Drawing.Size(293, 30);
+            this.dtNgayLapDat.TabIndex = 16;
+            // 
+            // guna2Panel4
+            // 
+            this.guna2Panel4.BorderColor = System.Drawing.Color.Black;
+            this.guna2Panel4.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel4.BorderThickness = 1;
+            this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.guna2Panel4.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel4.Name = "guna2Panel4";
+            this.guna2Panel4.ShadowDecoration.Parent = this.guna2Panel4;
+            this.guna2Panel4.Size = new System.Drawing.Size(112, 666);
+            this.guna2Panel4.TabIndex = 17;
+            // 
+            // gunaPanel3
+            // 
+            this.gunaPanel3.BackColor = System.Drawing.Color.Transparent;
+            this.gunaPanel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.gunaPanel3.Controls.Add(this.panel3);
+            this.gunaPanel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.gunaPanel3.Location = new System.Drawing.Point(1590, 0);
+            this.gunaPanel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.gunaPanel3.Name = "gunaPanel3";
+            this.gunaPanel3.Size = new System.Drawing.Size(330, 666);
+            this.gunaPanel3.TabIndex = 15;
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.btnThem);
+            this.panel3.Controls.Add(this.btnXoa);
+            this.panel3.Controls.Add(this.btnSua);
+            this.panel3.Controls.Add(this.btnLamMoi);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(-1, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(329, 664);
+            this.panel3.TabIndex = 22;
             // 
             // btnThem
             // 
@@ -399,19 +381,6 @@
             this.btnXoa.Text = "Xóa";
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.btnThem);
-            this.panel3.Controls.Add(this.btnXoa);
-            this.panel3.Controls.Add(this.btnSua);
-            this.panel3.Controls.Add(this.btnLamMoi);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(-1, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(329, 664);
-            this.panel3.TabIndex = 22;
-            // 
             // btnSua
             // 
             this.btnSua.BorderRadius = 20;
@@ -452,11 +421,42 @@
             this.btnLamMoi.Text = "Làm mới";
             this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
+            // guna2Panel1
+            // 
+            this.guna2Panel1.BorderColor = System.Drawing.Color.Black;
+            this.guna2Panel1.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.guna2Panel1.BorderThickness = 1;
+            this.guna2Panel1.Controls.Add(this.guna2Button5);
+            this.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.guna2Panel1.Location = new System.Drawing.Point(0, 0);
+            this.guna2Panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.guna2Panel1.Name = "guna2Panel1";
+            this.guna2Panel1.ShadowDecoration.Parent = this.guna2Panel1;
+            this.guna2Panel1.Size = new System.Drawing.Size(1920, 80);
+            this.guna2Panel1.TabIndex = 16;
+            // 
+            // guna2Button5
+            // 
+            this.guna2Button5.CheckedState.Parent = this.guna2Button5;
+            this.guna2Button5.CustomImages.Parent = this.guna2Button5;
+            this.guna2Button5.FillColor = System.Drawing.Color.Transparent;
+            this.guna2Button5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2Button5.ForeColor = System.Drawing.Color.Black;
+            this.guna2Button5.HoverState.Parent = this.guna2Button5;
+            this.guna2Button5.Image = global::HotelManagement.Properties.Resources.living_room;
+            this.guna2Button5.ImageSize = new System.Drawing.Size(30, 30);
+            this.guna2Button5.Location = new System.Drawing.Point(834, 27);
+            this.guna2Button5.Name = "guna2Button5";
+            this.guna2Button5.ShadowDecoration.Parent = this.guna2Button5;
+            this.guna2Button5.Size = new System.Drawing.Size(314, 46);
+            this.guna2Button5.TabIndex = 0;
+            this.guna2Button5.Text = "TRANG THIẾT BỊ PHÒNG";
+            // 
             // frmTrangThietBiPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.guna2Panel3);
             this.Controls.Add(this.guna2Panel2);
@@ -470,11 +470,11 @@
             this.guna2Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dtGV_RoomEquipment)).EndInit();
             this.guna2Panel3.ResumeLayout(false);
-            this.gunaPanel3.ResumeLayout(false);
-            this.guna2Panel1.ResumeLayout(false);
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
+            this.gunaPanel3.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.guna2Panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -57,6 +57,8 @@
             this.btnInPhieuDanhGia = new Guna.UI2.WinForms.Guna2Button();
             this.btnLamMoi = new Guna.UI2.WinForms.Guna2Button();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.txtTong = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label29 = new System.Windows.Forms.Label();
             this.txtNguoiDanhGia = new Guna.UI2.WinForms.Guna2TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.cbPhong = new System.Windows.Forms.ComboBox();
@@ -99,8 +101,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtMaDanhGia = new Guna.UI2.WinForms.Guna2TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtTong = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label29 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtG_RoomEvalua)).BeginInit();
             this.panel2.SuspendLayout();
@@ -509,6 +509,7 @@
             this.btnInPhieuDanhGia.Size = new System.Drawing.Size(234, 74);
             this.btnInPhieuDanhGia.TabIndex = 13;
             this.btnInPhieuDanhGia.Text = "In phiếu đánh giá";
+            this.btnInPhieuDanhGia.Click += new System.EventHandler(this.btnInPhieuDanhGia_Click);
             // 
             // btnLamMoi
             // 
@@ -553,6 +554,42 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1539, 688);
             this.panel5.TabIndex = 6;
+            // 
+            // txtTong
+            // 
+            this.txtTong.BorderRadius = 10;
+            this.txtTong.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTong.DefaultText = "0";
+            this.txtTong.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTong.DisabledState.Parent = this.txtTong;
+            this.txtTong.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTong.Enabled = false;
+            this.txtTong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTong.FocusedState.Parent = this.txtTong;
+            this.txtTong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTong.HoverState.Parent = this.txtTong;
+            this.txtTong.Location = new System.Drawing.Point(1158, 786);
+            this.txtTong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTong.Name = "txtTong";
+            this.txtTong.PasswordChar = '\0';
+            this.txtTong.PlaceholderText = "";
+            this.txtTong.SelectedText = "";
+            this.txtTong.SelectionStart = 1;
+            this.txtTong.ShadowDecoration.Parent = this.txtTong;
+            this.txtTong.Size = new System.Drawing.Size(93, 60);
+            this.txtTong.TabIndex = 16;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(1060, 807);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(56, 22);
+            this.label29.TabIndex = 15;
+            this.label29.Text = "Tổng:";
             // 
             // txtNguoiDanhGia
             // 
@@ -1149,42 +1186,6 @@
             this.label1.Size = new System.Drawing.Size(113, 22);
             this.label1.TabIndex = 5;
             this.label1.Text = "Mã đánh giá:";
-            // 
-            // txtTong
-            // 
-            this.txtTong.BorderRadius = 10;
-            this.txtTong.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTong.DefaultText = "0";
-            this.txtTong.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTong.DisabledState.Parent = this.txtTong;
-            this.txtTong.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTong.Enabled = false;
-            this.txtTong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTong.FocusedState.Parent = this.txtTong;
-            this.txtTong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTong.HoverState.Parent = this.txtTong;
-            this.txtTong.Location = new System.Drawing.Point(1158, 786);
-            this.txtTong.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtTong.Name = "txtTong";
-            this.txtTong.PasswordChar = '\0';
-            this.txtTong.PlaceholderText = "";
-            this.txtTong.SelectedText = "";
-            this.txtTong.SelectionStart = 1;
-            this.txtTong.ShadowDecoration.Parent = this.txtTong;
-            this.txtTong.Size = new System.Drawing.Size(93, 60);
-            this.txtTong.TabIndex = 16;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(1060, 807);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(56, 22);
-            this.label29.TabIndex = 15;
-            this.label29.Text = "Tổng:";
             // 
             // frmDanhGiaPhong
             // 

@@ -40,6 +40,10 @@ namespace BUS
         {
             return roomDAL.getAll_ID_and_Name_RoomType();
         }
+        public bool checkRoomHasEquipment(string maPhong)
+        {
+            return roomDAL.checkRoomHasEquipment(maPhong);
+        }
 
     }
 

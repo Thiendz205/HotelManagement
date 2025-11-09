@@ -27,5 +27,11 @@ namespace BUS
         {
             return equipmentStorage_DAL.updateEquipment(eq);
         }
+
+        public IQueryable getEquipmentByStatus(string status)
+        {
+            return equipmentStorage_DAL.getEquipmentByStatus(status);
+        }
+
     }
 }

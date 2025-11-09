@@ -117,7 +117,7 @@ namespace HotelManagement
 
         private void gunaButton10_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmDanhGiaPhong());
+            OpenChildForm(new frmDanhGiaPhong(maNhanVien));
         }
 
         private void gunaButton11_Click(object sender, EventArgs e)
@@ -146,9 +146,9 @@ namespace HotelManagement
             }
         }
 
-        private void RevenueChart_Click(object sender, EventArgs e)
+        private void btnBaoCao_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmRevenueChartGUI());
+            OpenChildForm(new frmSynthesisReport());
         }
     }
 }

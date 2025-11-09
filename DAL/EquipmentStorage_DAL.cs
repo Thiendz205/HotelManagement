@@ -32,20 +32,16 @@ namespace DAL
 
         public string GenerateNewEquipmentID()
         {
-            // Nếu bảng trống thì trả về EQ001
             if (!db.EquipmentStorages.Any())
                 return "EQ001";
 
-            // Lấy ID lớn nhất hiện có (vd: EQ005)
             string maxID = db.EquipmentStorages
                              .OrderByDescending(x => x.EquipmentID)
                              .Select(x => x.EquipmentID)
                              .FirstOrDefault();
 
-            // Cắt phần số ra
-            int numberPart = int.Parse(maxID.Substring(2)); // bỏ "EQ"
+            int numberPart = int.Parse(maxID.Substring(2)); 
 
-            // +1 rồi định dạng lại đủ 3 chữ số
             string newID = "EQ" + (numberPart + 1).ToString("D3");
             return newID;
         }
@@ -54,7 +50,7 @@ namespace DAL
         {
             try
             {
-                string newID = GenerateNewEquipmentID(); // Gọi hàm sinh ID
+                string newID = GenerateNewEquipmentID(); 
 
                 EquipmentStorage newItem = new EquipmentStorage
                 {
@@ -123,6 +119,26 @@ namespace DAL
                 Console.WriteLine("Lỗi xóa thiết bị (DAO): " + ex.Message);
                 return false;
             }
+        }
+
+        public IQueryable getEquipmentByStatus(string status)
+        {
+            var equipment = from eq in db.EquipmentStorages
+                            join st in db.Staffs on eq.StaffID equals st.StaffID
+                            where eq.Status == status
+                            select new
+                            {
+                                eq.EquipmentID,
+                                eq.EquipmentName,
+                                eq.EquipmentCategory,
+                                eq.Quantity,
+                                eq.PurchaseDate,
+                                eq.Status,
+                                eq.Description,
+                                eq.StaffID,
+                                st.FullName
+                            };
+            return equipment;
         }
 
     }

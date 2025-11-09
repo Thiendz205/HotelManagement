@@ -38,5 +38,10 @@ namespace BUS
             return roomEquipment_DAL.UpdateRoomEquipment(roomEquipment);
         }
 
+        public bool UpdateStatusRoom(string roomID)
+        {
+            return roomEquipment_DAL.UpdateStatusRoom(roomID);
+        }
+
     }
 }

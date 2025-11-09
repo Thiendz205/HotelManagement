@@ -148,5 +148,20 @@ namespace DAL
         }
 
 
+        public bool checkRoomHasEquipment(string maPhong)
+        {
+            try
+            {
+                bool exists = db.RoomEquipments.Any(x => x.RoomID.Trim() == maPhong.Trim());
+                return exists;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi kiểm tra thiết bị phòng: " + ex.Message);
+                return false;
+            }
+        }
+
+
     }
 }

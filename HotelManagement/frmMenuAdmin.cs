@@ -119,7 +119,7 @@ namespace HotelManagement
 
         private void gunaButton10_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new frmDanhGiaPhong());
+            //OpenChildForm(new frmDanhGiaPhong());
         }
 
         private void gunaButton11_Click(object sender, EventArgs e)
