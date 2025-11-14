@@ -212,7 +212,7 @@ namespace DAL
                     if (hasReserved)
                         room.Status = "Reserved"; // Có khách đặt trước → phòng vẫn giữ trạng thái Đặt trước
                     else
-                        room.Status = "Available"; // Không có khách đặt trước → phòng trống
+                        room.Status = "Dọn dẹp"; // Không có khách đặt trước → phòng trống
                 }
 
                 db.SubmitChanges();

@@ -40,6 +40,22 @@ namespace BUS
         {
             return accountDAL.generateAccountID();
         }
+        public IQueryable<StaffShortET> getAllStaffShort()
+        {
+            return accountDAL.getAllStaffShort();
+        }
+        public string generateAccountID_Safe()
+        {
+            return accountDAL.generateAccountID_Safe();
+        }
+        public string generateAccountID_New()
+        {
+            return accountDAL.generateAccountID_New();
+        }
+        public bool CheckDuplicateAccountID(string accountID)
+        {
+            return accountDAL.CheckDuplicateAccountID(accountID);
+        }
 
     }
 }

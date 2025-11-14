@@ -66,5 +66,11 @@ namespace BUS
         {
             return staffDAL.generateStaffID();
         }
+        public IQueryable<StaffET> getStaffsWithStatus()
+        {
+            return staffDAL.getStaffsWithStatus();
+        }
+
+
     }
 }

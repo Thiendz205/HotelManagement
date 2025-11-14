@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnThietBi = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
@@ -47,6 +48,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1920, 100);
             this.panel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(814, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(322, 37);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tổng hợp các báo cáo";
             // 
             // panel2
             // 
@@ -74,22 +85,13 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.guna2Button1);
             this.panel5.Controls.Add(this.btnThietBi);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(98, 100);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1699, 880);
             this.panel5.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(814, 34);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(335, 38);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tổng hợp các báo cáo";
             // 
             // btnThietBi
             // 
@@ -106,6 +108,22 @@
             this.btnThietBi.TabIndex = 0;
             this.btnThietBi.Text = "Các thiết bị trong kho";
             this.btnThietBi.Click += new System.EventHandler(this.btnThietBi_Click);
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.BorderRadius = 10;
+            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
+            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.HoverState.Parent = this.guna2Button1;
+            this.guna2Button1.Location = new System.Drawing.Point(359, 57);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
+            this.guna2Button1.Size = new System.Drawing.Size(212, 54);
+            this.guna2Button1.TabIndex = 1;
+            this.guna2Button1.Text = "Chi tiết sử dụng dịch vụ";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // frmSynthesisReport
             // 
@@ -137,5 +155,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private Guna.UI2.WinForms.Guna2Button btnThietBi;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
     }
 }

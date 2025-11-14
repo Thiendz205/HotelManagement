@@ -403,6 +403,28 @@ namespace HotelManagement
                 btnSearch_Click(sender, e);
             }
         }
+        private void dgvServices_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Nếu click vào header hoặc dòng trống thì bỏ qua
+            if (e.RowIndex < 0 || e.RowIndex >= dgvServices.Rows.Count)
+                return;
+
+            try
+            {
+                DataGridViewRow row = dgvServices.Rows[e.RowIndex];
+
+                txtServiceID.Text = row.Cells["colServiceID"].Value?.ToString() ?? "";
+                txtServiceName.Text = row.Cells["colServiceName"].Value?.ToString() ?? "";
+                cmbCategory.Text = row.Cells["colCategory"].Value?.ToString() ?? "";
+                txtPrice.Text = Convert.ToDecimal(row.Cells["colPrice"].Value ?? 0).ToString("N0");
+                txtDescription.Text = row.Cells["colDescription"].Value?.ToString() ?? "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi chọn dịch vụ: " + ex.Message, "Lỗi",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void pnlMain_Paint(object sender, PaintEventArgs e)
         {
