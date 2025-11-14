@@ -183,5 +183,27 @@ namespace DAL
                 return "ST001";
             }
         }
+        public IQueryable<StaffET> getStaffsWithStatus()
+        {
+            var staffs = from s in db.Staffs
+                         join a in db.Accounts on s.StaffID equals a.StaffID into acc
+                         from a in acc.DefaultIfEmpty()
+                         select new StaffET
+                         {
+                             StaffID = s.StaffID,
+                             FullName = s.FullName,
+                             Role = s.Role,
+                             DateOfBirth = s.DateOfBirth,
+                             Gender = s.Gender,
+                             PhoneNumber = s.PhoneNumber,
+                             CitizenID = s.CitizenID,
+                             StartDate = s.StartDate,
+                             Notes = s.Notes,
+                             Status = (a != null && (a.Status == "1" || a.Status == "Active" || a.Status == "Đang làm việc"))
+                                        ? "Active"
+                                        : "Inactive"
+                         };
+            return staffs;
+        }
     }
 }

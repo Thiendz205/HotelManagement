@@ -65,6 +65,7 @@
     <Compile Include="Infor_Staff_ET.cs" />
     <Compile Include="ServiceET.cs" />
     <Compile Include="StaffET.cs" />
+    <Compile Include="StaffShortET.cs" />
     <Compile Include="UpdateResult.cs" />
     <Compile Include="UseServiceET.cs" />
   </ItemGroup>

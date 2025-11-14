@@ -22,5 +22,7 @@ namespace ET
         public string CitizenID { get; set; }
         public DateTime StartDate { get; set; }
         public string Notes { get; set; }
+        public string Status { get; set; }
+
     }
 }

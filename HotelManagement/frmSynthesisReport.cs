@@ -29,5 +29,18 @@ namespace HotelManagement
             parentPanel.Controls.Add(frm);
             frm.Show();                 
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            frmReportServiceUsage_Detail frm = new frmReportServiceUsage_Detail();
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            var parentPanel = this.Parent;
+            parentPanel.Controls.Clear();
+            parentPanel.Controls.Add(frm);
+            frm.Show();
+        }
     }
 }

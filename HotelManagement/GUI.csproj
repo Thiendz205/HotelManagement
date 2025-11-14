@@ -297,6 +297,12 @@
     <Compile Include="frmReportRoomEvaluation.Designer.cs">
       <DependentUpon>frmReportRoomEvaluation.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReportServiceUsage_Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportServiceUsage_Detail.Designer.cs">
+      <DependentUpon>frmReportServiceUsage_Detail.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRevenueChartGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -387,6 +393,7 @@
     <Compile Include="frm_login.Designer.cs">
       <DependentUpon>frm_login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ReportFileLoader.cs" />
     <Compile Include="Helpers\ReportProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -414,6 +421,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptRoomEvaluation.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Reports\rptServiceUsage_Detail.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptServiceUsage_Detail.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Compile>
@@ -519,6 +533,9 @@
     <EmbeddedResource Include="frmReportRoomEvaluation.resx">
       <DependentUpon>frmReportRoomEvaluation.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReportServiceUsage_Detail.resx">
+      <DependentUpon>frmReportServiceUsage_Detail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmRevenueChartGUI.resx">
       <DependentUpon>frmRevenueChartGUI.cs</DependentUpon>
     </EmbeddedResource>
@@ -593,6 +610,11 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptListOfCustomerUseServiceDay.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Reports\rptServiceUsage_Detail.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptServiceUsage_Detail.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

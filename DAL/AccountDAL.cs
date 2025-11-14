@@ -182,5 +182,88 @@ namespace DAL
                 return "AC001";
             }
         }
+        public IQueryable<StaffShortET> getAllStaffShort()
+        {
+            var staffs = from s in db.Staffs
+                         select new StaffShortET
+                         {
+                             StaffID = s.StaffID,
+                             FullName = s.FullName
+                         };
+            return staffs;
+        }
+        public string generateAccountID_Safe()
+        {
+            try
+            {
+                var lastAccount = db.Accounts
+                    .OrderByDescending(a => a.AccountID)
+                    .FirstOrDefault();
+
+                if (lastAccount == null || string.IsNullOrEmpty(lastAccount.AccountID))
+                {
+                    return "AC001";
+                }
+
+                string lastID = lastAccount.AccountID;
+                int number = 0;
+
+                if (lastID.Length > 2 && int.TryParse(lastID.Substring(2), out number))
+                {
+                    number++;
+                }
+                else
+                {
+                    number = 1;
+                }
+
+                return "AC" + number.ToString("D3");
+            }
+            catch
+            {
+                return "AC001";
+            }
+        }
+        public string generateAccountID_New()
+        {
+            try
+            {
+                var lastAccount = db.Accounts
+                    .OrderByDescending(a => a.AccountID)
+                    .FirstOrDefault();
+
+                if (lastAccount == null || string.IsNullOrEmpty(lastAccount.AccountID))
+                {
+                    return "AC001";
+                }
+
+                string lastID = lastAccount.AccountID;
+                int number = 0;
+
+                if (lastID.Length > 2 && int.TryParse(lastID.Substring(2), out number))
+                    number++;
+                else
+                    number = 1;
+
+                return "AC" + number.ToString("D3");
+            }
+            catch
+            {
+                return "AC001";
+            }
+        }
+        public bool CheckDuplicateAccountID(string accountID)
+        {
+            try
+            {
+                var existing = db.Accounts.FirstOrDefault(a => a.AccountID == accountID);
+                return existing != null; // true nếu trùng
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }
