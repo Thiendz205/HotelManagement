@@ -393,6 +393,12 @@
     <Compile Include="frm_login.Designer.cs">
       <DependentUpon>frm_login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_MainUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_MainUser.Designer.cs">
+      <DependentUpon>Frm_MainUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\ReportFileLoader.cs" />
     <Compile Include="Helpers\ReportProvider.cs" />
     <Compile Include="Program.cs" />
@@ -430,6 +436,17 @@
       <DependentUpon>rptServiceUsage_Detail.rpt</DependentUpon>
       <SubType>Component</SubType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="RJControls\MenuColorTable.cs" />
+    <Compile Include="RJControls\MenuRenderer.cs" />
+    <Compile Include="RJControls\RJDropdownMenu.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UseControl\Dropdown.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UseControl\Dropdown.Designer.cs">
+      <DependentUpon>Dropdown.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmAccCountHRGUI.resx">
       <DependentUpon>frmAccCountHRGUI.cs</DependentUpon>
@@ -581,6 +598,9 @@
     <EmbeddedResource Include="frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_MainUser.resx">
+      <DependentUpon>Frm_MainUser.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -615,6 +635,9 @@
       <LastGenOutput>rptServiceUsage_Detail.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="UseControl\Dropdown.resx">
+      <DependentUpon>Dropdown.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -674,6 +697,7 @@
     <Content Include="Resources\user_icon.png" />
     <None Include="Resources\user_icon1.png" />
     <Content Include="Resources\view_hotel.jpg" />
+    <None Include="Resources\view_hotel1.jpg" />
     <Content Include="Resources\welcome_icon.png" />
   </ItemGroup>
   <ItemGroup>

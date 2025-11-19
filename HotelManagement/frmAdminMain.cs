@@ -155,5 +155,169 @@ namespace HotelManagement
         {
             OpenChildForm(new frmRevenueChartGUI());
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmAdminMain_Load(object sender, EventArgs e)
+        {
+            rp_chucNangPhong.IsMainMenu = true;
+            rp_chucNangKhachHang.IsMainMenu = true;
+            rp_chucNangDichVu.IsMainMenu = true;
+            rp_chucNangPhi.IsMainMenu = true;
+            rp_chucNangKhac.IsMainMenu = true;
+        }
+
+       
+
+
+        private void ddChucNangPhong_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gunaButton10_Click_1(object sender, EventArgs e)
+        {
+            rp_chucNangPhong.Show(gunaButton10, gunaButton10.Width, 0);
+           
+          
+        }
+
+     
+
+        private void giáPhòngĐộngTheoThờiGianToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmGiaPhongDongTheoThoiGIan());
+
+
+        }
+
+        private void chỉnhSửaPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmChinhSuaPhong());
+
+        }
+
+        private void loạiPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmLoaiPhong());
+
+        }
+
+        private void khoThiếtBịToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmKhoThietBi(maNhanVien));
+
+        }
+
+        private void trangThiếtBịTrongToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmTrangThietBiPhong(maNhanVien));
+
+        }
+
+        private void đặtPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmBookingAdminGUI());
+
+        }
+
+        private void đánhGiáPhòngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmDanhGiaPhong(maNhanVien));
+
+        }
+
+        private void gunaButton5_Click_1(object sender, EventArgs e)
+        {
+            rp_chucNangKhachHang.Show(gunaButton5, gunaButton5.Width, 0);
+
+        }
+
+        private void kháchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmCustomerManagementAdminGUI());
+
+        }
+
+        private void hạngKháchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmRankCustomerAdminGUI());
+
+        }
+
+        private void gunaButton6_Click_1(object sender, EventArgs e)
+        {
+            rp_chucNangDichVu.Show(gunaButton6, gunaButton6.Width, 0);
+
+        }
+
+        private void dịchVụToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmServiceAdmin());
+
+        }
+
+        private void sửDụngDịchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmUseServiceAdmin());
+
+        }
+
+        private void gunaButton1_Click_1(object sender, EventArgs e)
+        {
+            rp_chucNangPhi.Show(gunaButton1, gunaButton1.Width, 0);
+
+        }
+
+        private void phíToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmExtraChargeAdminGUI());
+
+        }
+
+        private void loạiPhíToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmExtraChargeTypeAdminGUI());
+
+        }
+
+        private void gunaButton2_Click_1(object sender, EventArgs e)
+        {
+            rp_chucNangKhac.Show(gunaButton2, gunaButton2.Width, 0);
+
+        }
+
+        private void tàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmAccountAdmin());
+
+        }
+
+        private void nhânViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmStaffAdmin());
+
+        }
+
+        private void hóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmBillAdmin());
+
+        }
+
+        private void thốngKêToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmRevenueChartGUI());
+
+        }
+
+        private void báoCáoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmSynthesisReport());
+
+        }
     }
 }

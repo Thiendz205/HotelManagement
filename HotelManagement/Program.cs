@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GUI;
+using System;
 using System.Windows.Forms;
 
 namespace HotelManagement
@@ -17,45 +18,45 @@ namespace HotelManagement
             }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmServiceProvision());
+            Application.Run(new frmReportServiceUsage_Detail());
 
-            bool exitApp = false;
+            //bool exitApp = false;
 
-            while (!exitApp)
-            {
-                frm_login loginForm = new frm_login();
-                DialogResult result = loginForm.ShowDialog();
+            //while (!exitApp)
+            //{
+            //    frm_login loginForm = new frm_login();
+            //    DialogResult result = loginForm.ShowDialog();
 
-                if (result == DialogResult.OK)
-                {
-                    // 🔹 Mở form tương ứng theo vai trò
-                    switch (loginForm.UserRole)
-                    {
-                        case "Admin":
-                            Application.Run(new frmAdminMain(loginForm.StaffID));
-                            break;
-                        case "Kỹ thuật":
-                            Application.Run(new frmNhanVienKyThuat(loginForm.StaffID));
-                            break;
-                        case "Nhân Sự":
-                            Application.Run(new frmHRManagerMainGUI());
-                            break;
-                        case "Dịch vụ":
-                            Application.Run(new frmServiceStaffMain());
-                            break;
-                        case "Lễ tân":
-                            Application.Run(new frmBookingStaffHomeGUI(loginForm.StaffID));
-                            break;
-                        default:
-                            MessageBox.Show("Vai trò không hợp lệ: " + loginForm.UserRole, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            break;
-                    }
-                }
-                else
-                {
-                    exitApp = true;
-                }
-            }
+            //    if (result == DialogResult.OK)
+            //    {
+            //        // 🔹 Mở form tương ứng theo vai trò
+            //        switch (loginForm.UserRole)
+            //        {
+            //            case "Admin":
+            //                Application.Run(new frmAdminMain(loginForm.StaffID));
+            //                break;
+            //            case "Kỹ thuật":
+            //                Application.Run(new frmNhanVienKyThuat(loginForm.StaffID));
+            //                break;
+            //            case "Nhân Sự":
+            //                Application.Run(new frmHRManagerMainGUI());
+            //                break;
+            //            case "Dịch vụ":
+            //                Application.Run(new frmServiceStaffMain());
+            //                break;
+            //            case "Lễ tân":
+            //                Application.Run(new frmBookingStaffHomeGUI(loginForm.StaffID));
+            //                break;
+            //            default:
+            //                MessageBox.Show("Vai trò không hợp lệ: " + loginForm.UserRole, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //                break;
+            //        }
+            //    }
+            //    else
+            //    {
+            //        exitApp = true;
+            //    }
+            //}
         }
     }
 }

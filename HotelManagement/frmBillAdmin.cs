@@ -27,11 +27,8 @@ namespace HotelManagement
 
         private void ConfigureLayout()
         {
-            // DataGridView
             dgvMain.AutoGenerateColumns = false;
             dgvMain.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            // Map các cột đã có trong Designer
             colInvoiceID.DataPropertyName = "InvoiceID";
             colBookingID.DataPropertyName = "BookingID";
             colInvoiceDate.DataPropertyName = "InvoiceDate";
@@ -71,7 +68,7 @@ namespace HotelManagement
             }
 
 
-            // Combobox lọc Audit (đúng “Lọc theo đánh giá”)
+  
             if (cboFilterAudit != null)
             {
                 cboFilterAudit.Items.Clear();
@@ -79,7 +76,6 @@ namespace HotelManagement
                 cboFilterAudit.SelectedIndex = 0;
                 cboFilterAudit.SelectedIndexChanged += (s, e) => ApplyFilters();
             }
-            // Lọc trạng thái thanh toán (gunaComboBox1)
             if (gunaComboBox1 != null)
             {
                 gunaComboBox1.Items.Clear();

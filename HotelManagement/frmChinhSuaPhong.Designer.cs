@@ -46,7 +46,6 @@
             this.btnXoa = new Guna.UI2.WinForms.Guna2Button();
             this.btnSua = new Guna.UI2.WinForms.Guna2Button();
             this.btnLamMoi = new Guna.UI2.WinForms.Guna2Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.cbOfficial = new System.Windows.Forms.ComboBox();
             this.cbStatus = new System.Windows.Forms.ComboBox();
@@ -346,15 +345,6 @@
             this.btnLamMoi.Text = "Làm mới";
             this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 100);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 618);
-            this.panel3.TabIndex = 6;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -406,9 +396,9 @@
             // 
             this.panel5.Controls.Add(this.guna2GroupBox2);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(200, 100);
+            this.panel5.Location = new System.Drawing.Point(0, 100);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1383, 618);
+            this.panel5.Size = new System.Drawing.Size(1583, 618);
             this.panel5.TabIndex = 7;
             // 
             // guna2GroupBox2
@@ -473,7 +463,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
@@ -509,7 +498,6 @@
         private System.Windows.Forms.DataGridView dtGV_Room;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbTypeRoom;
         private System.Windows.Forms.ComboBox cbStatus;

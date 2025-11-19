@@ -31,18 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmReportServiceUsage_Detail));
             this.btnXemBaoCao = new Guna.UI.WinForms.GunaButton();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cboCustomer = new Guna.UI.WinForms.GunaComboBox();
-            this.gunaLabel6 = new Guna.UI.WinForms.GunaLabel();
-            this.gunaLabel5 = new Guna.UI.WinForms.GunaLabel();
             this.dtpTo = new Guna.UI.WinForms.GunaDateTimePicker();
             this.dtpFrom = new Guna.UI.WinForms.GunaDateTimePicker();
             this.gunaLabel4 = new Guna.UI.WinForms.GunaLabel();
-            this.gunaLabel3 = new Guna.UI.WinForms.GunaLabel();
             this.gunaLabel2 = new Guna.UI.WinForms.GunaLabel();
             this.gunaLabel1 = new Guna.UI.WinForms.GunaLabel();
             this.cboRoom = new Guna.UI.WinForms.GunaComboBox();
-            this.cboStaff = new Guna.UI.WinForms.GunaComboBox();
-            this.cboServiceCat = new Guna.UI.WinForms.GunaComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.panel1.SuspendLayout();
@@ -61,7 +55,7 @@
             this.btnXemBaoCao.ForeColor = System.Drawing.Color.White;
             this.btnXemBaoCao.Image = ((System.Drawing.Image)(resources.GetObject("btnXemBaoCao.Image")));
             this.btnXemBaoCao.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnXemBaoCao.Location = new System.Drawing.Point(1482, 23);
+            this.btnXemBaoCao.Location = new System.Drawing.Point(1308, 23);
             this.btnXemBaoCao.Margin = new System.Windows.Forms.Padding(4);
             this.btnXemBaoCao.Name = "btnXemBaoCao";
             this.btnXemBaoCao.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -76,65 +70,18 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.cboCustomer);
             this.panel1.Controls.Add(this.btnXemBaoCao);
-            this.panel1.Controls.Add(this.gunaLabel6);
-            this.panel1.Controls.Add(this.gunaLabel5);
             this.panel1.Controls.Add(this.dtpTo);
             this.panel1.Controls.Add(this.dtpFrom);
             this.panel1.Controls.Add(this.gunaLabel4);
-            this.panel1.Controls.Add(this.gunaLabel3);
             this.panel1.Controls.Add(this.gunaLabel2);
             this.panel1.Controls.Add(this.gunaLabel1);
             this.panel1.Controls.Add(this.cboRoom);
-            this.panel1.Controls.Add(this.cboStaff);
-            this.panel1.Controls.Add(this.cboServiceCat);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1740, 116);
             this.panel1.TabIndex = 17;
-            // 
-            // cboCustomer
-            // 
-            this.cboCustomer.BackColor = System.Drawing.Color.Transparent;
-            this.cboCustomer.BaseColor = System.Drawing.Color.White;
-            this.cboCustomer.BorderColor = System.Drawing.Color.Silver;
-            this.cboCustomer.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCustomer.FocusedColor = System.Drawing.Color.Empty;
-            this.cboCustomer.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cboCustomer.ForeColor = System.Drawing.Color.Black;
-            this.cboCustomer.FormattingEnabled = true;
-            this.cboCustomer.Location = new System.Drawing.Point(267, 61);
-            this.cboCustomer.Margin = new System.Windows.Forms.Padding(4);
-            this.cboCustomer.Name = "cboCustomer";
-            this.cboCustomer.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cboCustomer.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cboCustomer.Size = new System.Drawing.Size(244, 31);
-            this.cboCustomer.TabIndex = 29;
-            // 
-            // gunaLabel6
-            // 
-            this.gunaLabel6.AutoSize = true;
-            this.gunaLabel6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaLabel6.Location = new System.Drawing.Point(555, 70);
-            this.gunaLabel6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.gunaLabel6.Name = "gunaLabel6";
-            this.gunaLabel6.Size = new System.Drawing.Size(61, 20);
-            this.gunaLabel6.TabIndex = 28;
-            this.gunaLabel6.Text = "Dịch vụ:";
-            // 
-            // gunaLabel5
-            // 
-            this.gunaLabel5.AutoSize = true;
-            this.gunaLabel5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaLabel5.Location = new System.Drawing.Point(1006, 25);
-            this.gunaLabel5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.gunaLabel5.Name = "gunaLabel5";
-            this.gunaLabel5.Size = new System.Drawing.Size(80, 20);
-            this.gunaLabel5.TabIndex = 27;
-            this.gunaLabel5.Text = "Nhân Viên:";
             // 
             // dtpTo
             // 
@@ -145,7 +92,7 @@
             this.dtpTo.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtpTo.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpTo.ForeColor = System.Drawing.Color.Black;
-            this.dtpTo.Location = new System.Drawing.Point(677, 18);
+            this.dtpTo.Location = new System.Drawing.Point(911, 18);
             this.dtpTo.Margin = new System.Windows.Forms.Padding(4);
             this.dtpTo.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpTo.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -168,7 +115,7 @@
             this.dtpFrom.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.dtpFrom.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpFrom.ForeColor = System.Drawing.Color.Black;
-            this.dtpFrom.Location = new System.Drawing.Point(264, 18);
+            this.dtpFrom.Location = new System.Drawing.Point(384, 18);
             this.dtpFrom.Margin = new System.Windows.Forms.Padding(4);
             this.dtpFrom.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpFrom.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -186,29 +133,19 @@
             // 
             this.gunaLabel4.AutoSize = true;
             this.gunaLabel4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaLabel4.Location = new System.Drawing.Point(1032, 69);
+            this.gunaLabel4.Location = new System.Drawing.Point(242, 63);
             this.gunaLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gunaLabel4.Name = "gunaLabel4";
             this.gunaLabel4.Size = new System.Drawing.Size(54, 20);
             this.gunaLabel4.TabIndex = 24;
             this.gunaLabel4.Text = "Phòng:";
-            // 
-            // gunaLabel3
-            // 
-            this.gunaLabel3.AutoSize = true;
-            this.gunaLabel3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaLabel3.Location = new System.Drawing.Point(52, 64);
-            this.gunaLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.gunaLabel3.Name = "gunaLabel3";
-            this.gunaLabel3.Size = new System.Drawing.Size(89, 20);
-            this.gunaLabel3.TabIndex = 23;
-            this.gunaLabel3.Text = "Khách hàng:";
+            this.gunaLabel4.Click += new System.EventHandler(this.gunaLabel4_Click);
             // 
             // gunaLabel2
             // 
             this.gunaLabel2.AutoSize = true;
             this.gunaLabel2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaLabel2.Location = new System.Drawing.Point(555, 24);
+            this.gunaLabel2.Location = new System.Drawing.Point(789, 24);
             this.gunaLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gunaLabel2.Name = "gunaLabel2";
             this.gunaLabel2.Size = new System.Drawing.Size(75, 20);
@@ -219,7 +156,7 @@
             // 
             this.gunaLabel1.AutoSize = true;
             this.gunaLabel1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.gunaLabel1.Location = new System.Drawing.Point(52, 22);
+            this.gunaLabel1.Location = new System.Drawing.Point(231, 22);
             this.gunaLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.gunaLabel1.Name = "gunaLabel1";
             this.gunaLabel1.Size = new System.Drawing.Size(65, 20);
@@ -237,51 +174,13 @@
             this.cboRoom.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cboRoom.ForeColor = System.Drawing.Color.Black;
             this.cboRoom.FormattingEnabled = true;
-            this.cboRoom.Location = new System.Drawing.Point(1141, 61);
+            this.cboRoom.Location = new System.Drawing.Point(384, 58);
             this.cboRoom.Margin = new System.Windows.Forms.Padding(4);
             this.cboRoom.Name = "cboRoom";
             this.cboRoom.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
             this.cboRoom.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cboRoom.Size = new System.Drawing.Size(244, 31);
+            this.cboRoom.Size = new System.Drawing.Size(248, 31);
             this.cboRoom.TabIndex = 20;
-            // 
-            // cboStaff
-            // 
-            this.cboStaff.BackColor = System.Drawing.Color.Transparent;
-            this.cboStaff.BaseColor = System.Drawing.Color.White;
-            this.cboStaff.BorderColor = System.Drawing.Color.Silver;
-            this.cboStaff.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboStaff.FocusedColor = System.Drawing.Color.Empty;
-            this.cboStaff.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cboStaff.ForeColor = System.Drawing.Color.Black;
-            this.cboStaff.FormattingEnabled = true;
-            this.cboStaff.Location = new System.Drawing.Point(1138, 20);
-            this.cboStaff.Margin = new System.Windows.Forms.Padding(4);
-            this.cboStaff.Name = "cboStaff";
-            this.cboStaff.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cboStaff.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cboStaff.Size = new System.Drawing.Size(247, 31);
-            this.cboStaff.TabIndex = 19;
-            // 
-            // cboServiceCat
-            // 
-            this.cboServiceCat.BackColor = System.Drawing.Color.Transparent;
-            this.cboServiceCat.BaseColor = System.Drawing.Color.White;
-            this.cboServiceCat.BorderColor = System.Drawing.Color.Silver;
-            this.cboServiceCat.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cboServiceCat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboServiceCat.FocusedColor = System.Drawing.Color.Empty;
-            this.cboServiceCat.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cboServiceCat.ForeColor = System.Drawing.Color.Black;
-            this.cboServiceCat.FormattingEnabled = true;
-            this.cboServiceCat.Location = new System.Drawing.Point(677, 64);
-            this.cboServiceCat.Margin = new System.Windows.Forms.Padding(4);
-            this.cboServiceCat.Name = "cboServiceCat";
-            this.cboServiceCat.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            this.cboServiceCat.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cboServiceCat.Size = new System.Drawing.Size(244, 31);
-            this.cboServiceCat.TabIndex = 18;
             // 
             // panel2
             // 
@@ -326,18 +225,12 @@
         #endregion
         private Guna.UI.WinForms.GunaButton btnXemBaoCao;
         private System.Windows.Forms.Panel panel1;
-        private Guna.UI.WinForms.GunaComboBox cboCustomer;
-        private Guna.UI.WinForms.GunaLabel gunaLabel6;
-        private Guna.UI.WinForms.GunaLabel gunaLabel5;
         private Guna.UI.WinForms.GunaDateTimePicker dtpTo;
         private Guna.UI.WinForms.GunaDateTimePicker dtpFrom;
         private Guna.UI.WinForms.GunaLabel gunaLabel4;
-        private Guna.UI.WinForms.GunaLabel gunaLabel3;
         private Guna.UI.WinForms.GunaLabel gunaLabel2;
         private Guna.UI.WinForms.GunaLabel gunaLabel1;
         private Guna.UI.WinForms.GunaComboBox cboRoom;
-        private Guna.UI.WinForms.GunaComboBox cboStaff;
-        private Guna.UI.WinForms.GunaComboBox cboServiceCat;
         private System.Windows.Forms.Panel panel2;
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
     }
