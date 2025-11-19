@@ -76,12 +76,12 @@ namespace HotelManagement
         {
             cboFilterRole.Items.Clear();
             cboFilterRole.Items.Add("Tất cả");
-            cboFilterRole.Items.Add("Lễ Tân");
+            cboFilterRole.Items.Add("Lễ tân");
             cboFilterRole.Items.Add("Kỹ thuật");
             cboFilterRole.Items.Add("Admin");
             cboFilterRole.Items.Add("Dịch vụ");
-            cboFilterRole.Items.Add("Nhân Sự");
-            cboFilterRole.SelectedIndex = 0; // Chọn "Tất cả" mặc định
+            cboFilterRole.Items.Add("Nhân sự");
+            cboFilterRole.SelectedIndex = 0;
         }
 
         private void LoadGenderComboBox()
@@ -117,24 +117,46 @@ namespace HotelManagement
                 MessageBox.Show("Vui lòng chọn giới tính!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (dtpDOB.Value.Date > DateTime.Today.AddYears(-18))
+            {
+                MessageBox.Show("Nhân viên phải từ 18 tuổi trở lên!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dtpDOB.Value.Date > DateTime.Today)
+            {
+                MessageBox.Show("Ngày sinh không hợp lệ!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dtpStartDate.Value.Date < dtpDOB.Value.AddYears(18).Date)
+            {
+                MessageBox.Show("Ngày bắt đầu làm phải sau khi nhân viên đủ 18 tuổi!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dtpStartDate.Value.Date > DateTime.Today)
+            {
+                MessageBox.Show("Ngày bắt đầu làm không thể là ngày trong tương lai!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             try
             {
-                // Validate phone number
+
                 if (!IsValidPhoneNumber(txtPhone.Text))
                 {
                     MessageBox.Show("Số điện thoại không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Validate Citizen ID
                 if (!IsValidCitizenID(txtCitizen.Text))
                 {
                     MessageBox.Show("CCCD/CMND không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Check existence
                 if (staffBUS.checkExistencePhoneNumber(txtPhone.Text) == false)
                 {
                     MessageBox.Show("Số điện thoại này đã tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -209,10 +231,33 @@ namespace HotelManagement
                 MessageBox.Show("Vui lòng chọn giới tính!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (dtpDOB.Value.Date > DateTime.Today.AddYears(-18))
+            {
+                MessageBox.Show("Nhân viên phải từ 18 tuổi trở lên!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dtpDOB.Value.Date > DateTime.Today)
+            {
+                MessageBox.Show("Ngày sinh không hợp lệ!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dtpStartDate.Value.Date < dtpDOB.Value.AddYears(18).Date)
+            {
+                MessageBox.Show("Ngày bắt đầu làm phải sau khi nhân viên đủ 18 tuổi!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (dtpStartDate.Value.Date > DateTime.Today)
+            {
+                MessageBox.Show("Ngày bắt đầu làm không thể là ngày trong tương lai!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             try
             {
-                // Lấy StaffID từ selection hiện tại
                 string currentStaffID = "";
                 if (dgvMain.SelectedRows.Count > 0)
                 {
@@ -230,21 +275,18 @@ namespace HotelManagement
                     return;
                 }
 
-                // Validate phone number
                 if (!IsValidPhoneNumber(txtPhone.Text))
                 {
                     MessageBox.Show("Số điện thoại không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Validate Citizen ID
                 if (!IsValidCitizenID(txtCitizen.Text))
                 {
                     MessageBox.Show("CCCD/CMND không hợp lệ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                // Check existence for update
                 if (staffBUS.checkExistencePhoneNumber_Update(txtPhone.Text, currentStaffID) == false)
                 {
                     MessageBox.Show("Số điện thoại này đã tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);

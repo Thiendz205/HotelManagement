@@ -85,9 +85,9 @@ namespace HotelManagement
                 row["Value"] = DBNull.Value; row["Text"] = "(Tất cả)";
                 dt.Rows.InsertAt(row, 0);
 
-                cboServiceCat.DataSource = dt;
-                cboServiceCat.ValueMember = "Value";
-                cboServiceCat.DisplayMember = "Text";
+                //cboServiceCat.DataSource = dt;
+                //cboServiceCat.ValueMember = "Value";
+                //cboServiceCat.DisplayMember = "Text";
             }
         }
 
@@ -107,9 +107,9 @@ namespace HotelManagement
                 row["Value"] = DBNull.Value; row["Text"] = "(Tất cả)";
                 dt.Rows.InsertAt(row, 0);
 
-                cboStaff.DataSource = dt;
-                cboStaff.ValueMember = "Value";
-                cboStaff.DisplayMember = "Text";
+                //cboStaff.DataSource = dt;
+                //cboStaff.ValueMember = "Value";
+                //cboStaff.DisplayMember = "Text";
             }
         }
 
@@ -154,9 +154,9 @@ namespace HotelManagement
                 {
                     { "FromDate",  dtpFrom.Value.Date },
                     { "ToDate",    dtpTo.Value.Date },
-                    { "CustomerText", cboCustomer.SelectedValue ?? (object)DBNull.Value },
-                    { "ServiceCat",   cboServiceCat.SelectedValue ?? (object)DBNull.Value },
-                    { "StaffID",      cboStaff.SelectedValue ?? (object)DBNull.Value },
+                    //{ "CustomerText", cboCustomer.SelectedValue ?? (object)DBNull.Value },
+                    //{ "ServiceCat",   cboServiceCat.SelectedValue ?? (object)DBNull.Value },
+                    //{ "StaffID",      cboStaff.SelectedValue ?? (object)DBNull.Value },
                     { "RoomID",       cboRoom.SelectedValue ?? (object)DBNull.Value },
                     //{ "OnlyPaid",     chkOnlyPaid.Checked ? (object)1 : (object)DBNull.Value }
                 };
@@ -169,9 +169,9 @@ namespace HotelManagement
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@FromDate", dtpFrom.Value.Date);
                         cmd.Parameters.AddWithValue("@ToDate", dtpTo.Value.Date);
-                        cmd.Parameters.AddWithValue("@CustomerText", cboCustomer.SelectedValue ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@ServiceCat", cboServiceCat.SelectedValue ?? (object)DBNull.Value);
-                        cmd.Parameters.AddWithValue("@StaffID", cboStaff.SelectedValue ?? (object)DBNull.Value);
+                        //cmd.Parameters.AddWithValue("@CustomerText", cboCustomer.SelectedValue ?? (object)DBNull.Value);
+                       // cmd.Parameters.AddWithValue("@ServiceCat", cboServiceCat.SelectedValue ?? (object)DBNull.Value);
+                       // cmd.Parameters.AddWithValue("@StaffID", cboStaff.SelectedValue ?? (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@RoomID", cboRoom.SelectedValue ?? (object)DBNull.Value);
 //cmd.Parameters.AddWithValue("@OnlyPaid", chkOnlyPaid.Checked ? 1 : (object)DBNull.Value);
 
@@ -245,10 +245,10 @@ namespace HotelManagement
                 var dt = new DataTable();
                 da.Fill(dt);
 
-                cboCustomer.DataSource = dt;
-                cboCustomer.ValueMember = "Value";   // PhoneNumber hoặc NULL cho “Tất cả”
-                cboCustomer.DisplayMember = "Text";
-                cboCustomer.SelectedIndex = 0;
+                //cboCustomer.DataSource = dt;
+                //cboCustomer.ValueMember = "Value";   // PhoneNumber hoặc NULL cho “Tất cả”
+                //cboCustomer.DisplayMember = "Text";
+                //cboCustomer.SelectedIndex = 0;
             }
         }
 
@@ -258,6 +258,11 @@ namespace HotelManagement
         }
 
         private void crystalReportViewer1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gunaLabel4_Click(object sender, EventArgs e)
         {
 
         }

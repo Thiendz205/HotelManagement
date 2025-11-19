@@ -38,7 +38,6 @@
             this.btnThem = new Guna.UI2.WinForms.Guna2Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.btnXoaHetHan = new Guna.UI2.WinForms.Guna2Button();
             this.Pannel5 = new System.Windows.Forms.Panel();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -142,7 +141,7 @@
             this.btnSua.Image = global::HotelManagement.Properties.Resources.updateHR;
             this.btnSua.ImageOffset = new System.Drawing.Point(-3, 0);
             this.btnSua.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSua.Location = new System.Drawing.Point(35, 343);
+            this.btnSua.Location = new System.Drawing.Point(35, 221);
             this.btnSua.Name = "btnSua";
             this.btnSua.ShadowDecoration.Parent = this.btnSua;
             this.btnSua.Size = new System.Drawing.Size(220, 60);
@@ -203,7 +202,6 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.btnXoaHetHan);
             this.panel4.Controls.Add(this.btnThem);
             this.panel4.Controls.Add(this.btnXoa);
             this.panel4.Controls.Add(this.btnSua);
@@ -213,26 +211,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(279, 680);
             this.panel4.TabIndex = 3;
-            // 
-            // btnXoaHetHan
-            // 
-            this.btnXoaHetHan.BorderRadius = 20;
-            this.btnXoaHetHan.CheckedState.Parent = this.btnXoaHetHan;
-            this.btnXoaHetHan.CustomImages.Parent = this.btnXoaHetHan;
-            this.btnXoaHetHan.FillColor = System.Drawing.Color.White;
-            this.btnXoaHetHan.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaHetHan.ForeColor = System.Drawing.Color.Black;
-            this.btnXoaHetHan.HoverState.Parent = this.btnXoaHetHan;
-            this.btnXoaHetHan.Image = global::HotelManagement.Properties.Resources.signs_close_icon_png;
-            this.btnXoaHetHan.ImageOffset = new System.Drawing.Point(-3, 0);
-            this.btnXoaHetHan.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnXoaHetHan.Location = new System.Drawing.Point(35, 227);
-            this.btnXoaHetHan.Name = "btnXoaHetHan";
-            this.btnXoaHetHan.ShadowDecoration.Parent = this.btnXoaHetHan;
-            this.btnXoaHetHan.Size = new System.Drawing.Size(220, 60);
-            this.btnXoaHetHan.TabIndex = 4;
-            this.btnXoaHetHan.Text = "Xóa hết hạn";
-            this.btnXoaHetHan.Click += new System.EventHandler(this.btnXoaHetHan_Click);
             // 
             // Pannel5
             // 
@@ -525,7 +503,6 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel Pannel5;
         private System.Windows.Forms.DataGridView dtGiaPhongThayDoi;
-        private Guna.UI2.WinForms.Guna2Button btnXoaHetHan;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2TextBox txtMaGiam;

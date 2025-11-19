@@ -60,6 +60,7 @@ namespace HotelManagement
         {
             LoadComboBoxes();
             LoadData();
+            //dtpUsageDate.MinDate = DateTime.Today;
         }
 
         private void LoadData()
@@ -125,7 +126,12 @@ namespace HotelManagement
                 MessageBox.Show("Số lượng phải lớn hơn 0!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
+            if (dtpUsageDate.Value.Date < DateTime.Today)
+            {
+                MessageBox.Show("Ngày sử dụng không hợp lệ (không được chọn ngày trong quá khứ)!",
+                    "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             try
             {
                 // Generate UsageID tự động
@@ -178,6 +184,12 @@ namespace HotelManagement
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            //if (dtpUsageDate.Value.Date < DateTime.Today)
+            //{
+            //    MessageBox.Show("Ngày sử dụng không được ở trong quá khứ!",
+            //        "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
 
             try
             {
@@ -245,7 +257,6 @@ namespace HotelManagement
             }
             catch (Exception ex)
             {
-                // DAL sẽ ném message thân thiện nếu dính FK (mục 2 bên dưới)
                 MessageBox.Show(ex.Message, "Không thể xóa", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -269,15 +280,16 @@ namespace HotelManagement
 
             var item = dgvMain.Rows[e.RowIndex].DataBoundItem as UseServiceET;
             if (item == null) return;
-
-            // helper gán SelectedValue có kiểm tra tồn tại
             SetSelectedValueSafe(cboService, "ServiceID", item.ServiceID);
             SetSelectedValueSafe(cboBooking, "BookingID", item.BookingID);
             SetSelectedValueSafe(cboStaff, "StaffID", item.StaffID);
-
-            nudQuantity.Value = Math.Max(nudQuantity.Minimum, Math.Min(nudQuantity.Maximum, item.Quantity));
+            nudQuantity.Value = Math.Max(nudQuantity.Minimum,
+                                  Math.Min(nudQuantity.Maximum, item.Quantity));
             dtpUsageDate.Value = item.UsageDate == default ? DateTime.Now : item.UsageDate;
+            cboStaff.Enabled = false;
         }
+
+
 
         private void SetSelectedValueSafe(ComboBox cbo, string valueMember, object value)
         {
@@ -310,6 +322,7 @@ namespace HotelManagement
             cboStaff.SelectedIndex = -1;
             nudQuantity.Value = 1;
             dtpUsageDate.Value = DateTime.Now;
+            cboStaff.Enabled = true;
         }
     }
 }
