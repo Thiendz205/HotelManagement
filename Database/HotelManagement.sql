@@ -6,7 +6,7 @@ SET DATEFORMAT DMY;
 GO
 -- Bảng Tài khoản (Account)
 CREATE TABLE Account (
-    AccountID char(10),                          -- Mã tài khoản (tự tăng)
+    AccountID char(10) PRIMARY KEY,                          -- Mã tài khoản (tự tăng)
     Username NVARCHAR(50) NOT NULL,                                   -- Tên đăng nhập
     Password NVARCHAR(50) NOT NULL,                                   -- Mật khẩu (hash)
     StartDate DATE NOT NULL DEFAULT GETDATE(),                        -- Ngày bắt đầu tạo
@@ -86,7 +86,8 @@ CREATE TABLE Room (
     Description NVARCHAR(MAX),                 -- Mô tả thêm
     Status NVARCHAR(20) NOT NULL               -- Trạng thái phòng
         CONSTRAINT DF_Room_Status DEFAULT N'Available',
-	Official Nvarchar(50)
+	Official Nvarchar(50),
+	 RepairNote NVARCHAR(MAX) NULL
 );
 GO
 
@@ -296,6 +297,33 @@ ALTER TABLE RoomEvaluation
 ADD CONSTRAINT FK_RoomEvaluation_Room
 FOREIGN KEY (RoomID) REFERENCES Room(RoomID) ON DELETE CASCADE ON UPDATE CASCADE;
 GO
+CREATE TABLE MaintenanceType (
+    MaintenanceTypeID INT IDENTITY(1,1) PRIMARY KEY,
+    TypeName NVARCHAR(100) NOT NULL UNIQUE,   -- VD: Bảo trì phòng, Bảo trì thiết bị
+    Description NVARCHAR(MAX)
+);
+go
+CREATE TABLE MaintenanceLog (
+    LogID INT IDENTITY(1,1) PRIMARY KEY,
+    MaintenanceTypeID INT NOT NULL,
+    RoomID CHAR(10) NULL,             -- nếu bảo trì phòng
+    EquipmentID CHAR(10) NULL,        -- nếu bảo trì thiết bị
+    StaffID CHAR(10) NOT NULL,
+    MaintenanceDate DATETIME NOT NULL DEFAULT GETDATE(),
+    Status NVARCHAR(50) NOT NULL DEFAULT N'Completed',   -- Kết quả || chưa hoàn thành "not completed"
+    Note NVARCHAR(MAX),
+
+    CONSTRAINT CK_MaintenanceLog_Target CHECK (
+        (RoomID IS NOT NULL AND EquipmentID IS NULL) OR
+        (RoomID IS NULL AND EquipmentID IS NOT NULL)
+    ),
+
+    CONSTRAINT FK_MaintenanceLog_Type FOREIGN KEY (MaintenanceTypeID) REFERENCES MaintenanceType(MaintenanceTypeID),
+    CONSTRAINT FK_MaintenanceLog_Room FOREIGN KEY (RoomID) REFERENCES Room(RoomID),
+    CONSTRAINT FK_MaintenanceLog_Equipment FOREIGN KEY (EquipmentID) REFERENCES EquipmentStorage(EquipmentID),
+    CONSTRAINT FK_MaintenanceLog_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)
+);
+GO
 CREATE OR ALTER PROCEDURE sp_GetInvoiceDetailByBooking
     @BookingID CHAR(10)
 AS
@@ -309,40 +337,37 @@ BEGIN
         @TotalBefore DECIMAL(18,2) = 0,
         @TotalAfter DECIMAL(18,2) = 0;
 
-    -- 🔹 Lấy thông tin khách hàng
-    SELECT 
-        @CustomerID = b.CustomerID
-    FROM Booking b
-    WHERE b.BookingID = @BookingID;
+    -- Lấy khách
+    SELECT @CustomerID = CustomerID 
+    FROM Booking 
+    WHERE BookingID = @BookingID;
 
-    SELECT 
-        @RankID = c.RankID
-    FROM Customer c
-    WHERE c.CustomerID = @CustomerID;
+    -- Lấy Rank
+    SELECT @RankID = RankID 
+    FROM Customer 
+    WHERE CustomerID = @CustomerID;
 
-    SELECT 
-        @DiscountPercent = ISNULL(r.DiscountPercent, 0)
-    FROM CustomerRank r
-    WHERE r.RankID = @RankID;
+    -- Lấy % giảm
+    SELECT @DiscountPercent = ISNULL(DiscountPercent, 0)
+    FROM CustomerRank 
+    WHERE RankID = @RankID;
 
-    -- 🔹 Tính tổng tiền trước và sau giảm
-    SELECT 
-        @TotalBefore =
+    -- Tính tổng tiền
+    SELECT @TotalBefore =
         (
-            (
-                CASE 
-                    WHEN b.RentalType = 'Day' 
-                        THEN ISNULL(p.PricePerDay, rt.PricePerDay)
-                    ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
-                END *
-                CASE 
-                    WHEN b.RentalType = 'Day' 
-                        THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
-                    ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
-                END
-            )
-            + ISNULL((SELECT SUM(s.Price * su.Quantity) FROM ServiceUsage su JOIN Service s ON s.ServiceID = su.ServiceID WHERE su.BookingID = b.BookingID), 0)
-            + ISNULL((SELECT SUM(ft.DefaultPrice * bf.Quantity) FROM BookingFee bf JOIN FeeType ft ON ft.FeeTypeID = bf.FeeTypeID WHERE bf.BookingID = b.BookingID), 0)
+            (CASE WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                  ELSE ISNULL(p.PricePerHour, rt.PricePerHour) END)
+            *
+            (CASE WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+                  ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE()))) END)
+            +
+            ISNULL((SELECT SUM(s.Price * su.Quantity) 
+                    FROM ServiceUsage su JOIN Service s ON s.ServiceID = su.ServiceID 
+                    WHERE su.BookingID = b.BookingID), 0)
+            +
+            ISNULL((SELECT SUM(ft.DefaultPrice * bf.Quantity)
+                    FROM BookingFee bf JOIN FeeType ft ON ft.FeeTypeID = bf.FeeTypeID
+                    WHERE bf.BookingID = b.BookingID), 0)
         )
     FROM Booking b
     JOIN Room r ON r.RoomID = b.RoomID
@@ -356,67 +381,47 @@ BEGIN
     ) p
     WHERE b.BookingID = @BookingID;
 
-    SET @TotalAfter = @TotalBefore * (1 - @DiscountPercent / 100.0);
+    SET @TotalAfter = @TotalBefore * (1 - @DiscountPercent/100.0);
 
-    -- 🔹 1️⃣ Thông tin khách hàng (chỉ 1 dòng)
+    -- ✅ Xuất bảng duy nhất, KHÔNG có dòng tổng kết, mà có cột tổng cộng ở cuối
     SELECT 
-        N'Thông tin hóa đơn' AS [Section],
-        b.BookingID,
+        X.RowOrder,
+        X.Type,
+        X.ItemName,
+        X.UnitPrice,
+        X.Quantity,
+        X.PriceBeforeDiscount,
+        X.PriceAfterDiscount,
+        X.UsedAt,
         c.FullName AS CustomerName,
         c.PhoneNumber,
         ISNULL(rk.RankName, N'Không có') AS RankName,
         @DiscountPercent AS DiscountPercent,
         @TotalBefore AS TotalBeforeDiscount,
         @TotalAfter AS TotalAfterDiscount,
+        (@TotalBefore - @TotalAfter) AS DiscountAmount,
+        b.BookingID,
         b.CheckIn,
         b.CheckOut
-    FROM Booking b
-    JOIN Customer c ON c.CustomerID = b.CustomerID
-    LEFT JOIN CustomerRank rk ON rk.RankID = c.RankID
-    WHERE b.BookingID = @BookingID;
-
-    -- 🔹 2️⃣ Chi tiết hóa đơn (nhiều dòng)
-    SELECT 
-        CASE WHEN Part.SortOrder = 1 THEN N'Tiền phòng'
-             WHEN Part.SortOrder = 2 THEN N'Dịch vụ'
-             WHEN Part.SortOrder = 3 THEN N'Phụ phí'
-        END AS [Type],
-        Part.ItemName,
-        Part.UnitPrice,
-        Part.Quantity,
-        Part.PriceBeforeDiscount,
-        Part.PriceAfterDiscount,
-        Part.UsedAt
     FROM
     (
         -- Tiền phòng
-        SELECT 
-            1 AS SortOrder,
+        SELECT
+            1 AS RowOrder,
+            N'Tiền phòng' AS Type,
             rt.TypeName AS ItemName,
-            CASE 
-                WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
-                ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
-            END AS UnitPrice,
-            CASE 
-                WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
-                ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
-            END AS Quantity,
-            (CASE 
-                WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
-                ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
-            END *
-            CASE 
-                WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
-                ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
-            END) AS PriceBeforeDiscount,
-            (CASE 
-                WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
-                ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
-            END *
-            CASE 
-                WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
-                ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
-            END) * (1 - @DiscountPercent / 100.0) AS PriceAfterDiscount,
+            CASE WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                 ELSE ISNULL(p.PricePerHour, rt.PricePerHour) END AS UnitPrice,
+            CASE WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+                 ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE()))) END AS Quantity,
+            CASE WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                 ELSE ISNULL(p.PricePerHour, rt.PricePerHour) END *
+            CASE WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+                 ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE()))) END AS PriceBeforeDiscount,
+            CASE WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                 ELSE ISNULL(p.PricePerHour, rt.PricePerHour) END *
+            CASE WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+                 ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE()))) END * (1 - @DiscountPercent/100.0) AS PriceAfterDiscount,
             b.CheckIn AS UsedAt
         FROM Booking b
         JOIN Room r ON r.RoomID = b.RoomID
@@ -433,14 +438,15 @@ BEGIN
         UNION ALL
 
         -- Dịch vụ
-        SELECT 
-            2 AS SortOrder,
-            s.ServiceName AS ItemName,
-            s.Price AS UnitPrice,
+        SELECT
+            2 AS RowOrder,
+            N'Dịch vụ',
+            s.ServiceName,
+            s.Price,
             su.Quantity,
-            s.Price * su.Quantity AS PriceBeforeDiscount,
-            (s.Price * su.Quantity) * (1 - @DiscountPercent / 100.0) AS PriceAfterDiscount,
-            su.UsageDate AS UsedAt
+            s.Price * su.Quantity,
+            s.Price * su.Quantity * (1 - @DiscountPercent/100.0),
+            su.UsageDate
         FROM ServiceUsage su
         JOIN Service s ON s.ServiceID = su.ServiceID
         WHERE su.BookingID = @BookingID
@@ -448,19 +454,257 @@ BEGIN
         UNION ALL
 
         -- Phụ phí
-        SELECT 
-            3 AS SortOrder,
-            ft.FeeTypeName AS ItemName,
-            ft.DefaultPrice AS UnitPrice,
+        SELECT
+            3 AS RowOrder,
+            N'Phụ phí',
+            ft.FeeTypeName,
+            ft.DefaultPrice,
             bf.Quantity,
-            ft.DefaultPrice * bf.Quantity AS PriceBeforeDiscount,
-            (ft.DefaultPrice * bf.Quantity) * (1 - @DiscountPercent / 100.0) AS PriceAfterDiscount,
-            bf.CreatedAt AS UsedAt
+            ft.DefaultPrice * bf.Quantity,
+            ft.DefaultPrice * bf.Quantity * (1 - @DiscountPercent/100.0),
+            bf.CreatedAt
         FROM BookingFee bf
         JOIN FeeType ft ON ft.FeeTypeID = bf.FeeTypeID
         WHERE bf.BookingID = @BookingID
-    ) AS Part
-    ORDER BY Part.SortOrder, Part.UsedAt;
+    ) X
+    JOIN Booking b ON b.BookingID = @BookingID
+    JOIN Customer c ON c.CustomerID = b.CustomerID
+    LEFT JOIN CustomerRank rk ON rk.RankID = c.RankID
+    ORDER BY X.RowOrder;
 END;
 GO
-Exec sp_GetInvoiceDetailByBooking 'BK005'
+CREATE OR ALTER PROCEDURE sp_GetCustomerFullHistory
+    @CustomerID CHAR(10)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @DiscountPercent DECIMAL(5,2) = 0;
+
+    SELECT @DiscountPercent = ISNULL(cr.DiscountPercent, 0)
+    FROM Customer c
+    LEFT JOIN CustomerRank cr ON c.RankID = cr.RankID
+    WHERE c.CustomerID = @CustomerID;
+
+    ----------------------------
+    -- Tiền phòng (luôn có dữ liệu)
+    ----------------------------
+    SELECT
+        b.BookingID,
+        r.RoomName,
+        rt.TypeName AS RoomTypeName,
+        c.FullName AS CustomerName,
+        i.InvoiceDate,
+        i.TotalAmount AS TotalInvoice,
+        @DiscountPercent AS DiscountPercent,
+        N'Tiền phòng' AS Type,
+        ISNULL(
+            CASE WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                 ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
+            END, 0
+        ) AS UnitPrice,
+        CASE 
+            WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+            ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
+        END AS Quantity,
+        b.CheckIn AS UsedAt,
+        ISNULL(
+            (CASE WHEN b.RentalType = 'Day' THEN ISNULL(p.PricePerDay, rt.PricePerDay)
+                  ELSE ISNULL(p.PricePerHour, rt.PricePerHour)
+            END) *
+            (CASE WHEN b.RentalType = 'Day' THEN CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())) / 24.0)
+                  ELSE CEILING(DATEDIFF(HOUR, b.CheckIn, ISNULL(b.CheckOut, GETDATE())))
+            END), 0
+        ) AS SubTotal
+    FROM Booking b
+    JOIN Invoice i ON i.BookingID = b.BookingID AND i.PaidStatus = 'Paid'
+    JOIN Customer c ON c.CustomerID = b.CustomerID
+    JOIN Room r ON r.RoomID = b.RoomID
+    JOIN RoomType rt ON rt.RoomTypeID = r.RoomTypeID
+    OUTER APPLY (
+        SELECT TOP 1 PricePerDay, PricePerHour
+        FROM RoomTypePrice p
+        WHERE p.RoomTypeID = rt.RoomTypeID
+          AND b.CheckIn BETWEEN p.StartDate AND p.EndDate
+        ORDER BY p.StartDate DESC
+    ) p
+    WHERE b.CustomerID = @CustomerID
+
+    UNION ALL
+
+    ----------------------------
+    -- Dịch vụ (loại bỏ dòng trống)
+    ----------------------------
+    SELECT
+        b.BookingID,
+        r.RoomName,
+        rt.TypeName AS RoomTypeName,
+        c.FullName AS CustomerName,
+        i.InvoiceDate,
+        i.TotalAmount AS TotalInvoice,
+        @DiscountPercent AS DiscountPercent,
+        N'Dịch vụ' AS Type,
+        s.Price AS UnitPrice,
+        su.Quantity AS Quantity,
+        su.UsageDate AS UsedAt,
+        (s.Price * su.Quantity) AS SubTotal
+    FROM Booking b
+    JOIN Invoice i ON i.BookingID = b.BookingID AND i.PaidStatus = 'Paid'
+    JOIN ServiceUsage su ON su.BookingID = b.BookingID
+    JOIN Service s ON s.ServiceID = su.ServiceID
+    JOIN Customer c ON c.CustomerID = b.CustomerID
+    JOIN Room r ON r.RoomID = b.RoomID
+    JOIN RoomType rt ON rt.RoomTypeID = r.RoomTypeID
+    WHERE b.CustomerID = @CustomerID
+      AND su.Quantity > 0   -- << CHẶN DÒNG TRỐNG
+
+    UNION ALL
+
+    ----------------------------
+    -- Phụ phí (loại bỏ dòng trống)
+    ----------------------------
+    SELECT
+        b.BookingID,
+        r.RoomName,
+        rt.TypeName AS RoomTypeName,
+        c.FullName AS CustomerName,
+        i.InvoiceDate,
+        i.TotalAmount AS TotalInvoice,
+        @DiscountPercent AS DiscountPercent,
+        N'Phụ phí' AS Type,
+        ft.DefaultPrice AS UnitPrice,
+        bf.Quantity AS Quantity,
+        bf.CreatedAt AS UsedAt,
+        (ft.DefaultPrice * bf.Quantity) AS SubTotal
+    FROM Booking b
+    JOIN Invoice i ON i.BookingID = b.BookingID AND i.PaidStatus = 'Paid'
+    JOIN BookingFee bf ON bf.BookingID = b.BookingID
+    JOIN FeeType ft ON ft.FeeTypeID = bf.FeeTypeID
+    JOIN Customer c ON c.CustomerID = b.CustomerID
+    JOIN Room r ON r.RoomID = b.RoomID
+    JOIN RoomType rt ON rt.RoomTypeID = r.RoomTypeID
+    WHERE b.CustomerID = @CustomerID
+      AND bf.Quantity > 0   -- << CHẶN DÒNG TRỐNG
+
+    ORDER BY BookingID, UsedAt;
+END;
+GO
+CREATE PROCEDURE sp_GetRoomEvaluationTemplate
+    @RoomID CHAR(10)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        r.RoomID AS [Mã phòng],
+        r.RoomName AS [Tên phòng],
+        ' ' AS [Vệ sinh],
+        ' ' AS [Tiện nghi],
+        ' ' AS [Phục vụ],
+        ' ' AS [Tiện ích],
+        ' ' AS [Vị trí],
+        ' ' AS [An toàn],
+        ' ' AS [Sang trọng],
+        ' ' AS [Công nghệ],
+        ' ' AS [Nhân viên],
+        ' ' AS [Người đánh giá],
+        GETDATE() AS [Ngày in báo cáo]
+    FROM Room r
+    WHERE r.RoomID = @RoomID;
+END;
+GO
+
+
+CREATE PROCEDURE GetEquipmentByStatus
+    @Status NVARCHAR(50) = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        EquipmentID,
+        EquipmentName,
+        EquipmentCategory,
+        Quantity,
+        PurchaseDate,
+        Status,
+        Description,
+        StaffID
+    FROM 
+        EquipmentStorage
+    WHERE 
+        @Status IS NULL OR Status = @Status
+    ORDER BY 
+        EquipmentName;
+END;
+GO
+CREATE OR ALTER VIEW v_FactServiceUsage AS
+WITH inv_latest AS (
+    SELECT i.BookingID, i.InvoiceDate, i.PaidStatus, i.PaymentMethod,
+           ROW_NUMBER() OVER (PARTITION BY i.BookingID ORDER BY i.InvoiceDate DESC) AS rn
+    FROM Invoice i
+)
+SELECT
+    su.UsageID, su.UsageDate, su.BookingID, su.ServiceID, su.Quantity,
+    su.StaffID AS ServiceStaffID,
+    b.CustomerID, b.RoomID, b.RentalType, b.CheckIn, b.CheckOut, b.Status AS BookingStatus,
+    r.RoomName, r.RoomTypeID, r.Official, rt.TypeName AS RoomTypeName,
+    c.FullName AS CustomerName, c.PhoneNumber, c.NationalID,
+    cr.RankName, ISNULL(cr.DiscountPercent,0) AS DiscountPercent,
+    s.ServiceName, s.Category AS ServiceCategory, s.Price AS UnitPrice,
+    st.FullName AS StaffName,
+    il.InvoiceDate, il.PaidStatus, il.PaymentMethod,
+    CAST(s.Price * su.Quantity AS DECIMAL(18,2)) AS AmountBeforeDiscount,
+    CAST(s.Price * su.Quantity * (1 - ISNULL(cr.DiscountPercent,0)/100.0) AS DECIMAL(18,2)) AS AmountAfterDiscount
+FROM ServiceUsage su
+JOIN Booking b ON b.BookingID = su.BookingID
+JOIN Customer c ON c.CustomerID = b.CustomerID
+LEFT JOIN CustomerRank cr ON cr.RankID = c.RankID
+JOIN Service s ON s.ServiceID = su.ServiceID
+LEFT JOIN Staff st ON st.StaffID = su.StaffID
+LEFT JOIN Room r ON r.RoomID = b.RoomID
+LEFT JOIN RoomType rt ON rt.RoomTypeID = r.RoomTypeID
+LEFT JOIN inv_latest il ON il.BookingID = b.BookingID AND il.rn = 1;
+GO
+CREATE OR ALTER PROCEDURE dbo.sp_ServiceUsage_Detail
+    @FromDate     DATE,
+    @ToDate       DATE,
+    @CustomerText NVARCHAR(100) = NULL,
+    @ServiceCat   NVARCHAR(50)  = NULL,
+    @StaffID      CHAR(10)      = NULL,
+    @RoomID       CHAR(10)      = NULL,
+    @OnlyPaid     BIT           = NULL
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT *
+    FROM v_FactServiceUsage v
+    WHERE 
+        (@FromDate IS NULL OR v.UsageDate >= @FromDate)
+        AND (@ToDate IS NULL OR v.UsageDate < DATEADD(DAY, 1, @ToDate))  -- dùng < ngày kế tiếp
+
+        AND (
+                @CustomerText IS NULL
+                OR v.CustomerName LIKE N'%' + @CustomerText + N'%'
+                OR v.PhoneNumber  LIKE N'%' + @CustomerText + N'%'
+                OR v.NationalID   LIKE N'%' + @CustomerText + N'%'
+            )
+
+        AND (@ServiceCat IS NULL OR v.ServiceCategory = @ServiceCat)
+        AND (@StaffID    IS NULL OR v.ServiceStaffID = @StaffID)
+        AND (@RoomID     IS NULL OR v.RoomID = @RoomID)
+
+        AND (
+                @OnlyPaid IS NULL
+                OR (@OnlyPaid = 1 AND v.PaidStatus = N'Paid')
+                OR (@OnlyPaid = 0 AND (v.PaidStatus IS NULL OR v.PaidStatus <> N'Paid'))
+            )
+
+    ORDER BY 
+        v.ServiceName,
+        v.UsageDate,
+        v.CustomerName;
+END
+GO
+Exec sp_GetCustomerFullHistory 'CUST6DD9D8'

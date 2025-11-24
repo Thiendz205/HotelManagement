@@ -333,7 +333,7 @@ namespace DAL
         {
             try
             {
-                // 1️⃣ Join dữ liệu: Invoices + Bookings + Rooms + RoomTypes
+                // JOIN toàn bộ dữ liệu cần thiết
                 var query = from inv in db.Invoices
                             join b in db.Bookings on inv.BookingID equals b.BookingID
                             join r in db.Rooms on b.RoomID equals r.RoomID
@@ -351,7 +351,9 @@ namespace DAL
                                 PricePerHour = rt.PricePerHour
                             };
 
-                // 2️⃣ Lọc theo thời gian
+                // ---------------------------
+                // LỌC THEO THỜI GIAN
+                // ---------------------------
                 if (day.HasValue && month.HasValue)
                 {
                     query = query.Where(x =>
@@ -374,9 +376,11 @@ namespace DAL
                     );
                 }
 
-                // 3️⃣ Group theo phòng để tính tổng doanh thu
+                // ---------------------------
+                // PROCESS
+                // ---------------------------
                 var result = query
-                    .AsEnumerable() // vì RoomTypePrices là table khác, cần Enumerable để LINQ-to-Objects
+                    .AsEnumerable()
                     .GroupBy(x => new
                     {
                         x.RoomID,
@@ -390,8 +394,10 @@ namespace DAL
                     {
                         var sample = g.First();
 
-                        // 4️⃣ Tìm giá động theo ngày hóa đơn
-                        var dynamicPrice = db.RoomTypePrices
+                        // ---------------------------
+                        // TÌM GIÁ ĐỘNG THEO NGÀY HÓA ĐƠN
+                        // ---------------------------
+                        var dynamic = db.RoomTypePrices
                             .Where(p =>
                                 p.RoomTypeID == sample.RoomTypeID &&
                                 sample.Invoice.InvoiceDate.Date >= p.StartDate &&
@@ -400,15 +406,26 @@ namespace DAL
                             .OrderByDescending(p => p.StartDate)
                             .FirstOrDefault();
 
-                        decimal finalPrice = (sample.Booking.RentalType == "Day")
-                            ? (dynamicPrice?.PricePerDay ?? sample.PricePerDay)
-                            : (dynamicPrice?.PricePerHour ?? sample.PricePerHour);
+                        decimal finalPrice;
+
+                        if (dynamic != null)
+                        {
+                            finalPrice = sample.Booking.RentalType == "Day"
+                                ? dynamic.PricePerDay
+                                : dynamic.PricePerHour;
+                        }
+                        else
+                        {
+                            finalPrice = sample.Booking.RentalType == "Day"
+                                ? sample.PricePerDay
+                                : sample.PricePerHour;
+                        }
 
                         return new InvoiceET
                         {
-                            RoomID = sample.RoomID,
-                            RoomName = sample.RoomName,
-                            RoomType = sample.RoomType,
+                            RoomID = g.Key.RoomID,
+                            RoomName = g.Key.RoomName,
+                            RoomType = g.Key.RoomType,
                             Price = finalPrice,
                             Revenue = g.Sum(x => x.Invoice.TotalAmount)
                         };
@@ -424,7 +441,6 @@ namespace DAL
                 return new List<InvoiceET>();
             }
         }
-
         public int ParseMonth(string dal)
         {
             string digits = new string(dal.Where(char.IsDigit).ToArray());
