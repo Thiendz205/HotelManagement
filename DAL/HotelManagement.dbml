@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HotelManagement" Class="HotelManagementDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-J4SN4OIQ\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HotelManagementConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-EKLM582L;Initial Catalog=HotelManagement;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HotelManagementConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
       <Column Name="AccountID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -26,6 +26,7 @@
       <Association Name="Staff_Booking" Member="Bookings" ThisKey="StaffID" OtherKey="StaffID" Type="Booking" />
       <Association Name="Staff_EquipmentStorage" Member="EquipmentStorages" ThisKey="StaffID" OtherKey="StaffID" Type="EquipmentStorage" />
       <Association Name="Staff_Invoice" Member="Invoices" ThisKey="StaffID" OtherKey="StaffID" Type="Invoice" />
+      <Association Name="Staff_MaintenanceLog" Member="MaintenanceLogs" ThisKey="StaffID" OtherKey="StaffID" Type="MaintenanceLog" />
       <Association Name="Staff_RoomEquipment" Member="RoomEquipments" ThisKey="StaffID" OtherKey="StaffID" Type="RoomEquipment" />
       <Association Name="Staff_ServiceUsage" Member="ServiceUsages" ThisKey="StaffID" OtherKey="StaffID" Type="ServiceUsage" />
     </Type>
@@ -95,6 +96,7 @@
       <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="StaffID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="EquipmentStorage_MaintenanceLog" Member="MaintenanceLogs" ThisKey="EquipmentID" OtherKey="EquipmentID" Type="MaintenanceLog" />
       <Association Name="EquipmentStorage_RoomEquipment" Member="RoomEquipments" ThisKey="EquipmentID" OtherKey="EquipmentStorage" Type="RoomEquipment" />
       <Association Name="Staff_EquipmentStorage" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
     </Type>
@@ -128,6 +130,30 @@
       <Association Name="Staff_Invoice" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.MaintenanceLog" Member="MaintenanceLogs">
+    <Type Name="MaintenanceLog">
+      <Column Name="LogID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MaintenanceTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="RoomID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="EquipmentID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="StaffID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="MaintenanceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="EquipmentStorage_MaintenanceLog" Member="EquipmentStorage" ThisKey="EquipmentID" OtherKey="EquipmentID" Type="EquipmentStorage" IsForeignKey="true" />
+      <Association Name="Staff_MaintenanceLog" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
+      <Association Name="MaintenanceType_MaintenanceLog" Member="MaintenanceType" ThisKey="MaintenanceTypeID" OtherKey="MaintenanceTypeID" Type="MaintenanceType" IsForeignKey="true" />
+      <Association Name="Room_MaintenanceLog" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MaintenanceType" Member="MaintenanceTypes">
+    <Type Name="MaintenanceType">
+      <Column Name="MaintenanceTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TypeName" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="MaintenanceType_MaintenanceLog" Member="MaintenanceLogs" ThisKey="MaintenanceTypeID" OtherKey="MaintenanceTypeID" Type="MaintenanceLog" />
+    </Type>
+  </Table>
   <Table Name="dbo.Room" Member="Rooms">
     <Type Name="Room">
       <Column Name="RoomID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -137,7 +163,9 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="Official" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="RepairNote" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="Room_Booking" Member="Bookings" ThisKey="RoomID" OtherKey="RoomID" Type="Booking" />
+      <Association Name="Room_MaintenanceLog" Member="MaintenanceLogs" ThisKey="RoomID" OtherKey="RoomID" Type="MaintenanceLog" />
       <Association Name="Room_RoomEquipment" Member="RoomEquipments" ThisKey="RoomID" OtherKey="RoomID" Type="RoomEquipment" />
       <Association Name="Room_RoomEvaluation" Member="RoomEvaluations" ThisKey="RoomID" OtherKey="RoomID" Type="RoomEvaluation" />
       <Association Name="RoomType_Room" Member="RoomType" ThisKey="RoomTypeID" OtherKey="RoomTypeID" Type="RoomType" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />

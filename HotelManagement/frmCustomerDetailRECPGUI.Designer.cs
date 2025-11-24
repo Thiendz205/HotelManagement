@@ -37,17 +37,18 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.dgvBookingHistory = new System.Windows.Forms.DataGridView();
+            this.lblRank = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblCountry = new System.Windows.Forms.Label();
+            this.lblDOB = new System.Windows.Forms.Label();
+            this.lblGender = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblCCCD = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
-            this.lblCountry = new System.Windows.Forms.Label();
-            this.lblDOB = new System.Windows.Forms.Label();
-            this.lblGender = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblRank = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.dgvBookingHistory = new System.Windows.Forms.DataGridView();
+            this.btnPrint = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookingHistory)).BeginInit();
             this.SuspendLayout();
@@ -149,36 +150,50 @@
             this.guna2GroupBox2.TabIndex = 18;
             this.guna2GroupBox2.Text = "Thông tin khách hàng";
             // 
-            // label17
+            // lblRank
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(30, 139);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(52, 22);
-            this.label17.TabIndex = 4;
-            this.label17.Text = "SDT:";
+            this.lblRank.AutoSize = true;
+            this.lblRank.Location = new System.Drawing.Point(708, 273);
+            this.lblRank.Name = "lblRank";
+            this.lblRank.Size = new System.Drawing.Size(40, 22);
+            this.lblRank.TabIndex = 17;
+            this.lblRank.Text = "___";
             // 
-            // dgvBookingHistory
+            // label1
             // 
-            this.dgvBookingHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvBookingHistory.BackgroundColor = System.Drawing.Color.DarkGray;
-            this.dgvBookingHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvBookingHistory.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvBookingHistory.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgvBookingHistory.GridColor = System.Drawing.Color.White;
-            this.dgvBookingHistory.Location = new System.Drawing.Point(0, 546);
-            this.dgvBookingHistory.Name = "dgvBookingHistory";
-            this.dgvBookingHistory.RowHeadersWidth = 51;
-            this.dgvBookingHistory.RowTemplate.Height = 24;
-            this.dgvBookingHistory.Size = new System.Drawing.Size(1624, 324);
-            this.dgvBookingHistory.TabIndex = 16;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(560, 273);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 22);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Hạng :";
+            // 
+            // lblCountry
+            // 
+            this.lblCountry.AutoSize = true;
+            this.lblCountry.Location = new System.Drawing.Point(708, 138);
+            this.lblCountry.Name = "lblCountry";
+            this.lblCountry.Size = new System.Drawing.Size(40, 22);
+            this.lblCountry.TabIndex = 15;
+            this.lblCountry.Text = "___";
+            // 
+            // lblDOB
+            // 
+            this.lblDOB.AutoSize = true;
+            this.lblDOB.Location = new System.Drawing.Point(708, 211);
+            this.lblDOB.Name = "lblDOB";
+            this.lblDOB.Size = new System.Drawing.Size(40, 22);
+            this.lblDOB.TabIndex = 14;
+            this.lblDOB.Text = "___";
+            // 
+            // lblGender
+            // 
+            this.lblGender.AutoSize = true;
+            this.lblGender.Location = new System.Drawing.Point(708, 70);
+            this.lblGender.Name = "lblGender";
+            this.lblGender.Size = new System.Drawing.Size(40, 22);
+            this.lblGender.TabIndex = 13;
+            this.lblGender.Text = "___";
             // 
             // lblPhone
             // 
@@ -216,50 +231,54 @@
             this.lblFullName.TabIndex = 9;
             this.lblFullName.Text = "__";
             // 
-            // lblCountry
+            // label17
             // 
-            this.lblCountry.AutoSize = true;
-            this.lblCountry.Location = new System.Drawing.Point(708, 138);
-            this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(40, 22);
-            this.lblCountry.TabIndex = 15;
-            this.lblCountry.Text = "___";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(30, 139);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(52, 22);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "SDT:";
             // 
-            // lblDOB
+            // dgvBookingHistory
             // 
-            this.lblDOB.AutoSize = true;
-            this.lblDOB.Location = new System.Drawing.Point(708, 211);
-            this.lblDOB.Name = "lblDOB";
-            this.lblDOB.Size = new System.Drawing.Size(40, 22);
-            this.lblDOB.TabIndex = 14;
-            this.lblDOB.Text = "___";
+            this.dgvBookingHistory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBookingHistory.BackgroundColor = System.Drawing.Color.DarkGray;
+            this.dgvBookingHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DarkGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvBookingHistory.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvBookingHistory.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvBookingHistory.GridColor = System.Drawing.Color.White;
+            this.dgvBookingHistory.Location = new System.Drawing.Point(0, 546);
+            this.dgvBookingHistory.Name = "dgvBookingHistory";
+            this.dgvBookingHistory.RowHeadersWidth = 51;
+            this.dgvBookingHistory.RowTemplate.Height = 24;
+            this.dgvBookingHistory.Size = new System.Drawing.Size(1624, 324);
+            this.dgvBookingHistory.TabIndex = 16;
             // 
-            // lblGender
+            // btnPrint
             // 
-            this.lblGender.AutoSize = true;
-            this.lblGender.Location = new System.Drawing.Point(708, 70);
-            this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(40, 22);
-            this.lblGender.TabIndex = 13;
-            this.lblGender.Text = "___";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(560, 273);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 22);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Hạng :";
-            // 
-            // lblRank
-            // 
-            this.lblRank.AutoSize = true;
-            this.lblRank.Location = new System.Drawing.Point(708, 273);
-            this.lblRank.Name = "lblRank";
-            this.lblRank.Size = new System.Drawing.Size(40, 22);
-            this.lblRank.TabIndex = 17;
-            this.lblRank.Text = "___";
+            this.btnPrint.BorderRadius = 20;
+            this.btnPrint.CheckedState.Parent = this.btnPrint;
+            this.btnPrint.CustomImages.Parent = this.btnPrint;
+            this.btnPrint.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btnPrint.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ForeColor = System.Drawing.Color.Black;
+            this.btnPrint.HoverState.Parent = this.btnPrint;
+            this.btnPrint.ImageSize = new System.Drawing.Size(30, 30);
+            this.btnPrint.Location = new System.Drawing.Point(1193, 279);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.ShadowDecoration.Parent = this.btnPrint;
+            this.btnPrint.Size = new System.Drawing.Size(178, 62);
+            this.btnPrint.TabIndex = 20;
+            this.btnPrint.Text = "In ";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // frmCustomerDetailRECPGUI
             // 
@@ -267,10 +286,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1624, 870);
+            this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.guna2GroupBox2);
             this.Controls.Add(this.dgvBookingHistory);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmCustomerDetailRECPGUI";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmCustomerDetailRECPGUI";
             this.Load += new System.EventHandler(this.frmCustomerDetailRECPGUI_Load);
             this.guna2GroupBox2.ResumeLayout(false);
@@ -301,5 +324,6 @@
         private System.Windows.Forms.DataGridView dgvBookingHistory;
         private System.Windows.Forms.Label lblRank;
         private System.Windows.Forms.Label label1;
+        private Guna.UI2.WinForms.Guna2Button btnPrint;
     }
 }

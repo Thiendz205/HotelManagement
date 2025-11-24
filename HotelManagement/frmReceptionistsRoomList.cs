@@ -48,16 +48,35 @@ namespace HotelManagement
                 btn.BorderRadius = 25;
                 btn.TextAlign = HorizontalAlignment.Center;
 
-                if (room.RoomStatus.Trim().Equals("Đặt trước", StringComparison.OrdinalIgnoreCase))
-                    btn.FillColor = Color.FromArgb(255, 192, 192);
+                string status = room.RoomStatus.Trim();
+
+                // --- Thêm xử lý cho trạng thái Dọn dẹp ---
+                if (status.Equals("Đặt trước", StringComparison.OrdinalIgnoreCase))
+                    btn.FillColor = Color.FromArgb(255, 192, 192);   // hồng nhạt
+                else if (status.Equals("Dọn dẹp", StringComparison.OrdinalIgnoreCase))
+                    btn.FillColor = Color.FromArgb(255, 255, 192);   // vàng nhạt
                 else
-                    btn.FillColor = Color.LightGreen;
+                    btn.FillColor = Color.LightGreen;                // mặc định phòng trống
 
                 btn.HoverState.FillColor = ControlPaint.Light(btn.FillColor, 0.8f);
 
                 btn.Click += (s, e) =>
                 {
                     string roomId = (string)((Guna2Button)s).Tag;
+
+                    // 🚫 Nếu phòng đang Dọn dẹp → không cho mở booking
+                    if (status.Equals("Dọn dẹp", StringComparison.OrdinalIgnoreCase))
+                    {
+                        MessageBox.Show(
+                            "Phòng đang dọn dẹp, không thể thực hiện đặt phòng!",
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                        return; // ❌ thoát, không mở form booking
+                    }
+
+                    // ✅ Nếu không phải Dọn dẹp → cho mở booking
                     var parent = Application.OpenForms["frmBookingStaffHomeGUI"] as frmBookingStaffHomeGUI;
                     if (parent != null)
                     {
@@ -101,6 +120,16 @@ namespace HotelManagement
             }
 
             LoadRoomButtons(rooms);
+        }
+
+        private void btnChangeRoomStatus_Click(object sender, EventArgs e)
+        {
+            var parent = Application.OpenForms["frmBookingStaffHomeGUI"] as frmBookingStaffHomeGUI;
+            if (parent != null)
+            {
+                var changeForm = new frmChangeRoomStatusRECPGUI(staffId);
+                parent.OpenChildForm(changeForm);
+            }
         }
     }
 }

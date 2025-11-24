@@ -32,5 +32,7 @@ namespace ET
         public decimal PricePerDay { get; set; }     
         public decimal PricePerHour { get; set; }  
         public string Category { get; set; }
+        public string RepairNote { get; set; }
+
     }
 }

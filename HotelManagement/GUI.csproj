@@ -61,10 +61,10 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Guna.UI">
-      <HintPath>..\..\..\..\..\..\NguyenHoaiPhuongNam\ChuyenDe.Net\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
+      <HintPath>..\..\..\Users\THIS PC\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI WinForms\.net 4.0\Guna.UI.dll</HintPath>
     </Reference>
     <Reference Include="Guna.UI2">
-      <HintPath>..\..\..\..\..\..\NguyenHoaiPhuongNam\ChuyenDe.Net\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+      <HintPath>..\..\..\Users\THIS PC\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
@@ -279,6 +279,12 @@
     <Compile Include="frmReceptionistsRoomList.Designer.cs">
       <DependentUpon>frmReceptionistsRoomList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReportCustomerHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportCustomerHistory.Designer.cs">
+      <DependentUpon>frmReportCustomerHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReportGetEquipmentByStatus.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -308,6 +314,12 @@
     </Compile>
     <Compile Include="frmRevenueChartGUI.Designer.cs">
       <DependentUpon>frmRevenueChartGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmRevenueDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRevenueDetail.Designer.cs">
+      <DependentUpon>frmRevenueDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRoomTransferRECPGUI.cs">
       <SubType>Form</SubType>
@@ -403,6 +415,13 @@
     <Compile Include="Helpers\ReportProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\rptCustomerFullHistory.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCustomerFullHistory.rpt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rptEquipmentByStatus.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -541,6 +560,9 @@
     <EmbeddedResource Include="frmReceptionistsRoomList.resx">
       <DependentUpon>frmReceptionistsRoomList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReportCustomerHistory.resx">
+      <DependentUpon>frmReportCustomerHistory.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReportGetEquipmentByStatus.resx">
       <DependentUpon>frmReportGetEquipmentByStatus.cs</DependentUpon>
     </EmbeddedResource>
@@ -555,6 +577,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRevenueChartGUI.resx">
       <DependentUpon>frmRevenueChartGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRevenueDetail.resx">
+      <DependentUpon>frmRevenueDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRoomMonitoring.resx">
       <DependentUpon>frmRoomMonitoring.cs</DependentUpon>
@@ -624,6 +649,11 @@
     <Content Include="Reports\rptEquipmentByStatus.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEquipmentByStatus.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\rptCustomerFullHistory.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCustomerFullHistory.cs</LastGenOutput>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="Reports\rptListOfCustomerUseServiceDay.rpt">

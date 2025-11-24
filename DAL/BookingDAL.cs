@@ -162,7 +162,7 @@ namespace DAL
                         {
                             // Nếu phòng vừa CheckIn trước đó → chuyển sang Đang dọn dẹp
                             if (oldRoom.Status.Trim() == "CheckIn")
-                                oldRoom.Status = "Đang dọn dẹp";
+                                oldRoom.Status = "Dọn dẹp";
                             else
                                 oldRoom.Status = "Available"; // nếu không có booking nào → set trống
                         }
@@ -261,6 +261,7 @@ namespace DAL
             db.SubmitChanges();
             return true;
         }
+    
 
         public decimal GetRoomPrice(string roomId, string rentalType, DateTime checkIn)
         {
@@ -343,9 +344,25 @@ namespace DAL
             if (room == null) return false;
 
             room.Status = dto.RoomStatus;
+            room.RepairNote = dto.RepairNote;   // thêm ghi chú
+
             db.SubmitChanges();
             return true;
         }
+        public bool UpdateRoomStatusBulk(List<string> roomIds, string newStatus, string note = null)
+        {
+            var rooms = db.Rooms.Where(r => roomIds.Contains(r.RoomID)).ToList();
+
+            foreach (var room in rooms)
+            {
+                room.Status = newStatus;
+                room.RepairNote = note;
+            }
+
+            db.SubmitChanges();
+            return true;
+        }
+
 
         public string GetRoomStatus(string roomId)
         {
@@ -418,7 +435,7 @@ namespace DAL
         public List<BookingET> GetRoomsForBookingList()
         {
             return db.Rooms
-                     .Where(r => r.Status == "Available" || r.Status == "Đặt trước" || r.Status == "Trống")
+                     .Where(r => r.Status == "Available" || r.Status == "Đặt trước" || r.Status == "Trống" || r.Status == "Dọn dẹp")
                      .Join(db.RoomTypes,
                            r => r.RoomTypeID,
                            rt => rt.RoomTypeID,
@@ -445,7 +462,7 @@ namespace DAL
                 // Lấy danh sách cơ bản (chỉ phòng còn hoạt động)
                 var query = from r in db.Rooms
                             join rt in db.RoomTypes on r.RoomTypeID equals rt.RoomTypeID
-                            where r.Status == "Available" || r.Status == "Đặt trước" || r.Status == "Trống"
+                            where r.Status == "Available" || r.Status == "Đặt trước" || r.Status == "Trống" || r.Status == "Dọn dẹp"
                             select new
                             {
                                 r.RoomID,
@@ -734,8 +751,9 @@ namespace DAL
                 var room = db.Rooms.SingleOrDefault(r => r.RoomID == booking.RoomID);
                 if (room == null) return AddBookingResult.Error;
 
-                // ✅ Mặc định đặt là "CheckIn"
-                string bookingStatus = "CheckIn";
+                // ❗ Tính đúng trạng thái đặt phòng
+                TimeSpan diff = booking.CheckIn - DateTime.Now;
+                string bookingStatus = diff.TotalHours >= 4 ? "Đặt trước" : "CheckIn";
 
                 var newBooking = new Booking
                 {
@@ -752,8 +770,8 @@ namespace DAL
 
                 db.Bookings.InsertOnSubmit(newBooking);
 
-                // ✅ Phòng chuyển sang "Đang hoạt động"
-                room.Status = "Đang hoạt động";
+                // Cập nhật trạng thái phòng
+                room.Status = (bookingStatus == "CheckIn") ? "Đang hoạt động" : "Đặt trước";
 
                 db.SubmitChanges();
                 return AddBookingResult.Success;
@@ -1138,7 +1156,77 @@ namespace DAL
                 return new List<BookingET>();
             }
         }
-        public List<BookingET> FindActiveRooms(string roomName, string roomTypeName)
+            public List<BookingET> FindActiveRooms(string roomName, string roomTypeName)
+            {
+                try
+                {
+                    db.CommandTimeout = 120;
+
+                    roomName = (roomName ?? "").Trim();
+                    roomTypeName = (roomTypeName ?? "").Trim();
+
+                    var query = from r in db.Rooms
+                                join rt in db.RoomTypes on r.RoomTypeID equals rt.RoomTypeID
+                                where r.Status == "Đang hoạt động"
+                                select new
+                                {
+                                    r.RoomID,
+                                    r.RoomName,
+                                    r.Status,
+                                    RoomTypeName = rt.TypeName
+                                };
+
+                    // 🔹 Lọc theo loại phòng
+                    if (!string.IsNullOrEmpty(roomTypeName) &&
+                        !roomTypeName.Equals("Tất cả", StringComparison.OrdinalIgnoreCase))
+                    {
+                        query = query.Where(x => x.RoomTypeName.Contains(roomTypeName));
+                    }
+
+                    // 🔹 Lọc theo tên phòng (tìm gần đúng)
+                    if (!string.IsNullOrEmpty(roomName))
+                    {
+                        string lowerName = roomName.ToLower();
+                        query = query.Where(x => x.RoomName.ToLower().Contains(lowerName));
+                    }
+
+                    var result = query
+                        .OrderBy(x => x.RoomName)
+                        .Select(x => new BookingET
+                        {
+                            RoomID = x.RoomID,
+                            RoomName = x.RoomName,
+                            RoomStatus = x.Status,
+                            RoomTypeName = x.RoomTypeName
+                        })
+                        .ToList();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Lỗi FindActiveRooms: " + ex.Message);
+                    return new List<BookingET>();
+                }
+
+            }
+        public List<BookingET> GetCleaningRooms()
+        {
+            return (from r in db.Rooms
+                    join rt in db.RoomTypes on r.RoomTypeID equals rt.RoomTypeID
+                    where r.Status == "Dọn dẹp"
+                    orderby r.RoomName
+                    select new BookingET
+                    {
+                        RoomID = r.RoomID,
+                        RoomName = r.RoomName,
+                        RoomStatus = r.Status,
+                        RoomTypeName = rt.TypeName,
+                        RepairNote = r.RepairNote
+                    }).ToList();
+        }
+
+        public List<BookingET> SearchCleaningRooms(string roomName, string roomTypeName)
         {
             try
             {
@@ -1149,29 +1237,32 @@ namespace DAL
 
                 var query = from r in db.Rooms
                             join rt in db.RoomTypes on r.RoomTypeID equals rt.RoomTypeID
-                            where r.Status == "Đang hoạt động"
+                            where r.Status == "Dọn dẹp"
                             select new
                             {
                                 r.RoomID,
                                 r.RoomName,
                                 r.Status,
-                                RoomTypeName = rt.TypeName
+                                RoomTypeName = rt.TypeName,
+                                r.RepairNote
                             };
 
-                // 🔹 Lọc theo loại phòng
+                // 🔹 Lọc theo loại phòng (nếu không phải "Tất cả")
                 if (!string.IsNullOrEmpty(roomTypeName) &&
                     !roomTypeName.Equals("Tất cả", StringComparison.OrdinalIgnoreCase))
                 {
                     query = query.Where(x => x.RoomTypeName.Contains(roomTypeName));
                 }
 
-                // 🔹 Lọc theo tên phòng (tìm gần đúng)
+                // 🔹 Lọc theo tên phòng / mã phòng (tìm gần đúng, không phân biệt hoa thường)
                 if (!string.IsNullOrEmpty(roomName))
                 {
                     string lowerName = roomName.ToLower();
-                    query = query.Where(x => x.RoomName.ToLower().Contains(lowerName));
+                    query = query.Where(x => x.RoomName.ToLower().Contains(lowerName) ||
+                                             x.RoomID.ToLower().Contains(lowerName));
                 }
 
+                // ✅ Kết quả cuối cùng
                 var result = query
                     .OrderBy(x => x.RoomName)
                     .Select(x => new BookingET
@@ -1179,7 +1270,8 @@ namespace DAL
                         RoomID = x.RoomID,
                         RoomName = x.RoomName,
                         RoomStatus = x.Status,
-                        RoomTypeName = x.RoomTypeName
+                        RoomTypeName = x.RoomTypeName,
+                        RepairNote = x.RepairNote
                     })
                     .ToList();
 
@@ -1187,8 +1279,28 @@ namespace DAL
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Lỗi FindActiveRooms: " + ex.Message);
+                Console.WriteLine("Lỗi SearchCleaningRooms: " + ex.Message);
                 return new List<BookingET>();
+            }
+        }
+        public List<string> GetAllRoomTypess()
+        {
+            try
+            {
+                var types = db.RoomTypes
+                              .OrderBy(rt => rt.TypeName)
+                              .Select(rt => rt.TypeName)
+                              .ToList();
+
+                // Thêm dòng "Tất cả"
+                types.Insert(0, "Tất cả");
+
+                return types;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi GetAllRoomTypes: " + ex.Message);
+                return new List<string> { "Tất cả" };
             }
         }
 

@@ -163,5 +163,22 @@ namespace BUS
         {
             return bookingDAL.UpdateBookingInfoByStaff(booking, staffId);
         }
+        public List<BookingET> GetCleaningRooms()
+        {
+            return bookingDAL.GetCleaningRooms();
+        }
+
+        public List<BookingET> SearchCleaningRooms(string roomName, string roomTypeName)
+        {
+            return bookingDAL.SearchCleaningRooms(roomName, roomTypeName);
+        }
+        public bool UpdateRoomStatusBulk(List<string> roomIds, string newStatus, string note = null)
+        {
+            return bookingDAL.UpdateRoomStatusBulk(roomIds, newStatus, note);
+        }
+        public List<string> GetAllRoomTypess()
+        {
+            return bookingDAL.GetAllRoomTypess();
+        }
     }
 }

@@ -329,6 +329,107 @@ namespace DAL
                 return new List<(string, decimal)>();
             }
         }
+        public List<InvoiceET> GetRevenueByRoom(string mode, int year, int? month = null, int? day = null)
+        {
+            try
+            {
+                // 1️⃣ Join dữ liệu: Invoices + Bookings + Rooms + RoomTypes
+                var query = from inv in db.Invoices
+                            join b in db.Bookings on inv.BookingID equals b.BookingID
+                            join r in db.Rooms on b.RoomID equals r.RoomID
+                            join rt in db.RoomTypes on r.RoomTypeID equals rt.RoomTypeID
+                            where inv.PaidStatus.ToLower() == "paid"
+                            select new
+                            {
+                                Invoice = inv,
+                                Booking = b,
+                                RoomID = r.RoomID,
+                                RoomName = r.RoomName,
+                                RoomType = rt.TypeName,
+                                RoomTypeID = rt.RoomTypeID,
+                                PricePerDay = rt.PricePerDay,
+                                PricePerHour = rt.PricePerHour
+                            };
+
+                // 2️⃣ Lọc theo thời gian
+                if (day.HasValue && month.HasValue)
+                {
+                    query = query.Where(x =>
+                        x.Invoice.InvoiceDate.Year == year &&
+                        x.Invoice.InvoiceDate.Month == month.Value &&
+                        x.Invoice.InvoiceDate.Day == day.Value
+                    );
+                }
+                else if (month.HasValue)
+                {
+                    query = query.Where(x =>
+                        x.Invoice.InvoiceDate.Year == year &&
+                        x.Invoice.InvoiceDate.Month == month.Value
+                    );
+                }
+                else
+                {
+                    query = query.Where(x =>
+                        x.Invoice.InvoiceDate.Year == year
+                    );
+                }
+
+                // 3️⃣ Group theo phòng để tính tổng doanh thu
+                var result = query
+                    .AsEnumerable() // vì RoomTypePrices là table khác, cần Enumerable để LINQ-to-Objects
+                    .GroupBy(x => new
+                    {
+                        x.RoomID,
+                        x.RoomName,
+                        x.RoomType,
+                        x.RoomTypeID,
+                        x.PricePerDay,
+                        x.PricePerHour
+                    })
+                    .Select(g =>
+                    {
+                        var sample = g.First();
+
+                        // 4️⃣ Tìm giá động theo ngày hóa đơn
+                        var dynamicPrice = db.RoomTypePrices
+                            .Where(p =>
+                                p.RoomTypeID == sample.RoomTypeID &&
+                                sample.Invoice.InvoiceDate.Date >= p.StartDate &&
+                                sample.Invoice.InvoiceDate.Date <= p.EndDate
+                            )
+                            .OrderByDescending(p => p.StartDate)
+                            .FirstOrDefault();
+
+                        decimal finalPrice = (sample.Booking.RentalType == "Day")
+                            ? (dynamicPrice?.PricePerDay ?? sample.PricePerDay)
+                            : (dynamicPrice?.PricePerHour ?? sample.PricePerHour);
+
+                        return new InvoiceET
+                        {
+                            RoomID = sample.RoomID,
+                            RoomName = sample.RoomName,
+                            RoomType = sample.RoomType,
+                            Price = finalPrice,
+                            Revenue = g.Sum(x => x.Invoice.TotalAmount)
+                        };
+                    })
+                    .OrderByDescending(x => x.Revenue)
+                    .ToList();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("❌ ERROR GetRevenueByRoom: " + ex.Message);
+                return new List<InvoiceET>();
+            }
+        }
+
+        public int ParseMonth(string dal)
+        {
+            string digits = new string(dal.Where(char.IsDigit).ToArray());
+            return int.TryParse(digits, out int m) ? m : 0;
+        }
 
     }
 }

@@ -57,6 +57,12 @@ namespace DAL
     partial void InsertInvoice(Invoice instance);
     partial void UpdateInvoice(Invoice instance);
     partial void DeleteInvoice(Invoice instance);
+    partial void InsertMaintenanceLog(MaintenanceLog instance);
+    partial void UpdateMaintenanceLog(MaintenanceLog instance);
+    partial void DeleteMaintenanceLog(MaintenanceLog instance);
+    partial void InsertMaintenanceType(MaintenanceType instance);
+    partial void UpdateMaintenanceType(MaintenanceType instance);
+    partial void DeleteMaintenanceType(MaintenanceType instance);
     partial void InsertRoom(Room instance);
     partial void UpdateRoom(Room instance);
     partial void DeleteRoom(Room instance);
@@ -81,7 +87,7 @@ namespace DAL
     #endregion
 		
 		public HotelManagementDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -179,6 +185,22 @@ namespace DAL
 			get
 			{
 				return this.GetTable<Invoice>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MaintenanceLog> MaintenanceLogs
+		{
+			get
+			{
+				return this.GetTable<MaintenanceLog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MaintenanceType> MaintenanceTypes
+		{
+			get
+			{
+				return this.GetTable<MaintenanceType>();
 			}
 		}
 		
@@ -494,6 +516,8 @@ namespace DAL
 		
 		private EntitySet<Invoice> _Invoices;
 		
+		private EntitySet<MaintenanceLog> _MaintenanceLogs;
+		
 		private EntitySet<RoomEquipment> _RoomEquipments;
 		
 		private EntitySet<ServiceUsage> _ServiceUsages;
@@ -528,6 +552,7 @@ namespace DAL
 			this._Bookings = new EntitySet<Booking>(new Action<Booking>(this.attach_Bookings), new Action<Booking>(this.detach_Bookings));
 			this._EquipmentStorages = new EntitySet<EquipmentStorage>(new Action<EquipmentStorage>(this.attach_EquipmentStorages), new Action<EquipmentStorage>(this.detach_EquipmentStorages));
 			this._Invoices = new EntitySet<Invoice>(new Action<Invoice>(this.attach_Invoices), new Action<Invoice>(this.detach_Invoices));
+			this._MaintenanceLogs = new EntitySet<MaintenanceLog>(new Action<MaintenanceLog>(this.attach_MaintenanceLogs), new Action<MaintenanceLog>(this.detach_MaintenanceLogs));
 			this._RoomEquipments = new EntitySet<RoomEquipment>(new Action<RoomEquipment>(this.attach_RoomEquipments), new Action<RoomEquipment>(this.detach_RoomEquipments));
 			this._ServiceUsages = new EntitySet<ServiceUsage>(new Action<ServiceUsage>(this.attach_ServiceUsages), new Action<ServiceUsage>(this.detach_ServiceUsages));
 			OnCreated();
@@ -765,6 +790,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_MaintenanceLog", Storage="_MaintenanceLogs", ThisKey="StaffID", OtherKey="StaffID")]
+		public EntitySet<MaintenanceLog> MaintenanceLogs
+		{
+			get
+			{
+				return this._MaintenanceLogs;
+			}
+			set
+			{
+				this._MaintenanceLogs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_RoomEquipment", Storage="_RoomEquipments", ThisKey="StaffID", OtherKey="StaffID")]
 		public EntitySet<RoomEquipment> RoomEquipments
 		{
@@ -854,6 +892,18 @@ namespace DAL
 		}
 		
 		private void detach_Invoices(Invoice entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = null;
+		}
+		
+		private void attach_MaintenanceLogs(MaintenanceLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.Staff = this;
+		}
+		
+		private void detach_MaintenanceLogs(MaintenanceLog entity)
 		{
 			this.SendPropertyChanging();
 			entity.Staff = null;
@@ -2116,6 +2166,8 @@ namespace DAL
 		
 		private string _StaffID;
 		
+		private EntitySet<MaintenanceLog> _MaintenanceLogs;
+		
 		private EntitySet<RoomEquipment> _RoomEquipments;
 		
 		private EntityRef<Staff> _Staff;
@@ -2144,6 +2196,7 @@ namespace DAL
 		
 		public EquipmentStorage()
 		{
+			this._MaintenanceLogs = new EntitySet<MaintenanceLog>(new Action<MaintenanceLog>(this.attach_MaintenanceLogs), new Action<MaintenanceLog>(this.detach_MaintenanceLogs));
 			this._RoomEquipments = new EntitySet<RoomEquipment>(new Action<RoomEquipment>(this.attach_RoomEquipments), new Action<RoomEquipment>(this.detach_RoomEquipments));
 			this._Staff = default(EntityRef<Staff>);
 			OnCreated();
@@ -2313,6 +2366,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EquipmentStorage_MaintenanceLog", Storage="_MaintenanceLogs", ThisKey="EquipmentID", OtherKey="EquipmentID")]
+		public EntitySet<MaintenanceLog> MaintenanceLogs
+		{
+			get
+			{
+				return this._MaintenanceLogs;
+			}
+			set
+			{
+				this._MaintenanceLogs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EquipmentStorage_RoomEquipment", Storage="_RoomEquipments", ThisKey="EquipmentID", OtherKey="EquipmentStorage")]
 		public EntitySet<RoomEquipment> RoomEquipments
 		{
@@ -2378,6 +2444,18 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_MaintenanceLogs(MaintenanceLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.EquipmentStorage = this;
+		}
+		
+		private void detach_MaintenanceLogs(MaintenanceLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.EquipmentStorage = null;
 		}
 		
 		private void attach_RoomEquipments(RoomEquipment entity)
@@ -3011,6 +3089,538 @@ namespace DAL
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MaintenanceLog")]
+	public partial class MaintenanceLog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _LogID;
+		
+		private int _MaintenanceTypeID;
+		
+		private string _RoomID;
+		
+		private string _EquipmentID;
+		
+		private string _StaffID;
+		
+		private System.DateTime _MaintenanceDate;
+		
+		private string _Status;
+		
+		private string _Note;
+		
+		private EntityRef<EquipmentStorage> _EquipmentStorage;
+		
+		private EntityRef<Staff> _Staff;
+		
+		private EntityRef<MaintenanceType> _MaintenanceType;
+		
+		private EntityRef<Room> _Room;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnLogIDChanging(int value);
+    partial void OnLogIDChanged();
+    partial void OnMaintenanceTypeIDChanging(int value);
+    partial void OnMaintenanceTypeIDChanged();
+    partial void OnRoomIDChanging(string value);
+    partial void OnRoomIDChanged();
+    partial void OnEquipmentIDChanging(string value);
+    partial void OnEquipmentIDChanged();
+    partial void OnStaffIDChanging(string value);
+    partial void OnStaffIDChanged();
+    partial void OnMaintenanceDateChanging(System.DateTime value);
+    partial void OnMaintenanceDateChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnNoteChanging(string value);
+    partial void OnNoteChanged();
+    #endregion
+		
+		public MaintenanceLog()
+		{
+			this._EquipmentStorage = default(EntityRef<EquipmentStorage>);
+			this._Staff = default(EntityRef<Staff>);
+			this._MaintenanceType = default(EntityRef<MaintenanceType>);
+			this._Room = default(EntityRef<Room>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LogID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int LogID
+		{
+			get
+			{
+				return this._LogID;
+			}
+			set
+			{
+				if ((this._LogID != value))
+				{
+					this.OnLogIDChanging(value);
+					this.SendPropertyChanging();
+					this._LogID = value;
+					this.SendPropertyChanged("LogID");
+					this.OnLogIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaintenanceTypeID", DbType="Int NOT NULL")]
+		public int MaintenanceTypeID
+		{
+			get
+			{
+				return this._MaintenanceTypeID;
+			}
+			set
+			{
+				if ((this._MaintenanceTypeID != value))
+				{
+					if (this._MaintenanceType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaintenanceTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._MaintenanceTypeID = value;
+					this.SendPropertyChanged("MaintenanceTypeID");
+					this.OnMaintenanceTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomID", DbType="Char(10)")]
+		public string RoomID
+		{
+			get
+			{
+				return this._RoomID;
+			}
+			set
+			{
+				if ((this._RoomID != value))
+				{
+					if (this._Room.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRoomIDChanging(value);
+					this.SendPropertyChanging();
+					this._RoomID = value;
+					this.SendPropertyChanged("RoomID");
+					this.OnRoomIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EquipmentID", DbType="Char(10)")]
+		public string EquipmentID
+		{
+			get
+			{
+				return this._EquipmentID;
+			}
+			set
+			{
+				if ((this._EquipmentID != value))
+				{
+					if (this._EquipmentStorage.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnEquipmentIDChanging(value);
+					this.SendPropertyChanging();
+					this._EquipmentID = value;
+					this.SendPropertyChanged("EquipmentID");
+					this.OnEquipmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffID", DbType="Char(10) NOT NULL", CanBeNull=false)]
+		public string StaffID
+		{
+			get
+			{
+				return this._StaffID;
+			}
+			set
+			{
+				if ((this._StaffID != value))
+				{
+					if (this._Staff.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStaffIDChanging(value);
+					this.SendPropertyChanging();
+					this._StaffID = value;
+					this.SendPropertyChanged("StaffID");
+					this.OnStaffIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaintenanceDate", DbType="DateTime NOT NULL")]
+		public System.DateTime MaintenanceDate
+		{
+			get
+			{
+				return this._MaintenanceDate;
+			}
+			set
+			{
+				if ((this._MaintenanceDate != value))
+				{
+					this.OnMaintenanceDateChanging(value);
+					this.SendPropertyChanging();
+					this._MaintenanceDate = value;
+					this.SendPropertyChanged("MaintenanceDate");
+					this.OnMaintenanceDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Note", DbType="NVarChar(MAX)")]
+		public string Note
+		{
+			get
+			{
+				return this._Note;
+			}
+			set
+			{
+				if ((this._Note != value))
+				{
+					this.OnNoteChanging(value);
+					this.SendPropertyChanging();
+					this._Note = value;
+					this.SendPropertyChanged("Note");
+					this.OnNoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EquipmentStorage_MaintenanceLog", Storage="_EquipmentStorage", ThisKey="EquipmentID", OtherKey="EquipmentID", IsForeignKey=true)]
+		public EquipmentStorage EquipmentStorage
+		{
+			get
+			{
+				return this._EquipmentStorage.Entity;
+			}
+			set
+			{
+				EquipmentStorage previousValue = this._EquipmentStorage.Entity;
+				if (((previousValue != value) 
+							|| (this._EquipmentStorage.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._EquipmentStorage.Entity = null;
+						previousValue.MaintenanceLogs.Remove(this);
+					}
+					this._EquipmentStorage.Entity = value;
+					if ((value != null))
+					{
+						value.MaintenanceLogs.Add(this);
+						this._EquipmentID = value.EquipmentID;
+					}
+					else
+					{
+						this._EquipmentID = default(string);
+					}
+					this.SendPropertyChanged("EquipmentStorage");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Staff_MaintenanceLog", Storage="_Staff", ThisKey="StaffID", OtherKey="StaffID", IsForeignKey=true)]
+		public Staff Staff
+		{
+			get
+			{
+				return this._Staff.Entity;
+			}
+			set
+			{
+				Staff previousValue = this._Staff.Entity;
+				if (((previousValue != value) 
+							|| (this._Staff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Staff.Entity = null;
+						previousValue.MaintenanceLogs.Remove(this);
+					}
+					this._Staff.Entity = value;
+					if ((value != null))
+					{
+						value.MaintenanceLogs.Add(this);
+						this._StaffID = value.StaffID;
+					}
+					else
+					{
+						this._StaffID = default(string);
+					}
+					this.SendPropertyChanged("Staff");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MaintenanceType_MaintenanceLog", Storage="_MaintenanceType", ThisKey="MaintenanceTypeID", OtherKey="MaintenanceTypeID", IsForeignKey=true)]
+		public MaintenanceType MaintenanceType
+		{
+			get
+			{
+				return this._MaintenanceType.Entity;
+			}
+			set
+			{
+				MaintenanceType previousValue = this._MaintenanceType.Entity;
+				if (((previousValue != value) 
+							|| (this._MaintenanceType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MaintenanceType.Entity = null;
+						previousValue.MaintenanceLogs.Remove(this);
+					}
+					this._MaintenanceType.Entity = value;
+					if ((value != null))
+					{
+						value.MaintenanceLogs.Add(this);
+						this._MaintenanceTypeID = value.MaintenanceTypeID;
+					}
+					else
+					{
+						this._MaintenanceTypeID = default(int);
+					}
+					this.SendPropertyChanged("MaintenanceType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_MaintenanceLog", Storage="_Room", ThisKey="RoomID", OtherKey="RoomID", IsForeignKey=true)]
+		public Room Room
+		{
+			get
+			{
+				return this._Room.Entity;
+			}
+			set
+			{
+				Room previousValue = this._Room.Entity;
+				if (((previousValue != value) 
+							|| (this._Room.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Room.Entity = null;
+						previousValue.MaintenanceLogs.Remove(this);
+					}
+					this._Room.Entity = value;
+					if ((value != null))
+					{
+						value.MaintenanceLogs.Add(this);
+						this._RoomID = value.RoomID;
+					}
+					else
+					{
+						this._RoomID = default(string);
+					}
+					this.SendPropertyChanged("Room");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MaintenanceType")]
+	public partial class MaintenanceType : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MaintenanceTypeID;
+		
+		private string _TypeName;
+		
+		private string _Description;
+		
+		private EntitySet<MaintenanceLog> _MaintenanceLogs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaintenanceTypeIDChanging(int value);
+    partial void OnMaintenanceTypeIDChanged();
+    partial void OnTypeNameChanging(string value);
+    partial void OnTypeNameChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    #endregion
+		
+		public MaintenanceType()
+		{
+			this._MaintenanceLogs = new EntitySet<MaintenanceLog>(new Action<MaintenanceLog>(this.attach_MaintenanceLogs), new Action<MaintenanceLog>(this.detach_MaintenanceLogs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaintenanceTypeID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MaintenanceTypeID
+		{
+			get
+			{
+				return this._MaintenanceTypeID;
+			}
+			set
+			{
+				if ((this._MaintenanceTypeID != value))
+				{
+					this.OnMaintenanceTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._MaintenanceTypeID = value;
+					this.SendPropertyChanged("MaintenanceTypeID");
+					this.OnMaintenanceTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TypeName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string TypeName
+		{
+			get
+			{
+				return this._TypeName;
+			}
+			set
+			{
+				if ((this._TypeName != value))
+				{
+					this.OnTypeNameChanging(value);
+					this.SendPropertyChanging();
+					this._TypeName = value;
+					this.SendPropertyChanged("TypeName");
+					this.OnTypeNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MaintenanceType_MaintenanceLog", Storage="_MaintenanceLogs", ThisKey="MaintenanceTypeID", OtherKey="MaintenanceTypeID")]
+		public EntitySet<MaintenanceLog> MaintenanceLogs
+		{
+			get
+			{
+				return this._MaintenanceLogs;
+			}
+			set
+			{
+				this._MaintenanceLogs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_MaintenanceLogs(MaintenanceLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.MaintenanceType = this;
+		}
+		
+		private void detach_MaintenanceLogs(MaintenanceLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.MaintenanceType = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Room")]
 	public partial class Room : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3031,7 +3641,11 @@ namespace DAL
 		
 		private string _Official;
 		
+		private string _RepairNote;
+		
 		private EntitySet<Booking> _Bookings;
+		
+		private EntitySet<MaintenanceLog> _MaintenanceLogs;
 		
 		private EntitySet<RoomEquipment> _RoomEquipments;
 		
@@ -3057,11 +3671,14 @@ namespace DAL
     partial void OnStatusChanged();
     partial void OnOfficialChanging(string value);
     partial void OnOfficialChanged();
+    partial void OnRepairNoteChanging(string value);
+    partial void OnRepairNoteChanged();
     #endregion
 		
 		public Room()
 		{
 			this._Bookings = new EntitySet<Booking>(new Action<Booking>(this.attach_Bookings), new Action<Booking>(this.detach_Bookings));
+			this._MaintenanceLogs = new EntitySet<MaintenanceLog>(new Action<MaintenanceLog>(this.attach_MaintenanceLogs), new Action<MaintenanceLog>(this.detach_MaintenanceLogs));
 			this._RoomEquipments = new EntitySet<RoomEquipment>(new Action<RoomEquipment>(this.attach_RoomEquipments), new Action<RoomEquipment>(this.detach_RoomEquipments));
 			this._RoomEvaluations = new EntitySet<RoomEvaluation>(new Action<RoomEvaluation>(this.attach_RoomEvaluations), new Action<RoomEvaluation>(this.detach_RoomEvaluations));
 			this._RoomType = default(EntityRef<RoomType>);
@@ -3212,6 +3829,26 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RepairNote", DbType="NVarChar(MAX)")]
+		public string RepairNote
+		{
+			get
+			{
+				return this._RepairNote;
+			}
+			set
+			{
+				if ((this._RepairNote != value))
+				{
+					this.OnRepairNoteChanging(value);
+					this.SendPropertyChanging();
+					this._RepairNote = value;
+					this.SendPropertyChanged("RepairNote");
+					this.OnRepairNoteChanged();
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_Booking", Storage="_Bookings", ThisKey="RoomID", OtherKey="RoomID")]
 		public EntitySet<Booking> Bookings
 		{
@@ -3222,6 +3859,19 @@ namespace DAL
 			set
 			{
 				this._Bookings.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Room_MaintenanceLog", Storage="_MaintenanceLogs", ThisKey="RoomID", OtherKey="RoomID")]
+		public EntitySet<MaintenanceLog> MaintenanceLogs
+		{
+			get
+			{
+				return this._MaintenanceLogs;
+			}
+			set
+			{
+				this._MaintenanceLogs.Assign(value);
 			}
 		}
 		
@@ -3312,6 +3962,18 @@ namespace DAL
 		}
 		
 		private void detach_Bookings(Booking entity)
+		{
+			this.SendPropertyChanging();
+			entity.Room = null;
+		}
+		
+		private void attach_MaintenanceLogs(MaintenanceLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.Room = this;
+		}
+		
+		private void detach_MaintenanceLogs(MaintenanceLog entity)
 		{
 			this.SendPropertyChanging();
 			entity.Room = null;

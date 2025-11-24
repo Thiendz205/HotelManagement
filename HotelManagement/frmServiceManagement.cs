@@ -414,5 +414,9 @@ namespace HotelManagement
             }
         }
 
+        private void gunaGroupBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -14,92 +14,219 @@ namespace HotelManagement
 {
     public partial class frmChangeRoomStatusRECPGUI : Form
     {
-        public frmChangeRoomStatusRECPGUI()
+        private string staffId;
+        public frmChangeRoomStatusRECPGUI(string staffId)
         {
             InitializeComponent();
+            this.staffId = staffId;
         }
 
         private void frmChangeRoomStatusRECPGUI_Load(object sender, EventArgs e)
         {
-            LoadComboboxes();
+            LoadCleaningRooms();
+            cboRoomType.DataSource = bus.GetAllRoomTypess();
         }
+
         private readonly BookingBUS bus = new BookingBUS();
-        private void LoadComboboxes()
+        private void LoadCleaningRooms()
         {
-            // 🔹 Load tất cả phòng
-            var rooms = new List<BookingET>();
-            var roomTypes = bus.GetRoomTypes();
+         
+            var rooms = bus.GetCleaningRooms();
+            dgvRooms.DataSource = rooms;
 
-            foreach (var type in roomTypes)
+            // Thêm checkbox cột Select
+            if (!dgvRooms.Columns.Contains("Select"))
             {
-                var typeRooms = bus.GetRoomsByType(type.BookingID);
-                rooms.AddRange(typeRooms);
+                DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+                chk.HeaderText = "";
+                chk.Name = "Select";
+                chk.Width = 60;
+                dgvRooms.Columns.Insert(0, chk);
             }
 
-            // ✅ Gán vào cboRoom (KHÔNG phải cboStatus)
-            cboRoom.DataSource = rooms;
-            cboRoom.DisplayMember = "RoomName";
-            cboRoom.ValueMember = "RoomID";
-            cboRoom.SelectedIndex = -1;
-            cboRoom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cboRoom.AutoCompleteSource = AutoCompleteSource.ListItems;
+            AddSelectAllCheckBox(); // <-- thêm dòng này
 
-            // 🔹 Danh sách trạng thái phòng
-            var statuses = new List<string>
-    {
-        "Trống",
-        "Bảo trì",
-        "Dọn dẹp"
-    };
-
-            // ✅ Gán riêng cho cboStatus
-            cboStatus.DataSource = statuses;
-            cboStatus.SelectedIndex = -1;
+            HideUnusedColumns();
+            RenameHeaders();
+            dgvRooms.Columns["Select"].ReadOnly = false;
         }
-
-
-        private void btnUpdateStatus_Click(object sender, EventArgs e)
+        private void HideUnusedColumns()
         {
-            if (cboRoom.SelectedValue == null)
+            string[] showColumns =
             {
-                MessageBox.Show("Vui lòng chọn phòng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (cboStatus.SelectedItem == null)
-            {
-                MessageBox.Show("Vui lòng chọn trạng thái mới!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            var dto = new BookingET
-            {
-                RoomID = cboRoom.SelectedValue.ToString(), // ✅ đổi int → string
-                RoomStatus = cboStatus.SelectedItem.ToString()
+                "Select", "RoomID", "RoomName", "RoomTypeName", "RoomStatus"
             };
 
-            bool result = bus.UpdateRoomStatus(dto);
+            foreach (DataGridViewColumn col in dgvRooms.Columns)
+            {
+                if (!showColumns.Contains(col.Name))
+                    col.Visible = false;
+            }
+        }
+
+        // Đổi header sang tiếng Việt
+        private void RenameHeaders()
+        {
+            dgvRooms.Columns["RoomID"].HeaderText = "Mã phòng";
+            dgvRooms.Columns["RoomName"].HeaderText = "Tên phòng";
+            dgvRooms.Columns["RoomTypeName"].HeaderText = "Loại phòng";
+            dgvRooms.Columns["RoomStatus"].HeaderText = "Trạng thái";
+        }
+
+        private List<string> GetSelectedRooms()
+        {
+            List<string> selected = new List<string>();
+
+            foreach (DataGridViewRow row in dgvRooms.Rows)
+            {
+                bool isChecked = Convert.ToBoolean(row.Cells["Select"].Value);
+
+                if (isChecked)
+                {
+                    string roomId = row.Cells["RoomID"].Value.ToString();
+                    selected.Add(roomId);
+                }
+            }
+
+            return selected;
+        }
+        private void AddSelectAllCheckBox()
+        {
+            // Nếu chưa có cột Select
+            if (!dgvRooms.Columns.Contains("Select"))
+            {
+                DataGridViewCheckBoxColumn chk = new DataGridViewCheckBoxColumn();
+                chk.HeaderText = "";
+                chk.Name = "Select";
+                chk.Width = 60;
+                dgvRooms.Columns.Insert(0, chk);
+            }
+
+            // Thêm checkbox vào header
+            Rectangle rect = dgvRooms.GetCellDisplayRectangle(0, -1, true);
+            CheckBox chkHeader = new CheckBox();
+            chkHeader.Name = "chkHeader";
+            chkHeader.Size = new Size(18, 18);
+            chkHeader.Location = new Point(rect.Location.X + (rect.Width - 18) / 2, rect.Location.Y + (rect.Height - 18) / 2);
+            chkHeader.CheckedChanged += ChkHeader_CheckedChanged;
+            dgvRooms.Controls.Add(chkHeader);
+        }
+        private void ChkHeader_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox headerChk = sender as CheckBox;
+
+            foreach (DataGridViewRow row in dgvRooms.Rows)
+            {
+                row.Cells["Select"].Value = headerChk.Checked;
+            }
+        }
+
+        private void btnSetAvailable_Click(object sender, EventArgs e)
+        {
+            var selectedRooms = GetSelectedRooms();
+
+            if (!selectedRooms.Any())
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất một phòng!", "Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                return;
+            }
+
+            // Hộp thoại xác nhận
+            DialogResult confirm = MessageBox.Show(
+                "Bạn có chắc muốn chuyển các phòng đã chọn sang TRỐNG không?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (confirm != DialogResult.Yes)
+                return;
+
+            bool result = bus.UpdateRoomStatusBulk(selectedRooms, "Trống");
 
             if (result)
             {
-                MessageBox.Show("Cập nhật trạng thái phòng thành công!", "Thành công",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                lblCurrentStatus.Text = $"Trạng thái hiện tại: {dto.RoomStatus}";
+                MessageBox.Show("Cập nhật trạng thái thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCleaningRooms();
             }
             else
             {
-                MessageBox.Show("Cập nhật thất bại!", "Lỗi",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Cập nhật thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void cboRoom_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnSetMaintenance_Click(object sender, EventArgs e)
         {
-            if (cboRoom.SelectedValue == null) return;
-            string roomId = cboRoom.SelectedValue.ToString();
+            var selectedRooms = GetSelectedRooms();
 
-            string currentStatus = bus.GetRoomStatus(roomId);
-            lblCurrentStatus.Text = $"Trạng thái hiện tại: {currentStatus}";
+            if (!selectedRooms.Any())
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất một phòng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNote.Text))
+            {
+                MessageBox.Show("Vui lòng nhập ghi chú bảo trì!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            // Hộp thoại xác nhận
+            DialogResult confirm = MessageBox.Show(
+                "Bạn có chắc muốn chuyển các phòng đã chọn sang BẢO TRÌ không?",
+                "Xác nhận",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm != DialogResult.Yes)
+                return;
+
+            bool ok = bus.UpdateRoomStatusBulk(selectedRooms, "Bảo trì", txtNote.Text.Trim());
+
+            if (ok)
+            {
+                MessageBox.Show("Đã chuyển sang Bảo trì!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadCleaningRooms();
+                txtNote.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Cập nhật thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            string roomName = txtRoomName.Text.Trim();
+            string roomType = cboRoomType.SelectedItem?.ToString() ?? "Tất cả";
+
+            // Lấy danh sách phòng tìm được
+            var rooms = bus.SearchCleaningRooms(roomName, roomType) ?? new List<BookingET>();
+
+            if (rooms.Count == 0)
+            {
+                MessageBox.Show("Không tìm thấy phòng phù hợp!",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
+
+                LoadCleaningRooms();
+                return;
+            }
+            dgvRooms.DataSource = rooms;
+            HideUnusedColumns();
+
+            // Đổi header sang tiếng Việt
+            RenameHeaders();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            var parent = Application.OpenForms["frmBookingStaffHomeGUI"] as frmBookingStaffHomeGUI;
+            if (parent != null)
+            {
+                var listForm = new frmReceptionistsRoomList(staffId); // truyền staffId nếu cần
+                parent.OpenChildForm(listForm);
+            }
         }
     }
 }

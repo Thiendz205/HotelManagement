@@ -106,5 +106,24 @@ namespace HotelManagement
             dgvBookingHistory.Columns["UsedAt"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
         }
 
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(_customerId))
+                {
+                    MessageBox.Show("Không xác định được khách hàng.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Mở form báo cáo, truyền ID khách hàng
+                frmReportCustomerHistory frm = new frmReportCustomerHistory(_customerId);
+                frm.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi mở báo cáo: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
