@@ -55,6 +55,8 @@
     <Compile Include="EquipmentStorage_ET.cs" />
     <Compile Include="FeeTypeET.cs" />
     <Compile Include="InvoiceET.cs" />
+    <Compile Include="MaintenanceLog_ET.cs" />
+    <Compile Include="MaintenanceType_ET.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RankCustomerET.cs" />
     <Compile Include="RoomEquipment_ET.cs" />

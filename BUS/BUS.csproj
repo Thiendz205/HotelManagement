@@ -51,6 +51,8 @@
     <Compile Include="FeeTypeBUS.cs" />
     <Compile Include="InvoiceBUS.cs" />
     <Compile Include="Login_Logout_BUS.cs" />
+    <Compile Include="MaintenanceLog_BUS.cs" />
+    <Compile Include="MaintenanceType_BUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RankCusstomerBUS.cs" />
     <Compile Include="RoomEquipment_BUS.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="Room_Type_BUS.cs" />
     <Compile Include="ServiceBUS.cs" />
     <Compile Include="StaffBUS.cs" />
+    <Compile Include="Staff_BUS.cs" />
     <Compile Include="UseServiceBUS.cs" />
   </ItemGroup>
   <ItemGroup>

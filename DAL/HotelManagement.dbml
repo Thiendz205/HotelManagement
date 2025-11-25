@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="HotelManagement" Class="HotelManagementDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-EKLM582L;Initial Catalog=HotelManagement;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HotelManagementConnectionString3" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-J4SN4OIQ\SQLEXPRESS;Initial Catalog=HotelManagement;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="HotelManagementConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
       <Column Name="AccountID" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -96,7 +96,6 @@
       <Column Name="Status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="StaffID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Association Name="EquipmentStorage_MaintenanceLog" Member="MaintenanceLogs" ThisKey="EquipmentID" OtherKey="EquipmentID" Type="MaintenanceLog" />
       <Association Name="EquipmentStorage_RoomEquipment" Member="RoomEquipments" ThisKey="EquipmentID" OtherKey="EquipmentStorage" Type="RoomEquipment" />
       <Association Name="Staff_EquipmentStorage" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
     </Type>
@@ -135,15 +134,15 @@
       <Column Name="LogID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MaintenanceTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="RoomID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
-      <Column Name="EquipmentID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="RoomEquipmentID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
       <Column Name="StaffID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
       <Column Name="MaintenanceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Association Name="EquipmentStorage_MaintenanceLog" Member="EquipmentStorage" ThisKey="EquipmentID" OtherKey="EquipmentID" Type="EquipmentStorage" IsForeignKey="true" />
       <Association Name="Staff_MaintenanceLog" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" />
       <Association Name="MaintenanceType_MaintenanceLog" Member="MaintenanceType" ThisKey="MaintenanceTypeID" OtherKey="MaintenanceTypeID" Type="MaintenanceType" IsForeignKey="true" />
       <Association Name="Room_MaintenanceLog" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" />
+      <Association Name="RoomEquipment_MaintenanceLog" Member="RoomEquipment" ThisKey="RoomEquipmentID" OtherKey="RoomEquipmentID" Type="RoomEquipment" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MaintenanceType" Member="MaintenanceTypes">
@@ -181,6 +180,7 @@
       <Column Name="Condition" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="StaffID" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Association Name="RoomEquipment_MaintenanceLog" Member="MaintenanceLogs" ThisKey="RoomEquipmentID" OtherKey="RoomEquipmentID" Type="MaintenanceLog" />
       <Association Name="EquipmentStorage_RoomEquipment" Member="EquipmentStorage1" ThisKey="EquipmentStorage" OtherKey="EquipmentID" Type="EquipmentStorage" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Room_RoomEquipment" Member="Room" ThisKey="RoomID" OtherKey="RoomID" Type="Room" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Staff_RoomEquipment" Member="Staff" ThisKey="StaffID" OtherKey="StaffID" Type="Staff" IsForeignKey="true" DeleteRule="CASCADE" />

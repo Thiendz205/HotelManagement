@@ -51,6 +51,11 @@ namespace HotelManagement
                     MessageBox.Show("Số lượng không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                if(cbTinhTrang.SelectedIndex == 1)
+                {
+                    MessageBox.Show("Thiết bị gắn vào phòng phải là Good", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 RoomEquipment_ET item = new RoomEquipment_ET
                 {
@@ -88,7 +93,6 @@ namespace HotelManagement
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-
             if (cbThietBi.SelectedIndex == -1 || cbPhong.SelectedIndex == -1)
             {
                 MessageBox.Show("Vui lòng chọn phòng và thiết bị!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -100,11 +104,30 @@ namespace HotelManagement
                 MessageBox.Show("Số lượng không hợp lệ!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             try
             {
+                string staffID = maNhanVien;
+
+                if (cbTinhTrang.Text == "Maintenance")
+                {
+                    frmChooseStaffTech f = new frmChooseStaffTech();
+                    if (f.ShowDialog() == DialogResult.OK)
+                    {
+                        staffID = f.SelectedStaffID;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bạn chưa chọn nhân viên kỹ thuật!",
+                                        "Cảnh báo",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
                 RoomEquipment_ET et = new RoomEquipment_ET
                 {
-
                     RoomEquipmentID = this.RoomEquipmentID,
                     RoomID = cbPhong.SelectedValue.ToString(),
                     EquipmentStorage = cbThietBi.SelectedValue.ToString(),
@@ -112,24 +135,54 @@ namespace HotelManagement
                     InstalledDate = dtNgayLapDat.Value,
                     Condition = cbTinhTrang.Text,
                     Note = txtNote.Text,
-                    StaffID = maNhanVien
+                    StaffID = staffID  
                 };
 
                 bool success = roomEquipment_BUS.UpdateRoomEquipment(et);
 
-                if (success)
+                if (!success)
                 {
-                    MessageBox.Show("Cập nhật thành công!", "Thông báo");
-                    dtGV_RoomEquipment.DataSource = roomEquipment_BUS.getAllRoomEquipment();
+                    if (cbTinhTrang.Text == "Good")
+                    {
+                        MessageBox.Show(
+                            "Không thể chuyển về trạng thái GOOD!\n" +
+                            "Vẫn còn lịch sử bảo trì CHƯA HOÀN THÀNH.",
+                            "Cảnh báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning
+                        );
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cập nhật thất bại! Kiểm tra lại dữ liệu.",
+                                        "Lỗi",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
+                    return;
                 }
-                else
+
+                MessageBox.Show("Cập nhật thành công!", "Thông báo");
+
+                if (cbTinhTrang.Text == "Maintenance")
                 {
-                    MessageBox.Show("Cập nhật thất bại! Kiểm tra lại số lượng hoặc dữ liệu.", "Lỗi");
+                    MessageBox.Show(
+                        $"Thiết bị đã chuyển sang BẢO TRÌ.\nPhòng {cbPhong.Text} cũng đã chuyển sang BẢO TRÌ!",
+                        "Thông báo");
                 }
+
+                if (cbTinhTrang.Text == "Good")
+                {
+                    MessageBox.Show(
+                        $"Thiết bị đã chuyển sang GOOD.\nNếu phòng không còn thiết bị bảo trì, phòng sẽ TRỞ VỀ TRỐNG.",
+                        "Thông báo");
+                }
+
+                dtGV_RoomEquipment.DataSource = roomEquipment_BUS.getAllRoomEquipment();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message);
+                MessageBox.Show(ex.Message, "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

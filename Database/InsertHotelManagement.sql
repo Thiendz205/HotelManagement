@@ -511,6 +511,11 @@ VALUES
 ('BK219','CU018','R019','Day','2024-12-19 12:00','2024-12-20 12:00',800000,'CheckOut','ST029'),
 ('BK220','CU019','R020','Hour','2024-12-20 12:00','2024-12-20 16:00',300000,'CheckOut','ST030');
 GO
+INSERT INTO MaintenanceType(TypeName,Description)
+VALUES
+(N'Bảo trì thiết bị', N'Bảo thiết bị'),
+(N'Bảo trì phòng', N'Bảo trì phòng');
+GO
 CREATE OR ALTER FUNCTION dbo.fn_CalcBookingPrice
 (
     @RoomID CHAR(10),

@@ -168,6 +168,7 @@ namespace HotelManagement
             rp_chucNangDichVu.IsMainMenu = true;
             rp_chucNangPhi.IsMainMenu = true;
             rp_chucNangKhac.IsMainMenu = true;
+            rp_chucNangBaoTri.IsMainMenu = true;
         }
 
        
@@ -318,6 +319,29 @@ namespace HotelManagement
         {
             OpenChildForm(new frmSynthesisReport());
 
+        }
+
+        private void btnBaoTri_Click(object sender, EventArgs e)
+        {
+            rp_chucNangBaoTri.Show(btnBaoTri, btnBaoTri.Width, 0);
+
+        }
+
+        private void loạiBảoTrìToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmMaintenanceType());
+
+        }
+
+        private void lịchSửBảoTrìToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmMaintenanceLog());
+
+        }
+
+        private void btnBaoCao_Click_1(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmSynthesisReport());
         }
     }
 }

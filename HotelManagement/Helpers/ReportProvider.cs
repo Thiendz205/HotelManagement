@@ -1,7 +1,7 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using System;
-using System.Collections.Generic;
+using System.Collections.Generic;   
 using System.IO;
 using System.Windows.Forms;
 
@@ -10,7 +10,7 @@ namespace GUI.Helpers
     public static class CrystalReportHelper
     {
         // 🔥 Gán cứng server máy anh ở đây
-        private static readonly string ServerName = @"LAPTOP-EKLM582L";
+        private static readonly string ServerName = @"LAPTOP-J4SN4OIQ\SQLEXPRESS";
         private static readonly string DatabaseName = "HotelManagement";
 
         public static ReportDocument LoadReport(string reportFileName, Dictionary<string, object> parameters = null)

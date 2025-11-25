@@ -17,6 +17,7 @@ namespace HotelManagement
         public frmNhanVienKyThuat(string staffID)
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             this.staffID = staffID;
         }
 
@@ -79,6 +80,29 @@ namespace HotelManagement
         private void btnThongTin_Click(object sender, EventArgs e)
         {
             OpenChildForm(new frmPersonal_Information(staffID));
+        }
+
+        private void btnBaoTri_Click(object sender, EventArgs e)
+        {
+            rp_ChucNangBaoTri.Show(btnBaoTri, btnBaoTri.Width, 0);
+
+        }
+
+        private void frmNhanVienKyThuat_Load(object sender, EventArgs e)
+        {
+            rp_ChucNangBaoTri.IsMainMenu = true;
+        }
+
+        private void loạiBảoTrìToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmMaintenanceType());
+
+        }
+
+        private void lịchSửBảoTrìToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new frmMaintenanceLog());
+
         }
     }
 }

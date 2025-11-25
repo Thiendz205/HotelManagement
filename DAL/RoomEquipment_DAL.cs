@@ -47,31 +47,57 @@ namespace DAL
         {
             try
             {
-                var equipment = db.EquipmentStorages
-                                  .FirstOrDefault(e => e.EquipmentID == roomEquipment.EquipmentStorage);
-                if (equipment == null)
-                    throw new Exception("Thiết bị không tồn tại trong kho!");
+                var storage = db.EquipmentStorages
+                                .FirstOrDefault(x => x.EquipmentID == roomEquipment.EquipmentStorage);
 
-                if (equipment.Quantity < roomEquipment.Quantity)
+                if (storage == null)
+                    throw new Exception("Thiết bị không tồn tại!");
+
+                if (storage.Quantity < roomEquipment.Quantity)
                     throw new Exception("Số lượng trong kho không đủ!");
 
-                equipment.Quantity -= roomEquipment.Quantity;
+                // ✔ Lấy ID lớn nhất ngoài database chỉ 1 lần
+                string lastID = db.RoomEquipments
+                                  .OrderByDescending(x => x.RoomEquipmentID)
+                                  .Select(x => x.RoomEquipmentID)
+                                  .FirstOrDefault() ?? "REQ000";
 
-                string newID = GenerateNewID();
+                int lastNum = int.Parse(lastID.Substring(3));
 
-                RoomEquipment newItem = new RoomEquipment
+                // ✔ Tạo list để giữ ID đã tạo trong batch
+                HashSet<string> usedIDs = new HashSet<string>();
+
+                for (int i = 0; i < roomEquipment.Quantity; i++)
                 {
-                    RoomEquipmentID = newID,
-                    RoomID = roomEquipment.RoomID,
-                    EquipmentStorage = roomEquipment.EquipmentStorage,
-                    Quantity = roomEquipment.Quantity,
-                    InstalledDate = roomEquipment.InstalledDate,
-                    Condition = roomEquipment.Condition,
-                    Note = roomEquipment.Note,
-                    StaffID = roomEquipment.StaffID
-                };
+                    lastNum++;
+                    string newID = "REQ" + lastNum.ToString("D3");
 
-                db.RoomEquipments.InsertOnSubmit(newItem);
+                    // Dự phòng trường hợp cực hiếm bị trùng
+                    while (db.RoomEquipments.Any(x => x.RoomEquipmentID == newID) || usedIDs.Contains(newID))
+                    {
+                        lastNum++;
+                        newID = "REQ" + lastNum.ToString("D3");
+                    }
+
+                    usedIDs.Add(newID);
+
+                    RoomEquipment item = new RoomEquipment
+                    {
+                        RoomEquipmentID = newID,
+                        RoomID = roomEquipment.RoomID,
+                        EquipmentStorage = roomEquipment.EquipmentStorage,
+                        Quantity = 1,
+                        InstalledDate = roomEquipment.InstalledDate,
+                        Condition = "Good",
+                        Note = roomEquipment.Note,
+                        StaffID = roomEquipment.StaffID
+                    };
+
+                    db.RoomEquipments.InsertOnSubmit(item);
+
+                    storage.Quantity -= 1;
+                }
+
                 db.SubmitChanges();
                 return true;
             }
@@ -83,16 +109,21 @@ namespace DAL
 
         private string GenerateNewID()
         {
-            var last = db.RoomEquipments
-                         .OrderByDescending(x => x.RoomEquipmentID)
-                         .FirstOrDefault();
+            // Lấy ID cao nhất hiện tại
+            var lastID = db.RoomEquipments
+                           .OrderByDescending(x => x.RoomEquipmentID)
+                           .Select(x => x.RoomEquipmentID)
+                           .FirstOrDefault();
 
-            if (last == null)
+            if (lastID == null)
                 return "REQ001";
 
-            int num = int.Parse(last.RoomEquipmentID.Substring(3)) + 1;
-            return "REQ" + num.ToString("D3");
+            int number = int.Parse(lastID.Substring(3));
+            number++;
+
+            return "REQ" + number.ToString("D3");
         }
+
 
         public IQueryable<Room_ET> getIDNameRoom()
         {
@@ -116,9 +147,16 @@ namespace DAL
                 var eqStorage = db.EquipmentStorages.FirstOrDefault(x => x.EquipmentID == roomEq.EquipmentStorage);
                 if (eqStorage != null)
                 {
-                    eqStorage.Quantity += roomEq.Quantity; 
+                    // Trả số lượng về kho
+                    eqStorage.Quantity += roomEq.Quantity;
+
+                    if (eqStorage.Quantity > 0)
+                    {
+                        eqStorage.Status = "Available"; 
+                    }
                 }
 
+                // Xóa bản ghi thiết bị gắn với phòng
                 db.RoomEquipments.DeleteOnSubmit(roomEq);
 
                 db.SubmitChanges();
@@ -134,19 +172,31 @@ namespace DAL
         {
             try
             {
-                var oldData = db.RoomEquipments.FirstOrDefault(x => x.RoomEquipmentID == et.RoomEquipmentID);
+                var oldData = db.RoomEquipments
+                    .FirstOrDefault(x => x.RoomEquipmentID == et.RoomEquipmentID);
+
                 if (oldData == null)
                     return false;
 
+                string oldCondition = oldData.Condition;
+
+                // =====================================================
+                // 1) Xử lý đổi thiết bị (EquipmentStorage)
+                // =====================================================
                 if (oldData.EquipmentStorage != et.EquipmentStorage)
                 {
-                    var oldStorage = db.EquipmentStorages.FirstOrDefault(x => x.EquipmentID == oldData.EquipmentStorage);
+                    var oldStorage = db.EquipmentStorages
+                        .FirstOrDefault(x => x.EquipmentID == oldData.EquipmentStorage);
+
                     if (oldStorage != null)
                         oldStorage.Quantity += oldData.Quantity;
 
-                    var newStorage = db.EquipmentStorages.FirstOrDefault(x => x.EquipmentID == et.EquipmentStorage);
+                    var newStorage = db.EquipmentStorages
+                        .FirstOrDefault(x => x.EquipmentID == et.EquipmentStorage);
+
                     if (newStorage == null || newStorage.Quantity < et.Quantity)
-                        return false; 
+                        return false;
+
                     newStorage.Quantity -= et.Quantity;
 
                     oldData.EquipmentStorage = et.EquipmentStorage;
@@ -154,16 +204,17 @@ namespace DAL
                 }
                 else
                 {
+                    // ========== xử lý quantity ==========
                     int diff = et.Quantity - oldData.Quantity;
-                    var storage = db.EquipmentStorages.FirstOrDefault(x => x.EquipmentID == oldData.EquipmentStorage);
 
-                    if (storage == null)
-                        return false;
+                    var storage = db.EquipmentStorages
+                        .FirstOrDefault(x => x.EquipmentID == oldData.EquipmentStorage);
+
+                    if (storage == null) return false;
 
                     if (diff > 0)
                     {
-                        if (storage.Quantity < diff)
-                            return false; 
+                        if (storage.Quantity < diff) return false;
                         storage.Quantity -= diff;
                     }
                     else if (diff < 0)
@@ -174,17 +225,102 @@ namespace DAL
                     oldData.Quantity = et.Quantity;
                 }
 
+                // =====================================================
+                // 2) Update dữ liệu chung
+                // =====================================================
                 oldData.RoomID = et.RoomID;
                 oldData.InstalledDate = et.InstalledDate;
-                oldData.Condition = et.Condition;
                 oldData.Note = et.Note;
                 oldData.StaffID = et.StaffID;
+
+                // =====================================================
+                // ⭐ 3) CHUYỂN SANG GOOD
+                // =====================================================
+                if (et.Condition == "Good")
+                {
+                    // ❗ kiểm tra log theo ROOMEQUIPMENTID, không phải EquipmentID
+                    bool hasDeviceLog = db.MaintenanceLogs.Any(x =>
+                        x.RoomEquipmentID == et.RoomEquipmentID &&
+                        x.MaintenanceTypeID == 2 &&
+                        x.Status == "Not completed"
+                    );
+
+                    if (hasDeviceLog)
+                        return false;
+
+                    oldData.Condition = "Good";
+
+                    // Kiểm tra còn thiết bị nào Maintenance không
+                    bool stillHasMaintenance = db.RoomEquipments.Any(x =>
+                        x.RoomID == et.RoomID &&
+                        x.Condition == "Maintenance"
+                    );
+
+                    // Nếu không → phòng về Trống
+                    if (!stillHasMaintenance)
+                    {
+                        var room = db.Rooms.FirstOrDefault(r => r.RoomID == et.RoomID);
+                        if (room != null)
+                            room.Status = "Trống";
+
+                        // Các log phòng chưa hoàn thành → Completed
+                        var roomLogs = db.MaintenanceLogs.Where(x =>
+                            x.RoomID == et.RoomID &&
+                            x.MaintenanceTypeID == 1 &&
+                            x.Status == "Not completed"
+                        );
+
+                        foreach (var log in roomLogs)
+                            log.Status = "Completed";
+                    }
+                }
+
+                // =====================================================
+                // ⭐ 4) CHUYỂN SANG MAINTENANCE
+                // =====================================================
+                else if (et.Condition == "Maintenance")
+                {
+                    if (oldCondition != "Maintenance")
+                    {
+                        // Phòng chuyển sang bảo trì
+                        var room = db.Rooms.FirstOrDefault(r => r.RoomID == et.RoomID);
+                        if (room != null)
+                            room.Status = "Maintenance";
+
+                        // 1) Log thiết bị riêng theo RoomEquipmentID
+                        db.MaintenanceLogs.InsertOnSubmit(new MaintenanceLog
+                        {
+                            MaintenanceTypeID = 2,
+                            RoomID = null,
+                            RoomEquipmentID = et.RoomEquipmentID,
+                            StaffID = et.StaffID,
+                            MaintenanceDate = DateTime.Now,
+                            Status = "Not completed",
+                            Note = "Thiết bị chuyển sang bảo trì"
+                        });
+
+                        // 2) Log phòng
+                        db.MaintenanceLogs.InsertOnSubmit(new MaintenanceLog
+                        {
+                            MaintenanceTypeID = 1,
+                            RoomID = et.RoomID,
+                            RoomEquipmentID = null,
+                            StaffID = et.StaffID,
+                            MaintenanceDate = DateTime.Now,
+                            Status = "Not completed",
+                            Note = "Phòng chuyển sang bảo trì do thiết bị " + et.RoomEquipmentID
+                        });
+                    }
+
+                    oldData.Condition = "Maintenance";
+                }
 
                 db.SubmitChanges();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine("Lỗi UpdateRoomEquipment: " + ex.Message);
                 return false;
             }
         }
@@ -213,6 +349,26 @@ namespace DAL
                 return false;
             }
         }
+        public bool SetRoomMaintenanceByEquipment(string roomEquipmentID)
+        {
+            try
+            {
+                var re = db.RoomEquipments.FirstOrDefault(x => x.RoomEquipmentID == roomEquipmentID);
+                if (re == null) return false;
+
+                var room = db.Rooms.FirstOrDefault(x => x.RoomID == re.RoomID);
+                if (room == null) return false;
+
+                room.Status = "Maintenance"; 
+                db.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
     }
 }

@@ -378,7 +378,9 @@
             "Trống",
             "Đặt trước",
             "Đang hoạt động",
-            "Dọn dẹp"});
+            "Dọn dẹp",
+            "Bảo trì",
+            "Ngừng hoạt động"});
             this.cbStatus.Location = new System.Drawing.Point(831, 236);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(350, 30);

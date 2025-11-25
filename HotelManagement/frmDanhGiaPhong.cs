@@ -1,14 +1,8 @@
 ﻿using BUS;
 using ET;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Security;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace HotelManagement
@@ -16,58 +10,135 @@ namespace HotelManagement
     public partial class frmDanhGiaPhong : Form
     {
         public string maNhanVien;
+        private bool isLoading = false;
+
+        RoomEvaluation_BUS roomEvaluation_BUS = new RoomEvaluation_BUS();
+
         public frmDanhGiaPhong(string maNhanVien)
         {
             InitializeComponent();
             this.maNhanVien = maNhanVien;
-
         }
-
-        RoomEvaluation_BUS roomEvaluation_BUS = new RoomEvaluation_BUS();
 
         private void frmDanhGiaPhong_Load(object sender, EventArgs e)
         {
+            isLoading = true;
+
+            // Load grid
             dtG_RoomEvalua.DataSource = roomEvaluation_BUS.getAllRoomEvaluation();
+
+            // Load phòng
             cbPhong.DataSource = roomEvaluation_BUS.getIDNameRoom();
             cbPhong.DisplayMember = "RoomName";
             cbPhong.ValueMember = "RoomID";
+
+            ResetComboBoxes();
+            txtTong.Text = "0";
+            dtNgayDanhGia.Value = DateTime.Now;
+
+            // ⭐ Gắn sự kiện cho tất cả combobox
+            GanSuKienTinhTong();
+
+            isLoading = false;
+        }
+
+        // RESET tất cả combo
+        private void ResetComboBoxes()
+        {
+            cbVeSinh.SelectedIndex = -1;
+            cbTienNghi.SelectedIndex = -1;
+            cbThaiBo.SelectedIndex = -1;
+            cbTienIchTrongPhong.SelectedIndex = -1;
+            cbViTri.SelectedIndex = -1;
+            cbAnToan.SelectedIndex = -1;
+            cbDoSangTrong.SelectedIndex = -1;
+            cbCongNghe.SelectedIndex = -1;
+            cbDoiNguNhienVien.SelectedIndex = -1;
+        }
+
+        // Hàm đặt selected bằng value
+        private void SetCombo(ComboBox cb, string value)
+        {
+            cb.SelectedItem = cb.Items.Cast<object>()
+                        .FirstOrDefault(x => x.ToString() == value);
+        }
+
+        // ⭐ Hàm gắn sự kiện TextChanged cho tất cả ComboBox
+        private void GanSuKienTinhTong()
+        {
+            cbVeSinh.TextChanged += (s, e) => TinhTongDiem();
+            cbTienNghi.TextChanged += (s, e) => TinhTongDiem();
+            cbThaiBo.TextChanged += (s, e) => TinhTongDiem();
+            cbTienIchTrongPhong.TextChanged += (s, e) => TinhTongDiem();
+            cbViTri.TextChanged += (s, e) => TinhTongDiem();
+            cbAnToan.TextChanged += (s, e) => TinhTongDiem();
+            cbDoSangTrong.TextChanged += (s, e) => TinhTongDiem();
+            cbCongNghe.TextChanged += (s, e) => TinhTongDiem();
+            cbDoiNguNhienVien.TextChanged += (s, e) => TinhTongDiem();
+        }
+
+        // ⭐ Tính tổng điểm
+        private void TinhTongDiem()
+        {
+            if (isLoading) return;
+
+            int tong = 0;
+            int diem = 0;
+
+            if (int.TryParse(cbVeSinh.Text, out diem)) tong += diem;
+            if (int.TryParse(cbTienNghi.Text, out diem)) tong += diem;
+            if (int.TryParse(cbThaiBo.Text, out diem)) tong += diem;
+            if (int.TryParse(cbTienIchTrongPhong.Text, out diem)) tong += diem;
+            if (int.TryParse(cbViTri.Text, out diem)) tong += diem;
+            if (int.TryParse(cbAnToan.Text, out diem)) tong += diem;
+            if (int.TryParse(cbDoSangTrong.Text, out diem)) tong += diem;
+            if (int.TryParse(cbCongNghe.Text, out diem)) tong += diem;
+            if (int.TryParse(cbDoiNguNhienVien.Text, out diem)) tong += diem;
+
+            txtTong.Text = tong.ToString();
+        }
+
+        private bool KiemTraNhapDiem()
+        {
+            if (string.IsNullOrWhiteSpace(cbVeSinh.Text) ||
+                string.IsNullOrWhiteSpace(cbTienNghi.Text) ||
+                string.IsNullOrWhiteSpace(cbThaiBo.Text) ||
+                string.IsNullOrWhiteSpace(cbTienIchTrongPhong.Text) ||
+                string.IsNullOrWhiteSpace(cbViTri.Text) ||
+                string.IsNullOrWhiteSpace(cbAnToan.Text) ||
+                string.IsNullOrWhiteSpace(cbDoSangTrong.Text) ||
+                string.IsNullOrWhiteSpace(cbCongNghe.Text) ||
+                string.IsNullOrWhiteSpace(cbDoiNguNhienVien.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ các mục đánh giá!");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtNguoiDanhGia.Text))
+            {
+                MessageBox.Show("Vui lòng nhập tên người đánh giá!");
+                return false;
+            }
+
+            if (cbPhong.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn phòng!");
+                return false;
+            }
+
+            return true;
         }
 
         private void btnXacNhan_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cbAnToan.Text) ||
-                string.IsNullOrWhiteSpace(cbCongNghe.Text) ||
-                string.IsNullOrWhiteSpace(cbDoiNguNhienVien.Text) ||
-                string.IsNullOrWhiteSpace(cbDoSangTrong.Text) ||
-                string.IsNullOrWhiteSpace(cbTienIchTrongPhong.Text) ||
-                string.IsNullOrWhiteSpace(cbTienNghi.Text) ||
-                string.IsNullOrWhiteSpace(cbThaiBo.Text) ||
-                string.IsNullOrWhiteSpace(cbVeSinh.Text) ||
-                string.IsNullOrWhiteSpace(cbViTri.Text))
-            {
-                MessageBox.Show("Vui lòng nhập đầy đủ các mục đánh giá trước khi thêm!",
-                                "Thiếu thông tin",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
-                return;
-            }
-            if(txtNguoiDanhGia.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập tên người đánh giá!", "Lỗi");
-                return;
-            }
-            if (cbPhong.SelectedIndex == -1)
-            {
-                MessageBox.Show("Vui lòng chọn phòng cần cập nhật đánh giá!", "Lỗi");
-                return;
-            }
+            if (!KiemTraNhapDiem()) return;
+
             try
             {
                 RoomEvaluation_ET et = new RoomEvaluation_ET
                 {
-
                     RoomID = cbPhong.SelectedValue.ToString(),
-                    EvaluationDate = DateTime.Now,
+                    EvaluationDate = dtNgayDanhGia.Value,
                     CleanlinessScore = int.Parse(cbVeSinh.Text),
                     ComfortScore = int.Parse(cbTienNghi.Text),
                     ServiceScore = int.Parse(cbThaiBo.Text),
@@ -82,158 +153,38 @@ namespace HotelManagement
 
                 if (roomEvaluation_BUS.addRoomEvaluation(et))
                 {
-                    // Cập nhật chứng thực
                     string status = roomEvaluation_BUS.UpdateOfficialRoom(et);
-                    MessageBox.Show($"Đánh giá đã lưu. Trạng thái phòng: {status}", "Thông báo");
-                    dtG_RoomEvalua.DataSource = roomEvaluation_BUS.getAllRoomEvaluation();
+                    MessageBox.Show($"Đánh giá đã lưu. Trạng thái phòng: {status}");
 
-                }
-                else
-                {
-                    MessageBox.Show("Lưu đánh giá thất bại!", "Lỗi");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi");
-                return;
-            }
-            
-        }
-
-        private void btnXoa_Click(object sender, EventArgs e)
-        {
-
-            if (txtMaDanhGia.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập mã đánh giá để xóa đánh giá!", "Lỗi");
-                return;
-            }
-            try
-            {
-                if (roomEvaluation_BUS.DeleteRoomEvaluation(int.Parse(txtMaDanhGia.Text)))
-                {
-                    MessageBox.Show("Xóa đánh giá thành công!", "Thông báo");
                     dtG_RoomEvalua.DataSource = roomEvaluation_BUS.getAllRoomEvaluation();
                 }
                 else
                 {
-                    MessageBox.Show("Xóa đánh giá thất bại!", "Lỗi");
+                    MessageBox.Show("Lưu thất bại!");
                 }
             }
-
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi");
-                return;
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
-        }
-
-        private void cbVeSinh_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int tong = Convert.ToInt32(txtTong.Text);
-            tong = tong + Convert.ToInt32(cbVeSinh.Text);
-            txtTong.Text = tong.ToString();
-        }
-
-        private void cbTienNghi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int tong = Convert.ToInt32(txtTong.Text);
-            tong = tong + Convert.ToInt32(cbTienNghi.Text);
-            txtTong.Text = tong.ToString();
-        }
-
-        private void cbThaiBo_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            int tong = Convert.ToInt32(txtTong.Text);
-            tong = tong + Convert.ToInt32(cbThaiBo.Text);
-            txtTong.Text = tong.ToString();
-        }
-
-        private void cbTienIchTrongPhong_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            int tong = Convert.ToInt32(txtTong.Text);
-            tong = tong + Convert.ToInt32(cbTienIchTrongPhong.Text);
-            txtTong.Text = tong.ToString();
-        }
-
-        private void cbViTri_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            int tong = Convert.ToInt32(txtTong.Text);
-            tong = tong + Convert.ToInt32(cbViTri.Text);
-            txtTong.Text = tong.ToString();
-        }
-
-        private void cbAnToan_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            int tong = Convert.ToInt32(txtTong.Text);
-            tong = tong + Convert.ToInt32(cbAnToan.Text);
-            txtTong.Text = tong.ToString();
-        }
-
-        private void cbDoSangTrong_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            int tong = Convert.ToInt32(txtTong.Text);
-            tong = tong + Convert.ToInt32(cbDoSangTrong.Text);
-            txtTong.Text = tong.ToString();
-        }
-
-        private void cbCongNghe_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            int tong = Convert.ToInt32(txtTong.Text);
-            tong = tong + Convert.ToInt32(cbCongNghe.Text);
-            txtTong.Text = tong.ToString();
-        }
-
-        private void cbDoiNguNhienVien_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            int tong = Convert.ToInt32(txtTong.Text);
-            tong = tong + Convert.ToInt32(cbDoiNguNhienVien.Text);
-            txtTong.Text = tong.ToString();
         }
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(cbAnToan.Text) ||
-               string.IsNullOrWhiteSpace(cbCongNghe.Text) ||
-               string.IsNullOrWhiteSpace(cbDoiNguNhienVien.Text) ||
-               string.IsNullOrWhiteSpace(cbDoSangTrong.Text) ||
-               string.IsNullOrWhiteSpace(cbTienIchTrongPhong.Text) ||
-               string.IsNullOrWhiteSpace(cbTienNghi.Text) ||
-               string.IsNullOrWhiteSpace(cbThaiBo.Text) ||
-               string.IsNullOrWhiteSpace(cbVeSinh.Text) ||
-               string.IsNullOrWhiteSpace(cbViTri.Text))
+            if (!KiemTraNhapDiem()) return;
+            if (string.IsNullOrWhiteSpace(txtMaDanhGia.Text))
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ các mục đánh giá trước khi thêm!",
-                                "Thiếu thông tin",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng chọn đánh giá cần cập nhật!");
                 return;
             }
-            if (txtNguoiDanhGia.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập tên người đánh giá!", "Lỗi");
-                return;
-            }
-            if(cbPhong.SelectedIndex == -1)
-            {
-                MessageBox.Show("Vui lòng chọn phòng cần cập nhật đánh giá!", "Lỗi");
-                return;
-            }
+
             try
             {
                 RoomEvaluation_ET et = new RoomEvaluation_ET
                 {
                     EvaluationID = Convert.ToInt32(txtMaDanhGia.Text),
                     RoomID = cbPhong.SelectedValue.ToString(),
-                    EvaluationDate = DateTime.Now,
+                    EvaluationDate = dtNgayDanhGia.Value,
                     CleanlinessScore = int.Parse(cbVeSinh.Text),
                     ComfortScore = int.Parse(cbTienNghi.Text),
                     ServiceScore = int.Parse(cbThaiBo.Text),
@@ -244,76 +195,111 @@ namespace HotelManagement
                     TechnologyScore = int.Parse(cbCongNghe.Text),
                     StaffScore = int.Parse(cbDoiNguNhienVien.Text),
                     Evaluator = txtNguoiDanhGia.Text
-                }; 
+                };
 
                 if (roomEvaluation_BUS.UpdateRoomEvaluation(et))
                 {
                     string status = roomEvaluation_BUS.UpdateOfficialRoom(et);
-                    MessageBox.Show($"Đánh giá đã lưu. Trạng thái phòng: {status}", "Thông báo");
-                    dtG_RoomEvalua.DataSource = roomEvaluation_BUS.getAllRoomEvaluation();
+                    MessageBox.Show($"Cập nhật thành công. Trạng thái: {status}");
 
+                    dtG_RoomEvalua.DataSource = roomEvaluation_BUS.getAllRoomEvaluation();
                 }
                 else
                 {
-                    MessageBox.Show("Lưu đánh giá thất bại!", "Lỗi");
+                    MessageBox.Show("Cập nhật thất bại!");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi: " + ex.Message, "Lỗi");
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtMaDanhGia.Text))
+            {
+                MessageBox.Show("Vui lòng nhập/chọn mã đánh giá để xóa!");
                 return;
+            }
+
+            try
+            {
+                int id = Convert.ToInt32(txtMaDanhGia.Text);
+
+                if (roomEvaluation_BUS.DeleteRoomEvaluation(id))
+                {
+                    MessageBox.Show("Xóa đánh giá thành công!");
+                    dtG_RoomEvalua.DataSource = roomEvaluation_BUS.getAllRoomEvaluation();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
             }
         }
 
         private void dtG_RoomEvalua_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dtG_RoomEvalua.Rows[e.RowIndex];
+            if (e.RowIndex < 0) return;
 
-                txtMaDanhGia.Text = row.Cells["EvaluationID"].Value.ToString(); 
+            isLoading = true;
 
-                cbPhong.SelectedValue = row.Cells["RoomID"].Value.ToString();
-                txtNguoiDanhGia.Text = row.Cells["Evaluator"].Value.ToString();
+            DataGridViewRow row = dtG_RoomEvalua.Rows[e.RowIndex];
 
-                cbVeSinh.Text = row.Cells["CleanlinessScore"].Value.ToString();
-                cbTienNghi.Text = row.Cells["ComfortScore"].Value.ToString();
-                cbThaiBo.Text = row.Cells["ServiceScore"].Value.ToString();
-                cbTienIchTrongPhong.Text = row.Cells["FacilitiesScore"].Value.ToString();
-                cbViTri.Text = row.Cells["LocationScore"].Value.ToString();
-                cbAnToan.Text = row.Cells["SafetyScore"].Value.ToString();
-                cbDoSangTrong.Text = row.Cells["LuxuryScore"].Value.ToString();
-                cbCongNghe.Text = row.Cells["TechnologyScore"].Value.ToString();
-                cbDoiNguNhienVien.Text = row.Cells["StaffScore"].Value.ToString();
-            }
+            txtMaDanhGia.Text = row.Cells["EvaluationID"].Value.ToString();
+            cbPhong.SelectedValue = row.Cells["RoomID"].Value.ToString();
+            txtNguoiDanhGia.Text = row.Cells["Evaluator"].Value.ToString();
+
+            SetCombo(cbVeSinh, row.Cells["CleanlinessScore"].Value.ToString());
+            SetCombo(cbTienNghi, row.Cells["ComfortScore"].Value.ToString());
+            SetCombo(cbThaiBo, row.Cells["ServiceScore"].Value.ToString());
+            SetCombo(cbTienIchTrongPhong, row.Cells["FacilitiesScore"].Value.ToString());
+            SetCombo(cbViTri, row.Cells["LocationScore"].Value.ToString());
+            SetCombo(cbAnToan, row.Cells["SafetyScore"].Value.ToString());
+            SetCombo(cbDoSangTrong, row.Cells["LuxuryScore"].Value.ToString());
+            SetCombo(cbCongNghe, row.Cells["TechnologyScore"].Value.ToString());
+            SetCombo(cbDoiNguNhienVien, row.Cells["StaffScore"].Value.ToString());
+
+            if (DateTime.TryParse(row.Cells["EvaluationDate"].Value?.ToString(), out DateTime d))
+                dtNgayDanhGia.Value = d;
+
+            isLoading = false;
+
+            TinhTongDiem();
         }
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
+            isLoading = true;
+
             txtMaDanhGia.Clear();
             txtNguoiDanhGia.Clear();
+
             cbPhong.SelectedIndex = -1;
-            cbVeSinh.SelectedIndex = -1;
-            cbTienNghi.SelectedIndex = -1;
-            cbThaiBo.SelectedIndex = -1;
-            cbTienIchTrongPhong.SelectedIndex = -1;
-            cbViTri.SelectedIndex = -1;
-            cbAnToan.SelectedIndex = -1;
-            cbDoSangTrong.SelectedIndex = -1;
-            cbCongNghe.SelectedIndex = -1;
-            cbDoiNguNhienVien.SelectedIndex = -1;
-            cbVeSinh.SelectedIndex = -1;
+            ResetComboBoxes();
+
             txtTong.Text = "0";
-            dtG_RoomEvalua.DataSource = roomEvaluation_BUS.getAllRoomEvaluation();
             dtNgayDanhGia.Value = DateTime.Now;
+
+            isLoading = false;
+
+            TinhTongDiem();
         }
 
         private void btnInPhieuDanhGia_Click(object sender, EventArgs e)
         {
-            frmReportRoomEvaluation frm = new frmReportRoomEvaluation(cbPhong.SelectedValue.ToString());
-            frm.Show();
-            
+            if (cbPhong.SelectedIndex == -1)
+            {
+                MessageBox.Show("Vui lòng chọn phòng!");
+                return;
+            }
 
+            new frmReportRoomEvaluation(cbPhong.SelectedValue.ToString()).Show();
         }
     }
 }

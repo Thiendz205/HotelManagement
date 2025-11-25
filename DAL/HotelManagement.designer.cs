@@ -87,7 +87,7 @@ namespace DAL
     #endregion
 		
 		public HotelManagementDataContext() : 
-				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString3, mappingSource)
+				base(global::DAL.Properties.Settings.Default.HotelManagementConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -2166,8 +2166,6 @@ namespace DAL
 		
 		private string _StaffID;
 		
-		private EntitySet<MaintenanceLog> _MaintenanceLogs;
-		
 		private EntitySet<RoomEquipment> _RoomEquipments;
 		
 		private EntityRef<Staff> _Staff;
@@ -2196,7 +2194,6 @@ namespace DAL
 		
 		public EquipmentStorage()
 		{
-			this._MaintenanceLogs = new EntitySet<MaintenanceLog>(new Action<MaintenanceLog>(this.attach_MaintenanceLogs), new Action<MaintenanceLog>(this.detach_MaintenanceLogs));
 			this._RoomEquipments = new EntitySet<RoomEquipment>(new Action<RoomEquipment>(this.attach_RoomEquipments), new Action<RoomEquipment>(this.detach_RoomEquipments));
 			this._Staff = default(EntityRef<Staff>);
 			OnCreated();
@@ -2366,19 +2363,6 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EquipmentStorage_MaintenanceLog", Storage="_MaintenanceLogs", ThisKey="EquipmentID", OtherKey="EquipmentID")]
-		public EntitySet<MaintenanceLog> MaintenanceLogs
-		{
-			get
-			{
-				return this._MaintenanceLogs;
-			}
-			set
-			{
-				this._MaintenanceLogs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EquipmentStorage_RoomEquipment", Storage="_RoomEquipments", ThisKey="EquipmentID", OtherKey="EquipmentStorage")]
 		public EntitySet<RoomEquipment> RoomEquipments
 		{
@@ -2444,18 +2428,6 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_MaintenanceLogs(MaintenanceLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.EquipmentStorage = this;
-		}
-		
-		private void detach_MaintenanceLogs(MaintenanceLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.EquipmentStorage = null;
 		}
 		
 		private void attach_RoomEquipments(RoomEquipment entity)
@@ -3101,7 +3073,7 @@ namespace DAL
 		
 		private string _RoomID;
 		
-		private string _EquipmentID;
+		private string _RoomEquipmentID;
 		
 		private string _StaffID;
 		
@@ -3111,13 +3083,13 @@ namespace DAL
 		
 		private string _Note;
 		
-		private EntityRef<EquipmentStorage> _EquipmentStorage;
-		
 		private EntityRef<Staff> _Staff;
 		
 		private EntityRef<MaintenanceType> _MaintenanceType;
 		
 		private EntityRef<Room> _Room;
+		
+		private EntityRef<RoomEquipment> _RoomEquipment;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -3129,8 +3101,8 @@ namespace DAL
     partial void OnMaintenanceTypeIDChanged();
     partial void OnRoomIDChanging(string value);
     partial void OnRoomIDChanged();
-    partial void OnEquipmentIDChanging(string value);
-    partial void OnEquipmentIDChanged();
+    partial void OnRoomEquipmentIDChanging(string value);
+    partial void OnRoomEquipmentIDChanged();
     partial void OnStaffIDChanging(string value);
     partial void OnStaffIDChanged();
     partial void OnMaintenanceDateChanging(System.DateTime value);
@@ -3143,10 +3115,10 @@ namespace DAL
 		
 		public MaintenanceLog()
 		{
-			this._EquipmentStorage = default(EntityRef<EquipmentStorage>);
 			this._Staff = default(EntityRef<Staff>);
 			this._MaintenanceType = default(EntityRef<MaintenanceType>);
 			this._Room = default(EntityRef<Room>);
+			this._RoomEquipment = default(EntityRef<RoomEquipment>);
 			OnCreated();
 		}
 		
@@ -3218,26 +3190,26 @@ namespace DAL
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EquipmentID", DbType="Char(10)")]
-		public string EquipmentID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoomEquipmentID", DbType="Char(10)")]
+		public string RoomEquipmentID
 		{
 			get
 			{
-				return this._EquipmentID;
+				return this._RoomEquipmentID;
 			}
 			set
 			{
-				if ((this._EquipmentID != value))
+				if ((this._RoomEquipmentID != value))
 				{
-					if (this._EquipmentStorage.HasLoadedOrAssignedValue)
+					if (this._RoomEquipment.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
-					this.OnEquipmentIDChanging(value);
+					this.OnRoomEquipmentIDChanging(value);
 					this.SendPropertyChanging();
-					this._EquipmentID = value;
-					this.SendPropertyChanged("EquipmentID");
-					this.OnEquipmentIDChanged();
+					this._RoomEquipmentID = value;
+					this.SendPropertyChanged("RoomEquipmentID");
+					this.OnRoomEquipmentIDChanged();
 				}
 			}
 		}
@@ -3322,40 +3294,6 @@ namespace DAL
 					this._Note = value;
 					this.SendPropertyChanged("Note");
 					this.OnNoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EquipmentStorage_MaintenanceLog", Storage="_EquipmentStorage", ThisKey="EquipmentID", OtherKey="EquipmentID", IsForeignKey=true)]
-		public EquipmentStorage EquipmentStorage
-		{
-			get
-			{
-				return this._EquipmentStorage.Entity;
-			}
-			set
-			{
-				EquipmentStorage previousValue = this._EquipmentStorage.Entity;
-				if (((previousValue != value) 
-							|| (this._EquipmentStorage.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._EquipmentStorage.Entity = null;
-						previousValue.MaintenanceLogs.Remove(this);
-					}
-					this._EquipmentStorage.Entity = value;
-					if ((value != null))
-					{
-						value.MaintenanceLogs.Add(this);
-						this._EquipmentID = value.EquipmentID;
-					}
-					else
-					{
-						this._EquipmentID = default(string);
-					}
-					this.SendPropertyChanged("EquipmentStorage");
 				}
 			}
 		}
@@ -3458,6 +3396,40 @@ namespace DAL
 						this._RoomID = default(string);
 					}
 					this.SendPropertyChanged("Room");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoomEquipment_MaintenanceLog", Storage="_RoomEquipment", ThisKey="RoomEquipmentID", OtherKey="RoomEquipmentID", IsForeignKey=true)]
+		public RoomEquipment RoomEquipment
+		{
+			get
+			{
+				return this._RoomEquipment.Entity;
+			}
+			set
+			{
+				RoomEquipment previousValue = this._RoomEquipment.Entity;
+				if (((previousValue != value) 
+							|| (this._RoomEquipment.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._RoomEquipment.Entity = null;
+						previousValue.MaintenanceLogs.Remove(this);
+					}
+					this._RoomEquipment.Entity = value;
+					if ((value != null))
+					{
+						value.MaintenanceLogs.Add(this);
+						this._RoomEquipmentID = value.RoomEquipmentID;
+					}
+					else
+					{
+						this._RoomEquipmentID = default(string);
+					}
+					this.SendPropertyChanged("RoomEquipment");
 				}
 			}
 		}
@@ -4026,6 +3998,8 @@ namespace DAL
 		
 		private string _StaffID;
 		
+		private EntitySet<MaintenanceLog> _MaintenanceLogs;
+		
 		private EntityRef<EquipmentStorage> _EquipmentStorage1;
 		
 		private EntityRef<Room> _Room;
@@ -4056,6 +4030,7 @@ namespace DAL
 		
 		public RoomEquipment()
 		{
+			this._MaintenanceLogs = new EntitySet<MaintenanceLog>(new Action<MaintenanceLog>(this.attach_MaintenanceLogs), new Action<MaintenanceLog>(this.detach_MaintenanceLogs));
 			this._EquipmentStorage1 = default(EntityRef<EquipmentStorage>);
 			this._Room = default(EntityRef<Room>);
 			this._Staff = default(EntityRef<Staff>);
@@ -4234,6 +4209,19 @@ namespace DAL
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="RoomEquipment_MaintenanceLog", Storage="_MaintenanceLogs", ThisKey="RoomEquipmentID", OtherKey="RoomEquipmentID")]
+		public EntitySet<MaintenanceLog> MaintenanceLogs
+		{
+			get
+			{
+				return this._MaintenanceLogs;
+			}
+			set
+			{
+				this._MaintenanceLogs.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="EquipmentStorage_RoomEquipment", Storage="_EquipmentStorage1", ThisKey="EquipmentStorage", OtherKey="EquipmentID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public EquipmentStorage EquipmentStorage1
 		{
@@ -4354,6 +4342,18 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_MaintenanceLogs(MaintenanceLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.RoomEquipment = this;
+		}
+		
+		private void detach_MaintenanceLogs(MaintenanceLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.RoomEquipment = null;
 		}
 	}
 	

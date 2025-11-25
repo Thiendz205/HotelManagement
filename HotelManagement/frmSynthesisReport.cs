@@ -19,7 +19,7 @@ namespace HotelManagement
 
         private void btnThietBi_Click(object sender, EventArgs e)
         {
-            frmChooseStatusReportEquipmentByStatus frm = new frmChooseStatusReportEquipmentByStatus();
+            frmReportGetEquipmentByStatus frm = new frmReportGetEquipmentByStatus("Available");
             frm.TopLevel = false;
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.Dock = DockStyle.Fill;
@@ -33,6 +33,19 @@ namespace HotelManagement
         private void guna2Button1_Click(object sender, EventArgs e)
         {
             frmReportServiceUsage_Detail frm = new frmReportServiceUsage_Detail();
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+
+            var parentPanel = this.Parent;
+            parentPanel.Controls.Clear();
+            parentPanel.Controls.Add(frm);
+            frm.Show();
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            frmReportListMaintenance frm = new frmReportListMaintenance();
             frm.TopLevel = false;
             frm.FormBorderStyle = FormBorderStyle.None;
             frm.Dock = DockStyle.Fill;

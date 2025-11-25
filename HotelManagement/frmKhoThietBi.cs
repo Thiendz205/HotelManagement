@@ -19,6 +19,13 @@ namespace HotelManagement
         {
             this.maNhanVien = maNhanVien;
             InitializeComponent();
+            this.AutoSize = true;
+            this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            this.AutoScaleMode = AutoScaleMode.None;
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.TopLevel = false;
+            this.Dock = DockStyle.Fill;
+
         }
         EquipmentStorage_BUS equipmentStorage_BUS = new EquipmentStorage_BUS();
         private void frmKhoThietBi_Load(object sender, EventArgs e)

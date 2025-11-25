@@ -306,22 +306,30 @@ go
 CREATE TABLE MaintenanceLog (
     LogID INT IDENTITY(1,1) PRIMARY KEY,
     MaintenanceTypeID INT NOT NULL,
-    RoomID CHAR(10) NULL,             -- nếu bảo trì phòng
-    EquipmentID CHAR(10) NULL,        -- nếu bảo trì thiết bị
-    StaffID CHAR(10) NOT NULL,
-    MaintenanceDate DATETIME NOT NULL DEFAULT GETDATE(),
-    Status NVARCHAR(50) NOT NULL DEFAULT N'Completed',   -- Kết quả || chưa hoàn thành "not completed"
-    Note NVARCHAR(MAX),
+    RoomID CHAR(10) NULL,             
+    RoomEquipmentID CHAR(10) NULL,     -- mã thiết bị cụ thể trong phòng (REQxxx)
 
+    StaffID CHAR(10) NOT NULL,
+
+    MaintenanceDate DATETIME NOT NULL DEFAULT GETDATE(),
+    Status NVARCHAR(50) NOT NULL DEFAULT N'Not completed',
+    Note NVARCHAR(MAX),
     CONSTRAINT CK_MaintenanceLog_Target CHECK (
-        (RoomID IS NOT NULL AND EquipmentID IS NULL) OR
-        (RoomID IS NULL AND EquipmentID IS NOT NULL)
+        (RoomID IS NOT NULL AND RoomEquipmentID IS NULL) OR
+        (RoomID IS NULL AND RoomEquipmentID IS NOT NULL)
     ),
 
-    CONSTRAINT FK_MaintenanceLog_Type FOREIGN KEY (MaintenanceTypeID) REFERENCES MaintenanceType(MaintenanceTypeID),
-    CONSTRAINT FK_MaintenanceLog_Room FOREIGN KEY (RoomID) REFERENCES Room(RoomID),
-    CONSTRAINT FK_MaintenanceLog_Equipment FOREIGN KEY (EquipmentID) REFERENCES EquipmentStorage(EquipmentID),
-    CONSTRAINT FK_MaintenanceLog_Staff FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)
+    CONSTRAINT FK_MaintenanceLog_Type
+        FOREIGN KEY (MaintenanceTypeID) REFERENCES MaintenanceType(MaintenanceTypeID),
+
+    CONSTRAINT FK_MaintenanceLog_Room
+        FOREIGN KEY (RoomID) REFERENCES Room(RoomID),
+
+    CONSTRAINT FK_MaintenanceLog_RoomEquip
+        FOREIGN KEY (RoomEquipmentID) REFERENCES RoomEquipment(RoomEquipmentID),
+
+    CONSTRAINT FK_MaintenanceLog_Staff
+        FOREIGN KEY (StaffID) REFERENCES Staff(StaffID)
 );
 GO
 CREATE OR ALTER PROCEDURE sp_GetInvoiceDetailByBooking
@@ -588,6 +596,78 @@ BEGIN
 
     ORDER BY BookingID, UsedAt;
 END;
+GO
+CREATE OR ALTER PROCEDURE dbo.sp_ListMaintenance
+    @Mode NVARCHAR(10),  -- 'Room' hoặc 'Equipment'
+    @Month INT,
+    @Year INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    --------------------------------------------------------------------
+    -- 📌 MODE = ROOM → chỉ phòng, thiết bị phải NULL
+    --------------------------------------------------------------------
+    IF (@Mode = 'Room')
+    BEGIN
+        SELECT
+            ML.LogID,
+            ML.MaintenanceDate,
+            ML.Status,
+            ML.Note,
+            ML.StaffID,
+            S.FullName AS StaffName,
+
+            -- ROOM INFO
+            R.RoomID,
+            R.RoomName,
+            RT.TypeName AS RoomTypeName,
+
+            -- EQUIPMENT NULL
+            NULL AS EquipmentID,
+            NULL AS EquipmentName,
+            NULL AS RoomEquipmentID
+        FROM dbo.MaintenanceLog ML
+        JOIN dbo.Room R ON R.RoomID = ML.RoomID
+        JOIN dbo.RoomType RT ON RT.RoomTypeID = R.RoomTypeID
+        JOIN dbo.Staff S ON S.StaffID = ML.StaffID
+        WHERE ML.MaintenanceTypeID = 1
+          AND MONTH(ML.MaintenanceDate) = @Month
+          AND YEAR(ML.MaintenanceDate) = @Year;
+    END
+
+    --------------------------------------------------------------------
+    -- 📌 MODE = EQUIPMENT → chỉ thiết bị, phòng phải NULL
+    --------------------------------------------------------------------
+    ELSE
+    BEGIN
+        SELECT
+            ML.LogID,
+            ML.MaintenanceDate,
+            ML.Status,
+            ML.Note,
+            ML.StaffID,
+            S.FullName AS StaffName,
+
+            -- ROOM NULL
+            NULL AS RoomID,
+            NULL AS RoomName,
+            NULL AS RoomTypeName,
+
+            -- EQUIPMENT INFO
+            ES.EquipmentID,
+            ES.EquipmentName,
+            RE.RoomEquipmentID
+        FROM dbo.MaintenanceLog ML
+        JOIN dbo.RoomEquipment RE ON RE.RoomEquipmentID = ML.RoomEquipmentID
+        JOIN dbo.EquipmentStorage ES ON ES.EquipmentID = RE.EquipmentStorage
+        JOIN dbo.Staff S ON S.StaffID = ML.StaffID
+        WHERE ML.MaintenanceTypeID = 2
+          AND MONTH(ML.MaintenanceDate) = @Month
+          AND YEAR(ML.MaintenanceDate) = @Year;
+    END
+END;
+
 GO
 CREATE PROCEDURE sp_GetRoomEvaluationTemplate
     @RoomID CHAR(10)

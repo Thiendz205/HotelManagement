@@ -32,10 +32,12 @@
             this.panel_Body = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnBaoCao = new Guna.UI.WinForms.GunaButton();
             this.gunaButton10 = new Guna.UI.WinForms.GunaButton();
             this.gunaButton6 = new Guna.UI.WinForms.GunaButton();
             this.gunaButton5 = new Guna.UI.WinForms.GunaButton();
             this.gunaButton1 = new Guna.UI.WinForms.GunaButton();
+            this.btnBaoTri = new Guna.UI.WinForms.GunaButton();
             this.gunaButton2 = new Guna.UI.WinForms.GunaButton();
             this.btnDangXuat = new Guna.UI.WinForms.GunaButton();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -64,7 +66,9 @@
             this.nhânViênToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hóaĐơnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.báoCáoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rp_chucNangBaoTri = new CustomControls.RJControls.RJDropdownMenu(this.components);
+            this.loạiBảoTrìToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lịchSửBảoTrìToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -73,6 +77,7 @@
             this.rp_chucNangDichVu.SuspendLayout();
             this.rp_chucNangPhi.SuspendLayout();
             this.rp_chucNangKhac.SuspendLayout();
+            this.rp_chucNangBaoTri.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel_Body
@@ -82,7 +87,7 @@
             this.panel_Body.Location = new System.Drawing.Point(0, 159);
             this.panel_Body.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel_Body.Name = "panel_Body";
-            this.panel_Body.Size = new System.Drawing.Size(1924, 896);
+            this.panel_Body.Size = new System.Drawing.Size(1920, 921);
             this.panel_Body.TabIndex = 8;
             // 
             // panel1
@@ -94,17 +99,19 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1924, 159);
+            this.panel1.Size = new System.Drawing.Size(1920, 159);
             this.panel1.TabIndex = 7;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.flowLayoutPanel1.Controls.Add(this.btnBaoCao);
             this.flowLayoutPanel1.Controls.Add(this.gunaButton10);
             this.flowLayoutPanel1.Controls.Add(this.gunaButton6);
             this.flowLayoutPanel1.Controls.Add(this.gunaButton5);
             this.flowLayoutPanel1.Controls.Add(this.gunaButton1);
+            this.flowLayoutPanel1.Controls.Add(this.btnBaoTri);
             this.flowLayoutPanel1.Controls.Add(this.gunaButton2);
             this.flowLayoutPanel1.Controls.Add(this.btnDangXuat);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -112,9 +119,36 @@
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(29, 39, 40, 20);
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1704, 154);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1700, 154);
             this.flowLayoutPanel1.TabIndex = 2;
             this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // btnBaoCao
+            // 
+            this.btnBaoCao.AnimationHoverSpeed = 0.07F;
+            this.btnBaoCao.AnimationSpeed = 0.03F;
+            this.btnBaoCao.BaseColor = System.Drawing.Color.Turquoise;
+            this.btnBaoCao.BorderColor = System.Drawing.Color.Black;
+            this.btnBaoCao.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnBaoCao.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBaoCao.FocusedColor = System.Drawing.Color.Empty;
+            this.btnBaoCao.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBaoCao.ForeColor = System.Drawing.Color.White;
+            this.btnBaoCao.Image = null;
+            this.btnBaoCao.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnBaoCao.Location = new System.Drawing.Point(33, 43);
+            this.btnBaoCao.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
+            this.btnBaoCao.Name = "btnBaoCao";
+            this.btnBaoCao.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
+            this.btnBaoCao.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnBaoCao.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnBaoCao.OnHoverImage = null;
+            this.btnBaoCao.OnPressedColor = System.Drawing.Color.Black;
+            this.btnBaoCao.Size = new System.Drawing.Size(313, 63);
+            this.btnBaoCao.TabIndex = 48;
+            this.btnBaoCao.Text = "Báo cáo";
+            this.btnBaoCao.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnBaoCao.Click += new System.EventHandler(this.btnBaoCao_Click_1);
             // 
             // gunaButton10
             // 
@@ -130,7 +164,7 @@
             this.gunaButton10.ForeColor = System.Drawing.Color.White;
             this.gunaButton10.Image = null;
             this.gunaButton10.ImageSize = new System.Drawing.Size(20, 20);
-            this.gunaButton10.Location = new System.Drawing.Point(33, 43);
+            this.gunaButton10.Location = new System.Drawing.Point(390, 43);
             this.gunaButton10.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.gunaButton10.Name = "gunaButton10";
             this.gunaButton10.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
@@ -157,7 +191,7 @@
             this.gunaButton6.ForeColor = System.Drawing.Color.White;
             this.gunaButton6.Image = null;
             this.gunaButton6.ImageSize = new System.Drawing.Size(20, 20);
-            this.gunaButton6.Location = new System.Drawing.Point(390, 43);
+            this.gunaButton6.Location = new System.Drawing.Point(747, 43);
             this.gunaButton6.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.gunaButton6.Name = "gunaButton6";
             this.gunaButton6.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
@@ -184,7 +218,7 @@
             this.gunaButton5.ForeColor = System.Drawing.Color.White;
             this.gunaButton5.Image = null;
             this.gunaButton5.ImageSize = new System.Drawing.Size(20, 20);
-            this.gunaButton5.Location = new System.Drawing.Point(747, 43);
+            this.gunaButton5.Location = new System.Drawing.Point(1104, 43);
             this.gunaButton5.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.gunaButton5.Name = "gunaButton5";
             this.gunaButton5.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
@@ -211,7 +245,7 @@
             this.gunaButton1.ForeColor = System.Drawing.Color.White;
             this.gunaButton1.Image = null;
             this.gunaButton1.ImageSize = new System.Drawing.Size(20, 20);
-            this.gunaButton1.Location = new System.Drawing.Point(1104, 43);
+            this.gunaButton1.Location = new System.Drawing.Point(1461, 43);
             this.gunaButton1.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.gunaButton1.Name = "gunaButton1";
             this.gunaButton1.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
@@ -224,6 +258,33 @@
             this.gunaButton1.Text = "Chức năng phí";
             this.gunaButton1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.gunaButton1.Click += new System.EventHandler(this.gunaButton1_Click_1);
+            // 
+            // btnBaoTri
+            // 
+            this.btnBaoTri.AnimationHoverSpeed = 0.07F;
+            this.btnBaoTri.AnimationSpeed = 0.03F;
+            this.btnBaoTri.BaseColor = System.Drawing.Color.Turquoise;
+            this.btnBaoTri.BorderColor = System.Drawing.Color.Black;
+            this.btnBaoTri.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnBaoTri.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnBaoTri.FocusedColor = System.Drawing.Color.Empty;
+            this.btnBaoTri.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnBaoTri.ForeColor = System.Drawing.Color.White;
+            this.btnBaoTri.Image = null;
+            this.btnBaoTri.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnBaoTri.Location = new System.Drawing.Point(1818, 43);
+            this.btnBaoTri.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
+            this.btnBaoTri.Name = "btnBaoTri";
+            this.btnBaoTri.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
+            this.btnBaoTri.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnBaoTri.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnBaoTri.OnHoverImage = null;
+            this.btnBaoTri.OnPressedColor = System.Drawing.Color.Black;
+            this.btnBaoTri.Size = new System.Drawing.Size(313, 63);
+            this.btnBaoTri.TabIndex = 47;
+            this.btnBaoTri.Text = "Chức năng bảo trì";
+            this.btnBaoTri.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnBaoTri.Click += new System.EventHandler(this.btnBaoTri_Click);
             // 
             // gunaButton2
             // 
@@ -238,7 +299,7 @@
             this.gunaButton2.ForeColor = System.Drawing.Color.White;
             this.gunaButton2.Image = null;
             this.gunaButton2.ImageSize = new System.Drawing.Size(20, 20);
-            this.gunaButton2.Location = new System.Drawing.Point(1461, 43);
+            this.gunaButton2.Location = new System.Drawing.Point(2175, 43);
             this.gunaButton2.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.gunaButton2.Name = "gunaButton2";
             this.gunaButton2.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
@@ -265,7 +326,7 @@
             this.btnDangXuat.ForeColor = System.Drawing.Color.White;
             this.btnDangXuat.Image = null;
             this.btnDangXuat.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDangXuat.Location = new System.Drawing.Point(1818, 43);
+            this.btnDangXuat.Location = new System.Drawing.Point(2532, 43);
             this.btnDangXuat.Margin = new System.Windows.Forms.Padding(4, 4, 40, 4);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
@@ -284,7 +345,7 @@
             this.panel3.BackColor = System.Drawing.Color.PaleTurquoise;
             this.panel3.Controls.Add(this.btnClose);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(1897, 0);
+            this.panel3.Location = new System.Drawing.Point(1893, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(27, 159);
@@ -371,7 +432,7 @@
             // 
             this.trangThiếtBịTrongToolStripMenuItem.Name = "trangThiếtBịTrongToolStripMenuItem";
             this.trangThiếtBịTrongToolStripMenuItem.Size = new System.Drawing.Size(283, 24);
-            this.trangThiếtBịTrongToolStripMenuItem.Text = "Trang thiết bị trong ";
+            this.trangThiếtBịTrongToolStripMenuItem.Text = "Trang thiết bị trong phòng";
             this.trangThiếtBịTrongToolStripMenuItem.Click += new System.EventHandler(this.trangThiếtBịTrongToolStripMenuItem_Click);
             // 
             // đặtPhòngToolStripMenuItem
@@ -477,13 +538,12 @@
             this.tàiKhoảnToolStripMenuItem,
             this.nhânViênToolStripMenuItem,
             this.hóaĐơnToolStripMenuItem,
-            this.thốngKêToolStripMenuItem,
-            this.báoCáoToolStripMenuItem});
+            this.thốngKêToolStripMenuItem});
             this.rp_chucNangKhac.MenuItemHeight = 25;
             this.rp_chucNangKhac.MenuItemTextColor = System.Drawing.Color.Empty;
             this.rp_chucNangKhac.Name = "rp_chucNangKhac";
             this.rp_chucNangKhac.PrimaryColor = System.Drawing.Color.Empty;
-            this.rp_chucNangKhac.Size = new System.Drawing.Size(145, 124);
+            this.rp_chucNangKhac.Size = new System.Drawing.Size(145, 100);
             // 
             // tàiKhoảnToolStripMenuItem
             // 
@@ -513,18 +573,38 @@
             this.thốngKêToolStripMenuItem.Text = "Thống kê";
             this.thốngKêToolStripMenuItem.Click += new System.EventHandler(this.thốngKêToolStripMenuItem_Click);
             // 
-            // báoCáoToolStripMenuItem
+            // rp_chucNangBaoTri
             // 
-            this.báoCáoToolStripMenuItem.Name = "báoCáoToolStripMenuItem";
-            this.báoCáoToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
-            this.báoCáoToolStripMenuItem.Text = "Báo cáo";
-            this.báoCáoToolStripMenuItem.Click += new System.EventHandler(this.báoCáoToolStripMenuItem_Click);
+            this.rp_chucNangBaoTri.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.rp_chucNangBaoTri.IsMainMenu = false;
+            this.rp_chucNangBaoTri.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loạiBảoTrìToolStripMenuItem,
+            this.lịchSửBảoTrìToolStripMenuItem});
+            this.rp_chucNangBaoTri.MenuItemHeight = 25;
+            this.rp_chucNangBaoTri.MenuItemTextColor = System.Drawing.Color.Empty;
+            this.rp_chucNangBaoTri.Name = "rp_chucNangBaoTri";
+            this.rp_chucNangBaoTri.PrimaryColor = System.Drawing.Color.Empty;
+            this.rp_chucNangBaoTri.Size = new System.Drawing.Size(172, 52);
+            // 
+            // loạiBảoTrìToolStripMenuItem
+            // 
+            this.loạiBảoTrìToolStripMenuItem.Name = "loạiBảoTrìToolStripMenuItem";
+            this.loạiBảoTrìToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
+            this.loạiBảoTrìToolStripMenuItem.Text = "Loại bảo trì";
+            this.loạiBảoTrìToolStripMenuItem.Click += new System.EventHandler(this.loạiBảoTrìToolStripMenuItem_Click);
+            // 
+            // lịchSửBảoTrìToolStripMenuItem
+            // 
+            this.lịchSửBảoTrìToolStripMenuItem.Name = "lịchSửBảoTrìToolStripMenuItem";
+            this.lịchSửBảoTrìToolStripMenuItem.Size = new System.Drawing.Size(171, 24);
+            this.lịchSửBảoTrìToolStripMenuItem.Text = "Lịch sử bảo trì";
+            this.lịchSửBảoTrìToolStripMenuItem.Click += new System.EventHandler(this.lịchSửBảoTrìToolStripMenuItem_Click);
             // 
             // frmAdminMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(1920, 1080);
             this.Controls.Add(this.panel_Body);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -542,6 +622,7 @@
             this.rp_chucNangDichVu.ResumeLayout(false);
             this.rp_chucNangPhi.ResumeLayout(false);
             this.rp_chucNangKhac.ResumeLayout(false);
+            this.rp_chucNangBaoTri.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -584,6 +665,10 @@
         private System.Windows.Forms.ToolStripMenuItem nhânViênToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hóaĐơnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thốngKêToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem báoCáoToolStripMenuItem;
+        private Guna.UI.WinForms.GunaButton btnBaoTri;
+        private CustomControls.RJControls.RJDropdownMenu rp_chucNangBaoTri;
+        private System.Windows.Forms.ToolStripMenuItem loạiBảoTrìToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lịchSửBảoTrìToolStripMenuItem;
+        private Guna.UI.WinForms.GunaButton btnBaoCao;
     }
 }

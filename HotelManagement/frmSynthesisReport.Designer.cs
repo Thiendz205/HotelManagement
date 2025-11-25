@@ -34,8 +34,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnThietBi = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
+            this.btnThietBi = new Guna.UI2.WinForms.Guna2Button();
+            this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.SuspendLayout();
@@ -85,6 +86,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.guna2Button2);
             this.panel5.Controls.Add(this.guna2Button1);
             this.panel5.Controls.Add(this.btnThietBi);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -92,6 +94,22 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(1699, 880);
             this.panel5.TabIndex = 4;
+            // 
+            // guna2Button1
+            // 
+            this.guna2Button1.BorderRadius = 10;
+            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
+            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
+            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button1.ForeColor = System.Drawing.Color.White;
+            this.guna2Button1.HoverState.Parent = this.guna2Button1;
+            this.guna2Button1.Location = new System.Drawing.Point(359, 57);
+            this.guna2Button1.Name = "guna2Button1";
+            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
+            this.guna2Button1.Size = new System.Drawing.Size(212, 54);
+            this.guna2Button1.TabIndex = 1;
+            this.guna2Button1.Text = "Chi tiết sử dụng dịch vụ";
+            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
             // 
             // btnThietBi
             // 
@@ -109,21 +127,21 @@
             this.btnThietBi.Text = "Các thiết bị trong kho";
             this.btnThietBi.Click += new System.EventHandler(this.btnThietBi_Click);
             // 
-            // guna2Button1
+            // guna2Button2
             // 
-            this.guna2Button1.BorderRadius = 10;
-            this.guna2Button1.CheckedState.Parent = this.guna2Button1;
-            this.guna2Button1.CustomImages.Parent = this.guna2Button1;
-            this.guna2Button1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.guna2Button1.ForeColor = System.Drawing.Color.White;
-            this.guna2Button1.HoverState.Parent = this.guna2Button1;
-            this.guna2Button1.Location = new System.Drawing.Point(359, 57);
-            this.guna2Button1.Name = "guna2Button1";
-            this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
-            this.guna2Button1.Size = new System.Drawing.Size(212, 54);
-            this.guna2Button1.TabIndex = 1;
-            this.guna2Button1.Text = "Chi tiết sử dụng dịch vụ";
-            this.guna2Button1.Click += new System.EventHandler(this.guna2Button1_Click);
+            this.guna2Button2.BorderRadius = 10;
+            this.guna2Button2.CheckedState.Parent = this.guna2Button2;
+            this.guna2Button2.CustomImages.Parent = this.guna2Button2;
+            this.guna2Button2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.guna2Button2.ForeColor = System.Drawing.Color.White;
+            this.guna2Button2.HoverState.Parent = this.guna2Button2;
+            this.guna2Button2.Location = new System.Drawing.Point(88, 199);
+            this.guna2Button2.Name = "guna2Button2";
+            this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
+            this.guna2Button2.Size = new System.Drawing.Size(212, 54);
+            this.guna2Button2.TabIndex = 2;
+            this.guna2Button2.Text = "Danh sách bảo trì";
+            this.guna2Button2.Click += new System.EventHandler(this.guna2Button2_Click);
             // 
             // frmSynthesisReport
             // 
@@ -156,5 +174,6 @@
         private System.Windows.Forms.Panel panel5;
         private Guna.UI2.WinForms.Guna2Button btnThietBi;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
     }
 }

@@ -35,7 +35,15 @@ namespace BUS
         }
         public bool UpdateRoomEquipment(RoomEquipment_ET roomEquipment)
         {
-            return roomEquipment_DAL.UpdateRoomEquipment(roomEquipment);
+            bool result = roomEquipment_DAL.UpdateRoomEquipment(roomEquipment);
+
+            // 🔥 NẾU thiết bị chuyển sang bảo trì → phòng cũng phải chuyển
+            if (result && roomEquipment.Condition == "Maintenance")
+            {
+                roomEquipment_DAL.SetRoomMaintenanceByEquipment(roomEquipment.RoomEquipmentID);
+            }
+
+            return result;
         }
 
         public bool UpdateStatusRoom(string roomID)
@@ -43,5 +51,6 @@ namespace BUS
             return roomEquipment_DAL.UpdateStatusRoom(roomID);
         }
 
+     
     }
 }
