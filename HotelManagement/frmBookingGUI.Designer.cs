@@ -73,9 +73,15 @@
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.btnBack = new Guna.UI2.WinForms.Guna2Button();
             this.btnAddBooking = new Guna.UI2.WinForms.Guna2Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2GroupBox1
@@ -102,7 +108,7 @@
             this.guna2GroupBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox1.Location = new System.Drawing.Point(1114, 30);
+            this.guna2GroupBox1.Location = new System.Drawing.Point(15, 53);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
             this.guna2GroupBox1.ShadowDecoration.Parent = this.guna2GroupBox1;
             this.guna2GroupBox1.Size = new System.Drawing.Size(810, 345);
@@ -271,7 +277,7 @@
             this.guna2GroupBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(34, 30);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(12, 53);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
             this.guna2GroupBox2.Size = new System.Drawing.Size(1074, 345);
@@ -876,10 +882,10 @@
             this.guna2GroupBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox3.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox3.Location = new System.Drawing.Point(1114, 445);
+            this.guna2GroupBox3.Location = new System.Drawing.Point(15, 165);
             this.guna2GroupBox3.Name = "guna2GroupBox3";
             this.guna2GroupBox3.ShadowDecoration.Parent = this.guna2GroupBox3;
-            this.guna2GroupBox3.Size = new System.Drawing.Size(810, 172);
+            this.guna2GroupBox3.Size = new System.Drawing.Size(795, 172);
             this.guna2GroupBox3.TabIndex = 12;
             this.guna2GroupBox3.Text = "Chức Năng";
             // 
@@ -894,7 +900,7 @@
             this.btnBack.HoverState.Parent = this.btnBack;
             this.btnBack.Image = global::HotelManagement.Properties.Resources.ChangeRommRECP;
             this.btnBack.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnBack.Location = new System.Drawing.Point(581, 67);
+            this.btnBack.Location = new System.Drawing.Point(510, 67);
             this.btnBack.Name = "btnBack";
             this.btnBack.ShadowDecoration.Parent = this.btnBack;
             this.btnBack.Size = new System.Drawing.Size(185, 66);
@@ -913,7 +919,7 @@
             this.btnAddBooking.HoverState.Parent = this.btnAddBooking;
             this.btnAddBooking.Image = global::HotelManagement.Properties.Resources.editRECP;
             this.btnAddBooking.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnAddBooking.Location = new System.Drawing.Point(182, 67);
+            this.btnAddBooking.Location = new System.Drawing.Point(114, 67);
             this.btnAddBooking.Name = "btnAddBooking";
             this.btnAddBooking.ShadowDecoration.Parent = this.btnAddBooking;
             this.btnAddBooking.Size = new System.Drawing.Size(185, 66);
@@ -921,15 +927,42 @@
             this.btnAddBooking.Text = "Đặt Phòng";
             this.btnAddBooking.Click += new System.EventHandler(this.btnAddBooking_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.guna2GroupBox2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1096, 1055);
+            this.panel1.TabIndex = 13;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.guna2GroupBox3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(1096, 672);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(828, 383);
+            this.panel2.TabIndex = 15;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.guna2GroupBox1);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(1096, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(828, 672);
+            this.panel3.TabIndex = 16;
+            // 
             // frmBookingGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
-            this.Controls.Add(this.guna2GroupBox3);
-            this.Controls.Add(this.guna2GroupBox2);
-            this.Controls.Add(this.guna2GroupBox1);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Name = "frmBookingGUI";
             this.Text = "frmBookingGUI";
             this.Load += new System.EventHandler(this.frmBookingGUI_Load);
@@ -938,6 +971,9 @@
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
             this.guna2GroupBox3.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -989,5 +1025,8 @@
         private System.Windows.Forms.ComboBox cboCountry;
         private System.Windows.Forms.Label lblRank;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

@@ -846,24 +846,48 @@ namespace DAL
         private string GenerateBookingID() => "BK" + Guid.NewGuid().ToString("N").Substring(0, 6).ToUpper();
         public BookingET GetRoomInfoById(string roomId)
         {
+            DateTime today = DateTime.Today;
+
             var query = from r in db.Rooms
                         join rt in db.RoomTypes on r.RoomTypeID equals rt.RoomTypeID
                         where r.RoomID == roomId
-                        select new BookingET
+                        select new
                         {
-                            RoomID = r.RoomID,
-                            RoomName = r.RoomName,
-                            RoomStatus = r.Status,
-                            RoomTypeName = rt.TypeName,
-                            Category = rt.Category,
-                            Capacity = r.Capacity,
-                            Description = r.Description,
-                            PricePerDay = rt.PricePerDay,
-                            PricePerHour = rt.PricePerHour
+                            r,
+                            rt,
+                            DynamicPrice = db.RoomTypePrices
+                                .Where(p => p.RoomTypeID == rt.RoomTypeID
+                                         && p.StartDate <= today
+                                         && p.EndDate >= today)
+                                .OrderByDescending(p => p.StartDate) // nếu có nhiều, lấy cái mới nhất
+                                .FirstOrDefault()
                         };
 
-            return query.FirstOrDefault();
+            var result = query.FirstOrDefault();
+
+            if (result == null) return null;
+
+            return new BookingET
+            {
+                RoomID = result.r.RoomID,
+                RoomName = result.r.RoomName,
+                RoomStatus = result.r.Status,
+                RoomTypeName = result.rt.TypeName,
+                Category = result.rt.Category,
+                Capacity = result.r.Capacity,
+                Description = result.r.Description,
+
+                // Giá động nếu có, nếu không giữ giá cố định:
+                PricePerDay = result.DynamicPrice != null
+                                ? result.DynamicPrice.PricePerDay
+                                : result.rt.PricePerDay,
+
+                PricePerHour = result.DynamicPrice != null
+                                ? result.DynamicPrice.PricePerHour
+                                : result.rt.PricePerHour
+            };
         }
+
         public CustomerET GetCustomerByPhoneOrId(string phone, string nationalId)
         {
             try

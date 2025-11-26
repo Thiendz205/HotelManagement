@@ -49,19 +49,23 @@
             this.label23 = new System.Windows.Forms.Label();
             this.cboRoom = new System.Windows.Forms.ComboBox();
             this.cboCustomer = new System.Windows.Forms.ComboBox();
-            this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.btnSearch = new Guna.UI2.WinForms.Guna2Button();
             this.dgvBooking = new System.Windows.Forms.DataGridView();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.guna2GroupBox2.SuspendLayout();
-            this.guna2GroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(965, 423);
+            this.label3.Location = new System.Drawing.Point(908, 29);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(290, 37);
             this.label3.TabIndex = 27;
@@ -78,7 +82,7 @@
             this.btnRefresh.HoverState.Parent = this.btnRefresh;
             this.btnRefresh.Image = global::HotelManagement.Properties.Resources.refreshRECP;
             this.btnRefresh.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnRefresh.Location = new System.Drawing.Point(77, 176);
+            this.btnRefresh.Location = new System.Drawing.Point(343, 287);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.ShadowDecoration.Parent = this.btnRefresh;
             this.btnRefresh.Size = new System.Drawing.Size(178, 62);
@@ -97,7 +101,7 @@
             this.btnUpdate.HoverState.Parent = this.btnUpdate;
             this.btnUpdate.Image = global::HotelManagement.Properties.Resources.updateHR;
             this.btnUpdate.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnUpdate.Location = new System.Drawing.Point(438, 66);
+            this.btnUpdate.Location = new System.Drawing.Point(343, 140);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.ShadowDecoration.Parent = this.btnUpdate;
             this.btnUpdate.Size = new System.Drawing.Size(178, 62);
@@ -143,7 +147,7 @@
             this.CancelBooking.HoverState.Parent = this.CancelBooking;
             this.CancelBooking.Image = global::HotelManagement.Properties.Resources.signs_close_icon_png;
             this.CancelBooking.ImageSize = new System.Drawing.Size(30, 30);
-            this.CancelBooking.Location = new System.Drawing.Point(77, 69);
+            this.CancelBooking.Location = new System.Drawing.Point(49, 140);
             this.CancelBooking.Name = "CancelBooking";
             this.CancelBooking.ShadowDecoration.Parent = this.CancelBooking;
             this.CancelBooking.Size = new System.Drawing.Size(178, 62);
@@ -174,7 +178,7 @@
             this.guna2GroupBox2.FillColor = System.Drawing.SystemColors.ActiveCaption;
             this.guna2GroupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(15, 26);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(35, 70);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
             this.guna2GroupBox2.Size = new System.Drawing.Size(951, 324);
@@ -316,25 +320,6 @@
             this.cboCustomer.Size = new System.Drawing.Size(231, 30);
             this.cboCustomer.TabIndex = 8;
             // 
-            // guna2GroupBox3
-            // 
-            this.guna2GroupBox3.BackColor = System.Drawing.Color.Transparent;
-            this.guna2GroupBox3.BorderColor = System.Drawing.Color.Black;
-            this.guna2GroupBox3.Controls.Add(this.btnSearch);
-            this.guna2GroupBox3.Controls.Add(this.btnRefresh);
-            this.guna2GroupBox3.Controls.Add(this.btnUpdate);
-            this.guna2GroupBox3.Controls.Add(this.CancelBooking);
-            this.guna2GroupBox3.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.guna2GroupBox3.FillColor = System.Drawing.SystemColors.ActiveCaption;
-            this.guna2GroupBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2GroupBox3.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox3.Location = new System.Drawing.Point(1179, 26);
-            this.guna2GroupBox3.Name = "guna2GroupBox3";
-            this.guna2GroupBox3.ShadowDecoration.Parent = this.guna2GroupBox3;
-            this.guna2GroupBox3.Size = new System.Drawing.Size(733, 252);
-            this.guna2GroupBox3.TabIndex = 25;
-            this.guna2GroupBox3.Text = "Chức Năng";
-            // 
             // btnSearch
             // 
             this.btnSearch.BorderRadius = 20;
@@ -346,7 +331,7 @@
             this.btnSearch.HoverState.Parent = this.btnSearch;
             this.btnSearch.Image = global::HotelManagement.Properties.Resources.magnifier;
             this.btnSearch.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnSearch.Location = new System.Drawing.Point(438, 161);
+            this.btnSearch.Location = new System.Drawing.Point(49, 286);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.ShadowDecoration.Parent = this.btnSearch;
             this.btnSearch.Size = new System.Drawing.Size(178, 62);
@@ -377,25 +362,57 @@
             this.dgvBooking.TabIndex = 24;
             this.dgvBooking.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBooking_CellClick);
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 538);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1924, 100);
+            this.panel2.TabIndex = 29;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.guna2GroupBox2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1099, 538);
+            this.panel1.TabIndex = 30;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.CancelBooking);
+            this.panel3.Controls.Add(this.btnUpdate);
+            this.panel3.Controls.Add(this.btnRefresh);
+            this.panel3.Controls.Add(this.btnSearch);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(1099, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(819, 538);
+            this.panel3.TabIndex = 31;
+            // 
             // frmBookingAdminGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.guna2GroupBox2);
-            this.Controls.Add(this.guna2GroupBox3);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvBooking);
             this.Name = "frmBookingAdminGUI";
             this.Text = "frmBookingAdminGUI";
             this.Load += new System.EventHandler(this.frmBookingAdminGUI_Load);
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
-            this.guna2GroupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooking)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -410,7 +427,6 @@
         private Guna.UI2.WinForms.Guna2Button CancelBooking;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private System.Windows.Forms.ComboBox cboCustomer;
-        private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox3;
         private Guna.UI2.WinForms.Guna2Button btnSearch;
         private System.Windows.Forms.DataGridView dgvBooking;
         private System.Windows.Forms.ComboBox cboRoom;
@@ -424,5 +440,8 @@
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.ComboBox cboRoomStatus;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel3;
     }
 }

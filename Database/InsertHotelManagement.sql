@@ -287,6 +287,37 @@ VALUES
 ('FT008', N'Phí nâng cấp phòng', N'Khác', 400000, N'Khách yêu cầu nâng cấp từ Standard → Deluxe'),
 ('FT009', N'Phí mất thẻ phòng',  N'Khác', 150000, N'Mất thẻ từ hoặc chìa khóa phòng');
 GO
+INSERT INTO BookingFee (BookingFeeID, BookingID, FeeTypeID, Quantity, CreatedAt, Notes)
+VALUES
+-- BK015: Check-in sớm (vào lúc 12h, sớm hơn giờ chuẩn 12h → không tính, không có phí)
+('BF001','BK015','FT003',1,'2025-11-05 12:30',N'Thêm giường phụ cho khách'),
+
+-- BK016: Hour, Check-in 12h, ra 16h → không trễ, không sớm, thêm giường
+('BF002','BK016','FT003',1,'2025-11-06 13:00',N'Thêm giường phụ'),
+
+-- BK017: Check-in 12h, Check-out 12h hôm sau → đúng giờ, nhưng thêm giường
+('BF003','BK017','FT003',1,'2025-11-10 14:00',N'Thêm giường phụ'),
+
+-- BK018: Hour booking, Check-out 16h → đúng giờ, nhưng mất thẻ phòng
+('BF004','BK018','FT009',1,'2025-11-11 16:05',N'Mất thẻ phòng'),
+
+-- BK019: Check-out 12h → đúng giờ, thêm giường phụ
+('BF005','BK019','FT003',1,'2025-11-15 15:00',N'Thêm giường phụ'),
+
+-- BK020: Hour, Check-out 16h → trễ 1h (nếu quy định trễ 14h), tính phí check-out trễ
+('BF006','BK020','FT002',1,'2025-11-16 16:30',N'Check-out trễ'),
+
+-- BK021: Check-in 12h, Check-out 12h → thêm giường
+('BF007','BK021','FT003',1,'2025-11-20 13:00',N'Thêm giường phụ'),
+
+-- BK022: Hour booking, Check-out 16h → đúng giờ, mất thẻ
+('BF008','BK022','FT009',1,'2025-11-21 16:15',N'Mất thẻ phòng'),
+
+-- BK023: Check-in 12h, Check-out 12h → thêm giường
+('BF009','BK023','FT003',1,'2025-12-01 14:00',N'Thêm giường phụ'),
+
+-- BK024: Hour, Check-out 16h → trễ, tính check-out trễ
+('BF010','BK024','FT002',1,'2025-12-02 16:10',N'Check-out trễ');
 
 INSERT INTO Booking (BookingID, CustomerID, RoomID, RentalType, CheckIn, CheckOut, Price, Status, StaffID)
 VALUES
@@ -511,11 +542,6 @@ VALUES
 ('BK219','CU018','R019','Day','2024-12-19 12:00','2024-12-20 12:00',800000,'CheckOut','ST029'),
 ('BK220','CU019','R020','Hour','2024-12-20 12:00','2024-12-20 16:00',300000,'CheckOut','ST030');
 GO
-INSERT INTO MaintenanceType(TypeName,Description)
-VALUES
-(N'Bảo trì thiết bị', N'Bảo thiết bị'),
-(N'Bảo trì phòng', N'Bảo trì phòng');
-GO
 CREATE OR ALTER FUNCTION dbo.fn_CalcBookingPrice
 (
     @RoomID CHAR(10),
@@ -601,6 +627,53 @@ VALUES
 ('SV019', N'Thuê laptop',             N'Dịch vụ khác', 250000, N'Thuê laptop cho khách công tác'),
 ('SV020', N'Đưa đón nội thành',       N'Vận chuyển', 200000, N'Đưa khách đi trong nội thành');
 GO
+INSERT INTO ServiceUsage (UsageID, BookingID, ServiceID, Quantity, StaffID, UsageDate)
+VALUES
+('SU001','BK001','SV001',2,'ST001','2023-11-03 14:00'),
+('SU002','BK001','SV002',1,'ST002','2023-11-03 15:00'),
+('SU003','BK002','SV001',1,'ST006','2023-11-04 13:00'),
+('SU004','BK002','SV003',2,'ST007','2023-11-04 14:00'),
+('SU005','BK003','SV002',1,'ST029','2023-11-15 16:00'),
+('SU006','BK003','SV004',1,'ST030','2023-11-15 17:00'),
+('SU007','BK004','SV001',1,'ST030','2023-11-16 13:00'),
+('SU008','BK004','SV003',2,'ST029','2023-11-16 14:00'),
+('SU009','BK005','SV002',1,'ST001','2023-11-20 15:00'),
+('SU010','BK005','SV004',1,'ST002','2023-11-20 16:00'),
+('SU011','BK015','SV001',1,'ST029','2025-11-05 14:00'),
+('SU012','BK015','SV003',2,'ST030','2025-11-05 15:00'),
+('SU013','BK016','SV002',1,'ST030','2025-11-06 13:00'),
+('SU014','BK016','SV004',1,'ST029','2025-11-06 14:00'),
+('SU015','BK017','SV001',1,'ST001','2025-11-10 16:00'),
+('SU016','BK017','SV005',1,'ST002','2025-11-10 17:00'),
+('SU017','BK018','SV003',2,'ST006','2025-11-11 13:00'),
+('SU018','BK018','SV004',1,'ST007','2025-11-11 14:00'),
+('SU019','BK019','SV002',1,'ST029','2025-11-15 15:00'),
+('SU020','BK019','SV005',1,'ST030','2025-11-15 16:00'),
+('SU021','BK015','SV001',1,'ST029','2025-11-05 13:00'),
+('SU022','BK015','SV003',2,'ST030','2025-11-05 15:30'),
+('SU023','BK016','SV002',1,'ST030','2025-11-06 12:30'),
+('SU024','BK016','SV004',1,'ST029','2025-11-06 14:00'),
+('SU025','BK017','SV001',1,'ST001','2025-11-10 14:30'),
+('SU026','BK017','SV005',1,'ST002','2025-11-10 16:00'),
+('SU027','BK018','SV003',2,'ST006','2025-11-11 12:30'),
+('SU028','BK018','SV004',1,'ST007','2025-11-11 14:30'),
+('SU029','BK019','SV002',1,'ST029','2025-11-15 13:00'),
+('SU030','BK019','SV005',1,'ST030','2025-11-15 15:30'),
+('SU031','BK020','SV001',1,'ST030','2025-11-16 12:30'),
+('SU032','BK020','SV003',2,'ST029','2025-11-16 14:00'),
+('SU033','BK021','SV004',1,'ST001','2025-11-20 13:30'),
+('SU034','BK021','SV005',1,'ST002','2025-11-20 15:30'),
+('SU035','BK022','SV001',1,'ST006','2025-11-21 12:30'),
+('SU036','BK022','SV003',2,'ST007','2025-11-21 14:00'),
+('SU037','BK023','SV002',1,'ST029','2025-12-01 13:30'),
+('SU038','BK023','SV004',1,'ST030','2025-12-01 15:00'),
+('SU039','BK024','SV001',1,'ST030','2025-12-02 12:30'),
+('SU040','BK024','SV003',2,'ST029','2025-12-02 14:00');
+
+INSERT INTO MaintenanceType (TypeName, Description)
+VALUES
+    (N'Bảo trì phòng', N'Bảo trì, sửa chữa các vấn đề liên quan đến phòng.'),
+    (N'Bảo trì thiết bị', N'Bảo trì, thay thế hoặc sửa chữa các thiết bị trong khách sạn.');
 
 -- 1️⃣ Chèn Invoice mới nếu chưa có
 INSERT INTO Invoice (InvoiceID, BookingID, TotalAmount, InvoiceDate, PaymentMethod, PaidStatus, StaffID, Note)
@@ -717,4 +790,4 @@ LEFT JOIN (
     GROUP BY b.BookingID, cr.DiscountPercent, rp.roomPrice, f.feeTotal, s.serviceTotal
 ) custRank ON b.BookingID = custRank.BookingID;
 
-SELECT * FROM Booking;
+SELECT * FROM MaintenanceLog;

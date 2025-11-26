@@ -34,7 +34,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboRoomType = new Guna.UI2.WinForms.Guna2ComboBox();
             this.txtRoomName = new Guna.UI2.WinForms.Guna2TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.guna2GroupBox1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanelRooms
@@ -61,7 +63,7 @@
             this.guna2GroupBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox1.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox1.Location = new System.Drawing.Point(20, 12);
+            this.guna2GroupBox1.Location = new System.Drawing.Point(31, 30);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
             this.guna2GroupBox1.ShadowDecoration.Parent = this.guna2GroupBox1;
             this.guna2GroupBox1.Size = new System.Drawing.Size(843, 211);
@@ -157,19 +159,29 @@
             this.txtRoomName.TabIndex = 0;
             this.txtRoomName.Tag = "";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.guna2GroupBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1924, 386);
+            this.panel1.TabIndex = 3;
+            // 
             // frmGuestCheckInRECPGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
-            this.Controls.Add(this.guna2GroupBox1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanelRooms);
             this.Name = "frmGuestCheckInRECPGUI";
             this.Text = "frmGuestCheckInRECPGUI";
             this.Load += new System.EventHandler(this.frmGuestCheckInRECPGUI_Load);
             this.guna2GroupBox1.ResumeLayout(false);
             this.guna2GroupBox1.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -182,5 +194,6 @@
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2ComboBox cboRoomType;
         private Guna.UI2.WinForms.Guna2TextBox txtRoomName;
+        private System.Windows.Forms.Panel panel1;
     }
 }

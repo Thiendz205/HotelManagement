@@ -42,11 +42,15 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnChangeRoomStatus = new Guna.UI2.WinForms.Guna2Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.guna2GroupBox1.SuspendLayout();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowLayoutPanelRooms
@@ -54,10 +58,10 @@
             this.flowLayoutPanelRooms.AutoScroll = true;
             this.flowLayoutPanelRooms.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.flowLayoutPanelRooms.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanelRooms.Location = new System.Drawing.Point(0, 451);
+            this.flowLayoutPanelRooms.Location = new System.Drawing.Point(0, 533);
             this.flowLayoutPanelRooms.Name = "flowLayoutPanelRooms";
             this.flowLayoutPanelRooms.Padding = new System.Windows.Forms.Padding(10);
-            this.flowLayoutPanelRooms.Size = new System.Drawing.Size(1924, 604);
+            this.flowLayoutPanelRooms.Size = new System.Drawing.Size(1924, 522);
             this.flowLayoutPanelRooms.TabIndex = 0;
             // 
             // guna2GroupBox1
@@ -73,7 +77,7 @@
             this.guna2GroupBox1.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox1.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox1.Location = new System.Drawing.Point(12, 12);
+            this.guna2GroupBox1.Location = new System.Drawing.Point(37, 70);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
             this.guna2GroupBox1.ShadowDecoration.Parent = this.guna2GroupBox1;
             this.guna2GroupBox1.Size = new System.Drawing.Size(843, 211);
@@ -184,7 +188,7 @@
             this.guna2GroupBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox2.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(1099, 12);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(56, 70);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
             this.guna2GroupBox2.Size = new System.Drawing.Size(778, 211);
@@ -260,7 +264,7 @@
             this.btnChangeRoomStatus.HoverState.Parent = this.btnChangeRoomStatus;
             this.btnChangeRoomStatus.Image = global::HotelManagement.Properties.Resources.icon_setting;
             this.btnChangeRoomStatus.ImageSize = new System.Drawing.Size(40, 40);
-            this.btnChangeRoomStatus.Location = new System.Drawing.Point(1641, 256);
+            this.btnChangeRoomStatus.Location = new System.Drawing.Point(71, 312);
             this.btnChangeRoomStatus.Name = "btnChangeRoomStatus";
             this.btnChangeRoomStatus.ShadowDecoration.Parent = this.btnChangeRoomStatus;
             this.btnChangeRoomStatus.Size = new System.Drawing.Size(186, 63);
@@ -268,15 +272,33 @@
             this.btnChangeRoomStatus.Text = "Đổi trạng thái";
             this.btnChangeRoomStatus.Click += new System.EventHandler(this.btnChangeRoomStatus_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.guna2GroupBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(975, 533);
+            this.panel1.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.guna2GroupBox2);
+            this.panel2.Controls.Add(this.btnChangeRoomStatus);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(975, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(949, 533);
+            this.panel2.TabIndex = 8;
+            // 
             // frmReceptionistsRoomList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
-            this.Controls.Add(this.btnChangeRoomStatus);
-            this.Controls.Add(this.guna2GroupBox2);
-            this.Controls.Add(this.guna2GroupBox1);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanelRooms);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "frmReceptionistsRoomList";
@@ -289,6 +311,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -309,5 +333,7 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label label2;
         private Guna.UI2.WinForms.Guna2Button btnChangeRoomStatus;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

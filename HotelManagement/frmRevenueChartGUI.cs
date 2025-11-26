@@ -45,7 +45,7 @@ namespace HotelManagement
             panelTop = new Panel
             {
                 Dock = DockStyle.Top,
-                Height = 120,
+                Height = 150,
                 BackColor = Color.FromArgb(240, 240, 240)
             };
             this.Controls.Add(panelTop);
@@ -55,7 +55,7 @@ namespace HotelManagement
             {
                 Text = "THỐNG KÊ DOANH THU KHÁCH SẠN",
                 Dock = DockStyle.Top,
-                Height = 40,
+                Height = 50,
                 TextAlign = ContentAlignment.MiddleCenter,
                 Font = new Font("Segoe UI", 14, FontStyle.Bold)
             };
@@ -258,7 +258,7 @@ namespace HotelManagement
             var area = chartRevenue.ChartAreas[0];
 
             // compute bottom Y for buttons (leave margin for axis labels)
-            int btnY = chartRevenue.ClientSize.Height - 48; // tweak if needed
+            int btnY = chartRevenue.ClientSize.Height - 35; // tweak if needed
 
             for (int i = 0; i < ser.Points.Count; i++)
             {

@@ -51,6 +51,7 @@
     <Compile Include="FeeTypeBUS.cs" />
     <Compile Include="InvoiceBUS.cs" />
     <Compile Include="Login_Logout_BUS.cs" />
+    <Compile Include="MaintenanceBUS.cs" />
     <Compile Include="MaintenanceLog_BUS.cs" />
     <Compile Include="MaintenanceType_BUS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

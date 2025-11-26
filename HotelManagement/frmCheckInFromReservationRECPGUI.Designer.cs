@@ -52,9 +52,13 @@
             this.btnCancel = new Guna.UI2.WinForms.Guna2Button();
             this.btnConfirm = new Guna.UI2.WinForms.Guna2Button();
             this.dgvBookings = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.guna2GroupBox2.SuspendLayout();
             this.guna2GroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookings)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // guna2GroupBox2
@@ -83,7 +87,7 @@
             this.guna2GroupBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(12, 25);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(26, 32);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
             this.guna2GroupBox2.Size = new System.Drawing.Size(1074, 345);
@@ -250,10 +254,10 @@
             this.guna2GroupBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox3.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox3.Location = new System.Drawing.Point(1092, 198);
+            this.guna2GroupBox3.Location = new System.Drawing.Point(32, 205);
             this.guna2GroupBox3.Name = "guna2GroupBox3";
             this.guna2GroupBox3.ShadowDecoration.Parent = this.guna2GroupBox3;
-            this.guna2GroupBox3.Size = new System.Drawing.Size(810, 172);
+            this.guna2GroupBox3.Size = new System.Drawing.Size(683, 172);
             this.guna2GroupBox3.TabIndex = 16;
             this.guna2GroupBox3.Text = "Chức Năng";
             // 
@@ -268,7 +272,7 @@
             this.btnBackToHome.HoverState.Parent = this.btnBackToHome;
             this.btnBackToHome.Image = global::HotelManagement.Properties.Resources.ChangeRommRECP;
             this.btnBackToHome.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnBackToHome.Location = new System.Drawing.Point(578, 67);
+            this.btnBackToHome.Location = new System.Drawing.Point(474, 67);
             this.btnBackToHome.Name = "btnBackToHome";
             this.btnBackToHome.ShadowDecoration.Parent = this.btnBackToHome;
             this.btnBackToHome.Size = new System.Drawing.Size(178, 62);
@@ -287,7 +291,7 @@
             this.btnCancel.HoverState.Parent = this.btnCancel;
             this.btnCancel.Image = global::HotelManagement.Properties.Resources.signs_close_icon_png;
             this.btnCancel.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnCancel.Location = new System.Drawing.Point(311, 67);
+            this.btnCancel.Location = new System.Drawing.Point(260, 67);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.ShadowDecoration.Parent = this.btnCancel;
             this.btnCancel.Size = new System.Drawing.Size(178, 62);
@@ -344,15 +348,33 @@
             this.dgvBookings.TabIndex = 17;
             this.dgvBookings.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBookings_CellClick);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.guna2GroupBox2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1131, 761);
+            this.panel1.TabIndex = 18;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.guna2GroupBox3);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(1131, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(741, 761);
+            this.panel2.TabIndex = 20;
+            // 
             // frmCheckInFromReservationRECPGUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvBookings);
-            this.Controls.Add(this.guna2GroupBox3);
-            this.Controls.Add(this.guna2GroupBox2);
             this.Name = "frmCheckInFromReservationRECPGUI";
             this.Text = "frmCheckInFromReservationRECPGUI";
             this.Load += new System.EventHandler(this.frmCheckInFromReservationRECPGUI_Load);
@@ -360,6 +382,8 @@
             this.guna2GroupBox2.PerformLayout();
             this.guna2GroupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBookings)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -388,5 +412,7 @@
         private Guna.UI2.WinForms.Guna2Button btnConfirm;
         private System.Windows.Forms.DataGridView dgvBookings;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

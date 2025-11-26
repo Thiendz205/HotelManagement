@@ -58,6 +58,7 @@
     <Compile Include="IDGenerator.cs" />
     <Compile Include="InvoiceDAL.cs" />
     <Compile Include="Login_Logout_DAL.cs" />
+    <Compile Include="MaintenanceDAL.cs" />
     <Compile Include="MaintenanceLog_DAL.cs" />
     <Compile Include="MaintenanceType_DAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

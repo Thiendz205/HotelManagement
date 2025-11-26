@@ -77,5 +77,16 @@ namespace DAL.Properties {
                 return ((string)(this["HotelManagementConnectionString3"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-EKLM582L;Initial Catalog=HotelManagement;Integrated Security=T" +
+            "rue;Encrypt=True;TrustServerCertificate=True")]
+        public string HotelManagementConnectionString4 {
+            get {
+                return ((string)(this["HotelManagementConnectionString4"]));
+            }
+        }
     }
 }

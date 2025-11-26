@@ -156,42 +156,46 @@ namespace HotelManagement
 
         private void btnSetMaintenance_Click(object sender, EventArgs e)
         {
+
             var selectedRooms = GetSelectedRooms();
-
-            if (!selectedRooms.Any())
+            if (!selectedRooms.Any() || string.IsNullOrWhiteSpace(txtNote.Text))
             {
-                MessageBox.Show("Vui lòng chọn ít nhất một phòng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Vui lòng chọn phòng và nhập ghi chú!", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtNote.Text))
-            {
-                MessageBox.Show("Vui lòng nhập ghi chú bảo trì!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            // Hộp thoại xác nhận
             DialogResult confirm = MessageBox.Show(
-                "Bạn có chắc muốn chuyển các phòng đã chọn sang BẢO TRÌ không?",
-                "Xác nhận",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
+                "Bạn có chắc muốn gửi yêu cầu bảo trì cho các phòng này?",
+                "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
-            if (confirm != DialogResult.Yes)
-                return;
+            if (confirm != DialogResult.Yes) return;
 
-            bool ok = bus.UpdateRoomStatusBulk(selectedRooms, "Bảo trì", txtNote.Text.Trim());
-
-            if (ok)
+            // ❗Không update phòng ở đây
+            using (frmMaintenanceCreateGUI f = new frmMaintenanceCreateGUI(selectedRooms))
             {
-                MessageBox.Show("Đã chuyển sang Bảo trì!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadCleaningRooms();
-                txtNote.Clear();
+                f.Note = txtNote.Text.Trim(); // gửi note qua
+
+                var result = f.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    // Lúc này Save thành công → Update phòng lúc này!
+                    bus.UpdateRoomStatusBulk(selectedRooms, "Bảo trì", txtNote.Text.Trim());
+
+                    LoadCleaningRooms();
+                    MessageBox.Show("Đã chuyển sang Bảo trì!", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    // Cancel → không làm gì, giữ nguyên trạng thái phòng
+                    MessageBox.Show("Đã hủy bảo trì, trạng thái phòng giữ nguyên.", "Thông báo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
-            {
-                MessageBox.Show("Cập nhật thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
+            txtNote.Clear();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

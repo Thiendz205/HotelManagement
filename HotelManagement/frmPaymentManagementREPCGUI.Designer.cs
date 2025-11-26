@@ -34,6 +34,8 @@
             this.dgvInvoiceDetail = new System.Windows.Forms.DataGridView();
             this.lblTotalAmount = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numExtraFeeQuantity = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -60,13 +62,15 @@
             this.btnBack = new Guna.UI2.WinForms.Guna2Button();
             this.btnPay = new Guna.UI2.WinForms.Guna2Button();
             this.picQRCode = new System.Windows.Forms.PictureBox();
-            this.numExtraFeeQuantity = new System.Windows.Forms.NumericUpDown();
-            this.label8 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceDetail)).BeginInit();
             this.guna2GroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numExtraFeeQuantity)).BeginInit();
             this.guna2GroupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picQRCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numExtraFeeQuantity)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvInvoiceDetail
@@ -142,12 +146,38 @@
             this.guna2GroupBox2.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(12, 25);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(3, 12);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
             this.guna2GroupBox2.Size = new System.Drawing.Size(1074, 483);
             this.guna2GroupBox2.TabIndex = 16;
             this.guna2GroupBox2.Text = "Thông tin thanh toán";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(733, 171);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 22);
+            this.label8.TabIndex = 58;
+            this.label8.Text = "Số lượng: ";
+            // 
+            // numExtraFeeQuantity
+            // 
+            this.numExtraFeeQuantity.Location = new System.Drawing.Point(839, 163);
+            this.numExtraFeeQuantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numExtraFeeQuantity.Name = "numExtraFeeQuantity";
+            this.numExtraFeeQuantity.Size = new System.Drawing.Size(144, 30);
+            this.numExtraFeeQuantity.TabIndex = 57;
+            this.numExtraFeeQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label7
             // 
@@ -360,7 +390,7 @@
             this.guna2GroupBox3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.guna2GroupBox3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox3.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox3.Location = new System.Drawing.Point(1092, 25);
+            this.guna2GroupBox3.Location = new System.Drawing.Point(16, 42);
             this.guna2GroupBox3.Name = "guna2GroupBox3";
             this.guna2GroupBox3.ShadowDecoration.Parent = this.guna2GroupBox3;
             this.guna2GroupBox3.Size = new System.Drawing.Size(810, 157);
@@ -427,38 +457,31 @@
             // picQRCode
             // 
             this.picQRCode.Image = ((System.Drawing.Image)(resources.GetObject("picQRCode.Image")));
-            this.picQRCode.Location = new System.Drawing.Point(1222, 200);
+            this.picQRCode.Location = new System.Drawing.Point(72, 215);
             this.picQRCode.Name = "picQRCode";
             this.picQRCode.Size = new System.Drawing.Size(288, 280);
             this.picQRCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picQRCode.TabIndex = 18;
             this.picQRCode.TabStop = false;
             // 
-            // numExtraFeeQuantity
+            // panel1
             // 
-            this.numExtraFeeQuantity.Location = new System.Drawing.Point(839, 163);
-            this.numExtraFeeQuantity.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numExtraFeeQuantity.Name = "numExtraFeeQuantity";
-            this.numExtraFeeQuantity.Size = new System.Drawing.Size(144, 30);
-            this.numExtraFeeQuantity.TabIndex = 57;
-            this.numExtraFeeQuantity.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.panel1.Controls.Add(this.guna2GroupBox2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1086, 650);
+            this.panel1.TabIndex = 19;
             // 
-            // label8
+            // panel2
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(733, 171);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 22);
-            this.label8.TabIndex = 58;
-            this.label8.Text = "Số lượng: ";
+            this.panel2.Controls.Add(this.guna2GroupBox3);
+            this.panel2.Controls.Add(this.picQRCode);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(1086, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(838, 650);
+            this.panel2.TabIndex = 20;
             // 
             // frmPaymentManagementREPCGUI
             // 
@@ -466,9 +489,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1924, 1055);
-            this.Controls.Add(this.picQRCode);
-            this.Controls.Add(this.guna2GroupBox3);
-            this.Controls.Add(this.guna2GroupBox2);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvInvoiceDetail);
             this.Name = "frmPaymentManagementREPCGUI";
             this.Text = "frmPaymentManagementREPCGUI";
@@ -476,9 +498,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoiceDetail)).EndInit();
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numExtraFeeQuantity)).EndInit();
             this.guna2GroupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picQRCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numExtraFeeQuantity)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -516,5 +540,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown numExtraFeeQuantity;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
