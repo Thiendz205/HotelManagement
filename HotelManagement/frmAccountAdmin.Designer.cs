@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.headerPanel = new Guna.UI.WinForms.GunaPanel();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
@@ -43,7 +42,6 @@
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblStartDate = new System.Windows.Forms.Label();
             this.cboStatus = new Guna.UI.WinForms.GunaComboBox();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.lblFilterStatus = new System.Windows.Forms.Label();
             this.cboFilterStatus = new Guna.UI.WinForms.GunaComboBox();
             this.dgvMain = new System.Windows.Forms.DataGridView();
@@ -52,28 +50,17 @@
             this.colStartDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStaffID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.headerPanel.SuspendLayout();
+            this.gunaPanel1 = new Guna.UI.WinForms.GunaPanel();
+            this.gunaPanel2 = new Guna.UI.WinForms.GunaPanel();
+            this.gunaPanel3 = new Guna.UI.WinForms.GunaPanel();
+            this.gunaPanel4 = new Guna.UI.WinForms.GunaPanel();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
+            this.gunaPanel1.SuspendLayout();
+            this.gunaPanel2.SuspendLayout();
+            this.gunaPanel3.SuspendLayout();
+            this.gunaPanel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // headerPanel
-            // 
-            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.headerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.headerPanel.Controls.Add(this.guna2Button4);
-            this.headerPanel.Controls.Add(this.guna2Button1);
-            this.headerPanel.Controls.Add(this.guna2Button3);
-            this.headerPanel.Controls.Add(this.guna2GroupBox2);
-            this.headerPanel.Controls.Add(this.lblTitle);
-            this.headerPanel.Controls.Add(this.lblFilterStatus);
-            this.headerPanel.Controls.Add(this.cboFilterStatus);
-            this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.headerPanel.Location = new System.Drawing.Point(0, 0);
-            this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1202, 394);
-            this.headerPanel.TabIndex = 0;
-            this.headerPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.headerPanel_Paint);
             // 
             // guna2Button4
             // 
@@ -86,7 +73,7 @@
             this.guna2Button4.HoverState.Parent = this.guna2Button4;
             this.guna2Button4.Image = global::HotelManagement.Properties.Resources.refreshRECP;
             this.guna2Button4.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button4.Location = new System.Drawing.Point(976, 120);
+            this.guna2Button4.Location = new System.Drawing.Point(142, 87);
             this.guna2Button4.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button4.Name = "guna2Button4";
             this.guna2Button4.ShadowDecoration.Parent = this.guna2Button4;
@@ -106,7 +93,7 @@
             this.guna2Button1.HoverState.Parent = this.guna2Button1;
             this.guna2Button1.Image = global::HotelManagement.Properties.Resources.updateHR;
             this.guna2Button1.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button1.Location = new System.Drawing.Point(1056, 57);
+            this.guna2Button1.Location = new System.Drawing.Point(222, 24);
             this.guna2Button1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
@@ -126,7 +113,7 @@
             this.guna2Button3.HoverState.Parent = this.guna2Button3;
             this.guna2Button3.Image = global::HotelManagement.Properties.Resources.addHR;
             this.guna2Button3.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button3.Location = new System.Drawing.Point(898, 57);
+            this.guna2Button3.Location = new System.Drawing.Point(64, 24);
             this.guna2Button3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button3.Name = "guna2Button3";
             this.guna2Button3.ShadowDecoration.Parent = this.guna2Button3;
@@ -150,14 +137,15 @@
             this.guna2GroupBox2.Controls.Add(this.lblStartDate);
             this.guna2GroupBox2.Controls.Add(this.cboStatus);
             this.guna2GroupBox2.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.guna2GroupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2GroupBox2.FillColor = System.Drawing.SystemColors.ActiveCaption;
             this.guna2GroupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(21, 42);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(0, 0);
             this.guna2GroupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(820, 227);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(802, 281);
             this.guna2GroupBox2.TabIndex = 45;
             this.guna2GroupBox2.Text = "Tài Khoản";
             this.guna2GroupBox2.Click += new System.EventHandler(this.guna2GroupBox2_Click);
@@ -167,7 +155,7 @@
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblPassword.Location = new System.Drawing.Point(32, 112);
+            this.lblPassword.Location = new System.Drawing.Point(31, 134);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(68, 19);
             this.lblPassword.TabIndex = 2;
@@ -184,7 +172,7 @@
             this.gunaTextBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.gunaTextBox1.ForeColor = System.Drawing.Color.Black;
             this.gunaTextBox1.FormattingEnabled = true;
-            this.gunaTextBox1.Location = new System.Drawing.Point(133, 158);
+            this.gunaTextBox1.Location = new System.Drawing.Point(142, 178);
             this.gunaTextBox1.Name = "gunaTextBox1";
             this.gunaTextBox1.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.gunaTextBox1.OnHoverItemForeColor = System.Drawing.Color.White;
@@ -196,7 +184,7 @@
             this.lblUsername.AutoSize = true;
             this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblUsername.Location = new System.Drawing.Point(22, 65);
+            this.lblUsername.Location = new System.Drawing.Point(31, 85);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(91, 19);
             this.lblUsername.TabIndex = 0;
@@ -211,7 +199,7 @@
             this.txtUsername.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.txtUsername.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtUsername.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtUsername.Location = new System.Drawing.Point(133, 57);
+            this.txtUsername.Location = new System.Drawing.Point(142, 77);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PasswordChar = '\0';
             this.txtUsername.SelectedText = "";
@@ -228,7 +216,7 @@
             this.txtPassword.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.txtPassword.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPassword.Location = new System.Drawing.Point(133, 105);
+            this.txtPassword.Location = new System.Drawing.Point(142, 125);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.SelectedText = "";
@@ -242,7 +230,7 @@
             this.lblStaffId.AutoSize = true;
             this.lblStaffId.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblStaffId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblStaffId.Location = new System.Drawing.Point(20, 158);
+            this.lblStaffId.Location = new System.Drawing.Point(29, 178);
             this.lblStaffId.Name = "lblStaffId";
             this.lblStaffId.Size = new System.Drawing.Size(93, 19);
             this.lblStaffId.TabIndex = 4;
@@ -252,7 +240,7 @@
             // 
             this.dtpStartDate.Enabled = false;
             this.dtpStartDate.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.dtpStartDate.Location = new System.Drawing.Point(546, 112);
+            this.dtpStartDate.Location = new System.Drawing.Point(567, 129);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(188, 25);
             this.dtpStartDate.TabIndex = 9;
@@ -262,7 +250,7 @@
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblStatus.Location = new System.Drawing.Point(433, 65);
+            this.lblStatus.Location = new System.Drawing.Point(442, 82);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(70, 19);
             this.lblStatus.TabIndex = 6;
@@ -273,7 +261,7 @@
             this.lblStartDate.AutoSize = true;
             this.lblStartDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblStartDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblStartDate.Location = new System.Drawing.Point(433, 112);
+            this.lblStartDate.Location = new System.Drawing.Point(442, 129);
             this.lblStartDate.Name = "lblStartDate";
             this.lblStartDate.Size = new System.Drawing.Size(107, 19);
             this.lblStartDate.TabIndex = 8;
@@ -293,30 +281,19 @@
             this.cboStatus.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.cboStatus.Location = new System.Drawing.Point(546, 62);
+            this.cboStatus.Location = new System.Drawing.Point(567, 79);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.cboStatus.OnHoverItemForeColor = System.Drawing.Color.White;
             this.cboStatus.Size = new System.Drawing.Size(188, 26);
             this.cboStatus.TabIndex = 7;
             // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            this.lblTitle.Location = new System.Drawing.Point(473, 316);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(233, 30);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Danh  Sách Tài Khoản";
-            // 
             // lblFilterStatus
             // 
             this.lblFilterStatus.AutoSize = true;
             this.lblFilterStatus.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.lblFilterStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.lblFilterStatus.Location = new System.Drawing.Point(1004, 191);
+            this.lblFilterStatus.Location = new System.Drawing.Point(170, 158);
             this.lblFilterStatus.Name = "lblFilterStatus";
             this.lblFilterStatus.Size = new System.Drawing.Size(95, 19);
             this.lblFilterStatus.TabIndex = 6;
@@ -337,7 +314,7 @@
             "Tất cả",
             "Active",
             "Inactive"});
-            this.cboFilterStatus.Location = new System.Drawing.Point(959, 221);
+            this.cboFilterStatus.Location = new System.Drawing.Point(125, 188);
             this.cboFilterStatus.Name = "cboFilterStatus";
             this.cboFilterStatus.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.cboFilterStatus.OnHoverItemForeColor = System.Drawing.Color.White;
@@ -361,9 +338,9 @@
             this.colStartDate,
             this.colStaffID,
             this.colStatus});
-            this.dgvMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvMain.GridColor = System.Drawing.Color.LightGray;
-            this.dgvMain.Location = new System.Drawing.Point(0, 394);
+            this.dgvMain.Location = new System.Drawing.Point(0, 0);
             this.dgvMain.MultiSelect = false;
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.ReadOnly = true;
@@ -371,7 +348,7 @@
             this.dgvMain.RowHeadersWidth = 51;
             this.dgvMain.RowTemplate.Height = 25;
             this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvMain.Size = new System.Drawing.Size(1202, 406);
+            this.dgvMain.Size = new System.Drawing.Size(1202, 568);
             this.dgvMain.TabIndex = 1;
             this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellClick);
             // 
@@ -410,30 +387,71 @@
             this.colStatus.Name = "colStatus";
             this.colStatus.ReadOnly = true;
             // 
+            // gunaPanel1
+            // 
+            this.gunaPanel1.Controls.Add(this.gunaPanel3);
+            this.gunaPanel1.Controls.Add(this.gunaPanel2);
+            this.gunaPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gunaPanel1.Location = new System.Drawing.Point(0, 0);
+            this.gunaPanel1.Name = "gunaPanel1";
+            this.gunaPanel1.Size = new System.Drawing.Size(1202, 281);
+            this.gunaPanel1.TabIndex = 50;
+            // 
+            // gunaPanel2
+            // 
+            this.gunaPanel2.Controls.Add(this.guna2Button4);
+            this.gunaPanel2.Controls.Add(this.lblFilterStatus);
+            this.gunaPanel2.Controls.Add(this.cboFilterStatus);
+            this.gunaPanel2.Controls.Add(this.guna2Button1);
+            this.gunaPanel2.Controls.Add(this.guna2Button3);
+            this.gunaPanel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.gunaPanel2.Location = new System.Drawing.Point(807, 0);
+            this.gunaPanel2.Name = "gunaPanel2";
+            this.gunaPanel2.Size = new System.Drawing.Size(395, 281);
+            this.gunaPanel2.TabIndex = 0;
+            // 
+            // gunaPanel3
+            // 
+            this.gunaPanel3.Controls.Add(this.guna2GroupBox2);
+            this.gunaPanel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gunaPanel3.Location = new System.Drawing.Point(0, 0);
+            this.gunaPanel3.Name = "gunaPanel3";
+            this.gunaPanel3.Size = new System.Drawing.Size(802, 281);
+            this.gunaPanel3.TabIndex = 1;
+            // 
+            // gunaPanel4
+            // 
+            this.gunaPanel4.Controls.Add(this.dgvMain);
+            this.gunaPanel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gunaPanel4.Location = new System.Drawing.Point(0, 281);
+            this.gunaPanel4.Name = "gunaPanel4";
+            this.gunaPanel4.Size = new System.Drawing.Size(1202, 571);
+            this.gunaPanel4.TabIndex = 51;
+            // 
             // frmAccountAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(1202, 800);
-            this.Controls.Add(this.dgvMain);
-            this.Controls.Add(this.headerPanel);
+            this.Controls.Add(this.gunaPanel4);
+            this.Controls.Add(this.gunaPanel1);
             this.Name = "frmAccountAdmin";
             this.Text = "frmAccountAdmin";
             this.Load += new System.EventHandler(this.frmAccountAdmin_Load);
-            this.headerPanel.ResumeLayout(false);
-            this.headerPanel.PerformLayout();
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
+            this.gunaPanel1.ResumeLayout(false);
+            this.gunaPanel2.ResumeLayout(false);
+            this.gunaPanel2.PerformLayout();
+            this.gunaPanel3.ResumeLayout(false);
+            this.gunaPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Guna.UI.WinForms.GunaPanel headerPanel;
-        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.DataGridView dgvMain;
         private System.Windows.Forms.Label lblUsername;
         private Guna.UI.WinForms.GunaTextBox txtUsername;
@@ -456,5 +474,9 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button4;
         private Guna.UI2.WinForms.Guna2Button guna2Button1;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI.WinForms.GunaPanel gunaPanel1;
+        private Guna.UI.WinForms.GunaPanel gunaPanel3;
+        private Guna.UI.WinForms.GunaPanel gunaPanel2;
+        private Guna.UI.WinForms.GunaPanel gunaPanel4;
     }
 }

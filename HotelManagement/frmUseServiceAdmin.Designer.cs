@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.headerPanel = new Guna.UI.WinForms.GunaPanel();
             this.guna2Button4 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
@@ -44,7 +43,6 @@
             this.lblUsageDate = new System.Windows.Forms.Label();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
-            this.lblTitle = new System.Windows.Forms.Label();
             this.dgvMain = new System.Windows.Forms.DataGridView();
             this.colUsageID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colServiceName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,27 +52,18 @@
             this.colTotalAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStaffName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUsageDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.headerPanel.SuspendLayout();
+            this.gunaPanel1 = new Guna.UI.WinForms.GunaPanel();
+            this.gunaPanel2 = new Guna.UI.WinForms.GunaPanel();
+            this.gunaPanel3 = new Guna.UI.WinForms.GunaPanel();
+            this.gunaPanel4 = new Guna.UI.WinForms.GunaPanel();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).BeginInit();
+            this.gunaPanel1.SuspendLayout();
+            this.gunaPanel2.SuspendLayout();
+            this.gunaPanel3.SuspendLayout();
+            this.gunaPanel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // headerPanel
-            // 
-            this.headerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.headerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.headerPanel.Controls.Add(this.guna2Button4);
-            this.headerPanel.Controls.Add(this.guna2Button1);
-            this.headerPanel.Controls.Add(this.guna2GroupBox2);
-            this.headerPanel.Controls.Add(this.guna2Button2);
-            this.headerPanel.Controls.Add(this.guna2Button3);
-            this.headerPanel.Controls.Add(this.lblTitle);
-            this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.headerPanel.Location = new System.Drawing.Point(0, 0);
-            this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1308, 462);
-            this.headerPanel.TabIndex = 0;
             // 
             // guna2Button4
             // 
@@ -87,7 +76,7 @@
             this.guna2Button4.HoverState.Parent = this.guna2Button4;
             this.guna2Button4.Image = global::HotelManagement.Properties.Resources.refreshRECP;
             this.guna2Button4.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button4.Location = new System.Drawing.Point(1101, 210);
+            this.guna2Button4.Location = new System.Drawing.Point(184, 150);
             this.guna2Button4.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button4.Name = "guna2Button4";
             this.guna2Button4.ShadowDecoration.Parent = this.guna2Button4;
@@ -107,7 +96,7 @@
             this.guna2Button1.HoverState.Parent = this.guna2Button1;
             this.guna2Button1.Image = global::HotelManagement.Properties.Resources.updateHR;
             this.guna2Button1.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button1.Location = new System.Drawing.Point(955, 210);
+            this.guna2Button1.Location = new System.Drawing.Point(38, 150);
             this.guna2Button1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button1.Name = "guna2Button1";
             this.guna2Button1.ShadowDecoration.Parent = this.guna2Button1;
@@ -131,16 +120,17 @@
             this.guna2GroupBox2.Controls.Add(this.dtpUsageDate);
             this.guna2GroupBox2.Controls.Add(this.lblUsageDate);
             this.guna2GroupBox2.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.guna2GroupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2GroupBox2.FillColor = System.Drawing.SystemColors.ActiveCaption;
             this.guna2GroupBox2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.Black;
-            this.guna2GroupBox2.Location = new System.Drawing.Point(19, 30);
+            this.guna2GroupBox2.Location = new System.Drawing.Point(0, 0);
             this.guna2GroupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
             this.guna2GroupBox2.ShadowDecoration.Parent = this.guna2GroupBox2;
-            this.guna2GroupBox2.Size = new System.Drawing.Size(821, 306);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(924, 330);
             this.guna2GroupBox2.TabIndex = 39;
-            this.guna2GroupBox2.Text = "Thông tin nhân viên";
+            this.guna2GroupBox2.Text = "Thông tin sử dụng dịch vụ";
             // 
             // lblBooking
             // 
@@ -289,7 +279,7 @@
             this.guna2Button2.HoverState.Parent = this.guna2Button2;
             this.guna2Button2.Image = global::HotelManagement.Properties.Resources.signs_close_icon_png;
             this.guna2Button2.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button2.Location = new System.Drawing.Point(1101, 127);
+            this.guna2Button2.Location = new System.Drawing.Point(184, 67);
             this.guna2Button2.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button2.Name = "guna2Button2";
             this.guna2Button2.ShadowDecoration.Parent = this.guna2Button2;
@@ -309,7 +299,7 @@
             this.guna2Button3.HoverState.Parent = this.guna2Button3;
             this.guna2Button3.Image = global::HotelManagement.Properties.Resources.addHR;
             this.guna2Button3.ImageSize = new System.Drawing.Size(30, 30);
-            this.guna2Button3.Location = new System.Drawing.Point(956, 127);
+            this.guna2Button3.Location = new System.Drawing.Point(39, 67);
             this.guna2Button3.Margin = new System.Windows.Forms.Padding(2);
             this.guna2Button3.Name = "guna2Button3";
             this.guna2Button3.ShadowDecoration.Parent = this.guna2Button3;
@@ -317,17 +307,6 @@
             this.guna2Button3.TabIndex = 35;
             this.guna2Button3.Text = "Thêm ";
             this.guna2Button3.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(73)))), ((int)(((byte)(94)))));
-            this.lblTitle.Location = new System.Drawing.Point(604, 388);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(181, 30);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Sử dụng dịch vụ";
             // 
             // dgvMain
             // 
@@ -348,9 +327,9 @@
             this.colTotalAmount,
             this.colStaffName,
             this.colUsageDate});
-            this.dgvMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.dgvMain.GridColor = System.Drawing.Color.LightGray;
-            this.dgvMain.Location = new System.Drawing.Point(0, 462);
+            this.dgvMain.Location = new System.Drawing.Point(0, 0);
             this.dgvMain.MultiSelect = false;
             this.dgvMain.Name = "dgvMain";
             this.dgvMain.ReadOnly = true;
@@ -358,7 +337,7 @@
             this.dgvMain.RowHeadersWidth = 51;
             this.dgvMain.RowTemplate.Height = 25;
             this.dgvMain.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvMain.Size = new System.Drawing.Size(1308, 338);
+            this.dgvMain.Size = new System.Drawing.Size(1308, 465);
             this.dgvMain.TabIndex = 2;
             this.dgvMain.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMain_CellClick);
             // 
@@ -418,31 +397,70 @@
             this.colUsageDate.Name = "colUsageDate";
             this.colUsageDate.ReadOnly = true;
             // 
+            // gunaPanel1
+            // 
+            this.gunaPanel1.Controls.Add(this.gunaPanel3);
+            this.gunaPanel1.Controls.Add(this.gunaPanel2);
+            this.gunaPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gunaPanel1.Location = new System.Drawing.Point(0, 0);
+            this.gunaPanel1.Name = "gunaPanel1";
+            this.gunaPanel1.Size = new System.Drawing.Size(1308, 332);
+            this.gunaPanel1.TabIndex = 40;
+            // 
+            // gunaPanel2
+            // 
+            this.gunaPanel2.Controls.Add(this.guna2GroupBox2);
+            this.gunaPanel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.gunaPanel2.Location = new System.Drawing.Point(0, 0);
+            this.gunaPanel2.Name = "gunaPanel2";
+            this.gunaPanel2.Size = new System.Drawing.Size(924, 332);
+            this.gunaPanel2.TabIndex = 0;
+            // 
+            // gunaPanel3
+            // 
+            this.gunaPanel3.Controls.Add(this.guna2Button4);
+            this.gunaPanel3.Controls.Add(this.guna2Button3);
+            this.gunaPanel3.Controls.Add(this.guna2Button1);
+            this.gunaPanel3.Controls.Add(this.guna2Button2);
+            this.gunaPanel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.gunaPanel3.Location = new System.Drawing.Point(930, 0);
+            this.gunaPanel3.Name = "gunaPanel3";
+            this.gunaPanel3.Size = new System.Drawing.Size(378, 332);
+            this.gunaPanel3.TabIndex = 1;
+            // 
+            // gunaPanel4
+            // 
+            this.gunaPanel4.Controls.Add(this.dgvMain);
+            this.gunaPanel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gunaPanel4.Location = new System.Drawing.Point(0, 332);
+            this.gunaPanel4.Name = "gunaPanel4";
+            this.gunaPanel4.Size = new System.Drawing.Size(1308, 468);
+            this.gunaPanel4.TabIndex = 41;
+            // 
             // frmUseServiceAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(242)))), ((int)(((byte)(245)))));
             this.ClientSize = new System.Drawing.Size(1308, 800);
-            this.Controls.Add(this.dgvMain);
-            this.Controls.Add(this.headerPanel);
+            this.Controls.Add(this.gunaPanel4);
+            this.Controls.Add(this.gunaPanel1);
             this.Name = "frmUseServiceAdmin";
             this.Text = "frmUseServiceAdmin";
             this.Load += new System.EventHandler(this.frmUseServiceAdmin_Load);
-            this.headerPanel.ResumeLayout(false);
-            this.headerPanel.PerformLayout();
             this.guna2GroupBox2.ResumeLayout(false);
             this.guna2GroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMain)).EndInit();
+            this.gunaPanel1.ResumeLayout(false);
+            this.gunaPanel2.ResumeLayout(false);
+            this.gunaPanel3.ResumeLayout(false);
+            this.gunaPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Guna.UI.WinForms.GunaPanel headerPanel;
-        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label lblService;
         private Guna.UI.WinForms.GunaComboBox cboService;
         private System.Windows.Forms.Label lblBooking;
@@ -467,5 +485,9 @@
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private Guna.UI2.WinForms.Guna2Button guna2Button2;
         private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI.WinForms.GunaPanel gunaPanel1;
+        private Guna.UI.WinForms.GunaPanel gunaPanel3;
+        private Guna.UI.WinForms.GunaPanel gunaPanel2;
+        private Guna.UI.WinForms.GunaPanel gunaPanel4;
     }
 }
